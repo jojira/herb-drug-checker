@@ -81,6 +81,12 @@ export type FormulaHerbDetail = {
   latin: string;
   english: string;
   nccaom_code: string;
+  /**
+   * True when this herb has been excluded from the formula check via the
+   * Modification View. Excluded herbs are shown in the UI but not counted
+   * toward severity or matches.
+   */
+  excluded?: boolean;
   hasInteraction: boolean;
   interactions: InteractionMatch[];
 };
@@ -266,7 +272,8 @@ function severityToColor(severity: SeverityLevel): SeverityColor {
  */
 export function checkInteractions(
   westernMeds: WesternMed[],
-  tcmInput: TCMInput
+  tcmInput: TCMInput,
+  excludedHerbIds?: string[]
 ): InteractionEngineResult {
   const matches: InteractionMatch[] = [];
   const checkedWithNoInteraction: string[] = [];
@@ -280,8 +287,13 @@ export function checkInteractions(
     .filter((med) => !isRxcuiKnown(med.rxcui))
     .map((med) => med.rxcui);
 
+  const excludedSet = new Set(excludedHerbIds ?? []);
+
   // ── Step 2: Resolve herb IDs to check ────────────────────────────────────
+  // allFormulaHerbIds preserves the full formula herb list before exclusion
+  // filtering, so the breakdown UI can still show excluded herbs.
   let herbIdsToCheck: string[];
+  let allFormulaHerbIds: string[] = [];
   let resolvedFormula: FormulaIdentity | undefined;
 
   if (tcmInput.type === "herb") {
@@ -301,7 +313,9 @@ export function checkInteractions(
       };
     }
     resolvedFormula = resolved.formula;
-    herbIdsToCheck = resolved.herbIds;
+    allFormulaHerbIds = resolved.herbIds;
+    // Filter excluded herbs out before cross-referencing
+    herbIdsToCheck = allFormulaHerbIds.filter((id) => !excludedSet.has(id));
   }
 
   // ── Step 3: Cross-reference each herb against each western med ────────────
@@ -346,14 +360,31 @@ export function checkInteractions(
   );
 
   // ── Step 6: Build formula breakdown (enables expand-to-see-ingredient UI) ─
+  // Iterates the full original herb list (allFormulaHerbIds) so excluded herbs
+  // still appear in the breakdown with excluded:true — they are shown in the UI
+  // with a strikethrough and "Excluded" label, but not counted toward severity.
   if (tcmInput.type === "formula" && resolvedFormula) {
-    const herbs: FormulaHerbDetail[] = herbIdsToCheck.map((herbId) => {
-      const herbMatches = herbInteractionMap.get(herbId) ?? [];
+    const herbs: FormulaHerbDetail[] = allFormulaHerbIds.map((herbId) => {
+      const isExcluded = excludedSet.has(herbId);
+      const libraryHerb = lookupHerbById(herbId);
 
+      if (isExcluded) {
+        return {
+          herbId,
+          pinyin:      libraryHerb?.pinyin      ?? herbId,
+          latin:       libraryHerb?.latin       ?? "",
+          english:     libraryHerb?.english     ?? "",
+          nccaom_code: libraryHerb?.nccaom_code ?? "",
+          excluded: true,
+          hasInteraction: false,
+          interactions: [],
+        };
+      }
+
+      const herbMatches = herbInteractionMap.get(herbId) ?? [];
       // Primary source: herbLibrary — guarantees full data for every herb,
       // including safe ones that have no interaction match.
       // Fallback chain: herbLibrary → interaction record → bare id string.
-      const libraryHerb = lookupHerbById(herbId);
       const richHerb = libraryHerb ?? herbMatches[0]?.herb ?? null;
 
       return {
@@ -362,12 +393,14 @@ export function checkInteractions(
         latin:       richHerb?.latin       ?? "",
         english:     richHerb?.english     ?? "",
         nccaom_code: richHerb?.nccaom_code ?? "",
+        excluded: false,
         hasInteraction: herbMatches.length > 0,
         interactions: herbMatches,
       };
     });
 
-    const flaggedHerbCount = herbs.filter((h) => h.hasInteraction).length;
+    // flaggedHerbCount reflects only active (non-excluded) flagged herbs
+    const flaggedHerbCount = herbs.filter((h) => h.hasInteraction && !h.excluded).length;
 
     formulaBreakdown = {
       formula: resolvedFormula,

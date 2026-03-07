@@ -6,14 +6,16 @@
  * Displays the full output of checkInteractions().
  *
  * Sections:
- *   1. Summary banner — worst severity at a glance
- *   2. Formula breakdown — expandable, shows every constituent herb with
- *      full NCCAOM identity (Pinyin, Latin, English, code, category)
- *      whether or not it triggered an alert. Safe herbs are shown in full,
- *      not as bare IDs. Flagged herbs are visually prominent.
- *   3. Interaction cards — one per match, sorted worst-first, with
+ *   1. Summary banner — worst severity at a glance, with "Modified formula"
+ *      indicator when herb exclusions are active
+ *   2. Formula breakdown — expandable, shows every constituent herb.
+ *      Flagged herbs have a checkbox to exclude them from the formula check
+ *      without re-entering inputs (Modification View).
+ *   3. Modification summary — appears when exclusions are active, describes
+ *      the clinical impact of excluding the selected herbs
+ *   4. Interaction cards — one per match, sorted worst-first, with
  *      mechanism, clinical summary, citations, source badges
- *   4. Persistent disclaimer
+ *   5. Persistent disclaimer
  */
 
 import { useState } from "react";
@@ -41,6 +43,12 @@ function getHerbCategory(herbId: string): string | null {
   return entry?.category ?? null;
 }
 
+const SEVERITY_RANK: Record<SeverityLevel, number> = {
+  contraindicated: 2,
+  precaution: 1,
+  none: 0,
+};
+
 const EVIDENCE_LABELS: Record<string, string> = {
   high: "High Evidence",
   medium: "Moderate Evidence",
@@ -52,6 +60,13 @@ const EVIDENCE_STYLES: Record<string, string> = {
   medium: "bg-slate-200 text-slate-700",
   low: "bg-slate-100 text-slate-500",
 };
+
+function formatHerbList(names: string[]): string {
+  if (names.length === 0) return "";
+  if (names.length === 1) return names[0];
+  if (names.length === 2) return `${names[0]} and ${names[1]}`;
+  return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`;
+}
 
 // ---------------------------------------------------------------------------
 // SeverityBadge
@@ -83,54 +98,97 @@ function SeverityBadge({
 // FormulaBreakdown
 // ---------------------------------------------------------------------------
 
-function HerbDetailRow({ herb }: { herb: FormulaHerbDetail }) {
+function HerbDetailRow({
+  herb,
+  onToggle,
+}: {
+  herb: FormulaHerbDetail;
+  onToggle?: (excluded: boolean) => void;
+}) {
   const worstSeverity: SeverityLevel = herb.interactions.reduce<SeverityLevel>(
-    (worst, m) => {
-      const rank: Record<SeverityLevel, number> = { contraindicated: 2, precaution: 1, none: 0 };
-      return rank[m.severity] > rank[worst] ? m.severity : worst;
-    },
+    (worst, m) => (SEVERITY_RANK[m.severity] > SEVERITY_RANK[worst] ? m.severity : worst),
     "none"
   );
 
   const category = getHerbCategory(herb.herbId);
   const isFlagged = herb.hasInteraction;
+  const isExcluded = herb.excluded === true;
+  // Checkbox appears on herbs that are flagged OR currently excluded (were flagged before)
+  const showCheckbox = (isFlagged || isExcluded) && onToggle !== undefined;
 
   return (
     <li
       className={`
         flex items-start gap-3 px-4 py-3 border-b border-slate-100 last:border-0
-        ${isFlagged ? "bg-white" : "bg-slate-50/50"}
+        ${isExcluded ? "opacity-50 bg-slate-50" : isFlagged ? "bg-white" : "bg-slate-50/50"}
       `}
     >
+      {/* Checkbox for flagged / excluded herbs */}
+      {showCheckbox && (
+        <div className="flex-shrink-0 mt-1 flex items-center">
+          <input
+            type="checkbox"
+            checked={!isExcluded}
+            onChange={(e) => onToggle(!e.target.checked)}
+            aria-label={`${isExcluded ? "Include" : "Exclude"} ${herb.pinyin || herb.herbId} from formula`}
+            className="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer"
+          />
+        </div>
+      )}
+
+      {/* Severity / status icon */}
       <span
         className="flex-shrink-0 text-base mt-0.5"
-        aria-label={isFlagged ? SEVERITY_LABELS[worstSeverity] : "No known interaction"}
+        aria-label={isExcluded ? "Excluded from check" : isFlagged ? SEVERITY_LABELS[worstSeverity] : "No known interaction"}
       >
-        {isFlagged ? SEVERITY_ICONS[worstSeverity] : "🟢"}
+        {isExcluded ? "○" : isFlagged ? SEVERITY_ICONS[worstSeverity] : "🟢"}
       </span>
 
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <span className={`font-semibold text-sm ${isFlagged ? "text-slate-900" : "text-slate-600"}`}>
+          <span
+            className={`font-semibold text-sm ${
+              isExcluded
+                ? "text-slate-400 line-through"
+                : isFlagged
+                ? "text-slate-900"
+                : "text-slate-600"
+            }`}
+          >
             {herb.pinyin || herb.herbId}
           </span>
           {herb.nccaom_code && (
-            <span className="font-mono text-[10px] text-teal-600 bg-teal-50 px-1.5 py-0.5 rounded border border-teal-100">
+            <span
+              className={`font-mono text-[10px] px-1.5 py-0.5 rounded border ${
+                isExcluded
+                  ? "text-slate-400 bg-slate-100 border-slate-200"
+                  : "text-teal-600 bg-teal-50 border-teal-100"
+              }`}
+            >
               {herb.nccaom_code}
             </span>
           )}
+          {isExcluded && (
+            <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-500 bg-slate-200 px-1.5 py-0.5 rounded">
+              Excluded
+            </span>
+          )}
         </div>
+
         <div className="flex flex-wrap items-baseline gap-x-1.5 mt-0.5">
           {herb.latin && (
-            <span className="text-xs italic text-slate-500">{herb.latin}</span>
+            <span className={`text-xs italic ${isExcluded ? "text-slate-400" : "text-slate-500"}`}>
+              {herb.latin}
+            </span>
           )}
-          {herb.latin && herb.english && (
-            <span className="text-xs text-slate-300">·</span>
-          )}
+          {herb.latin && herb.english && <span className="text-xs text-slate-300">·</span>}
           {herb.english && (
-            <span className="text-xs text-slate-500">{herb.english}</span>
+            <span className={`text-xs ${isExcluded ? "text-slate-400" : "text-slate-500"}`}>
+              {herb.english}
+            </span>
           )}
         </div>
+
         {category && (
           <span className="inline-block mt-1 text-[10px] font-medium tracking-wide uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
             {category}
@@ -138,7 +196,8 @@ function HerbDetailRow({ herb }: { herb: FormulaHerbDetail }) {
         )}
       </div>
 
-      {isFlagged && (
+      {/* Alerts badge — only for active flagged herbs (not excluded) */}
+      {isFlagged && !isExcluded && (
         <div className="flex-shrink-0 text-right">
           <span
             className={`
@@ -159,13 +218,16 @@ function HerbDetailRow({ herb }: { herb: FormulaHerbDetail }) {
 
 function FormulaBreakdown({
   breakdown,
+  onHerbToggle,
 }: {
   breakdown: NonNullable<InteractionEngineResult["formulaBreakdown"]>;
+  onHerbToggle?: (herbId: string, excluded: boolean) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
 
-  const flaggedHerbs = breakdown.herbs.filter((h) => h.hasInteraction);
-  const safeHerbs = breakdown.herbs.filter((h) => !h.hasInteraction);
+  // Flagged section: currently flagged OR currently excluded (were flagged before exclusion)
+  const flaggedHerbs = breakdown.herbs.filter((h) => h.hasInteraction || h.excluded);
+  const safeHerbs = breakdown.herbs.filter((h) => !h.hasInteraction && !h.excluded);
 
   return (
     <div className="rounded-xl border border-slate-200 overflow-hidden shadow-sm">
@@ -209,11 +271,24 @@ function FormulaBreakdown({
               <div className="px-4 py-2 bg-red-50 border-b border-red-100">
                 <p className="text-xs font-semibold uppercase tracking-wider text-red-600">
                   ⚠ Flagged Ingredients ({flaggedHerbs.length})
+                  {onHerbToggle && (
+                    <span className="ml-2 font-normal normal-case text-red-400">
+                      — uncheck to exclude from formula
+                    </span>
+                  )}
                 </p>
               </div>
               <ul>
                 {flaggedHerbs.map((herb) => (
-                  <HerbDetailRow key={herb.herbId} herb={herb} />
+                  <HerbDetailRow
+                    key={herb.herbId}
+                    herb={herb}
+                    onToggle={
+                      onHerbToggle
+                        ? (excluded) => onHerbToggle(herb.herbId, excluded)
+                        : undefined
+                    }
+                  />
                 ))}
               </ul>
             </div>
@@ -235,6 +310,71 @@ function FormulaBreakdown({
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// ModificationSummary
+// ---------------------------------------------------------------------------
+
+function ModificationSummary({
+  originalResult,
+  modifiedResult,
+  excludedHerbIds,
+  onRestoreFormula,
+}: {
+  originalResult: InteractionEngineResult;
+  modifiedResult: InteractionEngineResult;
+  excludedHerbIds: Set<string>;
+  onRestoreFormula: () => void;
+}) {
+  const excludedHerbs =
+    originalResult.formulaBreakdown?.herbs.filter((h) => excludedHerbIds.has(h.herbId)) ?? [];
+  const herbNames = excludedHerbs.map((h) => h.pinyin || h.herbId);
+
+  const originalSeverity = originalResult.worstSeverity;
+  const modifiedSeverity = modifiedResult.worstSeverity;
+  const severityImproved = SEVERITY_RANK[modifiedSeverity] < SEVERITY_RANK[originalSeverity];
+
+  let message: string;
+  let bannerClass: string;
+  let icon: string;
+
+  if (modifiedResult.matches.length === 0) {
+    // Case a: all interactions cleared by the exclusions
+    const verb = excludedHerbs.length > 1 ? "are" : "is";
+    message = `Formula is safe against current medications if ${formatHerbList(herbNames)} ${verb} removed.`;
+    bannerClass = "bg-green-50 border-green-200 text-green-800";
+    icon = "🟢";
+  } else if (severityImproved) {
+    // Case b: severity reduced but interactions still remain
+    message = `Severity reduced from ${SEVERITY_LABELS[originalSeverity]} to ${SEVERITY_LABELS[modifiedSeverity]} by removing ${formatHerbList(herbNames)}.`;
+    bannerClass = "bg-amber-50 border-amber-200 text-amber-800";
+    icon = "🟡";
+  } else {
+    // Case c: no improvement in severity
+    message = `Removing ${formatHerbList(herbNames)} has no effect on the current interactions.`;
+    bannerClass = "bg-slate-50 border-slate-200 text-slate-700";
+    icon = "○";
+  }
+
+  return (
+    <div className={`rounded-xl border-2 px-5 py-4 ${bannerClass}`}>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start gap-3">
+          <span className="text-base flex-shrink-0 mt-0.5" aria-hidden>{icon}</span>
+          <p className="text-sm font-medium leading-relaxed">{message}</p>
+        </div>
+        <button
+          type="button"
+          onClick={onRestoreFormula}
+          className="flex-shrink-0 text-xs font-semibold underline underline-offset-2 hover:opacity-70 transition-opacity whitespace-nowrap"
+          aria-label="Restore full formula — re-include all excluded herbs"
+        >
+          Restore full formula
+        </button>
+      </div>
     </div>
   );
 }
@@ -424,7 +564,13 @@ function InteractionCard({
 // Summary banner
 // ---------------------------------------------------------------------------
 
-function SummaryBanner({ result }: { result: InteractionEngineResult }) {
+function SummaryBanner({
+  result,
+  isModified,
+}: {
+  result: InteractionEngineResult;
+  isModified: boolean;
+}) {
   const styles = SEVERITY_STYLES[result.worstSeverity];
   const hasMatches = result.matches.length > 0;
   const contraCount = result.matches.filter((m) => m.severity === "contraindicated").length;
@@ -437,11 +583,18 @@ function SummaryBanner({ result }: { result: InteractionEngineResult }) {
           {SEVERITY_ICONS[result.worstSeverity]}
         </span>
         <div className="flex-1 min-w-0">
-          <p className={`font-bold text-lg leading-tight ${styles.text}`}>
-            {hasMatches
-              ? `${result.matches.length} Interaction${result.matches.length > 1 ? "s" : ""} Found`
-              : "No Known Interactions Found"}
-          </p>
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <p className={`font-bold text-lg leading-tight ${styles.text}`}>
+              {hasMatches
+                ? `${result.matches.length} Interaction${result.matches.length > 1 ? "s" : ""} Found`
+                : "No Known Interactions Found"}
+            </p>
+            {isModified && (
+              <span className="text-[10px] font-bold uppercase tracking-wide text-slate-600 bg-slate-200 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
+                Modified formula
+              </span>
+            )}
+          </div>
           <p className="text-sm text-slate-600 mt-0.5">
             Overall severity:{" "}
             <strong className={styles.text}>{SEVERITY_LABELS[result.worstSeverity]}</strong>
@@ -481,17 +634,43 @@ function SummaryBanner({ result }: { result: InteractionEngineResult }) {
 // Main export
 // ---------------------------------------------------------------------------
 
+type Props = {
+  result: InteractionEngineResult;
+  /** The unmodified original result, needed for the Modification Summary comparison */
+  originalResult?: InteractionEngineResult;
+  /** Set of formula herb IDs the practitioner has excluded from the check */
+  excludedHerbIds?: Set<string>;
+  onHerbToggle?: (herbId: string, excluded: boolean) => void;
+  onRestoreFormula?: () => void;
+};
+
 export default function InteractionResults({
   result,
-}: {
-  result: InteractionEngineResult;
-}) {
+  originalResult,
+  excludedHerbIds = new Set(),
+  onHerbToggle,
+  onRestoreFormula,
+}: Props) {
+  const isModified = excludedHerbIds.size > 0;
+
   return (
     <div className="space-y-5" aria-live="polite" aria-label="Interaction check results">
-      <SummaryBanner result={result} />
+      <SummaryBanner result={result} isModified={isModified} />
 
       {result.formulaBreakdown && (
-        <FormulaBreakdown breakdown={result.formulaBreakdown} />
+        <FormulaBreakdown
+          breakdown={result.formulaBreakdown}
+          onHerbToggle={onHerbToggle}
+        />
+      )}
+
+      {isModified && originalResult && onRestoreFormula && (
+        <ModificationSummary
+          originalResult={originalResult}
+          modifiedResult={result}
+          excludedHerbIds={excludedHerbIds}
+          onRestoreFormula={onRestoreFormula}
+        />
       )}
 
       {result.matches.length > 0 && (

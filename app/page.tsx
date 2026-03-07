@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import HerbSearch from "@/app/components/HerbSearch";
 import type { HerbSearchSelection } from "@/app/components/HerbSearch";
 import DrugSearch from "@/app/components/DrugSearch";
@@ -90,7 +90,12 @@ function EmptyState() {
 export default function HomePage() {
   const [selectedTCM, setSelectedTCM] = useState<HerbSearchSelection | null>(null);
   const [westernMeds, setWesternMeds] = useState<WesternMed[]>([]);
-  const [result, setResult] = useState<InteractionEngineResult | null>(null);
+  // originalResult — the result from the last full Check Interactions run
+  const [originalResult, setOriginalResult] = useState<InteractionEngineResult | null>(null);
+  // modifiedResult — re-run of the engine with herb exclusions applied; null when no exclusions
+  const [modifiedResult, setModifiedResult] = useState<InteractionEngineResult | null>(null);
+  // excludedHerbIds — set of formula herb IDs the practitioner has unchecked
+  const [excludedHerbIds, setExcludedHerbIds] = useState<Set<string>>(new Set());
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Incrementing this key forces HerbSearch and DrugSearch to fully remount on reset
@@ -98,21 +103,44 @@ export default function HomePage() {
 
   const canCheck = selectedTCM !== null && westernMeds.length > 0;
 
+  // Re-run the engine whenever herb exclusions change.
+  // checkInteractions() is synchronous so no skeleton needed here — the toggle
+  // response should feel instant.
+  useEffect(() => {
+    if (!originalResult || !selectedTCM) return;
+    if (excludedHerbIds.size === 0) {
+      setModifiedResult(null);
+      return;
+    }
+    const modified = checkInteractions(
+      westernMeds,
+      selectedTCM.value,
+      Array.from(excludedHerbIds)
+    );
+    setModifiedResult(modified);
+  }, [excludedHerbIds, originalResult, selectedTCM, westernMeds]);
+
   const handleTCMSelect = useCallback((selection: HerbSearchSelection) => {
     setSelectedTCM(selection);
-    setResult(null);
+    setOriginalResult(null);
+    setModifiedResult(null);
+    setExcludedHerbIds(new Set());
     setError(null);
   }, []);
 
   const handleTCMClear = useCallback(() => {
     setSelectedTCM(null);
-    setResult(null);
+    setOriginalResult(null);
+    setModifiedResult(null);
+    setExcludedHerbIds(new Set());
     setError(null);
   }, []);
 
   const handleMedsChange = useCallback((meds: WesternMed[]) => {
     setWesternMeds(meds);
-    setResult(null);
+    setOriginalResult(null);
+    setModifiedResult(null);
+    setExcludedHerbIds(new Set());
     setError(null);
   }, []);
 
@@ -120,13 +148,15 @@ export default function HomePage() {
     if (!canCheck || !selectedTCM) return;
     setIsChecking(true);
     setError(null);
-    setResult(null);
+    setOriginalResult(null);
+    setModifiedResult(null);
+    setExcludedHerbIds(new Set());
     // checkInteractions() is synchronous. Defer via setTimeout so the skeleton
     // renders before the engine runs, giving the UI a visible busy state.
     setTimeout(() => {
       try {
         const engineResult = checkInteractions(westernMeds, selectedTCM.value);
-        setResult(engineResult);
+        setOriginalResult(engineResult);
       } catch (err) {
         console.error("Interaction engine error:", err);
         setError("An unexpected error occurred. Please try again.");
@@ -136,13 +166,32 @@ export default function HomePage() {
     }, 0);
   }, [canCheck, selectedTCM, westernMeds]);
 
+  const handleHerbToggle = useCallback((herbId: string, excluded: boolean) => {
+    setExcludedHerbIds((prev) => {
+      const next = new Set(prev);
+      if (excluded) next.add(herbId);
+      else next.delete(herbId);
+      return next;
+    });
+  }, []);
+
+  // Clears all exclusions; the useEffect above detects size === 0 and clears modifiedResult
+  const handleRestoreFormula = useCallback(() => {
+    setExcludedHerbIds(new Set());
+  }, []);
+
   const handleReset = useCallback(() => {
     setSelectedTCM(null);
     setWesternMeds([]);
-    setResult(null);
+    setOriginalResult(null);
+    setModifiedResult(null);
+    setExcludedHerbIds(new Set());
     setError(null);
     setResetKey((k) => k + 1);
   }, []);
+
+  // Show the modified result when exclusions are active; fall back to the original
+  const displayResult = modifiedResult ?? originalResult;
 
   return (
     // App shell: stacked on mobile, side-by-side on md+
@@ -278,12 +327,18 @@ export default function HomePage() {
         aria-label="Interaction results"
       >
         {isChecking && <SkeletonLoader />}
-        {!isChecking && result && (
+        {!isChecking && displayResult && (
           <div className="p-6">
-            <InteractionResults result={result} />
+            <InteractionResults
+              result={displayResult}
+              originalResult={originalResult ?? undefined}
+              excludedHerbIds={excludedHerbIds}
+              onHerbToggle={handleHerbToggle}
+              onRestoreFormula={handleRestoreFormula}
+            />
           </div>
         )}
-        {!isChecking && !result && <EmptyState />}
+        {!isChecking && !displayResult && <EmptyState />}
       </main>
 
     </div>
