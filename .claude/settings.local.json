@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

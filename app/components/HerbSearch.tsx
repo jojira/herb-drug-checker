@@ -3,14 +3,16 @@
 /**
  * HerbSearch.tsx
  *
- * Search input for TCM herbs and formulas.
+ * Unified search input for TCM herbs and formulas.
  *
  * CLINICAL REQUIREMENT: Exact match logic only.
  * Partial string matching is intentionally excluded — a practitioner must
  * select a verified, NCCAOM-standard herb identity, not a guessed one.
  * Matching is case-insensitive across Pinyin, Latin, English, and NCCAOM code.
  *
- * Input mode toggles between single herb and formula.
+ * A single input surfaces both herbs and formulas grouped in the dropdown.
+ * No mode toggle required — practitioners shouldn't need to know in advance
+ * whether their input is classified as a single herb or a formula.
  */
 
 import { useState, useRef, useEffect, useCallback } from "react";
@@ -24,11 +26,12 @@ import type { HerbInput, FormulaInput } from "@/logic/interactionEngine";
 
 type HerbEntry = (typeof herbLibrary.herbs)[number];
 type FormulaEntry = (typeof formulaMap.formulas)[number];
-type SearchMode = "herb" | "formula";
 
 export type HerbSearchSelection =
   | { mode: "herb"; value: HerbInput; display: HerbEntry }
   | { mode: "formula"; value: FormulaInput; display: FormulaEntry };
+
+type Suggestions = { herbs: HerbEntry[]; formulas: FormulaEntry[] };
 
 type Props = {
   onSelect: (selection: HerbSearchSelection) => void;
@@ -37,9 +40,10 @@ type Props = {
 };
 
 // ---------------------------------------------------------------------------
-// Exact match logic
+// Match logic
 // CLINICAL REQUIREMENT: Only surface a result when the query exactly matches
-// one of the four authoritative name fields. No fuzzy, no partial, no prefix.
+// one of the authoritative name fields. Prefix match is used only for the
+// dropdown suggestions — the user must explicitly click to confirm.
 // ---------------------------------------------------------------------------
 
 function normalise(s: string) {
@@ -69,8 +73,6 @@ function exactMatchFormulas(query: string): FormulaEntry[] {
   );
 }
 
-// Prefix match for suggestions (shows options while typing, but does not
-// auto-select — the user must explicitly click a suggestion to confirm).
 function prefixMatchHerbs(query: string): HerbEntry[] {
   const q = normalise(query);
   if (q.length < 2) return [];
@@ -97,9 +99,21 @@ function prefixMatchFormulas(query: string): FormulaEntry[] {
     .slice(0, 6);
 }
 
+function hasSuggestions(s: Suggestions) {
+  return s.herbs.length > 0 || s.formulas.length > 0;
+}
+
 // ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
+
+function SectionHeader({ label }: { label: string }) {
+  return (
+    <div className="px-4 py-1.5 bg-slate-50 border-b border-slate-100">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
+    </div>
+  );
+}
 
 function HerbSuggestionRow({ herb, onSelect }: { herb: HerbEntry; onSelect: () => void }) {
   return (
@@ -149,28 +163,26 @@ function FormulaSuggestionRow({ formula, onSelect }: { formula: FormulaEntry; on
 // ---------------------------------------------------------------------------
 
 export default function HerbSearch({ onSelect, onClear, disabled = false }: Props) {
-  const [mode, setMode] = useState<SearchMode>("herb");
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<HerbEntry[] | FormulaEntry[]>([]);
+  const [suggestions, setSuggestions] = useState<Suggestions>({ herbs: [], formulas: [] });
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<HerbSearchSelection | null>(null);
   const [exactMatchError, setExactMatchError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Recompute suggestions as query changes
+  // Recompute suggestions as query changes — always check both herbs and formulas
   useEffect(() => {
     if (selected || !query) {
-      setSuggestions([]);
+      setSuggestions({ herbs: [], formulas: [] });
       setExactMatchError(false);
       return;
     }
-    if (mode === "herb") {
-      setSuggestions(prefixMatchHerbs(query));
-    } else {
-      setSuggestions(prefixMatchFormulas(query));
-    }
-  }, [query, mode, selected]);
+    setSuggestions({
+      herbs: prefixMatchHerbs(query),
+      formulas: prefixMatchFormulas(query),
+    });
+  }, [query, selected]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -182,16 +194,6 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
-
-  const handleModeSwitch = useCallback((newMode: SearchMode) => {
-    setMode(newMode);
-    setQuery("");
-    setSuggestions([]);
-    setSelected(null);
-    setExactMatchError(false);
-    onClear();
-    inputRef.current?.focus();
-  }, [onClear]);
 
   const handleSelectHerb = useCallback((herb: HerbEntry) => {
     setSelected({ mode: "herb", value: { type: "herb", herbId: herb.id }, display: herb });
@@ -209,58 +211,38 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
     onSelect({ mode: "formula", value: { type: "formula", formulaId: formula.id }, display: formula });
   }, [onSelect]);
 
-  // On blur: if query doesn't exactly match anything, show error and clear
+  // On blur: if query exactly matches a single herb or formula, auto-confirm it.
+  // If ambiguous or no match, show error.
   const handleBlur = useCallback(() => {
     setOpen(false);
     if (!selected && query.length > 0) {
-      const exactHerbs = mode === "herb" ? exactMatchHerbs(query) : [];
-      const exactFormulas = mode === "formula" ? exactMatchFormulas(query) : [];
+      const exactHerbs = exactMatchHerbs(query);
+      const exactFormulas = exactMatchFormulas(query);
 
-      if (mode === "herb" && exactHerbs.length === 1) {
+      if (exactHerbs.length === 1 && exactFormulas.length === 0) {
         handleSelectHerb(exactHerbs[0]);
-      } else if (mode === "formula" && exactFormulas.length === 1) {
+      } else if (exactFormulas.length === 1 && exactHerbs.length === 0) {
         handleSelectFormula(exactFormulas[0]);
       } else if (query.length >= 2) {
         setExactMatchError(true);
       }
     }
-  }, [selected, query, mode, handleSelectHerb, handleSelectFormula]);
+  }, [selected, query, handleSelectHerb, handleSelectFormula]);
 
   const handleClear = useCallback(() => {
     setQuery("");
     setSelected(null);
-    setSuggestions([]);
+    setSuggestions({ herbs: [], formulas: [] });
     setExactMatchError(false);
     onClear();
     inputRef.current?.focus();
   }, [onClear]);
 
-  const isHerb = (s: HerbEntry | FormulaEntry): s is HerbEntry => "nccaom_code" in s;
+  const showDropdown = open && !selected && hasSuggestions(suggestions);
+  const showNoResults = open && !selected && query.length >= 2 && !hasSuggestions(suggestions);
 
   return (
     <div ref={containerRef} className="w-full">
-      {/* Mode toggle */}
-      <div className="flex gap-1 mb-2">
-        {(["herb", "formula"] as SearchMode[]).map((m) => (
-          <button
-            key={m}
-            type="button"
-            onClick={() => handleModeSwitch(m)}
-            disabled={disabled}
-            className={`
-              px-3 py-1 rounded text-xs font-semibold tracking-wide uppercase transition-all
-              ${mode === m
-                ? "bg-teal-700 text-white shadow-sm"
-                : "bg-slate-100 text-slate-500 hover:bg-slate-200"
-              }
-              disabled:opacity-40 disabled:cursor-not-allowed
-            `}
-          >
-            {m === "herb" ? "Single Herb" : "Formula"}
-          </button>
-        ))}
-      </div>
-
       {/* Input */}
       <div className={`
         relative rounded-lg border-2 transition-all bg-white
@@ -268,9 +250,8 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
         ${disabled ? "opacity-50" : ""}
       `}>
         <div className="flex items-center px-3 gap-2">
-          {/* Icon */}
           <span className="text-slate-400 text-base flex-shrink-0" aria-hidden>
-            {mode === "formula" ? "⬡" : "🌿"}
+            {selected?.mode === "formula" ? "⬡" : "🌿"}
           </span>
 
           <input
@@ -278,11 +259,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
             type="text"
             value={query}
             disabled={disabled}
-            placeholder={
-              mode === "herb"
-                ? "Pinyin, Latin, or English name…"
-                : "Formula name (Pinyin or English)…"
-            }
+            placeholder="Herb or formula — Pinyin, Latin, or English…"
             onChange={(e) => {
               setQuery(e.target.value);
               setSelected(null);
@@ -291,13 +268,12 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
             }}
             onFocus={() => { if (!selected) setOpen(true); }}
             onBlur={handleBlur}
-            aria-label={mode === "herb" ? "Search for a TCM herb" : "Search for a TCM formula"}
-            aria-expanded={open && suggestions.length > 0}
+            aria-label="Search for a TCM herb or formula"
+            aria-expanded={showDropdown}
             aria-autocomplete="list"
             className="flex-1 py-3 bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
           />
 
-          {/* Selected badge OR clear button */}
           {selected && (
             <button
               type="button"
@@ -310,7 +286,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
           )}
         </div>
 
-        {/* Selected herb/formula pill */}
+        {/* Selected pill */}
         {selected && (
           <div className="px-3 pb-2.5 pt-0">
             {selected.mode === "herb" ? (
@@ -331,28 +307,37 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
           </div>
         )}
 
-        {/* Dropdown */}
-        {open && !selected && suggestions.length > 0 && (
+        {/* Dropdown — herbs and formulas grouped */}
+        {showDropdown && (
           <div
-            className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
+            className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
             role="listbox"
             aria-label="Search suggestions"
           >
-            {suggestions.map((s) =>
-              isHerb(s) ? (
-                <HerbSuggestionRow key={s.id} herb={s} onSelect={() => handleSelectHerb(s)} />
-              ) : (
-                <FormulaSuggestionRow key={s.id} formula={s as FormulaEntry} onSelect={() => handleSelectFormula(s as FormulaEntry)} />
-              )
+            {suggestions.herbs.length > 0 && (
+              <>
+                <SectionHeader label="Single Herbs" />
+                {suggestions.herbs.map((h) => (
+                  <HerbSuggestionRow key={h.id} herb={h} onSelect={() => handleSelectHerb(h)} />
+                ))}
+              </>
+            )}
+            {suggestions.formulas.length > 0 && (
+              <>
+                <SectionHeader label="Formulas" />
+                {suggestions.formulas.map((f) => (
+                  <FormulaSuggestionRow key={f.id} formula={f} onSelect={() => handleSelectFormula(f)} />
+                ))}
+              </>
             )}
           </div>
         )}
 
-        {/* No suggestions hint */}
-        {open && !selected && query.length >= 2 && suggestions.length === 0 && (
+        {/* No results */}
+        {showNoResults && (
           <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-slate-500">
-              No {mode === "herb" ? "herbs" : "formulas"} found. Try Pinyin, Latin, or English name.
+              No herbs or formulas found. Try Pinyin, Latin, or English name.
             </p>
           </div>
         )}
@@ -362,16 +347,14 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       {exactMatchError && (
         <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1" role="alert">
           <span aria-hidden>⚠</span>
-          Please select a verified herb from the list. Free-text entries are not accepted for clinical safety.
+          Please select a verified herb or formula from the list. Free-text entries are not accepted for clinical safety.
         </p>
       )}
 
-      {/* Mode hint */}
+      {/* Hint */}
       {!selected && !exactMatchError && (
         <p className="mt-1.5 text-xs text-slate-400">
-          {mode === "herb"
-            ? "Exact match required — select from suggestions to confirm."
-            : "Selecting a formula will expand all constituent herbs for checking."}
+          Select from suggestions to confirm. Formulas will expand all constituent herbs.
         </p>
       )}
     </div>
