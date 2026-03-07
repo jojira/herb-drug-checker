@@ -99,8 +99,15 @@ export type InteractionEngineResult = {
     flaggedHerbCount: number;
     totalHerbCount: number;
   };
-  /** Herbs or formula herb IDs that were checked but had no interactions */
+  /** Herb IDs that were checked against all drugs and had no interactions */
   checkedWithNoInteraction: string[];
+  /**
+   * RxCUIs that were submitted but have no records in the interaction database.
+   * These are NOT errors — the engine returns "no known interactions" for them.
+   * The UI should surface this distinction so practitioners know the absence of
+   * an alert reflects a data gap, not a confirmed safe combination.
+   */
+  unrecognizedRxcuis: string[];
   checkedAt: string;
   disclaimer: string;
 }
@@ -161,9 +168,18 @@ function resolveFormula(formulaId: string): { formula: FormulaIdentity; herbIds:
 }
 
 /**
+ * Returns true if the rxcui exists anywhere in the interaction database.
+ * Used to distinguish "no interaction found" from "drug not in database at all."
+ */
+function isRxcuiKnown(rxcui: string): boolean {
+  return interactionData.interactions.some((i) => i.drug.rxcui === rxcui);
+}
+
+/**
  * Looks up a single herb-drug pair in the interaction database.
- * Matching is done by herbId and rxcui.
- * Returns null if no interaction is found (i.e., "none" severity).
+ * Matching is done by herbId AND rxcui — both must match exactly.
+ * Returns null when no interaction record exists; never throws.
+ * A null result means "no known interaction", not an error.
  */
 function lookupInteraction(herbId: string, rxcui: string): InteractionMatch | null {
   const record = interactionData.interactions.find(
@@ -256,7 +272,15 @@ export function checkInteractions(
   const checkedWithNoInteraction: string[] = [];
   let formulaBreakdown: InteractionEngineResult["formulaBreakdown"] | undefined;
 
-  // ── Step 1: Resolve herb IDs to check ────────────────────────────────────
+  // ── Step 1: Identify drugs not in the interaction database ────────────────
+  // These are not errors — the engine will return "no known interactions" for
+  // them. We surface them separately so the UI can inform the practitioner
+  // that the absence of an alert may reflect a data gap, not a safe combo.
+  const unrecognizedRxcuis = westernMeds
+    .filter((med) => !isRxcuiKnown(med.rxcui))
+    .map((med) => med.rxcui);
+
+  // ── Step 2: Resolve herb IDs to check ────────────────────────────────────
   let herbIdsToCheck: string[];
   let resolvedFormula: FormulaIdentity | undefined;
 
@@ -271,6 +295,7 @@ export function checkInteractions(
         worstSeverityColor: "green",
         matches: [],
         checkedWithNoInteraction: [],
+        unrecognizedRxcuis,
         checkedAt: new Date().toISOString(),
         disclaimer: DISCLAIMER,
       };
@@ -279,7 +304,7 @@ export function checkInteractions(
     herbIdsToCheck = resolved.herbIds;
   }
 
-  // ── Step 2: Cross-reference each herb against each western med ────────────
+  // ── Step 3: Cross-reference each herb against each western med ────────────
   // Build a lookup map of herb → its interactions, for formula breakdown
   const herbInteractionMap: Map<string, InteractionMatch[]> = new Map();
 
@@ -306,7 +331,7 @@ export function checkInteractions(
     herbInteractionMap.set(herbId, herbMatches);
   }
 
-  // ── Step 3: Sort matches — worst severity first, then by evidence level ──
+  // ── Step 4: Sort matches — worst severity first, then by evidence level ──
   const evidenceRank: Record<EvidenceLevel, number> = { high: 2, medium: 1, low: 0 };
   matches.sort((a, b) => {
     const severityDiff = SEVERITY_RANK[b.severity] - SEVERITY_RANK[a.severity];
@@ -314,13 +339,13 @@ export function checkInteractions(
     return evidenceRank[b.evidenceLevel] - evidenceRank[a.evidenceLevel];
   });
 
-  // ── Step 4: Determine worst overall severity ───────────────────────────
+  // ── Step 5: Determine worst overall severity ───────────────────────────
   const worstSeverity = matches.reduce<SeverityLevel>(
     (worst, m) => escalateSeverity(worst, m.severity),
     "none"
   );
 
-  // ── Step 5: Build formula breakdown (enables expand-to-see-ingredient UI) ─
+  // ── Step 6: Build formula breakdown (enables expand-to-see-ingredient UI) ─
   if (tcmInput.type === "formula" && resolvedFormula) {
     const herbs: FormulaHerbDetail[] = herbIdsToCheck.map((herbId) => {
       const herbMatches = herbInteractionMap.get(herbId) ?? [];
@@ -358,6 +383,7 @@ export function checkInteractions(
     matches,
     formulaBreakdown,
     checkedWithNoInteraction,
+    unrecognizedRxcuis,
     checkedAt: new Date().toISOString(),
     disclaimer: DISCLAIMER,
   };

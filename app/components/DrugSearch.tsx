@@ -4,7 +4,7 @@
  * DrugSearch.tsx
  *
  * Autocomplete search for Western pharmaceutical medications.
- * Calls the /api/search/drug route, which proxies to RxNorm and falls
+ * Calls the /api/search/drugs route, which proxies to RxNorm and falls
  * back to mock data when the API is unavailable.
  *
  * Supports adding multiple medications to a list (patients often take
@@ -135,7 +135,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/search/drug?q=${encodeURIComponent(query)}`);
+        const res = await fetch(`/api/search/drugs?q=${encodeURIComponent(query)}`);
         if (!res.ok) throw new Error("Search failed");
         const data = await res.json();
         setSuggestions(data.results ?? []);
