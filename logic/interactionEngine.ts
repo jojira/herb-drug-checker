@@ -13,6 +13,7 @@
 
 import interactionData from "@/data/mockInteractions.json";
 import formulaData from "@/data/formulaMap.json";
+import herbLibraryData from "@/data/herbLibrary.json";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -188,6 +189,26 @@ function lookupInteraction(herbId: string, rxcui: string): InteractionMatch | nu
 }
 
 /**
+ * Looks up full herb identity from the central herbLibrary.
+ * This is the authoritative source for herb names — used for formula
+ * breakdown so every constituent herb (flagged or not) gets its full
+ * Pinyin / Latin / English / NCCAOM data, not just the ones with matches.
+ * Returns null if the herb ID isn't in the library.
+ */
+function lookupHerbById(herbId: string): HerbIdentity | null {
+  const entry = herbLibraryData.herbs.find((h) => h.id === herbId);
+  if (!entry) return null;
+  return {
+    id: entry.id,
+    pinyin: entry.pinyin,
+    latin: entry.latin,
+    english: entry.english,
+    nccaom_code: entry.nccaom_code,
+    active_constituent: (entry as { active_constituent?: string }).active_constituent,
+  };
+}
+
+/**
  * Returns the higher-severity level of two severity values.
  */
 function escalateSeverity(a: SeverityLevel, b: SeverityLevel): SeverityLevel {
@@ -301,18 +322,20 @@ export function checkInteractions(
 
   // ── Step 5: Build formula breakdown (enables expand-to-see-ingredient UI) ─
   if (tcmInput.type === "formula" && resolvedFormula) {
-    // We need herb display info — pull from interaction records or fall back to id
     const herbs: FormulaHerbDetail[] = herbIdsToCheck.map((herbId) => {
       const herbMatches = herbInteractionMap.get(herbId) ?? [];
 
-      // Try to get rich herb data from any matched interaction record
-      const richHerb = herbMatches[0]?.herb;
+      // Primary source: herbLibrary — guarantees full data for every herb,
+      // including safe ones that have no interaction match.
+      // Fallback chain: herbLibrary → interaction record → bare id string.
+      const libraryHerb = lookupHerbById(herbId);
+      const richHerb = libraryHerb ?? herbMatches[0]?.herb ?? null;
 
       return {
         herbId,
-        pinyin: richHerb?.pinyin ?? herbId, // fallback to id if no match
-        latin: richHerb?.latin ?? "",
-        english: richHerb?.english ?? "",
+        pinyin:      richHerb?.pinyin      ?? herbId,
+        latin:       richHerb?.latin       ?? "",
+        english:     richHerb?.english     ?? "",
         nccaom_code: richHerb?.nccaom_code ?? "",
         hasInteraction: herbMatches.length > 0,
         interactions: herbMatches,

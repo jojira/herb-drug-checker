@@ -1,0 +1,700 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "standard": "NCCAOM",
+    "description": "Central herb reference library. Single source of truth for all herb identity data. Used to enrich formula breakdowns regardless of whether an interaction is found.",
+    "last_updated": "2026-03-07",
+    "total_herbs": 85
+  },
+  "herbs": [
+    {
+      "id": "bai-shao",
+      "pinyin": "Bai Shao",
+      "latin": "Paeonia lactiflora",
+      "english": "White Peony Root",
+      "nccaom_code": "HB-014",
+      "category": "Blood Tonifying"
+    },
+    {
+      "id": "bai-zhu",
+      "pinyin": "Bai Zhu",
+      "latin": "Atractylodes macrocephala",
+      "english": "White Atractylodes Rhizome",
+      "nccaom_code": "HB-016",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "bai-zi-ren",
+      "pinyin": "Bai Zi Ren",
+      "latin": "Platycladus orientalis",
+      "english": "Arborvitae Seed",
+      "nccaom_code": "HB-017",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "ban-xia",
+      "pinyin": "Ban Xia",
+      "latin": "Pinellia ternata",
+      "english": "Pinellia Rhizome",
+      "nccaom_code": "HB-019",
+      "category": "Phlegm Transforming"
+    },
+    {
+      "id": "bo-he",
+      "pinyin": "Bo He",
+      "latin": "Mentha haplocalyx",
+      "english": "Peppermint",
+      "nccaom_code": "HB-022",
+      "category": "Wind-Heat Releasing"
+    },
+    {
+      "id": "cang-zhu",
+      "pinyin": "Cang Zhu",
+      "latin": "Atractylodes lancea",
+      "english": "Black Atractylodes Rhizome",
+      "nccaom_code": "HB-026",
+      "category": "Dampness Drying"
+    },
+    {
+      "id": "chai-hu",
+      "pinyin": "Chai Hu",
+      "latin": "Bupleurum chinense",
+      "english": "Bupleurum Root",
+      "nccaom_code": "HB-028",
+      "category": "Wind-Heat Releasing"
+    },
+    {
+      "id": "che-qian-zi",
+      "pinyin": "Che Qian Zi",
+      "latin": "Plantago asiatica",
+      "english": "Plantain Seed",
+      "nccaom_code": "HB-029",
+      "category": "Dampness Draining"
+    },
+    {
+      "id": "chen-pi",
+      "pinyin": "Chen Pi",
+      "latin": "Citrus reticulata",
+      "english": "Tangerine Peel",
+      "nccaom_code": "HB-030",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "chi-shao",
+      "pinyin": "Chi Shao",
+      "latin": "Paeonia lactiflora",
+      "english": "Red Peony Root",
+      "nccaom_code": "HB-032",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "chuan-xiong",
+      "pinyin": "Chuan Xiong",
+      "latin": "Ligusticum chuanxiong",
+      "english": "Sichuan Lovage Rhizome",
+      "nccaom_code": "HB-036",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "da-huang",
+      "pinyin": "Da Huang",
+      "latin": "Rheum palmatum",
+      "english": "Rhubarb Root and Rhizome",
+      "nccaom_code": "HB-040",
+      "category": "Purgative"
+    },
+    {
+      "id": "da-zao",
+      "pinyin": "Da Zao",
+      "latin": "Ziziphus jujuba",
+      "english": "Jujube / Chinese Date",
+      "nccaom_code": "HB-041",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "dan-dou-chi",
+      "pinyin": "Dan Dou Chi",
+      "latin": "Glycine max",
+      "english": "Prepared Soybean",
+      "nccaom_code": "HB-043",
+      "category": "Wind-Heat Releasing"
+    },
+    {
+      "id": "dan-shen",
+      "pinyin": "Dan Shen",
+      "latin": "Salvia miltiorrhiza",
+      "english": "Red Sage Root",
+      "nccaom_code": "HB-045",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "dang-gui",
+      "pinyin": "Dang Gui",
+      "latin": "Angelica sinensis",
+      "english": "Dong Quai / Chinese Angelica Root",
+      "nccaom_code": "HB-052",
+      "category": "Blood Tonifying"
+    },
+    {
+      "id": "du-huo",
+      "pinyin": "Du Huo",
+      "latin": "Angelica pubescens",
+      "english": "Pubescent Angelica Root",
+      "nccaom_code": "HB-056",
+      "category": "Wind-Cold-Damp Dispelling"
+    },
+    {
+      "id": "du-zhong",
+      "pinyin": "Du Zhong",
+      "latin": "Eucommia ulmoides",
+      "english": "Eucommia Bark",
+      "nccaom_code": "HB-057",
+      "category": "Yang Tonifying"
+    },
+    {
+      "id": "fang-feng",
+      "pinyin": "Fang Feng",
+      "latin": "Saposhnikovia divaricata",
+      "english": "Siler Root / Ledebouriella Root",
+      "nccaom_code": "HB-061",
+      "category": "Wind-Cold Releasing"
+    },
+    {
+      "id": "fu-ling",
+      "pinyin": "Fu Ling",
+      "latin": "Poria cocos",
+      "english": "Poria / Hoelen",
+      "nccaom_code": "HB-064",
+      "category": "Dampness Draining"
+    },
+    {
+      "id": "fu-shen",
+      "pinyin": "Fu Shen",
+      "latin": "Poria cocos",
+      "english": "Poria with Pine Root",
+      "nccaom_code": "HB-065",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "fu-xiao-mai",
+      "pinyin": "Fu Xiao Mai",
+      "latin": "Triticum aestivum",
+      "english": "Blighted Wheat",
+      "nccaom_code": "HB-066",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "fu-zi",
+      "pinyin": "Fu Zi",
+      "latin": "Aconitum carmichaelii",
+      "english": "Prepared Aconite Root",
+      "nccaom_code": "HB-067",
+      "category": "Interior Warming"
+    },
+    {
+      "id": "gan-cao",
+      "pinyin": "Gan Cao",
+      "latin": "Glycyrrhiza uralensis",
+      "english": "Licorice Root",
+      "nccaom_code": "HB-071",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "gan-jiang",
+      "pinyin": "Gan Jiang",
+      "latin": "Zingiber officinale",
+      "english": "Dried Ginger Rhizome",
+      "nccaom_code": "HB-072",
+      "category": "Interior Warming"
+    },
+    {
+      "id": "gou-qi-zi",
+      "pinyin": "Gou Qi Zi",
+      "latin": "Lycium barbarum",
+      "english": "Wolfberry / Goji Berry",
+      "nccaom_code": "HB-077",
+      "category": "Yin Tonifying"
+    },
+    {
+      "id": "gou-teng",
+      "pinyin": "Gou Teng",
+      "latin": "Uncaria rhynchophylla",
+      "english": "Gambir Vine Stem",
+      "nccaom_code": "HB-079",
+      "category": "Liver Wind Extinguishing"
+    },
+    {
+      "id": "gui-ban-jiao",
+      "pinyin": "Gui Ban Jiao",
+      "latin": "Chinemys reevesii",
+      "english": "Tortoise Plastron Gelatin",
+      "nccaom_code": "HB-082",
+      "category": "Yin Tonifying"
+    },
+    {
+      "id": "gui-xin",
+      "pinyin": "Gui Xin",
+      "latin": "Cinnamomum cassia",
+      "english": "Cinnamon Bark (inner)",
+      "nccaom_code": "HB-083",
+      "category": "Interior Warming"
+    },
+    {
+      "id": "gui-zhi",
+      "pinyin": "Gui Zhi",
+      "latin": "Cinnamomum cassia",
+      "english": "Cinnamon Twig",
+      "nccaom_code": "HB-084",
+      "category": "Wind-Cold Releasing"
+    },
+    {
+      "id": "hong-hua",
+      "pinyin": "Hong Hua",
+      "latin": "Carthamus tinctorius",
+      "english": "Safflower",
+      "nccaom_code": "HB-088",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "hou-po",
+      "pinyin": "Hou Po",
+      "latin": "Magnolia officinalis",
+      "english": "Magnolia Bark",
+      "nccaom_code": "HB-089",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "huang-bai",
+      "pinyin": "Huang Bai",
+      "latin": "Phellodendron amurense",
+      "english": "Phellodendron Bark",
+      "nccaom_code": "HB-091",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "huang-lian",
+      "pinyin": "Huang Lian",
+      "latin": "Coptis chinensis",
+      "english": "Coptis Rhizome / Goldthread",
+      "nccaom_code": "HB-092",
+      "category": "Heat Clearing",
+      "active_constituent": "Berberine"
+    },
+    {
+      "id": "huang-qi",
+      "pinyin": "Huang Qi",
+      "latin": "Astragalus membranaceus",
+      "english": "Astragalus Root",
+      "nccaom_code": "HB-096",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "huang-qin",
+      "pinyin": "Huang Qin",
+      "latin": "Scutellaria baicalensis",
+      "english": "Baical Skullcap Root",
+      "nccaom_code": "HB-097",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "huo-ma-ren",
+      "pinyin": "Huo Ma Ren",
+      "latin": "Cannabis sativa",
+      "english": "Hemp Seed",
+      "nccaom_code": "HB-099",
+      "category": "Purgative"
+    },
+    {
+      "id": "jie-geng",
+      "pinyin": "Jie Geng",
+      "latin": "Platycodon grandiflorum",
+      "english": "Balloon Flower Root / Platycodon",
+      "nccaom_code": "HB-104",
+      "category": "Phlegm Transforming"
+    },
+    {
+      "id": "jin-yin-hua",
+      "pinyin": "Jin Yin Hua",
+      "latin": "Lonicera japonica",
+      "english": "Honeysuckle Flower",
+      "nccaom_code": "HB-107",
+      "category": "Heat Clearing / Toxin Resolving"
+    },
+    {
+      "id": "jing-jie",
+      "pinyin": "Jing Jie",
+      "latin": "Schizonepeta tenuifolia",
+      "english": "Schizonepeta",
+      "nccaom_code": "HB-108",
+      "category": "Wind-Cold Releasing"
+    },
+    {
+      "id": "lian-qiao",
+      "pinyin": "Lian Qiao",
+      "latin": "Forsythia suspensa",
+      "english": "Forsythia Fruit",
+      "nccaom_code": "HB-116",
+      "category": "Heat Clearing / Toxin Resolving"
+    },
+    {
+      "id": "long-dan-cao",
+      "pinyin": "Long Dan Cao",
+      "latin": "Gentiana scabra",
+      "english": "Chinese Gentian Root",
+      "nccaom_code": "HB-120",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "long-yan-rou",
+      "pinyin": "Long Yan Rou",
+      "latin": "Dimocarpus longan",
+      "english": "Longan Fruit Flesh",
+      "nccaom_code": "HB-121",
+      "category": "Blood Tonifying"
+    },
+    {
+      "id": "lu-gen",
+      "pinyin": "Lu Gen",
+      "latin": "Phragmites communis",
+      "english": "Reed Rhizome",
+      "nccaom_code": "HB-122",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "lu-jiao-jiao",
+      "pinyin": "Lu Jiao Jiao",
+      "latin": "Cervus nippon",
+      "english": "Deer Antler Gelatin",
+      "nccaom_code": "HB-123",
+      "category": "Yang Tonifying"
+    },
+    {
+      "id": "mai-men-dong",
+      "pinyin": "Mai Men Dong",
+      "latin": "Ophiopogon japonicus",
+      "english": "Ophiopogon Tuber",
+      "nccaom_code": "HB-126",
+      "category": "Yin Tonifying"
+    },
+    {
+      "id": "mu-dan-pi",
+      "pinyin": "Mu Dan Pi",
+      "latin": "Paeonia suffruticosa",
+      "english": "Tree Peony Root Bark",
+      "nccaom_code": "HB-130",
+      "category": "Heat Clearing / Blood Cooling"
+    },
+    {
+      "id": "mu-tong",
+      "pinyin": "Mu Tong",
+      "latin": "Akebia trifoliata",
+      "english": "Akebia Stem",
+      "nccaom_code": "HB-131",
+      "category": "Dampness Draining"
+    },
+    {
+      "id": "mu-xiang",
+      "pinyin": "Mu Xiang",
+      "latin": "Aucklandia lappa",
+      "english": "Costus Root / Aucklandia",
+      "nccaom_code": "HB-132",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "niu-bang-zi",
+      "pinyin": "Niu Bang Zi",
+      "latin": "Arctium lappa",
+      "english": "Burdock Seed",
+      "nccaom_code": "HB-135",
+      "category": "Wind-Heat Releasing"
+    },
+    {
+      "id": "niu-xi",
+      "pinyin": "Niu Xi",
+      "latin": "Achyranthes bidentata",
+      "english": "Achyranthes Root",
+      "nccaom_code": "HB-136",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "qin-jiao",
+      "pinyin": "Qin Jiao",
+      "latin": "Gentiana macrophylla",
+      "english": "Large Leaf Gentian Root",
+      "nccaom_code": "HB-150",
+      "category": "Wind-Cold-Damp Dispelling"
+    },
+    {
+      "id": "ren-shen",
+      "pinyin": "Ren Shen",
+      "latin": "Panax ginseng",
+      "english": "Asian Ginseng Root",
+      "nccaom_code": "HB-156",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "sang-ji-sheng",
+      "pinyin": "Sang Ji Sheng",
+      "latin": "Taxillus chinensis",
+      "english": "Mulberry Mistletoe Stem",
+      "nccaom_code": "HB-161",
+      "category": "Wind-Cold-Damp Dispelling"
+    },
+    {
+      "id": "sha-ren",
+      "pinyin": "Sha Ren",
+      "latin": "Amomum villosum",
+      "english": "Cardamom Fruit / Amomum",
+      "nccaom_code": "HB-163",
+      "category": "Dampness Transforming"
+    },
+    {
+      "id": "shan-yao",
+      "pinyin": "Shan Yao",
+      "latin": "Dioscorea opposita",
+      "english": "Chinese Yam",
+      "nccaom_code": "HB-165",
+      "category": "Qi Tonifying"
+    },
+    {
+      "id": "shan-zhu-yu",
+      "pinyin": "Shan Zhu Yu",
+      "latin": "Cornus officinalis",
+      "english": "Asiatic Cornelian Cherry Fruit",
+      "nccaom_code": "HB-166",
+      "category": "Astringent"
+    },
+    {
+      "id": "sheng-di-huang",
+      "pinyin": "Sheng Di Huang",
+      "latin": "Rehmannia glutinosa",
+      "english": "Raw Rehmannia Root",
+      "nccaom_code": "HB-168",
+      "category": "Heat Clearing / Blood Cooling"
+    },
+    {
+      "id": "sheng-jiang",
+      "pinyin": "Sheng Jiang",
+      "latin": "Zingiber officinale",
+      "english": "Fresh Ginger Rhizome",
+      "nccaom_code": "HB-169",
+      "category": "Wind-Cold Releasing"
+    },
+    {
+      "id": "sheng-ma",
+      "pinyin": "Sheng Ma",
+      "latin": "Cimicifuga foetida",
+      "english": "Black Cohosh Rhizome / Bugbane",
+      "nccaom_code": "HB-170",
+      "category": "Wind-Heat Releasing"
+    },
+    {
+      "id": "shi-jue-ming",
+      "pinyin": "Shi Jue Ming",
+      "latin": "Haliotis diversicolor",
+      "english": "Abalone Shell",
+      "nccaom_code": "HB-172",
+      "category": "Liver Wind Extinguishing"
+    },
+    {
+      "id": "shu-di-huang",
+      "pinyin": "Shu Di Huang",
+      "latin": "Rehmannia glutinosa",
+      "english": "Prepared Rehmannia Root",
+      "nccaom_code": "HB-174",
+      "category": "Blood Tonifying"
+    },
+    {
+      "id": "suan-zao-ren",
+      "pinyin": "Suan Zao Ren",
+      "latin": "Ziziphus spinosa",
+      "english": "Sour Jujube Seed",
+      "nccaom_code": "HB-178",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "tao-ren",
+      "pinyin": "Tao Ren",
+      "latin": "Prunus persica",
+      "english": "Peach Kernel / Peach Seed",
+      "nccaom_code": "HB-182",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "tian-ma",
+      "pinyin": "Tian Ma",
+      "latin": "Gastrodia elata",
+      "english": "Gastrodia Rhizome",
+      "nccaom_code": "HB-184",
+      "category": "Liver Wind Extinguishing"
+    },
+    {
+      "id": "tian-men-dong",
+      "pinyin": "Tian Men Dong",
+      "latin": "Asparagus cochinchinensis",
+      "english": "Asparagus Tuber",
+      "nccaom_code": "HB-185",
+      "category": "Yin Tonifying"
+    },
+    {
+      "id": "tu-si-zi",
+      "pinyin": "Tu Si Zi",
+      "latin": "Cuscuta chinensis",
+      "english": "Chinese Dodder Seed",
+      "nccaom_code": "HB-188",
+      "category": "Yang Tonifying"
+    },
+    {
+      "id": "wu-ling-zhi",
+      "pinyin": "Wu Ling Zhi",
+      "latin": "Trogopterus xanthipes",
+      "english": "Flying Squirrel Feces",
+      "nccaom_code": "HB-193",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "wu-wei-zi",
+      "pinyin": "Wu Wei Zi",
+      "latin": "Schisandra chinensis",
+      "english": "Schisandra Fruit / Five Flavor Berry",
+      "nccaom_code": "HB-197",
+      "category": "Astringent"
+    },
+    {
+      "id": "wu-yao",
+      "pinyin": "Wu Yao",
+      "latin": "Lindera aggregate",
+      "english": "Lindera Root",
+      "nccaom_code": "HB-198",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "xi-xin",
+      "pinyin": "Xi Xin",
+      "latin": "Asarum sieboldii",
+      "english": "Chinese Wild Ginger",
+      "nccaom_code": "HB-200",
+      "category": "Wind-Cold Releasing"
+    },
+    {
+      "id": "xiang-fu",
+      "pinyin": "Xiang Fu",
+      "latin": "Cyperus rotundus",
+      "english": "Cyperus Rhizome / Nut Grass",
+      "nccaom_code": "HB-201",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "xing-ren",
+      "pinyin": "Xing Ren",
+      "latin": "Prunus armeniaca",
+      "english": "Apricot Kernel / Bitter Almond",
+      "nccaom_code": "HB-203",
+      "category": "Cough Stopping"
+    },
+    {
+      "id": "xuan-shen",
+      "pinyin": "Xuan Shen",
+      "latin": "Scrophularia ningpoensis",
+      "english": "Figwort Root / Scrophularia",
+      "nccaom_code": "HB-204",
+      "category": "Heat Clearing / Blood Cooling"
+    },
+    {
+      "id": "yan-hu-suo",
+      "pinyin": "Yan Hu Suo",
+      "latin": "Corydalis yanhusuo",
+      "english": "Corydalis Rhizome",
+      "nccaom_code": "HB-207",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "ye-jiao-teng",
+      "pinyin": "Ye Jiao Teng",
+      "latin": "Polygonum multiflorum",
+      "english": "Fleeceflower Stem / Fo-Ti Stem",
+      "nccaom_code": "HB-208",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "yi-mu-cao",
+      "pinyin": "Yi Mu Cao",
+      "latin": "Leonurus japonicus",
+      "english": "Chinese Motherwort",
+      "nccaom_code": "HB-210",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "yin-xing-ye",
+      "pinyin": "Yin Xing Ye",
+      "latin": "Ginkgo biloba",
+      "english": "Ginkgo Leaf",
+      "nccaom_code": "HB-205",
+      "category": "Blood Invigorating"
+    },
+    {
+      "id": "yuan-zhi",
+      "pinyin": "Yuan Zhi",
+      "latin": "Polygala tenuifolia",
+      "english": "Senega Root / Polygala",
+      "nccaom_code": "HB-215",
+      "category": "Heart Calming"
+    },
+    {
+      "id": "ze-xie",
+      "pinyin": "Ze Xie",
+      "latin": "Alisma plantago-aquatica",
+      "english": "Water Plantain Rhizome",
+      "nccaom_code": "HB-218",
+      "category": "Dampness Draining"
+    },
+    {
+      "id": "zhi-ke",
+      "pinyin": "Zhi Ke",
+      "latin": "Citrus aurantium",
+      "english": "Bitter Orange Peel (mature)",
+      "nccaom_code": "HB-220",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "zhi-mu",
+      "pinyin": "Zhi Mu",
+      "latin": "Anemarrhena asphodeloides",
+      "english": "Anemarrhena Rhizome",
+      "nccaom_code": "HB-222",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "zhi-shi",
+      "pinyin": "Zhi Shi",
+      "latin": "Citrus aurantium",
+      "english": "Bitter Orange (immature fruit)",
+      "nccaom_code": "HB-223",
+      "category": "Qi Regulating"
+    },
+    {
+      "id": "zhi-zi",
+      "pinyin": "Zhi Zi",
+      "latin": "Gardenia jasminoides",
+      "english": "Gardenia Fruit",
+      "nccaom_code": "HB-224",
+      "category": "Heat Clearing"
+    },
+    {
+      "id": "zhu-ling",
+      "pinyin": "Zhu Ling",
+      "latin": "Polyporus umbellatus",
+      "english": "Polyporus / Umbrella Polypore",
+      "nccaom_code": "HB-226",
+      "category": "Dampness Draining"
+    },
+    {
+      "id": "zhu-ye",
+      "pinyin": "Zhu Ye",
+      "latin": "Phyllostachys nigra",
+      "english": "Bamboo Leaf",
+      "nccaom_code": "HB-227",
+      "category": "Heat Clearing"
+    }
+  ]
+}
