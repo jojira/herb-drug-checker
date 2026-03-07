@@ -1,0 +1,190 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "standard": "NCCAOM",
+    "description": "Top 30 TCM formulas by clinical frequency with constituent herbs. For MVP development.",
+    "last_updated": "2026-03-07"
+  },
+  "formulas": [
+    {
+      "id": "xiao-yao-san",
+      "pinyin": "Xiao Yao San",
+      "english": "Free and Easy Wanderer",
+      "herb_ids": ["chai-hu", "dang-gui", "bai-shao", "bai-zhu", "fu-ling", "gan-cao", "sheng-jiang", "bo-he"]
+    },
+    {
+      "id": "liu-wei-di-huang-wan",
+      "pinyin": "Liu Wei Di Huang Wan",
+      "english": "Six Flavor Rehmannia Pill",
+      "herb_ids": ["shu-di-huang", "shan-zhu-yu", "shan-yao", "ze-xie", "mu-dan-pi", "fu-ling"]
+    },
+    {
+      "id": "si-wu-tang",
+      "pinyin": "Si Wu Tang",
+      "english": "Four Substance Decoction",
+      "herb_ids": ["shu-di-huang", "dang-gui", "bai-shao", "chuan-xiong"]
+    },
+    {
+      "id": "ba-zhen-tang",
+      "pinyin": "Ba Zhen Tang",
+      "english": "Eight Treasure Decoction",
+      "herb_ids": ["ren-shen", "bai-zhu", "fu-ling", "gan-cao", "shu-di-huang", "dang-gui", "bai-shao", "chuan-xiong"]
+    },
+    {
+      "id": "bu-zhong-yi-qi-tang",
+      "pinyin": "Bu Zhong Yi Qi Tang",
+      "english": "Tonify the Middle and Augment the Qi Decoction",
+      "herb_ids": ["huang-qi", "ren-shen", "bai-zhu", "gan-cao", "dang-gui", "chen-pi", "sheng-ma", "chai-hu"]
+    },
+    {
+      "id": "gui-pi-tang",
+      "pinyin": "Gui Pi Tang",
+      "english": "Restore the Spleen Decoction",
+      "herb_ids": ["ren-shen", "huang-qi", "bai-zhu", "fu-ling", "suan-zao-ren", "long-yan-rou", "mu-xiang", "gan-cao", "dang-gui", "yuan-zhi"]
+    },
+    {
+      "id": "zhi-bai-di-huang-wan",
+      "pinyin": "Zhi Bai Di Huang Wan",
+      "english": "Anemarrhena, Phellodendron, and Rehmannia Pill",
+      "herb_ids": ["zhi-mu", "huang-bai", "shu-di-huang", "shan-zhu-yu", "shan-yao", "ze-xie", "mu-dan-pi", "fu-ling"]
+    },
+    {
+      "id": "long-dan-xie-gan-tang",
+      "pinyin": "Long Dan Xie Gan Tang",
+      "english": "Gentian Drain the Liver Decoction",
+      "herb_ids": ["long-dan-cao", "huang-qin", "zhi-zi", "ze-xie", "mu-tong", "che-qian-zi", "dang-gui", "sheng-di-huang", "chai-hu", "gan-cao"]
+    },
+    {
+      "id": "tian-wan-bu-xin-dan",
+      "pinyin": "Tian Wang Bu Xin Dan",
+      "english": "Emperor of Heaven's Special Pill to Tonify the Heart",
+      "herb_ids": ["sheng-di-huang", "ren-shen", "dan-shen", "xuan-shen", "fu-ling", "wu-wei-zi", "dang-gui", "tian-men-dong", "mai-men-dong", "bai-zi-ren", "suan-zao-ren", "yuan-zhi", "jie-geng"]
+    },
+    {
+      "id": "xue-fu-zhu-yu-tang",
+      "pinyin": "Xue Fu Zhu Yu Tang",
+      "english": "Drive Out Stasis in the Mansion of Blood Decoction",
+      "herb_ids": ["tao-ren", "hong-hua", "dang-gui", "sheng-di-huang", "chuan-xiong", "chi-shao", "niu-xi", "jie-geng", "chai-hu", "zhi-ke", "gan-cao"]
+    },
+    {
+      "id": "du-huo-ji-sheng-wan",
+      "pinyin": "Du Huo Ji Sheng Wan",
+      "english": "Angelica Pubescens and Taxillus Pill",
+      "herb_ids": ["du-huo", "sang-ji-sheng", "du-zhong", "niu-xi", "xi-xin", "qin-jiao", "fu-ling", "gui-xin", "fang-feng", "chuan-xiong", "ren-shen", "gan-cao", "dang-gui", "bai-shao", "sheng-di-huang"]
+    },
+    {
+      "id": "yin-qiao-san",
+      "pinyin": "Yin Qiao San",
+      "english": "Honeysuckle and Forsythia Powder",
+      "herb_ids": ["jin-yin-hua", "lian-qiao", "jie-geng", "niu-bang-zi", "bo-he", "dan-dou-chi", "jing-jie", "lu-gen", "zhu-ye", "gan-cao"]
+    },
+    {
+      "id": "ban-xia-xie-xin-tang",
+      "pinyin": "Ban Xia Xie Xin Tang",
+      "english": "Pinellia Decoction to Drain the Epigastrium",
+      "herb_ids": ["ban-xia", "huang-qin", "huang-lian", "ren-shen", "gan-jiang", "gan-cao", "da-zao"]
+    },
+    {
+      "id": "er-chen-tang",
+      "pinyin": "Er Chen Tang",
+      "english": "Two-Cured Decoction",
+      "herb_ids": ["ban-xia", "chen-pi", "fu-ling", "gan-cao"]
+    },
+    {
+      "id": "si-jun-zi-tang",
+      "pinyin": "Si Jun Zi Tang",
+      "english": "Four Gentlemen Decoction",
+      "herb_ids": ["ren-shen", "bai-zhu", "fu-ling", "gan-cao"]
+    },
+    {
+      "id": "ping-wei-san",
+      "pinyin": "Ping Wei San",
+      "english": "Calm the Stomach Powder",
+      "herb_ids": ["cang-zhu", "hou-po", "chen-pi", "gan-cao", "sheng-jiang", "da-zao"]
+    },
+    {
+      "id": "tian-ma-gou-teng-yin",
+      "pinyin": "Tian Ma Gou Teng Yin",
+      "english": "Gastrodia and Uncaria Beverage",
+      "herb_ids": ["tian-ma", "gou-teng", "shi-jue-ming", "zhi-zi", "huang-qin", "niu-xi", "du-zhong", "yi-mu-cao", "sang-ji-sheng", "ye-jiao-teng", "fu-shen"]
+    },
+    {
+      "id": "suan-zao-ren-tang",
+      "pinyin": "Suan Zao Ren Tang",
+      "english": "Sour Jujube Decoction",
+      "herb_ids": ["suan-zao-ren", "chuan-xiong", "zhi-mu", "fu-ling", "gan-cao"]
+    },
+    {
+      "id": "jin-gui-shen-qi-wan",
+      "pinyin": "Jin Gui Shen Qi Wan",
+      "english": "Kidney Qi Pill from the Golden Cabinet",
+      "herb_ids": ["shu-di-huang", "shan-zhu-yu", "shan-yao", "ze-xie", "mu-dan-pi", "fu-ling", "gui-zhi", "fu-zi"]
+    },
+    {
+      "id": "da-chai-hu-tang",
+      "pinyin": "Da Chai Hu Tang",
+      "english": "Major Bupleurum Decoction",
+      "herb_ids": ["chai-hu", "huang-qin", "bai-shao", "ban-xia", "zhi-shi", "da-huang", "sheng-jiang", "da-zao"]
+    },
+    {
+      "id": "xiang-sha-liu-jun-zi-tang",
+      "pinyin": "Xiang Sha Liu Jun Zi Tang",
+      "english": "Six Gentlemen Decoction with Aucklandia and Amomum",
+      "herb_ids": ["ren-shen", "bai-zhu", "fu-ling", "gan-cao", "ban-xia", "chen-pi", "mu-xiang", "sha-ren"]
+    },
+    {
+      "id": "zuo-gui-wan",
+      "pinyin": "Zuo Gui Wan",
+      "english": "Restore the Left Kidney Pill",
+      "herb_ids": ["shu-di-huang", "shan-yao", "shan-zhu-yu", "gou-qi-zi", "tu-si-zi", "lu-jiao-jiao", "gui-ban-jiao", "niu-xi"]
+    },
+    {
+      "id": "you-gui-wan",
+      "pinyin": "You Gui Wan",
+      "english": "Restore the Right Kidney Pill",
+      "herb_ids": ["shu-di-huang", "shan-yao", "shan-zhu-yu", "gou-qi-zi", "du-zhong", "tu-si-zi", "dang-gui", "gui-xin", "fu-zi", "lu-jiao-jiao"]
+    },
+    {
+      "id": "sheng-mai-san",
+      "pinyin": "Sheng Mai San",
+      "english": "Generate the Pulse Powder",
+      "herb_ids": ["ren-shen", "mai-men-dong", "wu-wei-zi"]
+    },
+    {
+      "id": "ge-xia-zhu-yu-tang",
+      "pinyin": "Ge Xia Zhu Yu Tang",
+      "english": "Drive Out Blood Stasis Below the Diaphragm Decoction",
+      "herb_ids": ["dang-gui", "chuan-xiong", "tao-ren", "hong-hua", "chi-shao", "mu-dan-pi", "wu-ling-zhi", "yan-hu-suo", "wu-yao", "xiang-fu", "zhi-ke", "gan-cao"]
+    },
+    {
+      "id": "huang-lian-jie-du-tang",
+      "pinyin": "Huang Lian Jie Du Tang",
+      "english": "Coptis Decoction to Relieve Toxicity",
+      "herb_ids": ["huang-lian", "huang-qin", "huang-bai", "zhi-zi"]
+    },
+    {
+      "id": "ma-zi-ren-wan",
+      "pinyin": "Ma Zi Ren Wan",
+      "english": "Hemp Seed Pill",
+      "herb_ids": ["huo-ma-ren", "bai-shao", "zhi-shi", "da-huang", "hou-po", "xing-ren"]
+    },
+    {
+      "id": "wu-ling-san",
+      "pinyin": "Wu Ling San",
+      "english": "Five Ingredient Powder with Poria",
+      "herb_ids": ["ze-xie", "fu-ling", "zhu-ling", "bai-zhu", "gui-zhi"]
+    },
+    {
+      "id": "xiao-chai-hu-tang",
+      "pinyin": "Xiao Chai Hu Tang",
+      "english": "Minor Bupleurum Decoction",
+      "herb_ids": ["chai-hu", "huang-qin", "ren-shen", "ban-xia", "gan-cao", "sheng-jiang", "da-zao"]
+    },
+    {
+      "id": "gan-mai-da-zao-tang",
+      "pinyin": "Gan Mai Da Zao Tang",
+      "english": "Licorice, Wheat, and Jujube Decoction",
+      "herb_ids": ["gan-cao", "fu-xiao-mai", "da-zao"]
+    }
+  ]
+}

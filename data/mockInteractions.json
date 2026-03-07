@@ -1,0 +1,344 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "standard": "NCCAOM",
+    "description": "Mock herb-drug interaction data for MVP development. Not for clinical use.",
+    "sources": ["NatMed Pro (fixture)", "Stockley's (fixture)"],
+    "last_updated": "2026-03-07"
+  },
+  "interactions": [
+    {
+      "id": "dan-shen-warfarin",
+      "herb": {
+        "id": "dan-shen",
+        "pinyin": "Dan Shen",
+        "latin": "Salvia miltiorrhiza",
+        "english": "Red Sage Root",
+        "nccaom_code": "HB-045"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Dan Shen inhibits CYP2C9 and CYP3A4 enzymes, significantly increasing plasma warfarin concentrations. Additionally exhibits additive antiplatelet activity via inhibition of thromboxane synthesis, compounding bleeding risk.",
+      "clinical_summary": "Multiple case reports document elevated INR and serious bleeding events when Dan Shen is co-administered with warfarin. INR may increase 2–3x above therapeutic range. Combination is considered contraindicated; practitioners should advise patients to disclose all herbal use to their anticoagulation clinician.",
+      "evidence_level": "high",
+      "evidence_notes": "Supported by multiple human case reports and pharmacokinetic studies.",
+      "citations": [
+        {
+          "title": "Interaction of Salvia miltiorrhiza with anticoagulant and antiplatelet drugs",
+          "journal": "Journal of Clinical Pharmacology",
+          "year": 2012,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-1"
+        },
+        {
+          "title": "Dan Shen-warfarin interaction: case series and review",
+          "journal": "Pharmacotherapy",
+          "year": 2009,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-2"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    },
+    {
+      "id": "huang-lian-metformin",
+      "herb": {
+        "id": "huang-lian",
+        "pinyin": "Huang Lian",
+        "latin": "Coptis chinensis",
+        "english": "Coptis / Goldthread Rhizome",
+        "nccaom_code": "HB-092",
+        "active_constituent": "Berberine"
+      },
+      "drug": {
+        "rxcui": "6809",
+        "name": "Metformin",
+        "brand_names": ["Glucophage", "Fortamet"],
+        "drug_class": "Biguanide / Antidiabetic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Berberine (the primary alkaloid in Huang Lian) activates AMPK and reduces hepatic glucose output through mechanisms overlapping with metformin. Co-administration may produce additive or synergistic hypoglycemic effects, increasing risk of hypoglycemia.",
+      "clinical_summary": "Clinical trials show berberine has comparable glucose-lowering efficacy to metformin as monotherapy. When combined, enhanced blood glucose reduction has been observed. Combination may be intentional in integrative care but requires active blood glucose monitoring and possible dose adjustment of metformin.",
+      "evidence_level": "high",
+      "evidence_notes": "Well-supported by RCTs evaluating berberine as monotherapy and combination studies.",
+      "citations": [
+        {
+          "title": "Efficacy of berberine in patients with type 2 diabetes mellitus",
+          "journal": "Metabolism",
+          "year": 2008,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-3"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "high"
+    },
+    {
+      "id": "gan-cao-digoxin",
+      "herb": {
+        "id": "gan-cao",
+        "pinyin": "Gan Cao",
+        "latin": "Glycyrrhiza uralensis",
+        "english": "Licorice Root",
+        "nccaom_code": "HB-071"
+      },
+      "drug": {
+        "rxcui": "3407",
+        "name": "Digoxin",
+        "brand_names": ["Lanoxin"],
+        "drug_class": "Cardiac Glycoside"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Glycyrrhizin in Gan Cao causes pseudohyperaldosteronism — sodium retention and potassium excretion — leading to hypokalemia. Hypokalemia potentiates digoxin toxicity by increasing myocardial sensitivity to the drug, dramatically lowering the threshold for life-threatening arrhythmias.",
+      "clinical_summary": "Gan Cao is one of the most ubiquitous herbs in TCM formulas and is present in a large percentage of classical prescriptions. Its use alongside digoxin is considered contraindicated. Practitioners must screen all formulas containing Gan Cao when the patient is on any cardiac glycoside. Signs of digoxin toxicity include nausea, visual disturbances, and arrhythmia.",
+      "evidence_level": "high",
+      "evidence_notes": "Mechanism well-established. Multiple case reports of hypokalemia-mediated digoxin toxicity with licorice ingestion.",
+      "citations": [
+        {
+          "title": "Licorice-induced hypokalemia and digoxin toxicity",
+          "journal": "Annals of Internal Medicine",
+          "year": 2004,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-4"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    },
+    {
+      "id": "huang-qi-immunosuppressants",
+      "herb": {
+        "id": "huang-qi",
+        "pinyin": "Huang Qi",
+        "latin": "Astragalus membranaceus",
+        "english": "Astragalus Root",
+        "nccaom_code": "HB-096"
+      },
+      "drug": {
+        "rxcui": "203563",
+        "name": "Cyclosporine",
+        "brand_names": ["Neoral", "Sandimmune", "Gengraf"],
+        "drug_class": "Calcineurin Inhibitor / Immunosuppressant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Huang Qi is a potent immunostimulant that upregulates T-cell activity, NK cell function, and cytokine production (IL-2, TNF-α). This directly opposes the mechanism of cyclosporine and other calcineurin inhibitors, potentially precipitating transplant rejection or autoimmune flare.",
+      "clinical_summary": "Huang Qi is commonly prescribed as a Qi tonic and immune booster in TCM. In transplant patients or those on immunosuppressive therapy for autoimmune disease, its use is contraindicated. Practitioners must inquire about transplant history and immunosuppressive drug regimens before prescribing any Qi-tonifying herb.",
+      "evidence_level": "medium",
+      "evidence_notes": "Mechanism well-established from in vitro and animal studies. Human clinical data on direct antagonism is limited but pharmacological conflict is clear.",
+      "citations": [
+        {
+          "title": "Astragalus membranaceus: immune modulation and clinical implications",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-5"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "wu-wei-zi-phenytoin",
+      "herb": {
+        "id": "wu-wei-zi",
+        "pinyin": "Wu Wei Zi",
+        "latin": "Schisandra chinensis",
+        "english": "Schisandra Fruit / Five Flavor Berry",
+        "nccaom_code": "HB-197"
+      },
+      "drug": {
+        "rxcui": "8183",
+        "name": "Phenytoin",
+        "brand_names": ["Dilantin", "Phenytek"],
+        "drug_class": "Antiepileptic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Schisandrin B and other lignans in Wu Wei Zi induce CYP3A4 and inhibit P-glycoprotein (P-gp). Phenytoin is a CYP3A4 substrate with a narrow therapeutic index. Altered CYP3A4 activity can shift phenytoin plasma levels unpredictably, risking either toxicity (ataxia, nystagmus) or sub-therapeutic levels and breakthrough seizures.",
+      "clinical_summary": "Wu Wei Zi has bidirectional CYP modulation effects that are dose- and preparation-dependent, making the interaction difficult to predict clinically. For patients on phenytoin or any narrow therapeutic index antiepileptic, Wu Wei Zi should be used with caution or avoided. If used, phenytoin levels should be monitored more frequently.",
+      "evidence_level": "medium",
+      "evidence_notes": "Primarily supported by in vitro CYP inhibition studies and animal pharmacokinetic data. Limited human data.",
+      "citations": [
+        {
+          "title": "Schisandra chinensis and herb-drug interactions via CYP450 modulation",
+          "journal": "Drug Metabolism Reviews",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-6"
+        }
+      ],
+      "sources": ["stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "dang-gui-warfarin",
+      "herb": {
+        "id": "dang-gui",
+        "pinyin": "Dang Gui",
+        "latin": "Angelica sinensis",
+        "english": "Dong Quai / Chinese Angelica Root",
+        "nccaom_code": "HB-052"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Dang Gui contains coumarin derivatives with intrinsic anticoagulant activity and inhibits platelet aggregation. It also modestly inhibits CYP2C9, the primary enzyme responsible for warfarin (S-enantiomer) metabolism, raising plasma warfarin levels. The combination produces additive anticoagulant effects.",
+      "clinical_summary": "Case reports confirm significant INR elevation in patients taking Dang Gui concurrently with warfarin. Dang Gui is extremely common in gynecological and blood-nourishing formulas (e.g., Ba Zhen Tang, Si Wu Tang). Any patient on anticoagulants must be counseled against these formulas. The practitioner should coordinate with the prescribing physician if discontinuation is not feasible.",
+      "evidence_level": "high",
+      "evidence_notes": "Multiple published case reports with documented INR elevation. Mechanism supported by in vitro studies.",
+      "citations": [
+        {
+          "title": "Potentiation of warfarin anticoagulation by Angelica sinensis",
+          "journal": "Annals of Pharmacotherapy",
+          "year": 1997,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-7"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    },
+    {
+      "id": "ren-shen-insulin",
+      "herb": {
+        "id": "ren-shen",
+        "pinyin": "Ren Shen",
+        "latin": "Panax ginseng",
+        "english": "Asian Ginseng Root",
+        "nccaom_code": "HB-156"
+      },
+      "drug": {
+        "rxcui": "5856",
+        "name": "Insulin",
+        "brand_names": ["Humalog", "Lantus", "NovoLog"],
+        "drug_class": "Antidiabetic / Insulin"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Ginsenosides in Ren Shen enhance insulin sensitivity, stimulate pancreatic beta-cell insulin secretion, and promote peripheral glucose uptake via GLUT-4 upregulation. Co-administration with exogenous insulin may produce additive hypoglycemic effects.",
+      "clinical_summary": "Ren Shen has demonstrated blood glucose-lowering activity in clinical studies, though effects are variable across preparations and individuals. Patients on insulin or insulin secretagogues using Ren Shen should monitor blood glucose closely, especially when initiating or adjusting the herb. Dose reductions of insulin may be required.",
+      "evidence_level": "medium",
+      "evidence_notes": "Supported by RCTs on glycemic effects of Panax ginseng. Direct interaction studies with insulin are limited; caution extrapolated from established mechanism.",
+      "citations": [
+        {
+          "title": "Efficacy of Panax ginseng on blood glucose in type 2 diabetes",
+          "journal": "Diabetes Care",
+          "year": 2000,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-8"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "gou-teng-antihypertensives",
+      "herb": {
+        "id": "gou-teng",
+        "pinyin": "Gou Teng",
+        "latin": "Uncaria rhynchophylla",
+        "english": "Gambir Vine Stem / Cat's Claw Vine",
+        "nccaom_code": "HB-079"
+      },
+      "drug": {
+        "rxcui": "214354",
+        "name": "Amlodipine",
+        "brand_names": ["Norvasc"],
+        "drug_class": "Calcium Channel Blocker / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Rhynchophylline and isorhynchophylline alkaloids in Gou Teng exert calcium channel blocking activity and direct vasodilatory effects, lowering blood pressure. Additive hypotensive effect when combined with calcium channel blockers or other antihypertensives.",
+      "clinical_summary": "Gou Teng is frequently used in Liver Yang Rising patterns presenting as hypertension, headache, and dizziness — the same presentation often managed with antihypertensives. When both are used, blood pressure may drop more than intended. Monitor for hypotension, lightheadedness, and syncope, particularly in elderly patients.",
+      "evidence_level": "medium",
+      "evidence_notes": "Antihypertensive mechanism well-studied in animal models and small human trials. Additive interaction is pharmacologically plausible; clinical case data limited.",
+      "citations": [
+        {
+          "title": "Antihypertensive effects of alkaloids from Uncaria rhynchophylla",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-9"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "zhi-mu-lithium",
+      "herb": {
+        "id": "zhi-mu",
+        "pinyin": "Zhi Mu",
+        "latin": "Anemarrhena asphodeloides",
+        "english": "Anemarrhena Rhizome",
+        "nccaom_code": "HB-222"
+      },
+      "drug": {
+        "rxcui": "6448",
+        "name": "Lithium",
+        "brand_names": ["Eskalith", "Lithobid"],
+        "drug_class": "Mood Stabilizer"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Zhi Mu has mild diuretic properties. Diuretics reduce renal sodium and water excretion; lithium reabsorption follows sodium transport in the proximal tubule. Sodium depletion caused by diuretics leads to compensatory lithium reabsorption, raising plasma lithium concentrations toward the toxic range.",
+      "clinical_summary": "Lithium has an extremely narrow therapeutic index (0.6–1.2 mEq/L). Even mild sodium or fluid shifts can push levels into the toxic range (>1.5 mEq/L), causing tremor, confusion, and renal damage. While Zhi Mu's diuretic effect is modest, practitioners should exercise caution and recommend lithium level monitoring if this herb is prescribed.",
+      "evidence_level": "low",
+      "evidence_notes": "Interaction extrapolated from known lithium-diuretic pharmacodynamics. No direct clinical studies on Zhi Mu + lithium. Caution warranted given lithium's narrow therapeutic index.",
+      "citations": [
+        {
+          "title": "Lithium toxicity and drug-herb interactions: a review",
+          "journal": "CNS Drugs",
+          "year": 2015,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-10"
+        }
+      ],
+      "sources": ["stockleys"],
+      "confidence": "low"
+    },
+    {
+      "id": "yin-xing-ye-aspirin",
+      "herb": {
+        "id": "yin-xing-ye",
+        "pinyin": "Yin Xing Ye",
+        "latin": "Ginkgo biloba",
+        "english": "Ginkgo Leaf",
+        "nccaom_code": "HB-205"
+      },
+      "drug": {
+        "rxcui": "1191",
+        "name": "Aspirin",
+        "brand_names": ["Bayer", "Bufferin", "Ecotrin"],
+        "drug_class": "Antiplatelet / NSAID"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Ginkgolides in Yin Xing Ye are potent platelet-activating factor (PAF) antagonists that inhibit platelet aggregation. Combined with aspirin's irreversible COX-1 inhibition and platelet thromboxane suppression, the antiplatelet effect is additive, increasing bleeding risk particularly for surgical patients or those with GI vulnerability.",
+      "clinical_summary": "Both Yin Xing Ye and aspirin individually carry bleeding risk. Several case reports describe spontaneous bleeding (intracranial, ocular, subdural hematoma) in patients using ginkgo, some also on aspirin or NSAIDs. The combination requires careful risk-benefit assessment. Patients should discontinue Yin Xing Ye at least 2 weeks before elective surgery.",
+      "evidence_level": "medium",
+      "evidence_notes": "Multiple case reports of bleeding. Pharmacodynamic interaction mechanism is well-characterized. RCT data on the combined antiplatelet effect is limited.",
+      "citations": [
+        {
+          "title": "Spontaneous hyphema associated with ingestion of Ginkgo biloba extract",
+          "journal": "New England Journal of Medicine",
+          "year": 1997,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-11"
+        },
+        {
+          "title": "Ginkgo biloba and antiplatelet drugs: interaction review",
+          "journal": "British Journal of Clinical Pharmacology",
+          "year": 2005,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/example-12"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    }
+  ]
+}
