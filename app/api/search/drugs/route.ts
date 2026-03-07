@@ -136,7 +136,7 @@ export async function GET(request: NextRequest) {
               return {
                 rxcui: props.rxcui,
                 name: props.name,
-                brand_names: [],
+                brand_names: [] as string[],
                 drug_class: props.tty ?? "",
               } satisfies DrugResult;
             })

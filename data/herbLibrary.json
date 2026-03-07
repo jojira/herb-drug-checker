@@ -1,10 +1,10 @@
 {
   "_meta": {
-    "version": "0.1",
+    "version": "0.2",
     "standard": "NCCAOM",
     "description": "Central herb reference library. Single source of truth for all herb identity data. Used to enrich formula breakdowns regardless of whether an interaction is found.",
     "last_updated": "2026-03-07",
-    "total_herbs": 85
+    "total_herbs": 86
   },
   "herbs": [
     {
@@ -13,7 +13,12 @@
       "latin": "Paeonia lactiflora",
       "english": "White Peony Root",
       "nccaom_code": "HB-014",
-      "category": "Blood Tonifying"
+      "category": "Blood Tonifying",
+      "taste": ["bitter", "sour"],
+      "temperature": "cool",
+      "channels": ["Liver", "Spleen"],
+      "properties": ["Nourishes blood", "Preserves yin", "Adjusts ying and wei", "Alleviates pain"],
+      "tcm_cautions": "Caution in cold deficiency patterns with diarrhea."
     },
     {
       "id": "bai-zhu",
@@ -21,7 +26,12 @@
       "latin": "Atractylodes macrocephala",
       "english": "White Atractylodes Rhizome",
       "nccaom_code": "HB-016",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["bitter", "sweet"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach"],
+      "properties": ["Tonifies spleen qi", "Dries dampness", "Stabilizes exterior", "Calms fetus"],
+      "tcm_cautions": "Contraindicated in yin deficiency with interior heat."
     },
     {
       "id": "bai-zi-ren",
@@ -29,7 +39,12 @@
       "latin": "Platycladus orientalis",
       "english": "Arborvitae Seed",
       "nccaom_code": "HB-017",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Kidney", "Large Intestine"],
+      "properties": ["Nourishes heart", "Calms spirit", "Moistens intestines"],
+      "tcm_cautions": "Use caution with phlegm-heat or loose stools."
     },
     {
       "id": "ban-xia",
@@ -37,7 +52,12 @@
       "latin": "Pinellia ternata",
       "english": "Pinellia Rhizome",
       "nccaom_code": "HB-019",
-      "category": "Phlegm Transforming"
+      "category": "Phlegm Transforming",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach", "Lung"],
+      "properties": ["Dries dampness", "Transforms phlegm", "Descends rebellious qi", "Stops vomiting"],
+      "tcm_cautions": "Toxic — contraindicated in pregnancy. Must be prepared (zhi ban xia) before internal use."
     },
     {
       "id": "bo-he",
@@ -45,7 +65,12 @@
       "latin": "Mentha haplocalyx",
       "english": "Peppermint",
       "nccaom_code": "HB-022",
-      "category": "Wind-Heat Releasing"
+      "category": "Wind-Heat Releasing",
+      "taste": ["pungent"],
+      "temperature": "cool",
+      "channels": ["Lung", "Liver"],
+      "properties": ["Disperses wind-heat", "Clears head and eyes", "Benefits throat", "Vents rashes"],
+      "tcm_cautions": "Use cautiously in deficiency conditions. Avoid in pregnancy in large doses."
     },
     {
       "id": "cang-zhu",
@@ -53,7 +78,12 @@
       "latin": "Atractylodes lancea",
       "english": "Black Atractylodes Rhizome",
       "nccaom_code": "HB-026",
-      "category": "Dampness Drying"
+      "category": "Dampness Drying",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach"],
+      "properties": ["Dries dampness", "Strengthens spleen", "Induces sweating", "Expels wind-cold-damp"],
+      "tcm_cautions": "Contraindicated in yin deficiency with interior heat."
     },
     {
       "id": "chai-hu",
@@ -61,7 +91,12 @@
       "latin": "Bupleurum chinense",
       "english": "Bupleurum Root",
       "nccaom_code": "HB-028",
-      "category": "Wind-Heat Releasing"
+      "category": "Wind-Heat Releasing",
+      "taste": ["bitter", "pungent"],
+      "temperature": "cool",
+      "channels": ["Liver", "Gallbladder"],
+      "properties": ["Resolves shao yang", "Spreads liver qi", "Raises yang qi"],
+      "tcm_cautions": "Caution in liver yin deficiency with ascending liver yang. Avoid prolonged high-dose use."
     },
     {
       "id": "che-qian-zi",
@@ -69,7 +104,12 @@
       "latin": "Plantago asiatica",
       "english": "Plantain Seed",
       "nccaom_code": "HB-029",
-      "category": "Dampness Draining"
+      "category": "Dampness Draining",
+      "taste": ["sweet"],
+      "temperature": "cold",
+      "channels": ["Kidney", "Bladder", "Liver", "Lung"],
+      "properties": ["Promotes urination", "Clears damp-heat", "Brightens eyes", "Expels phlegm"],
+      "tcm_cautions": "Use caution in kidney yang deficiency."
     },
     {
       "id": "chen-pi",
@@ -77,7 +117,12 @@
       "latin": "Citrus reticulata",
       "english": "Tangerine Peel",
       "nccaom_code": "HB-030",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Lung"],
+      "properties": ["Regulates qi", "Dries dampness", "Transforms phlegm"],
+      "tcm_cautions": "Use caution in cough with excess heat or yin deficiency."
     },
     {
       "id": "chi-shao",
@@ -85,7 +130,12 @@
       "latin": "Paeonia lactiflora",
       "english": "Red Peony Root",
       "nccaom_code": "HB-032",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["bitter"],
+      "temperature": "cool",
+      "channels": ["Liver"],
+      "properties": ["Clears heat", "Cools blood", "Invigorates blood", "Relieves pain"],
+      "tcm_cautions": "Avoid in blood cold patterns or deficiency cold."
     },
     {
       "id": "chuan-xiong",
@@ -93,7 +143,12 @@
       "latin": "Ligusticum chuanxiong",
       "english": "Sichuan Lovage Rhizome",
       "nccaom_code": "HB-036",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Liver", "Gallbladder", "Pericardium"],
+      "properties": ["Invigorates blood", "Moves qi", "Expels wind", "Relieves pain"],
+      "tcm_cautions": "Contraindicated in bleeding disorders, yin deficiency with fire, or profuse menstruation."
     },
     {
       "id": "da-huang",
@@ -101,7 +156,12 @@
       "latin": "Rheum palmatum",
       "english": "Rhubarb Root and Rhizome",
       "nccaom_code": "HB-040",
-      "category": "Purgative"
+      "category": "Purgative",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Spleen", "Stomach", "Large Intestine", "Liver", "Heart"],
+      "properties": ["Drains fire", "Purges accumulation", "Cools blood", "Invigorates blood"],
+      "tcm_cautions": "Contraindicated in pregnancy, nursing, and menses. Not for prolonged use — injures yin."
     },
     {
       "id": "da-zao",
@@ -109,7 +169,12 @@
       "latin": "Ziziphus jujuba",
       "english": "Jujube / Chinese Date",
       "nccaom_code": "HB-041",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["sweet"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach"],
+      "properties": ["Tonifies spleen qi", "Nourishes blood", "Calms spirit", "Moderates other herbs"],
+      "tcm_cautions": "Use caution with phlegm-damp, food stagnation, or intestinal parasites."
     },
     {
       "id": "dan-dou-chi",
@@ -117,7 +182,12 @@
       "latin": "Glycine max",
       "english": "Prepared Soybean",
       "nccaom_code": "HB-043",
-      "category": "Wind-Heat Releasing"
+      "category": "Wind-Heat Releasing",
+      "taste": ["bitter", "pungent"],
+      "temperature": "cool",
+      "channels": ["Lung", "Stomach"],
+      "properties": ["Releases exterior", "Eliminates irritability", "Vents heat"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "dan-shen",
@@ -125,7 +195,12 @@
       "latin": "Salvia miltiorrhiza",
       "english": "Red Sage Root",
       "nccaom_code": "HB-045",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["bitter"],
+      "temperature": "cool",
+      "channels": ["Heart", "Pericardium", "Liver"],
+      "properties": ["Invigorates blood", "Cools blood", "Nourishes blood", "Calms spirit"],
+      "tcm_cautions": "Caution in absence of blood stasis. Incompatible with Li Lu (Veratrum)."
     },
     {
       "id": "dang-gui",
@@ -133,7 +208,12 @@
       "latin": "Angelica sinensis",
       "english": "Dong Quai / Chinese Angelica Root",
       "nccaom_code": "HB-052",
-      "category": "Blood Tonifying"
+      "category": "Blood Tonifying",
+      "taste": ["sweet", "pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Liver", "Heart", "Spleen"],
+      "properties": ["Tonifies blood", "Invigorates blood", "Regulates menses", "Moistens intestines"],
+      "tcm_cautions": "Use caution in diarrhea or abdominal distension. Caution in early pregnancy."
     },
     {
       "id": "du-huo",
@@ -141,7 +221,12 @@
       "latin": "Angelica pubescens",
       "english": "Pubescent Angelica Root",
       "nccaom_code": "HB-056",
-      "category": "Wind-Cold-Damp Dispelling"
+      "category": "Wind-Cold-Damp Dispelling",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Kidney", "Bladder"],
+      "properties": ["Dispels wind-cold-damp", "Alleviates pain", "Releases exterior"],
+      "tcm_cautions": "Contraindicated in blood deficiency patterns without wind-damp."
     },
     {
       "id": "du-zhong",
@@ -149,7 +234,12 @@
       "latin": "Eucommia ulmoides",
       "english": "Eucommia Bark",
       "nccaom_code": "HB-057",
-      "category": "Yang Tonifying"
+      "category": "Yang Tonifying",
+      "taste": ["sweet"],
+      "temperature": "warm",
+      "channels": ["Liver", "Kidney"],
+      "properties": ["Tonifies liver and kidney yang", "Strengthens sinews and bones", "Calms fetus"],
+      "tcm_cautions": "Caution in heat from yin deficiency."
     },
     {
       "id": "fang-feng",
@@ -157,7 +247,12 @@
       "latin": "Saposhnikovia divaricata",
       "english": "Siler Root / Ledebouriella Root",
       "nccaom_code": "HB-061",
-      "category": "Wind-Cold Releasing"
+      "category": "Wind-Cold Releasing",
+      "taste": ["pungent", "sweet"],
+      "temperature": "warm",
+      "channels": ["Bladder", "Liver", "Spleen"],
+      "properties": ["Releases exterior", "Expels wind-cold", "Expels internal wind", "Alleviates pain"],
+      "tcm_cautions": "Use caution in blood deficiency or spasms without exterior patterns."
     },
     {
       "id": "fu-ling",
@@ -165,7 +260,12 @@
       "latin": "Poria cocos",
       "english": "Poria / Hoelen",
       "nccaom_code": "HB-064",
-      "category": "Dampness Draining"
+      "category": "Dampness Draining",
+      "taste": ["sweet", "bland"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Spleen", "Lung", "Kidney"],
+      "properties": ["Promotes urination", "Strengthens spleen", "Calms spirit"],
+      "tcm_cautions": "Use caution with frequent urination from cold deficiency."
     },
     {
       "id": "fu-shen",
@@ -173,7 +273,12 @@
       "latin": "Poria cocos",
       "english": "Poria with Pine Root",
       "nccaom_code": "HB-065",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["sweet", "bland"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Spleen"],
+      "properties": ["Calms spirit", "Strengthens spleen"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "fu-xiao-mai",
@@ -181,7 +286,12 @@
       "latin": "Triticum aestivum",
       "english": "Blighted Wheat",
       "nccaom_code": "HB-066",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["sweet"],
+      "temperature": "cool",
+      "channels": ["Heart"],
+      "properties": ["Nourishes heart yin", "Stops night sweats", "Clears heat"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "fu-zi",
@@ -189,7 +299,12 @@
       "latin": "Aconitum carmichaelii",
       "english": "Prepared Aconite Root",
       "nccaom_code": "HB-067",
-      "category": "Interior Warming"
+      "category": "Interior Warming",
+      "taste": ["pungent", "sweet"],
+      "temperature": "hot",
+      "channels": ["Heart", "Kidney", "Spleen"],
+      "properties": ["Restores yang from collapse", "Warms fire and assists yang", "Disperses cold", "Alleviates pain"],
+      "tcm_cautions": "Highly toxic — must be properly processed. Contraindicated in pregnancy, yin deficiency with heat, and excess heat patterns."
     },
     {
       "id": "gan-cao",
@@ -197,7 +312,12 @@
       "latin": "Glycyrrhiza uralensis",
       "english": "Licorice Root",
       "nccaom_code": "HB-071",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Lung", "Spleen", "Stomach"],
+      "properties": ["Tonifies spleen and stomach qi", "Moistens lungs", "Moderates spasms", "Detoxifies", "Harmonizes formulas"],
+      "tcm_cautions": "Prolonged use may cause edema and hypertension. Incompatible with Gan Sui, Da Ji, Yuan Hua, and Hai Zao."
     },
     {
       "id": "gan-jiang",
@@ -205,7 +325,12 @@
       "latin": "Zingiber officinale",
       "english": "Dried Ginger Rhizome",
       "nccaom_code": "HB-072",
-      "category": "Interior Warming"
+      "category": "Interior Warming",
+      "taste": ["pungent"],
+      "temperature": "hot",
+      "channels": ["Heart", "Lung", "Spleen", "Stomach"],
+      "properties": ["Warms interior", "Expels cold", "Restores yang", "Warms lung and transforms phlegm"],
+      "tcm_cautions": "Contraindicated in yin deficiency with heat or pregnancy."
     },
     {
       "id": "gou-qi-zi",
@@ -213,7 +338,12 @@
       "latin": "Lycium barbarum",
       "english": "Wolfberry / Goji Berry",
       "nccaom_code": "HB-077",
-      "category": "Yin Tonifying"
+      "category": "Yin Tonifying",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Liver", "Kidney", "Lung"],
+      "properties": ["Nourishes liver and kidney yin", "Benefits essence and blood", "Brightens eyes"],
+      "tcm_cautions": "Use caution with excess dampness or diarrhea."
     },
     {
       "id": "gou-teng",
@@ -221,7 +351,12 @@
       "latin": "Uncaria rhynchophylla",
       "english": "Gambir Vine Stem",
       "nccaom_code": "HB-079",
-      "category": "Liver Wind Extinguishing"
+      "category": "Liver Wind Extinguishing",
+      "taste": ["sweet"],
+      "temperature": "cool",
+      "channels": ["Liver", "Pericardium"],
+      "properties": ["Extinguishes wind", "Alleviates spasms", "Drains liver heat", "Releases exterior"],
+      "tcm_cautions": "Do not cook longer than 20 minutes — active alkaloids degrade with prolonged heat."
     },
     {
       "id": "gui-ban-jiao",
@@ -229,7 +364,12 @@
       "latin": "Chinemys reevesii",
       "english": "Tortoise Plastron Gelatin",
       "nccaom_code": "HB-082",
-      "category": "Yin Tonifying"
+      "category": "Yin Tonifying",
+      "taste": ["sweet", "salty"],
+      "temperature": "cold",
+      "channels": ["Liver", "Kidney", "Heart"],
+      "properties": ["Nourishes yin", "Anchors yang", "Nourishes blood", "Tonifies kidney"],
+      "tcm_cautions": "Contraindicated in pregnancy. Avoid in cold deficiency patterns."
     },
     {
       "id": "gui-xin",
@@ -237,7 +377,12 @@
       "latin": "Cinnamomum cassia",
       "english": "Cinnamon Bark (inner)",
       "nccaom_code": "HB-083",
-      "category": "Interior Warming"
+      "category": "Interior Warming",
+      "taste": ["pungent", "sweet"],
+      "temperature": "hot",
+      "channels": ["Kidney", "Spleen", "Heart", "Liver"],
+      "properties": ["Warms kidneys and spleen", "Disperses cold", "Warms channels", "Alleviates pain"],
+      "tcm_cautions": "Contraindicated in pregnancy, yin deficiency with heat, or excessive menstrual bleeding."
     },
     {
       "id": "gui-zhi",
@@ -245,7 +390,12 @@
       "latin": "Cinnamomum cassia",
       "english": "Cinnamon Twig",
       "nccaom_code": "HB-084",
-      "category": "Wind-Cold Releasing"
+      "category": "Wind-Cold Releasing",
+      "taste": ["pungent", "sweet"],
+      "temperature": "warm",
+      "channels": ["Heart", "Lung", "Bladder"],
+      "properties": ["Releases exterior", "Warms channels", "Unblocks yang qi", "Warms middle jiao"],
+      "tcm_cautions": "Caution in yin deficiency with heat or excess heat patterns."
     },
     {
       "id": "hong-hua",
@@ -253,7 +403,12 @@
       "latin": "Carthamus tinctorius",
       "english": "Safflower",
       "nccaom_code": "HB-088",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Heart", "Liver"],
+      "properties": ["Invigorates blood", "Dispels stasis", "Unblocks channels", "Alleviates pain"],
+      "tcm_cautions": "Contraindicated in pregnancy and excessive bleeding."
     },
     {
       "id": "hou-po",
@@ -261,7 +416,12 @@
       "latin": "Magnolia officinalis",
       "english": "Magnolia Bark",
       "nccaom_code": "HB-089",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["bitter", "pungent"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach", "Lung", "Large Intestine"],
+      "properties": ["Promotes qi movement", "Dries dampness", "Transforms phlegm", "Directs rebellious qi"],
+      "tcm_cautions": "Caution in pregnancy. Contraindicated in yin deficiency."
     },
     {
       "id": "huang-bai",
@@ -269,7 +429,12 @@
       "latin": "Phellodendron amurense",
       "english": "Phellodendron Bark",
       "nccaom_code": "HB-091",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Kidney", "Bladder"],
+      "properties": ["Drains kidney fire", "Clears damp-heat", "Drains fire", "Relieves toxicity"],
+      "tcm_cautions": "Use caution in spleen deficiency with diarrhea."
     },
     {
       "id": "huang-lian",
@@ -278,7 +443,12 @@
       "english": "Coptis Rhizome / Goldthread",
       "nccaom_code": "HB-092",
       "category": "Heat Clearing",
-      "active_constituent": "Berberine"
+      "active_constituent": "Berberine",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Heart", "Stomach", "Large Intestine"],
+      "properties": ["Clears heat", "Drains fire", "Eliminates dampness", "Relieves toxicity"],
+      "tcm_cautions": "Not for prolonged use — may injure spleen yang. Caution in cold-deficiency patterns."
     },
     {
       "id": "huang-qi",
@@ -286,7 +456,12 @@
       "latin": "Astragalus membranaceus",
       "english": "Astragalus Root",
       "nccaom_code": "HB-096",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["sweet"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Lung"],
+      "properties": ["Tonifies spleen qi", "Raises yang", "Tonifies wei qi", "Promotes urination", "Promotes healing"],
+      "tcm_cautions": "Contraindicated in excess heat patterns, exterior excess, or early-stage acute infections."
     },
     {
       "id": "huang-qin",
@@ -294,7 +469,12 @@
       "latin": "Scutellaria baicalensis",
       "english": "Baical Skullcap Root",
       "nccaom_code": "HB-097",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Lung", "Gallbladder", "Stomach", "Large Intestine"],
+      "properties": ["Clears heat", "Dries dampness", "Drains fire", "Stops bleeding", "Calms fetus"],
+      "tcm_cautions": "Use caution in spleen and stomach deficiency cold."
     },
     {
       "id": "huo-ma-ren",
@@ -302,7 +482,12 @@
       "latin": "Cannabis sativa",
       "english": "Hemp Seed",
       "nccaom_code": "HB-099",
-      "category": "Purgative"
+      "category": "Purgative",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Spleen", "Stomach", "Large Intestine"],
+      "properties": ["Nourishes yin", "Moistens intestines", "Promotes bowel movement"],
+      "tcm_cautions": "Avoid excessive doses — may cause nausea and diarrhea."
     },
     {
       "id": "jie-geng",
@@ -310,7 +495,12 @@
       "latin": "Platycodon grandiflorum",
       "english": "Balloon Flower Root / Platycodon",
       "nccaom_code": "HB-104",
-      "category": "Phlegm Transforming"
+      "category": "Phlegm Transforming",
+      "taste": ["pungent", "bitter"],
+      "temperature": "neutral",
+      "channels": ["Lung"],
+      "properties": ["Opens and disperses lung qi", "Expels phlegm", "Benefits throat", "Expels pus"],
+      "tcm_cautions": "Caution in coughing blood or chronic lung exhaustion."
     },
     {
       "id": "jin-yin-hua",
@@ -318,7 +508,12 @@
       "latin": "Lonicera japonica",
       "english": "Honeysuckle Flower",
       "nccaom_code": "HB-107",
-      "category": "Heat Clearing / Toxin Resolving"
+      "category": "Heat Clearing / Toxin Resolving",
+      "taste": ["sweet"],
+      "temperature": "cold",
+      "channels": ["Lung", "Stomach", "Large Intestine"],
+      "properties": ["Clears heat", "Relieves toxicity", "Vents and disperses wind-heat"],
+      "tcm_cautions": "Use caution in spleen deficiency with diarrhea."
     },
     {
       "id": "jing-jie",
@@ -326,7 +521,12 @@
       "latin": "Schizonepeta tenuifolia",
       "english": "Schizonepeta",
       "nccaom_code": "HB-108",
-      "category": "Wind-Cold Releasing"
+      "category": "Wind-Cold Releasing",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Lung", "Liver"],
+      "properties": ["Releases exterior", "Expels wind", "Vents rashes", "Stops bleeding (charred)"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "lian-qiao",
@@ -334,7 +534,12 @@
       "latin": "Forsythia suspensa",
       "english": "Forsythia Fruit",
       "nccaom_code": "HB-116",
-      "category": "Heat Clearing / Toxin Resolving"
+      "category": "Heat Clearing / Toxin Resolving",
+      "taste": ["bitter"],
+      "temperature": "cool",
+      "channels": ["Heart", "Lung", "Small Intestine"],
+      "properties": ["Clears heat", "Relieves toxicity", "Reduces abscesses", "Disperses wind-heat"],
+      "tcm_cautions": "Use caution in spleen deficiency with diarrhea."
     },
     {
       "id": "long-dan-cao",
@@ -342,7 +547,12 @@
       "latin": "Gentiana scabra",
       "english": "Chinese Gentian Root",
       "nccaom_code": "HB-120",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Liver", "Gallbladder"],
+      "properties": ["Drains liver and gallbladder fire", "Clears lower jiao damp-heat"],
+      "tcm_cautions": "Not for prolonged use — injures spleen and stomach. Contraindicated in cold-deficiency patterns."
     },
     {
       "id": "long-yan-rou",
@@ -350,7 +560,12 @@
       "latin": "Dimocarpus longan",
       "english": "Longan Fruit Flesh",
       "nccaom_code": "HB-121",
-      "category": "Blood Tonifying"
+      "category": "Blood Tonifying",
+      "taste": ["sweet"],
+      "temperature": "warm",
+      "channels": ["Heart", "Spleen"],
+      "properties": ["Tonifies heart and spleen", "Nourishes blood", "Calms spirit"],
+      "tcm_cautions": "Avoid in phlegm-fire, dampness, food stagnation, or exterior conditions."
     },
     {
       "id": "lu-gen",
@@ -358,7 +573,12 @@
       "latin": "Phragmites communis",
       "english": "Reed Rhizome",
       "nccaom_code": "HB-122",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["sweet"],
+      "temperature": "cold",
+      "channels": ["Lung", "Stomach"],
+      "properties": ["Clears heat", "Generates fluids", "Relieves vomiting", "Expels phlegm"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "lu-jiao-jiao",
@@ -366,7 +586,12 @@
       "latin": "Cervus nippon",
       "english": "Deer Antler Gelatin",
       "nccaom_code": "HB-123",
-      "category": "Yang Tonifying"
+      "category": "Yang Tonifying",
+      "taste": ["sweet", "salty"],
+      "temperature": "warm",
+      "channels": ["Kidney", "Liver"],
+      "properties": ["Tonifies kidney yang", "Strengthens essence and blood", "Stops bleeding"],
+      "tcm_cautions": "Contraindicated in yin deficiency with heat. Avoid in exterior conditions or excess heat."
     },
     {
       "id": "mai-men-dong",
@@ -374,7 +599,12 @@
       "latin": "Ophiopogon japonicus",
       "english": "Ophiopogon Tuber",
       "nccaom_code": "HB-126",
-      "category": "Yin Tonifying"
+      "category": "Yin Tonifying",
+      "taste": ["sweet", "slightly bitter"],
+      "temperature": "cool",
+      "channels": ["Heart", "Lung", "Stomach"],
+      "properties": ["Nourishes yin", "Moistens lung", "Clears heart", "Generates fluids"],
+      "tcm_cautions": "Contraindicated in cough from cold phlegm or diarrhea from spleen deficiency."
     },
     {
       "id": "mu-dan-pi",
@@ -382,7 +612,12 @@
       "latin": "Paeonia suffruticosa",
       "english": "Tree Peony Root Bark",
       "nccaom_code": "HB-130",
-      "category": "Heat Clearing / Blood Cooling"
+      "category": "Heat Clearing / Blood Cooling",
+      "taste": ["bitter", "pungent"],
+      "temperature": "cool",
+      "channels": ["Heart", "Liver", "Kidney"],
+      "properties": ["Clears heat", "Cools blood", "Invigorates blood", "Dispels stasis", "Clears deficiency heat"],
+      "tcm_cautions": "Contraindicated in pregnancy, excessive menstruation, or spleen deficiency cold."
     },
     {
       "id": "mu-tong",
@@ -390,7 +625,12 @@
       "latin": "Akebia trifoliata",
       "english": "Akebia Stem",
       "nccaom_code": "HB-131",
-      "category": "Dampness Draining"
+      "category": "Dampness Draining",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Heart", "Small Intestine", "Bladder"],
+      "properties": ["Promotes urination", "Clears heat", "Unblocks channels", "Promotes lactation"],
+      "tcm_cautions": "Contraindicated in pregnancy. Use minimum effective dose — verify species to avoid aristolochic acid content."
     },
     {
       "id": "mu-xiang",
@@ -398,7 +638,12 @@
       "latin": "Aucklandia lappa",
       "english": "Costus Root / Aucklandia",
       "nccaom_code": "HB-132",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach", "Large Intestine", "Gallbladder"],
+      "properties": ["Promotes qi movement", "Alleviates pain", "Strengthens spleen"],
+      "tcm_cautions": "Use caution in yin deficiency with heat."
     },
     {
       "id": "niu-bang-zi",
@@ -406,7 +651,12 @@
       "latin": "Arctium lappa",
       "english": "Burdock Seed",
       "nccaom_code": "HB-135",
-      "category": "Wind-Heat Releasing"
+      "category": "Wind-Heat Releasing",
+      "taste": ["pungent", "bitter"],
+      "temperature": "cold",
+      "channels": ["Lung", "Stomach"],
+      "properties": ["Disperses wind-heat", "Benefits throat", "Relieves toxicity", "Vents rashes"],
+      "tcm_cautions": "Use caution in diarrhea from spleen deficiency."
     },
     {
       "id": "niu-xi",
@@ -414,7 +664,12 @@
       "latin": "Achyranthes bidentata",
       "english": "Achyranthes Root",
       "nccaom_code": "HB-136",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["bitter", "sour"],
+      "temperature": "neutral",
+      "channels": ["Liver", "Kidney"],
+      "properties": ["Invigorates blood", "Expels blood stasis", "Nourishes liver and kidney", "Strengthens sinews"],
+      "tcm_cautions": "Contraindicated in pregnancy, excessive menstrual bleeding, or spermatorrhea."
     },
     {
       "id": "qin-jiao",
@@ -422,7 +677,12 @@
       "latin": "Gentiana macrophylla",
       "english": "Large Leaf Gentian Root",
       "nccaom_code": "HB-150",
-      "category": "Wind-Cold-Damp Dispelling"
+      "category": "Wind-Cold-Damp Dispelling",
+      "taste": ["bitter", "pungent"],
+      "temperature": "cool",
+      "channels": ["Stomach", "Liver", "Gallbladder"],
+      "properties": ["Expels wind-damp", "Alleviates pain", "Clears deficiency heat"],
+      "tcm_cautions": "Caution in deficiency cold patterns with diarrhea or frequent urination."
     },
     {
       "id": "ren-shen",
@@ -430,7 +690,12 @@
       "latin": "Panax ginseng",
       "english": "Asian Ginseng Root",
       "nccaom_code": "HB-156",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["sweet", "slightly bitter"],
+      "temperature": "warm",
+      "channels": ["Lung", "Spleen", "Heart"],
+      "properties": ["Tonifies original qi", "Tonifies lung and spleen qi", "Calms spirit", "Generates fluids"],
+      "tcm_cautions": "Contraindicated in excess heat patterns and early acute illness. Incompatible with Lai Fu Zi (radish seed)."
     },
     {
       "id": "sang-ji-sheng",
@@ -438,7 +703,12 @@
       "latin": "Taxillus chinensis",
       "english": "Mulberry Mistletoe Stem",
       "nccaom_code": "HB-161",
-      "category": "Wind-Cold-Damp Dispelling"
+      "category": "Wind-Cold-Damp Dispelling",
+      "taste": ["bitter", "sweet"],
+      "temperature": "neutral",
+      "channels": ["Liver", "Kidney"],
+      "properties": ["Expels wind-damp", "Nourishes liver and kidney", "Strengthens sinews", "Calms fetus"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "sha-ren",
@@ -446,7 +716,12 @@
       "latin": "Amomum villosum",
       "english": "Cardamom Fruit / Amomum",
       "nccaom_code": "HB-163",
-      "category": "Dampness Transforming"
+      "category": "Dampness Transforming",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Spleen", "Stomach", "Kidney"],
+      "properties": ["Transforms dampness", "Moves qi", "Stops diarrhea", "Calms fetus"],
+      "tcm_cautions": "Contraindicated in yin deficiency with heat or excess heat patterns."
     },
     {
       "id": "shan-yao",
@@ -454,7 +729,12 @@
       "latin": "Dioscorea opposita",
       "english": "Chinese Yam",
       "nccaom_code": "HB-165",
-      "category": "Qi Tonifying"
+      "category": "Qi Tonifying",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Lung", "Spleen", "Kidney"],
+      "properties": ["Tonifies spleen and stomach", "Tonifies lung qi", "Tonifies kidney", "Stabilizes essence"],
+      "tcm_cautions": "Use caution with excess patterns."
     },
     {
       "id": "shan-zhu-yu",
@@ -462,7 +742,12 @@
       "latin": "Cornus officinalis",
       "english": "Asiatic Cornelian Cherry Fruit",
       "nccaom_code": "HB-166",
-      "category": "Astringent"
+      "category": "Astringent",
+      "taste": ["sour"],
+      "temperature": "warm",
+      "channels": ["Liver", "Kidney"],
+      "properties": ["Stabilizes kidney", "Retains essence", "Tonifies liver and kidney", "Stops excessive sweating"],
+      "tcm_cautions": "Use caution in difficult urination or dysuria."
     },
     {
       "id": "sheng-di-huang",
@@ -470,7 +755,12 @@
       "latin": "Rehmannia glutinosa",
       "english": "Raw Rehmannia Root",
       "nccaom_code": "HB-168",
-      "category": "Heat Clearing / Blood Cooling"
+      "category": "Heat Clearing / Blood Cooling",
+      "taste": ["sweet", "bitter"],
+      "temperature": "cold",
+      "channels": ["Heart", "Liver", "Kidney"],
+      "properties": ["Clears heat", "Cools blood", "Nourishes yin", "Generates fluids"],
+      "tcm_cautions": "Contraindicated in spleen deficiency with diarrhea or phlegm obstruction."
     },
     {
       "id": "sheng-jiang",
@@ -478,7 +768,12 @@
       "latin": "Zingiber officinale",
       "english": "Fresh Ginger Rhizome",
       "nccaom_code": "HB-169",
-      "category": "Wind-Cold Releasing"
+      "category": "Wind-Cold Releasing",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Lung", "Spleen", "Stomach"],
+      "properties": ["Releases exterior cold", "Warms middle jiao", "Stops vomiting", "Warms lungs"],
+      "tcm_cautions": "Avoid in yin deficiency with heat or excess heat patterns."
     },
     {
       "id": "sheng-ma",
@@ -486,7 +781,12 @@
       "latin": "Cimicifuga foetida",
       "english": "Black Cohosh Rhizome / Bugbane",
       "nccaom_code": "HB-170",
-      "category": "Wind-Heat Releasing"
+      "category": "Wind-Heat Releasing",
+      "taste": ["pungent", "sweet"],
+      "temperature": "cool",
+      "channels": ["Lung", "Spleen", "Stomach", "Large Intestine"],
+      "properties": ["Releases exterior", "Vents rashes", "Clears heat", "Raises yang qi"],
+      "tcm_cautions": "Contraindicated in ascending qi, fullness above, or deficiency heat patterns."
     },
     {
       "id": "shi-jue-ming",
@@ -494,7 +794,12 @@
       "latin": "Haliotis diversicolor",
       "english": "Abalone Shell",
       "nccaom_code": "HB-172",
-      "category": "Liver Wind Extinguishing"
+      "category": "Liver Wind Extinguishing",
+      "taste": ["salty"],
+      "temperature": "cold",
+      "channels": ["Liver"],
+      "properties": ["Drains liver fire", "Extinguishes wind", "Brightens eyes", "Causes ascendant to descend"],
+      "tcm_cautions": "Cook 30–45 minutes before adding other herbs (min jian)."
     },
     {
       "id": "shu-di-huang",
@@ -502,7 +807,12 @@
       "latin": "Rehmannia glutinosa",
       "english": "Prepared Rehmannia Root",
       "nccaom_code": "HB-174",
-      "category": "Blood Tonifying"
+      "category": "Blood Tonifying",
+      "taste": ["sweet"],
+      "temperature": "warm",
+      "channels": ["Liver", "Kidney"],
+      "properties": ["Tonifies blood", "Nourishes yin", "Tonifies essence", "Fills marrow"],
+      "tcm_cautions": "Use caution in spleen deficiency with dampness, qi stagnation, phlegm, or food stagnation."
     },
     {
       "id": "suan-zao-ren",
@@ -510,7 +820,12 @@
       "latin": "Ziziphus spinosa",
       "english": "Sour Jujube Seed",
       "nccaom_code": "HB-178",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["sweet", "sour"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Liver", "Gallbladder"],
+      "properties": ["Nourishes heart yin", "Calms spirit", "Prevents abnormal sweating"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "tao-ren",
@@ -518,7 +833,12 @@
       "latin": "Prunus persica",
       "english": "Peach Kernel / Peach Seed",
       "nccaom_code": "HB-182",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["bitter", "sweet"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Liver", "Large Intestine", "Lung"],
+      "properties": ["Invigorates blood", "Dispels stasis", "Moistens intestines"],
+      "tcm_cautions": "Contraindicated in pregnancy. Use caution in bleeding disorders."
     },
     {
       "id": "tian-ma",
@@ -526,7 +846,12 @@
       "latin": "Gastrodia elata",
       "english": "Gastrodia Rhizome",
       "nccaom_code": "HB-184",
-      "category": "Liver Wind Extinguishing"
+      "category": "Liver Wind Extinguishing",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Liver"],
+      "properties": ["Extinguishes wind", "Alleviates spasms", "Pacifies liver yang", "Expels wind-phlegm"],
+      "tcm_cautions": "Use caution in blood deficiency or yin deficiency without wind."
     },
     {
       "id": "tian-men-dong",
@@ -534,7 +859,12 @@
       "latin": "Asparagus cochinchinensis",
       "english": "Asparagus Tuber",
       "nccaom_code": "HB-185",
-      "category": "Yin Tonifying"
+      "category": "Yin Tonifying",
+      "taste": ["sweet", "bitter"],
+      "temperature": "cold",
+      "channels": ["Lung", "Kidney"],
+      "properties": ["Nourishes kidney yin", "Clears lung heat", "Moistens dryness"],
+      "tcm_cautions": "Contraindicated in cold patterns of the spleen and stomach, diarrhea, or loss of appetite."
     },
     {
       "id": "tu-si-zi",
@@ -542,7 +872,12 @@
       "latin": "Cuscuta chinensis",
       "english": "Chinese Dodder Seed",
       "nccaom_code": "HB-188",
-      "category": "Yang Tonifying"
+      "category": "Yang Tonifying",
+      "taste": ["sweet", "pungent"],
+      "temperature": "neutral",
+      "channels": ["Liver", "Kidney", "Spleen"],
+      "properties": ["Tonifies kidney yang", "Nourishes kidney yin", "Stabilizes essence", "Calms fetus", "Brightens eyes"],
+      "tcm_cautions": "Use caution in fire from yin deficiency or excess heat patterns."
     },
     {
       "id": "wu-ling-zhi",
@@ -550,7 +885,12 @@
       "latin": "Trogopterus xanthipes",
       "english": "Flying Squirrel Feces",
       "nccaom_code": "HB-193",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["bitter", "sweet"],
+      "temperature": "warm",
+      "channels": ["Liver"],
+      "properties": ["Invigorates blood", "Dispels stasis", "Alleviates pain", "Stops bleeding"],
+      "tcm_cautions": "Contraindicated in pregnancy. Incompatible with Ren Shen."
     },
     {
       "id": "wu-wei-zi",
@@ -558,7 +898,12 @@
       "latin": "Schisandra chinensis",
       "english": "Schisandra Fruit / Five Flavor Berry",
       "nccaom_code": "HB-197",
-      "category": "Astringent"
+      "category": "Astringent",
+      "taste": ["sour"],
+      "temperature": "warm",
+      "channels": ["Heart", "Lung", "Kidney"],
+      "properties": ["Astringes lung and kidney", "Generates fluids", "Calms spirit", "Stabilizes essence"],
+      "tcm_cautions": "Contraindicated in excess heat patterns, early exterior conditions, or measles (rashes not yet vented)."
     },
     {
       "id": "wu-yao",
@@ -566,7 +911,12 @@
       "latin": "Lindera aggregate",
       "english": "Lindera Root",
       "nccaom_code": "HB-198",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Kidney", "Spleen", "Bladder", "Lung"],
+      "properties": ["Promotes qi movement", "Warms kidney", "Disperses cold", "Stops pain"],
+      "tcm_cautions": "Contraindicated in qi or blood deficiency without stagnation."
     },
     {
       "id": "xi-xin",
@@ -574,7 +924,12 @@
       "latin": "Asarum sieboldii",
       "english": "Chinese Wild Ginger",
       "nccaom_code": "HB-200",
-      "category": "Wind-Cold Releasing"
+      "category": "Wind-Cold Releasing",
+      "taste": ["pungent"],
+      "temperature": "warm",
+      "channels": ["Heart", "Lung", "Kidney"],
+      "properties": ["Releases exterior cold", "Expels wind-cold", "Warms lung", "Opens orifices"],
+      "tcm_cautions": "Toxic in large doses — limit to 1–3g in decoction. Incompatible with Li Lu (Veratrum)."
     },
     {
       "id": "xiang-fu",
@@ -582,7 +937,12 @@
       "latin": "Cyperus rotundus",
       "english": "Cyperus Rhizome / Nut Grass",
       "nccaom_code": "HB-201",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["pungent", "slightly bitter", "slightly sweet"],
+      "temperature": "neutral",
+      "channels": ["Liver", "Triple Warmer"],
+      "properties": ["Spreads and regulates liver qi", "Regulates menses", "Alleviates pain"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "xing-ren",
@@ -590,7 +950,12 @@
       "latin": "Prunus armeniaca",
       "english": "Apricot Kernel / Bitter Almond",
       "nccaom_code": "HB-203",
-      "category": "Cough Stopping"
+      "category": "Cough Stopping",
+      "taste": ["bitter"],
+      "temperature": "warm",
+      "channels": ["Lung", "Large Intestine"],
+      "properties": ["Stops cough", "Calms wheezing", "Moistens intestines"],
+      "tcm_cautions": "Toxic in large doses. Contraindicated in infants under 1 year. Caution in diarrhea."
     },
     {
       "id": "xuan-shen",
@@ -598,7 +963,12 @@
       "latin": "Scrophularia ningpoensis",
       "english": "Figwort Root / Scrophularia",
       "nccaom_code": "HB-204",
-      "category": "Heat Clearing / Blood Cooling"
+      "category": "Heat Clearing / Blood Cooling",
+      "taste": ["bitter", "sweet", "salty"],
+      "temperature": "cold",
+      "channels": ["Lung", "Stomach", "Kidney"],
+      "properties": ["Clears heat", "Cools blood", "Nourishes yin", "Relieves toxicity", "Softens hardness"],
+      "tcm_cautions": "Contraindicated in spleen deficiency with dampness or diarrhea. Incompatible with Li Lu."
     },
     {
       "id": "yan-hu-suo",
@@ -606,7 +976,12 @@
       "latin": "Corydalis yanhusuo",
       "english": "Corydalis Rhizome",
       "nccaom_code": "HB-207",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Heart", "Liver", "Spleen"],
+      "properties": ["Invigorates blood", "Moves qi", "Alleviates pain"],
+      "tcm_cautions": "Contraindicated in pregnancy."
     },
     {
       "id": "ye-jiao-teng",
@@ -614,7 +989,12 @@
       "latin": "Polygonum multiflorum",
       "english": "Fleeceflower Stem / Fo-Ti Stem",
       "nccaom_code": "HB-208",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["sweet"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Liver"],
+      "properties": ["Nourishes heart and blood", "Calms spirit", "Unblocks channels", "Expels wind"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "yi-mu-cao",
@@ -622,7 +1002,12 @@
       "latin": "Leonurus japonicus",
       "english": "Chinese Motherwort",
       "nccaom_code": "HB-210",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["pungent", "bitter"],
+      "temperature": "cool",
+      "channels": ["Heart", "Liver", "Bladder"],
+      "properties": ["Invigorates blood", "Dispels stasis", "Promotes urination", "Clears toxic heat"],
+      "tcm_cautions": "Contraindicated in pregnancy. Caution in blood deficiency without stasis."
     },
     {
       "id": "yin-xing-ye",
@@ -630,7 +1015,12 @@
       "latin": "Ginkgo biloba",
       "english": "Ginkgo Leaf",
       "nccaom_code": "HB-205",
-      "category": "Blood Invigorating"
+      "category": "Blood Invigorating",
+      "taste": ["sweet", "bitter", "astringent"],
+      "temperature": "neutral",
+      "channels": ["Heart", "Lung"],
+      "properties": ["Invigorates blood", "Promotes circulation", "Reduces phlegm", "Stops wheezing"],
+      "tcm_cautions": "Caution with anticoagulant medications. Large doses may cause bleeding or seizures."
     },
     {
       "id": "yuan-zhi",
@@ -638,7 +1028,12 @@
       "latin": "Polygala tenuifolia",
       "english": "Senega Root / Polygala",
       "nccaom_code": "HB-215",
-      "category": "Heart Calming"
+      "category": "Heart Calming",
+      "taste": ["pungent", "bitter"],
+      "temperature": "warm",
+      "channels": ["Heart", "Lung"],
+      "properties": ["Calms spirit", "Expels phlegm from heart", "Opens orifices", "Reduces abscesses"],
+      "tcm_cautions": "Use caution in gastric ulcer or excess heat."
     },
     {
       "id": "ze-xie",
@@ -646,7 +1041,12 @@
       "latin": "Alisma plantago-aquatica",
       "english": "Water Plantain Rhizome",
       "nccaom_code": "HB-218",
-      "category": "Dampness Draining"
+      "category": "Dampness Draining",
+      "taste": ["sweet", "bland"],
+      "temperature": "cold",
+      "channels": ["Kidney", "Bladder"],
+      "properties": ["Promotes urination", "Drains dampness", "Clears kidney heat"],
+      "tcm_cautions": "Use caution in cold deficiency of kidney and spleen."
     },
     {
       "id": "zhi-ke",
@@ -654,7 +1054,12 @@
       "latin": "Citrus aurantium",
       "english": "Bitter Orange Peel (mature)",
       "nccaom_code": "HB-220",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["bitter", "pungent", "sour"],
+      "temperature": "cool",
+      "channels": ["Spleen", "Stomach"],
+      "properties": ["Regulates qi", "Reduces food stagnation", "Expands chest"],
+      "tcm_cautions": "Contraindicated in pregnancy. Caution in spleen deficiency."
     },
     {
       "id": "zhi-mu",
@@ -662,7 +1067,12 @@
       "latin": "Anemarrhena asphodeloides",
       "english": "Anemarrhena Rhizome",
       "nccaom_code": "HB-222",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["bitter", "sweet"],
+      "temperature": "cold",
+      "channels": ["Lung", "Stomach", "Kidney"],
+      "properties": ["Clears heat", "Nourishes yin", "Drains fire"],
+      "tcm_cautions": "Use caution in spleen deficiency with diarrhea."
     },
     {
       "id": "zhi-shi",
@@ -670,7 +1080,12 @@
       "latin": "Citrus aurantium",
       "english": "Bitter Orange (immature fruit)",
       "nccaom_code": "HB-223",
-      "category": "Qi Regulating"
+      "category": "Qi Regulating",
+      "taste": ["bitter", "pungent", "sour"],
+      "temperature": "cool",
+      "channels": ["Spleen", "Stomach", "Large Intestine"],
+      "properties": ["Breaks up qi stagnation", "Transforms phlegm", "Reduces accumulation"],
+      "tcm_cautions": "Contraindicated in pregnancy. Caution in spleen deficiency."
     },
     {
       "id": "zhi-zi",
@@ -678,7 +1093,12 @@
       "latin": "Gardenia jasminoides",
       "english": "Gardenia Fruit",
       "nccaom_code": "HB-224",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["bitter"],
+      "temperature": "cold",
+      "channels": ["Heart", "Lung", "Stomach", "Triple Warmer"],
+      "properties": ["Clears heat", "Resolves dampness", "Cools blood", "Reduces swelling"],
+      "tcm_cautions": "Use caution in spleen deficiency cold."
     },
     {
       "id": "zhu-ling",
@@ -686,7 +1106,12 @@
       "latin": "Polyporus umbellatus",
       "english": "Polyporus / Umbrella Polypore",
       "nccaom_code": "HB-226",
-      "category": "Dampness Draining"
+      "category": "Dampness Draining",
+      "taste": ["sweet", "bland"],
+      "temperature": "neutral",
+      "channels": ["Kidney", "Bladder"],
+      "properties": ["Promotes urination", "Leaches out dampness"],
+      "tcm_cautions": "No significant TCM cautions."
     },
     {
       "id": "zhu-ye",
@@ -694,7 +1119,12 @@
       "latin": "Phyllostachys nigra",
       "english": "Bamboo Leaf",
       "nccaom_code": "HB-227",
-      "category": "Heat Clearing"
+      "category": "Heat Clearing",
+      "taste": ["sweet", "bland"],
+      "temperature": "cold",
+      "channels": ["Heart", "Stomach", "Small Intestine"],
+      "properties": ["Clears heat", "Generates fluids", "Promotes urination"],
+      "tcm_cautions": "No significant TCM cautions."
     }
   ]
 }

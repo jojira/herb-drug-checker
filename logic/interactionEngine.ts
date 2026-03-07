@@ -32,6 +32,11 @@ export type HerbIdentity = {
   english: string;
   nccaom_code: string;
   active_constituent?: string;
+  taste?: string[];
+  temperature?: string;
+  channels?: string[];
+  properties?: string[];
+  tcm_cautions?: string;
 };
 
 export type DrugIdentity = {
@@ -220,13 +225,27 @@ function lookupInteraction(herbId: string, rxcui: string): InteractionMatch | nu
 function lookupHerbById(herbId: string): HerbIdentity | null {
   const entry = herbLibraryData.herbs.find((h) => h.id === herbId);
   if (!entry) return null;
+  type EnrichedEntry = typeof entry & {
+    active_constituent?: string;
+    taste?: string[];
+    temperature?: string;
+    channels?: string[];
+    properties?: string[];
+    tcm_cautions?: string;
+  };
+  const e = entry as EnrichedEntry;
   return {
-    id: entry.id,
-    pinyin: entry.pinyin,
-    latin: entry.latin,
-    english: entry.english,
-    nccaom_code: entry.nccaom_code,
-    active_constituent: (entry as { active_constituent?: string }).active_constituent,
+    id: e.id,
+    pinyin: e.pinyin,
+    latin: e.latin,
+    english: e.english,
+    nccaom_code: e.nccaom_code,
+    active_constituent: e.active_constituent,
+    taste: e.taste,
+    temperature: e.temperature,
+    channels: e.channels,
+    properties: e.properties,
+    tcm_cautions: e.tcm_cautions,
   };
 }
 

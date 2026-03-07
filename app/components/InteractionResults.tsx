@@ -37,10 +37,114 @@ import herbLibrary from "@/data/herbLibrary.json";
 // ---------------------------------------------------------------------------
 
 type HerbLibraryEntry = (typeof herbLibrary.herbs)[number];
+type HerbEnergetics = {
+  taste: string[];
+  temperature: string;
+  channels: string[];
+  properties: string[];
+  tcm_cautions: string;
+};
 
 function getHerbCategory(herbId: string): string | null {
   const entry = herbLibrary.herbs.find((h) => h.id === herbId) as HerbLibraryEntry | undefined;
   return entry?.category ?? null;
+}
+
+function getHerbEnergetics(herbId: string): HerbEnergetics | null {
+  const entry = herbLibrary.herbs.find((h) => h.id === herbId) as
+    | (HerbLibraryEntry & Partial<HerbEnergetics>)
+    | undefined;
+  if (!entry) return null;
+  const { taste, temperature, channels, properties, tcm_cautions } = entry;
+  if (!taste && !temperature && !channels && !properties && !tcm_cautions) return null;
+  return {
+    taste: taste ?? [],
+    temperature: temperature ?? "",
+    channels: channels ?? [],
+    properties: properties ?? [],
+    tcm_cautions: tcm_cautions ?? "",
+  };
+}
+
+// ---------------------------------------------------------------------------
+// TcmEnergeticsPanel
+// ---------------------------------------------------------------------------
+
+function TemperatureBadge({ temp }: { temp: string }) {
+  const lower = temp.toLowerCase();
+  let colorClass = "bg-slate-100 text-slate-600 border-slate-200";
+  if (lower === "hot" || lower === "warm") {
+    colorClass = "bg-amber-50 text-amber-700 border-amber-200";
+  } else if (lower === "cold" || lower === "cool") {
+    colorClass = "bg-blue-50 text-blue-700 border-blue-200";
+  }
+  return (
+    <span
+      className={`inline-flex items-center text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border ${colorClass}`}
+    >
+      {temp}
+    </span>
+  );
+}
+
+function TcmEnergeticsPanel({ herbId }: { herbId: string }) {
+  const energetics = getHerbEnergetics(herbId);
+  if (!energetics) return null;
+
+  const { taste, temperature, channels, properties, tcm_cautions } = energetics;
+
+  return (
+    <div className="mt-2 space-y-2 pl-1">
+      {/* Temperature + Taste row */}
+      {(temperature || taste.length > 0) && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          {temperature && <TemperatureBadge temp={temperature} />}
+          {taste.map((t) => (
+            <span
+              key={t}
+              className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Channels */}
+      {channels.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {channels.map((ch) => (
+            <span
+              key={ch}
+              className="text-[10px] px-1.5 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-100"
+            >
+              {ch}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Properties */}
+      {properties.length > 0 && (
+        <ul className="space-y-0.5">
+          {properties.map((p) => (
+            <li key={p} className="text-[11px] text-slate-500 flex items-start gap-1.5">
+              <span className="flex-shrink-0 text-slate-300 mt-0.5">·</span>
+              {p}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* TCM Cautions — amber notice, amber color only (never red) */}
+      {tcm_cautions && tcm_cautions !== "No significant TCM cautions." && (
+        <div className="flex items-start gap-1.5 bg-amber-50 border border-amber-100 rounded px-2 py-1.5">
+          <span className="flex-shrink-0 text-amber-500 text-[11px] mt-0.5">⚠</span>
+          <p className="text-[11px] text-amber-800 leading-snug">{tcm_cautions}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 const SEVERITY_RANK: Record<SeverityLevel, number> = {
@@ -105,16 +209,21 @@ function HerbDetailRow({
   herb: FormulaHerbDetail;
   onToggle?: (excluded: boolean) => void;
 }) {
+  const [showEnergetics, setShowEnergetics] = useState(false);
+
   const worstSeverity: SeverityLevel = herb.interactions.reduce<SeverityLevel>(
     (worst, m) => (SEVERITY_RANK[m.severity] > SEVERITY_RANK[worst] ? m.severity : worst),
     "none"
   );
 
   const category = getHerbCategory(herb.herbId);
+  const energetics = getHerbEnergetics(herb.herbId);
   const isFlagged = herb.hasInteraction;
   const isExcluded = herb.excluded === true;
   // Checkbox appears on herbs that are flagged OR currently excluded (were flagged before)
   const showCheckbox = (isFlagged || isExcluded) && onToggle !== undefined;
+  // Energetics toggle only shown for non-excluded herbs with data
+  const showEnergeticsToggle = !isExcluded && energetics !== null;
 
   return (
     <li
@@ -189,11 +298,26 @@ function HerbDetailRow({
           )}
         </div>
 
-        {category && (
-          <span className="inline-block mt-1 text-[10px] font-medium tracking-wide uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
-            {category}
-          </span>
-        )}
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1">
+          {category && (
+            <span className="text-[10px] font-medium tracking-wide uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
+              {category}
+            </span>
+          )}
+          {showEnergeticsToggle && (
+            <button
+              type="button"
+              onClick={() => setShowEnergetics((v) => !v)}
+              className="text-[11px] text-slate-400 hover:text-teal-600 underline underline-offset-2 transition-colors"
+              aria-expanded={showEnergetics}
+              aria-label={`${showEnergetics ? "Hide" : "Show"} energetics for ${herb.pinyin || herb.herbId}`}
+            >
+              {showEnergetics ? "Hide energetics" : "Energetics"}
+            </button>
+          )}
+        </div>
+
+        {showEnergetics && <TcmEnergeticsPanel herbId={herb.herbId} />}
       </div>
 
       {/* Alerts badge — only for active flagged herbs (not excluded) */}
