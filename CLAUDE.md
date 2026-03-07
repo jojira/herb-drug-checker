@@ -47,6 +47,7 @@ A Next.js web application for licensed acupuncturists and TCM practitioners to c
 /data
   mockInteractions.json         # Fixture data (used until real APIs are licensed)
   formulaMap.json               # Top 30 TCM formulas → constituent herb IDs
+  herbLibrary.json              # Central herb identity reference (NCCAOM standard, 85 herbs)
 ```
 
 ---
