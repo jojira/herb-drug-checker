@@ -1,14 +1,17 @@
 {
   "_meta": {
-    "version": "0.1",
+    "version": "0.2",
     "standard": "NCCAOM",
     "description": "Mock herb-drug interaction data for MVP development. Not for clinical use.",
     "sources": ["NatMed Pro (fixture)", "Stockley's (fixture)"],
-    "last_updated": "2026-03-07"
+    "last_updated": "2026-03-07",
+    "verification_status": "mock_data_pending_clinical_review",
+    "review_required_before": "production_launch"
   },
   "interactions": [
     {
       "id": "dan-shen-warfarin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "dan-shen",
         "pinyin": "Dan Shen",
@@ -33,13 +36,13 @@
           "title": "Interaction of Salvia miltiorrhiza with anticoagulant and antiplatelet drugs",
           "journal": "Journal of Clinical Pharmacology",
           "year": 2012,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-1"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Salvia+miltiorrhiza+warfarin+anticoagulant+interaction"
         },
         {
           "title": "Dan Shen-warfarin interaction: case series and review",
           "journal": "Pharmacotherapy",
           "year": 2009,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-2"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Dan+Shen+warfarin+INR+case+series"
         }
       ],
       "sources": ["natmed", "stockleys"],
@@ -47,11 +50,12 @@
     },
     {
       "id": "huang-lian-metformin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "huang-lian",
         "pinyin": "Huang Lian",
         "latin": "Coptis chinensis",
-        "english": "Coptis / Goldthread Rhizome",
+        "english": "Coptis Rhizome / Goldthread",
         "nccaom_code": "HB-092",
         "active_constituent": "Berberine"
       },
@@ -72,7 +76,7 @@
           "title": "Efficacy of berberine in patients with type 2 diabetes mellitus",
           "journal": "Metabolism",
           "year": 2008,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-3"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=berberine+type+2+diabetes+AMPK+metformin+efficacy"
         }
       ],
       "sources": ["natmed"],
@@ -80,6 +84,7 @@
     },
     {
       "id": "gan-cao-digoxin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "gan-cao",
         "pinyin": "Gan Cao",
@@ -104,7 +109,7 @@
           "title": "Licorice-induced hypokalemia and digoxin toxicity",
           "journal": "Annals of Internal Medicine",
           "year": 2004,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-4"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=licorice+glycyrrhizin+hypokalemia+digoxin+toxicity"
         }
       ],
       "sources": ["natmed", "stockleys"],
@@ -112,6 +117,7 @@
     },
     {
       "id": "huang-qi-immunosuppressants",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "huang-qi",
         "pinyin": "Huang Qi",
@@ -136,7 +142,7 @@
           "title": "Astragalus membranaceus: immune modulation and clinical implications",
           "journal": "Journal of Ethnopharmacology",
           "year": 2011,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-5"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Astragalus+membranaceus+immune+modulation+T-cell+immunosuppressant"
         }
       ],
       "sources": ["natmed"],
@@ -144,6 +150,7 @@
     },
     {
       "id": "wu-wei-zi-phenytoin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "wu-wei-zi",
         "pinyin": "Wu Wei Zi",
@@ -168,7 +175,7 @@
           "title": "Schisandra chinensis and herb-drug interactions via CYP450 modulation",
           "journal": "Drug Metabolism Reviews",
           "year": 2013,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-6"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Schisandra+chinensis+CYP3A4+P-glycoprotein+herb+drug+interaction"
         }
       ],
       "sources": ["stockleys"],
@@ -176,6 +183,7 @@
     },
     {
       "id": "dang-gui-warfarin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "dang-gui",
         "pinyin": "Dang Gui",
@@ -200,7 +208,7 @@
           "title": "Potentiation of warfarin anticoagulation by Angelica sinensis",
           "journal": "Annals of Pharmacotherapy",
           "year": 1997,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-7"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Angelica+sinensis+warfarin+INR+potentiation+CYP2C9"
         }
       ],
       "sources": ["natmed", "stockleys"],
@@ -208,6 +216,7 @@
     },
     {
       "id": "ren-shen-insulin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "ren-shen",
         "pinyin": "Ren Shen",
@@ -232,7 +241,7 @@
           "title": "Efficacy of Panax ginseng on blood glucose in type 2 diabetes",
           "journal": "Diabetes Care",
           "year": 2000,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-8"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Panax+ginseng+ginsenoside+blood+glucose+insulin+GLUT-4"
         }
       ],
       "sources": ["natmed"],
@@ -240,11 +249,12 @@
     },
     {
       "id": "gou-teng-antihypertensives",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "gou-teng",
         "pinyin": "Gou Teng",
         "latin": "Uncaria rhynchophylla",
-        "english": "Gambir Vine Stem / Cat's Claw Vine",
+        "english": "Gambir Vine Stem",
         "nccaom_code": "HB-079"
       },
       "drug": {
@@ -264,7 +274,7 @@
           "title": "Antihypertensive effects of alkaloids from Uncaria rhynchophylla",
           "journal": "Journal of Ethnopharmacology",
           "year": 2010,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-9"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Uncaria+rhynchophylla+rhynchophylline+antihypertensive+calcium+channel"
         }
       ],
       "sources": ["natmed"],
@@ -272,6 +282,7 @@
     },
     {
       "id": "zhi-mu-lithium",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "zhi-mu",
         "pinyin": "Zhi Mu",
@@ -296,7 +307,7 @@
           "title": "Lithium toxicity and drug-herb interactions: a review",
           "journal": "CNS Drugs",
           "year": 2015,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-10"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=lithium+toxicity+diuretic+herb+drug+interaction+narrow+therapeutic+index"
         }
       ],
       "sources": ["stockleys"],
@@ -304,6 +315,7 @@
     },
     {
       "id": "yin-xing-ye-aspirin",
+      "data_status": "mock_unverified",
       "herb": {
         "id": "yin-xing-ye",
         "pinyin": "Yin Xing Ye",
@@ -328,17 +340,1340 @@
           "title": "Spontaneous hyphema associated with ingestion of Ginkgo biloba extract",
           "journal": "New England Journal of Medicine",
           "year": 1997,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-11"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ginkgo+biloba+spontaneous+bleeding+hyphema+hematoma"
         },
         {
           "title": "Ginkgo biloba and antiplatelet drugs: interaction review",
           "journal": "British Journal of Clinical Pharmacology",
           "year": 2005,
-          "url": "https://pubmed.ncbi.nlm.nih.gov/example-12"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ginkgo+biloba+antiplatelet+aspirin+PAF+interaction+bleeding"
         }
       ],
       "sources": ["natmed", "stockleys"],
       "confidence": "high"
+    },
+    {
+      "id": "hong-hua-warfarin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "hong-hua",
+        "pinyin": "Hong Hua",
+        "latin": "Carthamus tinctorius",
+        "english": "Safflower",
+        "nccaom_code": "HB-088"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Hong Hua's active constituents hydroxysafflor yellow A and carthamin inhibit thromboxane A2 synthesis and ADP-induced platelet aggregation via cAMP elevation. This antiplatelet action is additive with warfarin's vitamin K antagonism, substantially increasing hemorrhagic risk across both coagulation and platelet pathways.",
+      "clinical_summary": "Hong Hua is among the most potent blood-invigorating herbs in the TCM formulary and appears in key cardiovascular formulas (Xue Fu Zhu Yu Tang, Tao Hong Si Wu Tang). Any patient on warfarin must be screened for Hong Hua use. The combination is considered contraindicated; refer to the anticoagulation clinician and advise full disclosure of herbal use.",
+      "evidence_level": "medium",
+      "evidence_notes": "Antiplatelet mechanism well-established in vitro and animal studies. Direct pharmacokinetic interaction with warfarin not studied in humans; risk extrapolated from established mechanism.",
+      "citations": [
+        {
+          "title": "Antiplatelet activity of hydroxysafflor yellow A from Carthamus tinctorius",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2009,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=hydroxysafflor+yellow+A+Carthamus+tinctorius+antiplatelet+thromboxane"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "hong-hua-aspirin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "hong-hua",
+        "pinyin": "Hong Hua",
+        "latin": "Carthamus tinctorius",
+        "english": "Safflower",
+        "nccaom_code": "HB-088"
+      },
+      "drug": {
+        "rxcui": "1191",
+        "name": "Aspirin",
+        "brand_names": ["Bayer", "Bufferin", "Ecotrin"],
+        "drug_class": "Antiplatelet / NSAID"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Hong Hua inhibits thromboxane A2 synthesis and ADP-mediated platelet aggregation via PAF antagonism and cAMP elevation. Aspirin irreversibly inhibits COX-1, blocking thromboxane A2 from a distinct but convergent pathway. The combined antiplatelet effect is additive and significantly prolongs bleeding time.",
+      "clinical_summary": "Both agents suppress thromboxane-mediated platelet activation via related but independent mechanisms, creating a meaningful additive bleeding risk. Peri-operative patients and those with GI vulnerability (ulcer history, NSAID use) are at particular risk. Patients should discontinue Hong Hua at least 2 weeks before any elective procedure. This combination should generally be avoided.",
+      "evidence_level": "low",
+      "evidence_notes": "Pharmacodynamic rationale is mechanistically compelling. No direct clinical studies on combined Hong Hua + aspirin use; risk extrapolated from individual antiplatelet properties.",
+      "citations": [
+        {
+          "title": "Carthamus tinctorius: pharmacology and antiplatelet mechanisms",
+          "journal": "Phytomedicine",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Carthamus+tinctorius+Hong+Hua+antiplatelet+COX+pharmacology"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "tao-ren-warfarin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "tao-ren",
+        "pinyin": "Tao Ren",
+        "latin": "Prunus persica",
+        "english": "Peach Kernel / Peach Seed",
+        "nccaom_code": "HB-182"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Tao Ren contains amygdalin and unsaturated fatty acids that inhibit platelet aggregation and exhibit mild anticoagulant activity via prostacyclin pathway modulation. Combined with warfarin's CYP2C9-mediated vitamin K antagonism, additive anticoagulant and antiplatelet effects increase clinically significant bleeding risk.",
+      "clinical_summary": "Tao Ren is a core ingredient in blood-invigorating formulas including Tao Hong Si Wu Tang and Xue Fu Zhu Yu Tang. Patients on warfarin taking any of these formulas face increased bleeding risk. INR should be monitored if concurrent use cannot be avoided; the anticoagulation clinician should be notified. The combination is generally contraindicated.",
+      "evidence_level": "low",
+      "evidence_notes": "Antiplatelet activity demonstrated in vitro and animal studies. Human pharmacokinetic data with warfarin is lacking; risk level based on mechanistic extrapolation.",
+      "citations": [
+        {
+          "title": "Anticoagulant and antiplatelet effects of Prunus persica seed constituents",
+          "journal": "Phytotherapy Research",
+          "year": 2007,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Prunus+persica+amygdalin+antiplatelet+anticoagulant"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "chuan-xiong-warfarin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "chuan-xiong",
+        "pinyin": "Chuan Xiong",
+        "latin": "Ligusticum chuanxiong",
+        "english": "Sichuan Lovage Rhizome",
+        "nccaom_code": "HB-036"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Tetramethylpyrazine (ligustrazine) and ferulic acid in Chuan Xiong inhibit platelet aggregation via cAMP-mediated pathways and suppress thromboxane A2 synthesis. Ferulic acid also weakly inhibits CYP2C9, potentially elevating warfarin (S-enantiomer) plasma levels. The combined antiplatelet and possible pharmacokinetic effects are additive.",
+      "clinical_summary": "Chuan Xiong is ubiquitous in blood-invigorating and pain-relieving formulas. Its antiplatelet properties combined with warfarin's anticoagulant action create a clinically meaningful bleeding risk. INR monitoring is essential if co-administration cannot be avoided. Coordinate with the prescribing anticoagulation provider.",
+      "evidence_level": "medium",
+      "evidence_notes": "Antiplatelet mechanism well-studied in vitro and animal models. CYP2C9 inhibition by ferulic acid suggested but human pharmacokinetic data limited.",
+      "citations": [
+        {
+          "title": "Tetramethylpyrazine from Ligusticum chuanxiong: antiplatelet and vasodilatory mechanisms",
+          "journal": "Thrombosis Research",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=tetramethylpyrazine+ligustrazine+Ligusticum+chuanxiong+antiplatelet+warfarin"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "chuan-xiong-clopidogrel",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "chuan-xiong",
+        "pinyin": "Chuan Xiong",
+        "latin": "Ligusticum chuanxiong",
+        "english": "Sichuan Lovage Rhizome",
+        "nccaom_code": "HB-036"
+      },
+      "drug": {
+        "rxcui": "32968",
+        "name": "Clopidogrel",
+        "brand_names": ["Plavix"],
+        "drug_class": "Antiplatelet / Thienopyridine"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Tetramethylpyrazine and ferulic acid in Chuan Xiong inhibit ADP-induced platelet aggregation, directly overlapping with clopidogrel's P2Y12 receptor antagonism. The combined antiplatelet inhibition is additive and may significantly increase risk of GI and intracranial hemorrhage.",
+      "clinical_summary": "Patients on clopidogrel — typically for cardiac stenting or stroke prevention — face elevated bleeding risk if they simultaneously take Chuan Xiong-containing formulas. This combination should be avoided. If a patient presents on both, the treating cardiologist or neurologist must be consulted before any modification.",
+      "evidence_level": "low",
+      "evidence_notes": "Pharmacodynamic overlap between Chuan Xiong constituents and P2Y12 inhibition is mechanistically compelling. No direct clinical studies on combined use with clopidogrel.",
+      "citations": [
+        {
+          "title": "Ferulic acid inhibits ADP-induced platelet aggregation: mechanism and implications",
+          "journal": "European Journal of Pharmacology",
+          "year": 2008,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=ferulic+acid+ADP+platelet+aggregation+P2Y12+antiplatelet"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "yi-mu-cao-warfarin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "yi-mu-cao",
+        "pinyin": "Yi Mu Cao",
+        "latin": "Leonurus japonicus",
+        "english": "Chinese Motherwort",
+        "nccaom_code": "HB-210"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Yi Mu Cao alkaloids leonurine and stachydrine inhibit platelet aggregation and activate fibrinolysis. Leonurine also exhibits uterotonic and prostaglandin-modulating effects that contribute to systemic blood-thinning. These actions are additive with warfarin's vitamin K antagonism, compounding hemorrhagic risk.",
+      "clinical_summary": "Yi Mu Cao is a primary herb for gynecological blood stasis and is often used in formulas for irregular menses and postpartum recovery. Concurrent warfarin use significantly increases bleeding risk across multiple hemostatic pathways. This combination is contraindicated. Patients on anticoagulants must be counseled against Yi Mu Cao and related formulas.",
+      "evidence_level": "medium",
+      "evidence_notes": "Antiplatelet and fibrinolytic mechanisms well-documented in animal studies and in vitro. Direct clinical interaction data with warfarin is absent; risk extrapolated from mechanism.",
+      "citations": [
+        {
+          "title": "Leonurine and stachydrine from Leonurus japonicus: antiplatelet and fibrinolytic activity",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2012,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Leonurus+japonicus+leonurine+stachydrine+antiplatelet+fibrinolytic"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "yan-hu-suo-clopidogrel",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "yan-hu-suo",
+        "pinyin": "Yan Hu Suo",
+        "latin": "Corydalis yanhusuo",
+        "english": "Corydalis Rhizome",
+        "nccaom_code": "HB-207"
+      },
+      "drug": {
+        "rxcui": "32968",
+        "name": "Clopidogrel",
+        "brand_names": ["Plavix"],
+        "drug_class": "Antiplatelet / Thienopyridine"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Tetrahydropalmatine (THP) and corydaline alkaloids in Yan Hu Suo inhibit platelet aggregation and exert anti-thrombotic activity via dopamine D2 receptor modulation and partial PAF antagonism. Combined with clopidogrel's irreversible P2Y12 receptor blockade, additive antiplatelet inhibition increases bleeding risk.",
+      "clinical_summary": "Yan Hu Suo is widely used for pain management in TCM across musculoskeletal, abdominal, and menstrual pain indications. When prescribed to patients on clopidogrel (e.g., post-PCI), the additive antiplatelet effect increases hemorrhagic risk. If concurrent use is clinically necessary, the patient should be informed and monitored for signs of bleeding including unusual bruising, blood in stool, or prolonged wound bleeding.",
+      "evidence_level": "low",
+      "evidence_notes": "Yan Hu Suo antiplatelet activity documented in animal studies and in vitro. Direct interaction with clopidogrel has not been studied in humans.",
+      "citations": [
+        {
+          "title": "Tetrahydropalmatine from Corydalis yanhusuo: anti-thrombotic and antiplatelet mechanisms",
+          "journal": "Phytomedicine",
+          "year": 2014,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=tetrahydropalmatine+Corydalis+yanhusuo+antiplatelet+thrombosis"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "niu-xi-warfarin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "niu-xi",
+        "pinyin": "Niu Xi",
+        "latin": "Achyranthes bidentata",
+        "english": "Achyranthes Root",
+        "nccaom_code": "HB-136"
+      },
+      "drug": {
+        "rxcui": "11289",
+        "name": "Warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Niu Xi saponins (including ecdysterone and achyranthine) inhibit platelet aggregation and have demonstrated anticoagulant activity in animal models. These antiplatelet and mild anticoagulant effects are additive with warfarin's vitamin K antagonism, increasing hemorrhagic risk.",
+      "clinical_summary": "Niu Xi is a common component of formulas for joint pain, dysmenorrhea, and lower body blood stasis. Its individual bleeding risk is moderate, but combined with warfarin, the anticoagulant effect may be amplified. Monitor INR if concurrent use is unavoidable and advise the anticoagulation provider of the patient's herbal intake.",
+      "evidence_level": "low",
+      "evidence_notes": "Anticoagulant effect demonstrated in animal models. No human pharmacokinetic or pharmacodynamic studies with warfarin are available.",
+      "citations": [
+        {
+          "title": "Anticoagulant and antiplatelet activity of Achyranthes bidentata saponins",
+          "journal": "Phytotherapy Research",
+          "year": 2006,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Achyranthes+bidentata+ecdysterone+antiplatelet+anticoagulant"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "hong-hua-heparin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "hong-hua",
+        "pinyin": "Hong Hua",
+        "latin": "Carthamus tinctorius",
+        "english": "Safflower",
+        "nccaom_code": "HB-088"
+      },
+      "drug": {
+        "rxcui": "5224",
+        "name": "Heparin",
+        "brand_names": ["Hep-Lock", "Heparin Sodium"],
+        "drug_class": "Anticoagulant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Hong Hua's antiplatelet constituents (hydroxysafflor yellow A, carthamin) inhibit thromboxane A2 and ADP-induced platelet aggregation. Combined with heparin's antithrombin III activation and inhibition of Factors Xa and IIa, the dual mechanism creates substantially elevated hemorrhagic risk during and after heparin therapy.",
+      "clinical_summary": "Heparin is used acutely for DVT, PE, and during cardiac procedures. Any herb with significant antiplatelet activity should be suspended during heparin therapy. Hong Hua's potent blood-moving properties make concurrent use particularly inappropriate. Ensure all herbal intake is disclosed on hospital admission forms; discontinue Hong Hua-containing formulas before any planned anticoagulation course.",
+      "evidence_level": "low",
+      "evidence_notes": "Pharmacological rationale is mechanistically strong. No clinical studies directly evaluating this combination exist.",
+      "citations": [
+        {
+          "title": "Carthamus tinctorius constituents and hemostatic pathways: a review",
+          "journal": "American Journal of Chinese Medicine",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Carthamus+tinctorius+hemostasis+antiplatelet+anticoagulant+heparin"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "dang-gui-apixaban",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "dang-gui",
+        "pinyin": "Dang Gui",
+        "latin": "Angelica sinensis",
+        "english": "Dong Quai / Chinese Angelica Root",
+        "nccaom_code": "HB-052"
+      },
+      "drug": {
+        "rxcui": "1364430",
+        "name": "Apixaban",
+        "brand_names": ["Eliquis"],
+        "drug_class": "Anticoagulant / Direct Factor Xa Inhibitor"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Dang Gui's coumarin derivatives and ferulic acid inhibit platelet aggregation and carry intrinsic anticoagulant activity. Apixaban directly inhibits Factor Xa, blocking thrombin generation. Combined antiplatelet and anti-Xa activity substantially elevates hemorrhagic risk. Additionally, Dang Gui constituents may inhibit CYP3A4 and P-gp, potentially raising apixaban plasma concentrations.",
+      "clinical_summary": "Apixaban (Eliquis) is increasingly prescribed for atrial fibrillation and VTE prevention, and unlike warfarin, does not require routine INR monitoring — making bleeding events harder to anticipate. Dang Gui appears in numerous blood-tonifying and gynecological formulas. Screen for all DOAC therapy (apixaban, rivaroxaban, dabigatran, edoxaban) when reviewing anticoagulant risk, not only warfarin.",
+      "evidence_level": "medium",
+      "evidence_notes": "Dang Gui anticoagulant and antiplatelet activity well-established. CYP3A4/P-gp inhibitory potential is plausible but not directly studied with apixaban in humans.",
+      "citations": [
+        {
+          "title": "Angelica sinensis: anticoagulant coumarins and drug interaction potential",
+          "journal": "Journal of Natural Products",
+          "year": 2016,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Angelica+sinensis+coumarin+CYP3A4+anticoagulant+DOAC+apixaban"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "huang-lian-glipizide",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "huang-lian",
+        "pinyin": "Huang Lian",
+        "latin": "Coptis chinensis",
+        "english": "Coptis Rhizome / Goldthread",
+        "nccaom_code": "HB-092",
+        "active_constituent": "Berberine"
+      },
+      "drug": {
+        "rxcui": "4815",
+        "name": "Glipizide",
+        "brand_names": ["Glucotrol"],
+        "drug_class": "Sulfonylurea / Antidiabetic"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Berberine activates AMPK, reduces hepatic glucose production, and enhances insulin secretion from pancreatic beta cells. Glipizide stimulates insulin secretion by closing ATP-sensitive K+ channels on beta cells. Combined, these mechanistically distinct but convergent insulin secretagogue and sensitizing effects substantially increase the risk of severe hypoglycemia.",
+      "clinical_summary": "Huang Lian has clinical trial evidence supporting glucose-lowering efficacy comparable to some oral antidiabetics. When added to an established glipizide regimen, the risk of symptomatic or severe hypoglycemia is significant. This combination requires close blood glucose monitoring; dose reduction of glipizide should be considered. Coordinate with the prescribing physician.",
+      "evidence_level": "high",
+      "evidence_notes": "Berberine's antidiabetic mechanisms are well-established in RCTs. Additive hypoglycemia risk with sulfonylureas is pharmacologically predicted and clinically significant.",
+      "citations": [
+        {
+          "title": "Berberine and sulfonylureas: additive hypoglycemic effects and mechanisms",
+          "journal": "Journal of Clinical Endocrinology and Metabolism",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=berberine+sulfonylurea+glipizide+hypoglycemia+AMPK+beta+cell"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "high"
+    },
+    {
+      "id": "huang-lian-insulin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "huang-lian",
+        "pinyin": "Huang Lian",
+        "latin": "Coptis chinensis",
+        "english": "Coptis Rhizome / Goldthread",
+        "nccaom_code": "HB-092",
+        "active_constituent": "Berberine"
+      },
+      "drug": {
+        "rxcui": "5856",
+        "name": "Insulin",
+        "brand_names": ["Humalog", "Lantus", "NovoLog"],
+        "drug_class": "Antidiabetic / Insulin"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Berberine activates AMPK and upregulates GLUT-4 expression, enhancing peripheral glucose uptake and reducing hepatic glucose output independently of insulin. These effects are additive with exogenous insulin action, creating a compounded glucose-lowering effect with substantially elevated risk of hypoglycemia.",
+      "clinical_summary": "Patients on insulin using Huang Lian — for type 2 diabetes management or infectious diarrhea — may experience unexpected and severe hypoglycemia. Blood glucose should be monitored frequently when initiating Huang Lian in insulin-dependent patients. Insulin doses may need to be reduced. This requires active medical coordination with the prescribing clinician.",
+      "evidence_level": "high",
+      "evidence_notes": "Berberine's insulin-sensitizing and glucose-lowering effects demonstrated in multiple RCTs. Additive hypoglycemia risk with insulin extrapolated from established AMPK and GLUT-4 mechanisms.",
+      "citations": [
+        {
+          "title": "Berberine improves insulin resistance through action on multiple targets",
+          "journal": "Diabetes",
+          "year": 2006,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=berberine+AMPK+GLUT-4+insulin+resistance+hypoglycemia"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "high"
+    },
+    {
+      "id": "ren-shen-metformin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "ren-shen",
+        "pinyin": "Ren Shen",
+        "latin": "Panax ginseng",
+        "english": "Asian Ginseng Root",
+        "nccaom_code": "HB-156"
+      },
+      "drug": {
+        "rxcui": "6809",
+        "name": "Metformin",
+        "brand_names": ["Glucophage", "Fortamet"],
+        "drug_class": "Biguanide / Antidiabetic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Ginsenosides Rb1 and Rg1 activate AMPK and reduce hepatic glucose output via mechanisms that overlap with metformin's primary pathway. Combined AMPK activation may produce additive or synergistic glucose-lowering effects, increasing hypoglycemia risk particularly at higher ginseng doses.",
+      "clinical_summary": "Both Ren Shen and metformin reduce hepatic glucose production via AMPK activation. Their combination may enhance blood glucose control — which can be clinically useful — but also increases the risk of hypoglycemia. Blood glucose monitoring is warranted when initiating Ren Shen in metformin-treated patients. Adjust doses accordingly.",
+      "evidence_level": "medium",
+      "evidence_notes": "Ginsenoside effects on AMPK and glucose metabolism supported by in vitro and animal data. Limited clinical interaction studies; risk extrapolated from overlapping mechanism.",
+      "citations": [
+        {
+          "title": "Ginsenoside Rb1 activates AMPK to lower blood glucose via mechanisms similar to metformin",
+          "journal": "Phytomedicine",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=ginsenoside+Rb1+AMPK+metformin+hepatic+glucose+output"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "ren-shen-glipizide",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "ren-shen",
+        "pinyin": "Ren Shen",
+        "latin": "Panax ginseng",
+        "english": "Asian Ginseng Root",
+        "nccaom_code": "HB-156"
+      },
+      "drug": {
+        "rxcui": "4815",
+        "name": "Glipizide",
+        "brand_names": ["Glucotrol"],
+        "drug_class": "Sulfonylurea / Antidiabetic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Panax ginseng ginsenosides stimulate pancreatic insulin secretion and enhance beta-cell function, mechanistically overlapping with glipizide's sulfonylurea-mediated insulin secretagogue action via ATP-sensitive K+ channel closure. Additive insulin secretion may cause significant hypoglycemia.",
+      "clinical_summary": "The insulin secretagogue properties of Ren Shen combined with glipizide's direct pancreatic stimulation create a meaningful hypoglycemia risk. Monitor fasting and postprandial blood glucose closely when initiating or adjusting either agent. Dose reduction of glipizide may be required if Ren Shen is added to the regimen.",
+      "evidence_level": "medium",
+      "evidence_notes": "Insulin secretagogue activity of ginseng demonstrated in clinical trials. Direct interaction with glipizide not studied; pharmacodynamic overlap is mechanistically clear.",
+      "citations": [
+        {
+          "title": "Panax ginseng ginsenosides stimulate insulin secretion from pancreatic beta cells",
+          "journal": "Journal of Endocrinology",
+          "year": 2008,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Panax+ginseng+ginsenoside+insulin+secretion+beta+cell+sulfonylurea"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "gou-qi-zi-insulin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "gou-qi-zi",
+        "pinyin": "Gou Qi Zi",
+        "latin": "Lycium barbarum",
+        "english": "Wolfberry / Goji Berry",
+        "nccaom_code": "HB-077"
+      },
+      "drug": {
+        "rxcui": "5856",
+        "name": "Insulin",
+        "brand_names": ["Humalog", "Lantus", "NovoLog"],
+        "drug_class": "Antidiabetic / Insulin"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Lycium barbarum polysaccharides (LBP) enhance insulin receptor sensitivity and inhibit alpha-glucosidase activity, slowing postprandial glucose absorption and improving peripheral glucose uptake. These effects are additive with exogenous insulin's glucose-lowering action, increasing hypoglycemia risk at medicinal doses.",
+      "clinical_summary": "Gou Qi Zi is commonly used as both food and medicine for liver and kidney yin deficiency. Its mild hypoglycemic properties are relevant at therapeutic doses (30–60g daily). Patients on insulin consuming medicinal quantities should monitor blood glucose regularly. This is a monitoring precaution rather than contraindication, but dose adjustment may be needed.",
+      "evidence_level": "low",
+      "evidence_notes": "Hypoglycemic activity demonstrated in animal models and small human studies. Direct interaction with exogenous insulin not formally studied.",
+      "citations": [
+        {
+          "title": "Lycium barbarum polysaccharides improve insulin sensitivity and inhibit alpha-glucosidase",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Lycium+barbarum+polysaccharide+insulin+sensitivity+hypoglycemia"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "huang-lian-sitagliptin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "huang-lian",
+        "pinyin": "Huang Lian",
+        "latin": "Coptis chinensis",
+        "english": "Coptis Rhizome / Goldthread",
+        "nccaom_code": "HB-092",
+        "active_constituent": "Berberine"
+      },
+      "drug": {
+        "rxcui": "593411",
+        "name": "Sitagliptin",
+        "brand_names": ["Januvia"],
+        "drug_class": "DPP-4 Inhibitor / Antidiabetic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Berberine inhibits dipeptidyl peptidase-4 (DPP-4) enzyme activity, increasing active GLP-1 and GIP levels, which stimulate insulin secretion and suppress glucagon. Sitagliptin inhibits DPP-4 via a distinct binding mechanism. Dual DPP-4 inhibition from both agents is additive, enhancing insulin secretion and increasing hypoglycemia risk.",
+      "clinical_summary": "Sitagliptin (Januvia) and Huang Lian (berberine) both inhibit DPP-4, though through independent mechanisms. Combined use can produce enhanced postprandial insulin secretion and risk of hypoglycemia. Blood glucose monitoring is recommended when adding Huang Lian to a sitagliptin regimen; dose adjustment of sitagliptin may be required.",
+      "evidence_level": "medium",
+      "evidence_notes": "Berberine DPP-4 inhibitory activity demonstrated in vitro and confirmed in animal pharmacology studies. Clinical interaction data with sitagliptin specifically is limited; mechanistic basis is well-grounded.",
+      "citations": [
+        {
+          "title": "Berberine inhibits DPP-4 and elevates GLP-1 levels: mechanism and diabetes implications",
+          "journal": "Biochemical Pharmacology",
+          "year": 2016,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=berberine+DPP-4+inhibition+GLP-1+sitagliptin+diabetes"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "da-huang-digoxin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "da-huang",
+        "pinyin": "Da Huang",
+        "latin": "Rheum palmatum",
+        "english": "Rhubarb Root and Rhizome",
+        "nccaom_code": "HB-040"
+      },
+      "drug": {
+        "rxcui": "3407",
+        "name": "Digoxin",
+        "brand_names": ["Lanoxin"],
+        "drug_class": "Cardiac Glycoside"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Anthraquinone glycosides in Da Huang stimulate intestinal secretion and accelerate GI motility, causing fluid and electrolyte loss — particularly potassium and magnesium. Hypokalemia dramatically increases myocardial sensitivity to digoxin by reducing cardiac resting membrane potential, substantially lowering the threshold for toxic arrhythmias. Da Huang may also inhibit P-glycoprotein, increasing digoxin absorption.",
+      "clinical_summary": "Da Huang is contraindicated with digoxin. This combination carries a high risk of digoxin toxicity presenting as nausea, yellow-green visual halos, bradycardia, and potentially fatal ventricular arrhythmias. Practitioners must not prescribe Da Huang or any purgative formula (e.g., Da Cheng Qi Tang, Ma Zi Ren Wan) to patients on digoxin. If constipation management is required, use non-electrolyte-depleting alternatives.",
+      "evidence_level": "high",
+      "evidence_notes": "Anthraquinone-induced hypokalemia and digoxin toxicity is a well-established class-level pharmacological interaction documented in clinical pharmacology literature.",
+      "citations": [
+        {
+          "title": "Anthraquinone laxatives and cardiac glycoside toxicity: hypokalemia-mediated mechanism",
+          "journal": "Clinical Pharmacology and Therapeutics",
+          "year": 2002,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=anthraquinone+laxative+hypokalemia+digoxin+toxicity+cardiac+glycoside"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    },
+    {
+      "id": "ze-xie-digoxin",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "ze-xie",
+        "pinyin": "Ze Xie",
+        "latin": "Alisma plantago-aquatica",
+        "english": "Water Plantain Rhizome",
+        "nccaom_code": "HB-218"
+      },
+      "drug": {
+        "rxcui": "3407",
+        "name": "Digoxin",
+        "brand_names": ["Lanoxin"],
+        "drug_class": "Cardiac Glycoside"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Ze Xie promotes urinary excretion of sodium and potassium through diuretic activity mediated by inhibition of renal tubular reabsorption. Chronic or high-dose Ze Xie use can produce hypokalemia, which sensitizes the myocardium to digoxin and lowers the threshold for arrhythmias — paralleling the interaction seen with pharmaceutical diuretics.",
+      "clinical_summary": "Ze Xie appears in commonly prescribed yin-nourishing formulas including Liu Wei Di Huang Wan and Zhi Bai Di Huang Wan. Patients on digoxin prescribed these formulas should have serum potassium and digoxin levels monitored at follow-up. Potassium supplementation may be necessary. This is a monitoring precaution rather than absolute contraindication.",
+      "evidence_level": "medium",
+      "evidence_notes": "Ze Xie diuretic mechanism established. Hypokalemia-mediated digoxin toxicity well-documented with pharmaceutical diuretics; interaction is extrapolated to Ze Xie from established mechanism.",
+      "citations": [
+        {
+          "title": "Diuretic herb-drug interactions and electrolyte disturbances in cardiac patients",
+          "journal": "Heart",
+          "year": 2008,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=herbal+diuretic+hypokalemia+digoxin+cardiac+glycoside+interaction"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "fu-zi-amiodarone",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "fu-zi",
+        "pinyin": "Fu Zi",
+        "latin": "Aconitum carmichaelii",
+        "english": "Prepared Aconite Root",
+        "nccaom_code": "HB-067"
+      },
+      "drug": {
+        "rxcui": "703",
+        "name": "Amiodarone",
+        "brand_names": ["Pacerone", "Cordarone"],
+        "drug_class": "Antiarrhythmic (Class III)"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Fu Zi's aconitine alkaloids inhibit cardiac sodium channels (Nav1.5), slowing conduction and altering repolarization. Amiodarone is a Class III antiarrhythmic that blocks cardiac potassium channels (hERG/IKr), prolonging the QTc interval. Combined sodium and potassium channel blockade may cause additive QT prolongation and substantially increases the risk of torsades de pointes and ventricular fibrillation.",
+      "clinical_summary": "This combination is considered contraindicated. Both Fu Zi and amiodarone independently carry significant cardiac electrophysiological risks that are potentially synergistic. Fu Zi's aconitine alkaloids are inherently cardiotoxic even when correctly processed. Patients on amiodarone must not use any formula containing Fu Zi or other aconitum-derived herbs. Coordinate with cardiology if a patient on amiodarone requests TCM treatment.",
+      "evidence_level": "medium",
+      "evidence_notes": "Cardiac ion channel effects of both agents are well-characterized independently. Additive QT prolongation risk is mechanistically compelling; direct clinical studies are not available.",
+      "citations": [
+        {
+          "title": "Aconitine alkaloids and cardiac ion channel toxicity: Nav1.5 and arrhythmia risk",
+          "journal": "Cardiovascular Toxicology",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=aconitine+aconitum+cardiac+sodium+channel+QT+arrhythmia+amiodarone"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "fu-zi-metoprolol",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "fu-zi",
+        "pinyin": "Fu Zi",
+        "latin": "Aconitum carmichaelii",
+        "english": "Prepared Aconite Root",
+        "nccaom_code": "HB-067"
+      },
+      "drug": {
+        "rxcui": "41493",
+        "name": "Metoprolol",
+        "brand_names": ["Lopressor", "Toprol-XL"],
+        "drug_class": "Beta-Blocker / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Fu Zi's aconitine alkaloids produce complex cardiac effects by first stimulating then inhibiting cardiac sodium and calcium channels, causing variable and unpredictable effects on heart rate and AV conduction. Metoprolol, a beta-1 selective antagonist, slows AV nodal conduction and reduces heart rate via beta-adrenoceptor blockade. Combined effects on cardiac conduction are unpredictable and may cause dangerous bradycardia or heart block.",
+      "clinical_summary": "Patients with heart failure or arrhythmias may be prescribed metoprolol while also receiving Fu Zi-containing TCM formulas (e.g., Zhen Wu Tang, Si Ni Tang). The risk includes bradycardia, AV block, and symptomatic hypotension. This combination requires close cardiac monitoring; practitioners should coordinate with the cardiologist before prescribing any aconitum-containing formula.",
+      "evidence_level": "low",
+      "evidence_notes": "Mechanistic rationale based on Fu Zi's known cardiac ion channel pharmacology. No clinical studies directly evaluating combined use with metoprolol.",
+      "citations": [
+        {
+          "title": "Aconitum carmichaelii cardiovascular toxicity and interactions with cardiac drugs",
+          "journal": "Journal of Cardiovascular Pharmacology",
+          "year": 2009,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=aconitum+carmichaelii+aconitine+cardiac+bradycardia+beta+blocker"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "da-huang-amiodarone",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "da-huang",
+        "pinyin": "Da Huang",
+        "latin": "Rheum palmatum",
+        "english": "Rhubarb Root and Rhizome",
+        "nccaom_code": "HB-040"
+      },
+      "drug": {
+        "rxcui": "703",
+        "name": "Amiodarone",
+        "brand_names": ["Pacerone", "Cordarone"],
+        "drug_class": "Antiarrhythmic (Class III)"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Da Huang anthraquinones induce potassium and magnesium loss through diarrhea and intestinal secretion, causing hypokalemia and hypomagnesemia. Both electrolyte deficiencies prolong cardiac repolarization and potentiate amiodarone's QT-prolonging effect (hERG/IKr blockade), substantially increasing the risk of torsades de pointes.",
+      "clinical_summary": "Amiodarone already significantly prolongs the QT interval, and electrolyte disturbances from Da Huang use further increase arrhythmia risk. Practitioners must not prescribe Da Huang-containing purgative formulas to patients on amiodarone. If a patient on amiodarone requires constipation management, non-electrolyte-depleting alternatives should be used and the prescribing cardiologist consulted.",
+      "evidence_level": "medium",
+      "evidence_notes": "QT prolongation risk from amiodarone combined with hypokalemia-inducing agents is well-established in cardiology literature. Direct studies on Da Huang + amiodarone not available; risk extrapolated from established drug-drug interaction class.",
+      "citations": [
+        {
+          "title": "Hypokalemia, QT prolongation, and amiodarone-induced torsades de pointes",
+          "journal": "American Journal of Cardiology",
+          "year": 2005,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=hypokalemia+QT+prolongation+amiodarone+torsades+electrolyte+laxative"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "gan-cao-amiodarone",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "gan-cao",
+        "pinyin": "Gan Cao",
+        "latin": "Glycyrrhiza uralensis",
+        "english": "Licorice Root",
+        "nccaom_code": "HB-071"
+      },
+      "drug": {
+        "rxcui": "703",
+        "name": "Amiodarone",
+        "brand_names": ["Pacerone", "Cordarone"],
+        "drug_class": "Antiarrhythmic (Class III)"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Glycyrrhizin causes pseudohyperaldosteronism with sodium retention and potassium wasting, leading to hypokalemia. Hypokalemia prolongs cardiac repolarization and potentiates amiodarone's QT-prolonging hERG channel blockade, elevating the risk of torsades de pointes and ventricular fibrillation.",
+      "clinical_summary": "Gan Cao is the most frequently used herb in the TCM formulary, present in the majority of classical formulas. Patients on amiodarone for atrial fibrillation or ventricular arrhythmias should be screened for Gan Cao exposure at every visit. Electrolyte levels (particularly potassium and magnesium) should be monitored. High-dose or extended-use formulas containing Gan Cao pose the greatest risk.",
+      "evidence_level": "high",
+      "evidence_notes": "Gan Cao-induced hypokalemia is well-documented. Hypokalemia-mediated potentiation of QT prolongation from amiodarone is mechanistically established and clinically relevant as a drug-herb class interaction.",
+      "citations": [
+        {
+          "title": "Glycyrrhizin-induced pseudohyperaldosteronism and cardiac arrhythmia risk",
+          "journal": "European Journal of Clinical Pharmacology",
+          "year": 2012,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=glycyrrhizin+licorice+pseudohyperaldosteronism+hypokalemia+QT+amiodarone"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "high"
+    },
+    {
+      "id": "suan-zao-ren-alprazolam",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "suan-zao-ren",
+        "pinyin": "Suan Zao Ren",
+        "latin": "Ziziphus spinosa",
+        "english": "Sour Jujube Seed",
+        "nccaom_code": "HB-178"
+      },
+      "drug": {
+        "rxcui": "37801",
+        "name": "Alprazolam",
+        "brand_names": ["Xanax"],
+        "drug_class": "Benzodiazepine / Anxiolytic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Suan Zao Ren saponins (jujubosides A and B) and flavonoids enhance GABA-A receptor activity and modulate serotonergic and noradrenergic signaling to produce sedation and anxiolysis. Alprazolam is a positive allosteric modulator of GABA-A receptors. Combined GABAergic potentiation produces additive CNS depression including excessive sedation, cognitive impairment, and respiratory depression risk.",
+      "clinical_summary": "Suan Zao Ren is among the most commonly prescribed herbs for insomnia and anxiety in TCM, making its overlap with benzodiazepine prescriptions a frequent clinical scenario. Additive sedation requires dose caution, particularly in elderly patients and those with respiratory compromise. Patients should be advised not to drive or operate heavy machinery and to report excessive drowsiness.",
+      "evidence_level": "medium",
+      "evidence_notes": "Suan Zao Ren GABAergic mechanisms characterized in animal studies and in vitro. Additive benzodiazepine effect pharmacologically predicted; clinical interaction studies lacking.",
+      "citations": [
+        {
+          "title": "Jujuboside A from Ziziphus spinosa enhances GABA-A activity and sedation",
+          "journal": "Phytomedicine",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Ziziphus+spinosa+jujuboside+GABA-A+sedation+benzodiazepine"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "yuan-zhi-sertraline",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "yuan-zhi",
+        "pinyin": "Yuan Zhi",
+        "latin": "Polygala tenuifolia",
+        "english": "Senega Root / Polygala",
+        "nccaom_code": "HB-215"
+      },
+      "drug": {
+        "rxcui": "36437",
+        "name": "Sertraline",
+        "brand_names": ["Zoloft"],
+        "drug_class": "SSRI / Antidepressant"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Yuan Zhi onjisaponins and tenuifolin have demonstrated inhibitory activity at the serotonin reuptake transporter (SERT) and enhancement of serotonergic neurotransmission in animal models. Combined with sertraline's SERT inhibition, there is a theoretical risk of serotonin syndrome characterized by autonomic instability, neuromuscular abnormalities, and altered mental status.",
+      "clinical_summary": "Serotonin syndrome is rare but potentially life-threatening. While Yuan Zhi's serotonergic contribution is mild compared to pharmaceutical SSRIs, the combination with sertraline warrants clinical monitoring. Practitioners should counsel patients on serotonin syndrome warning signs (agitation, diaphoresis, tremor, hyperthermia, rapid heart rate) and advise prompt medical evaluation if these symptoms arise.",
+      "evidence_level": "low",
+      "evidence_notes": "Serotonergic activity of Yuan Zhi demonstrated in animal models. Clinical studies on Yuan Zhi + SSRI interaction are not available. Risk is theoretical but mechanistically warranted.",
+      "citations": [
+        {
+          "title": "Polygala tenuifolia root: serotonergic mechanisms and antidepressant activity",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Polygala+tenuifolia+serotonin+SERT+antidepressant+SSRI+interaction"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "wu-wei-zi-alprazolam",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "wu-wei-zi",
+        "pinyin": "Wu Wei Zi",
+        "latin": "Schisandra chinensis",
+        "english": "Schisandra Fruit / Five Flavor Berry",
+        "nccaom_code": "HB-197"
+      },
+      "drug": {
+        "rxcui": "37801",
+        "name": "Alprazolam",
+        "brand_names": ["Xanax"],
+        "drug_class": "Benzodiazepine / Anxiolytic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Schisandrin B and gomisin lignan compounds in Wu Wei Zi inhibit CYP3A4 and P-glycoprotein. Alprazolam is primarily metabolized by CYP3A4 with a moderate therapeutic index. CYP3A4 inhibition by Wu Wei Zi increases alprazolam plasma concentrations and prolongs its half-life, amplifying CNS depressant effects, sedation, and respiratory depression risk.",
+      "clinical_summary": "Wu Wei Zi is frequently used in formulas for lung and kidney deficiency with anxiety and insomnia (e.g., Tian Wang Bu Xin Dan). Patients on alprazolam or other CYP3A4-metabolized benzodiazepines (triazolam, midazolam) may experience excessive sedation, cognitive impairment, and ataxia. Monitor for signs of benzodiazepine excess; dose reduction of alprazolam may be required.",
+      "evidence_level": "medium",
+      "evidence_notes": "CYP3A4 inhibition by Wu Wei Zi lignans well-documented in pharmacokinetic studies. Direct clinical interaction data with alprazolam is limited but mechanism is well-established.",
+      "citations": [
+        {
+          "title": "Schisandra chinensis lignans inhibit CYP3A4 and P-glycoprotein: pharmacokinetic implications",
+          "journal": "Drug Metabolism and Disposition",
+          "year": 2014,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Schisandra+chinensis+schisandrin+CYP3A4+alprazolam+benzodiazepine+P-glycoprotein"
+        }
+      ],
+      "sources": ["stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "wu-wei-zi-phenobarbital",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "wu-wei-zi",
+        "pinyin": "Wu Wei Zi",
+        "latin": "Schisandra chinensis",
+        "english": "Schisandra Fruit / Five Flavor Berry",
+        "nccaom_code": "HB-197"
+      },
+      "drug": {
+        "rxcui": "8134",
+        "name": "Phenobarbital",
+        "brand_names": ["Luminal"],
+        "drug_class": "Barbiturate / Antiepileptic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Wu Wei Zi lignan constituents inhibit CYP3A4 and potentially CYP2B6, enzymes involved in phenobarbital metabolism. Phenobarbital is also a potent inducer of CYP3A4 and other CYP enzymes, which may reciprocally reduce plasma levels of Wu Wei Zi active constituents. The net result is an unpredictable bidirectional pharmacokinetic interaction affecting a narrow-therapeutic-index drug.",
+      "clinical_summary": "Phenobarbital has a narrow therapeutic index; sub-therapeutic levels risk breakthrough seizures while toxic levels cause excessive sedation and respiratory depression. Wu Wei Zi should be used with caution in patients on phenobarbital. Drug level monitoring is recommended if both are used concurrently. Neurologist coordination is strongly advised before any changes to an established antiepileptic regimen.",
+      "evidence_level": "medium",
+      "evidence_notes": "CYP3A4 and CYP2B6 inhibitory activity of Wu Wei Zi established in vitro. Phenobarbital's narrow therapeutic index makes any CYP interaction clinically significant.",
+      "citations": [
+        {
+          "title": "Schisandra chinensis modulates multiple CYP450 enzymes with narrow therapeutic index drugs",
+          "journal": "European Journal of Drug Metabolism and Pharmacokinetics",
+          "year": 2015,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Schisandra+chinensis+CYP2B6+phenobarbital+antiepileptic+narrow+therapeutic+index"
+        }
+      ],
+      "sources": ["stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "yuan-zhi-alprazolam",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "yuan-zhi",
+        "pinyin": "Yuan Zhi",
+        "latin": "Polygala tenuifolia",
+        "english": "Senega Root / Polygala",
+        "nccaom_code": "HB-215"
+      },
+      "drug": {
+        "rxcui": "37801",
+        "name": "Alprazolam",
+        "brand_names": ["Xanax"],
+        "drug_class": "Benzodiazepine / Anxiolytic"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Yuan Zhi saponins have demonstrated GABAergic activity in animal models and may modestly inhibit CYP3A4. Combined with alprazolam's positive allosteric modulation of GABA-A chloride channels, CNS depressant effects are pharmacodynamically additive. Possible CYP3A4 inhibition by Yuan Zhi may further raise alprazolam plasma concentrations.",
+      "clinical_summary": "Yuan Zhi is used for anxiety, restlessness, and insomnia — clinical presentations that frequently overlap with benzodiazepine prescriptions. Co-administration with alprazolam may cause additive sedation, cognitive impairment, and motor incoordination. Elderly patients are particularly vulnerable. Advise patients to report excessive drowsiness and consider dose reduction if both are used.",
+      "evidence_level": "low",
+      "evidence_notes": "Yuan Zhi GABAergic activity demonstrated in animal studies. CYP3A4 inhibition is theoretical. No clinical interaction studies with alprazolam are available.",
+      "citations": [
+        {
+          "title": "Polygala tenuifolia saponins: GABAergic activity and CNS depressant effects",
+          "journal": "Phytotherapy Research",
+          "year": 2012,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Polygala+tenuifolia+GABAergic+sedation+benzodiazepine+alprazolam"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "huang-qi-tacrolimus",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "huang-qi",
+        "pinyin": "Huang Qi",
+        "latin": "Astragalus membranaceus",
+        "english": "Astragalus Root",
+        "nccaom_code": "HB-096"
+      },
+      "drug": {
+        "rxcui": "114151",
+        "name": "Tacrolimus",
+        "brand_names": ["Prograf", "Advagraf"],
+        "drug_class": "Calcineurin Inhibitor / Immunosuppressant"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Huang Qi polysaccharides and saponins stimulate T-cell proliferation, NK cell cytotoxicity, and IL-2 and IFN-γ secretion. Tacrolimus suppresses T-cell activation by inhibiting calcineurin-mediated NFAT translocation. Huang Qi's immunostimulatory action directly opposes tacrolimus's mechanism, increasing the risk of allograft rejection in transplant patients.",
+      "clinical_summary": "Tacrolimus is a primary immunosuppressant for solid organ transplantation. Any immune-stimulating herb is absolutely contraindicated in transplant recipients. Huang Qi's potent immunomodulatory activity makes this one of the most dangerous herb-drug interactions in transplant medicine. All transplant patients must be queried about herbal medicine use at every clinical encounter without exception.",
+      "evidence_level": "medium",
+      "evidence_notes": "Huang Qi immune-stimulating properties well-documented in vitro and in vivo. Direct antagonism with tacrolimus in transplant patients is mechanistically predicted; case reports of rejection events linked to immune-stimulating herbs exist in transplant literature.",
+      "citations": [
+        {
+          "title": "Herbal immune stimulants and transplant rejection: clinical risk with calcineurin inhibitors",
+          "journal": "Transplantation",
+          "year": 2014,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Astragalus+membranaceus+immunostimulant+tacrolimus+transplant+rejection"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "huang-qi-prednisone",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "huang-qi",
+        "pinyin": "Huang Qi",
+        "latin": "Astragalus membranaceus",
+        "english": "Astragalus Root",
+        "nccaom_code": "HB-096"
+      },
+      "drug": {
+        "rxcui": "8638",
+        "name": "Prednisone",
+        "brand_names": ["Deltasone", "Rayos"],
+        "drug_class": "Corticosteroid"
+      },
+      "severity": "contraindicated",
+      "severity_color": "red",
+      "mechanism": "Huang Qi upregulates innate and adaptive immunity including TNF-α, IL-2, and IFN-γ production via NF-κB pathway activation. Prednisone suppresses immune function by binding glucocorticoid receptors and blocking NF-κB transcription. The opposing immunological actions reduce the clinical effectiveness of prednisone in autoimmune disease and inflammatory conditions.",
+      "clinical_summary": "Patients on prednisone for autoimmune disease, inflammatory conditions, or post-transplant maintenance face reduced therapeutic efficacy if using Huang Qi concurrently. The combination may require higher corticosteroid doses to achieve the same immunosuppressive effect. Coordinate with the prescribing physician before using Huang Qi in any patient on systemic corticosteroids.",
+      "evidence_level": "medium",
+      "evidence_notes": "Huang Qi's immune-stimulating mechanisms are well-established. Pharmacological antagonism of glucocorticoid action is mechanistically predicted; direct clinical interaction studies are lacking.",
+      "citations": [
+        {
+          "title": "Astragalus polysaccharides activate NF-κB and oppose glucocorticoid immunosuppression",
+          "journal": "International Immunopharmacology",
+          "year": 2015,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Astragalus+polysaccharide+NF-kB+glucocorticoid+prednisone+immunosuppression"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "ren-shen-cyclosporine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "ren-shen",
+        "pinyin": "Ren Shen",
+        "latin": "Panax ginseng",
+        "english": "Asian Ginseng Root",
+        "nccaom_code": "HB-156"
+      },
+      "drug": {
+        "rxcui": "203563",
+        "name": "Cyclosporine",
+        "brand_names": ["Neoral", "Sandimmune", "Gengraf"],
+        "drug_class": "Calcineurin Inhibitor / Immunosuppressant"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Panax ginseng ginsenosides inhibit CYP3A4 and P-glycoprotein (P-gp), both primary metabolic and efflux transporters for cyclosporine. P-gp inhibition increases cyclosporine intestinal absorption; CYP3A4 inhibition reduces first-pass hepatic metabolism, raising systemic cyclosporine trough levels and increasing the risk of nephrotoxicity, hepatotoxicity, and hypertension.",
+      "clinical_summary": "Cyclosporine has a narrow therapeutic index. Elevated trough levels increase risk of nephrotoxicity, neurotoxicity, and hypertension. Patients on cyclosporine must not use Ren Shen without close therapeutic drug monitoring. If use is unavoidable, cyclosporine trough levels should be monitored more frequently and doses adjusted to maintain levels within the therapeutic window.",
+      "evidence_level": "medium",
+      "evidence_notes": "CYP3A4 and P-gp inhibition by ginseng ginsenosides demonstrated in pharmacokinetic studies. Direct clinical interaction with cyclosporine not well-studied in humans; significant concern given cyclosporine's narrow therapeutic index.",
+      "citations": [
+        {
+          "title": "Panax ginseng ginsenosides inhibit CYP3A4 and P-glycoprotein: implications for cyclosporine",
+          "journal": "Pharmaceutical Research",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Panax+ginseng+CYP3A4+P-glycoprotein+cyclosporine+pharmacokinetics"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "dan-shen-cyclosporine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "dan-shen",
+        "pinyin": "Dan Shen",
+        "latin": "Salvia miltiorrhiza",
+        "english": "Red Sage Root",
+        "nccaom_code": "HB-045"
+      },
+      "drug": {
+        "rxcui": "203563",
+        "name": "Cyclosporine",
+        "brand_names": ["Neoral", "Sandimmune", "Gengraf"],
+        "drug_class": "Calcineurin Inhibitor / Immunosuppressant"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Dan Shen tanshinones and danshenol diterpenoids inhibit CYP3A4 and P-glycoprotein efflux, both primary disposition pathways for cyclosporine. Increased cyclosporine bioavailability and reduced clearance result in elevated plasma levels. Tanshinone IIA is a particularly potent P-gp inhibitor, and multiple danshenol compounds show CYP3A4 inhibitory activity.",
+      "clinical_summary": "Dan Shen combined with cyclosporine represents a clinically significant pharmacokinetic interaction. Elevated cyclosporine levels increase the risk of nephrotoxicity, hepatotoxicity, and hypertension. Any patient on cyclosporine should be explicitly asked about Dan Shen or red sage use. Cyclosporine trough levels must be monitored closely and dose adjusted if Dan Shen is co-administered.",
+      "evidence_level": "medium",
+      "evidence_notes": "CYP3A4 and P-gp inhibition by Dan Shen tanshinones documented in multiple in vitro and animal pharmacokinetic studies. Human interaction data with cyclosporine is limited but biologically well-supported.",
+      "citations": [
+        {
+          "title": "Tanshinone IIA from Salvia miltiorrhiza inhibits P-glycoprotein and CYP3A4: cyclosporine implications",
+          "journal": "Xenobiotica",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=tanshinone+Salvia+miltiorrhiza+CYP3A4+P-glycoprotein+cyclosporine+pharmacokinetics"
+        }
+      ],
+      "sources": ["natmed", "stockleys"],
+      "confidence": "medium"
+    },
+    {
+      "id": "fu-zi-levothyroxine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "fu-zi",
+        "pinyin": "Fu Zi",
+        "latin": "Aconitum carmichaelii",
+        "english": "Prepared Aconite Root",
+        "nccaom_code": "HB-067"
+      },
+      "drug": {
+        "rxcui": "10582",
+        "name": "Levothyroxine",
+        "brand_names": ["Synthroid", "Levoxyl"],
+        "drug_class": "Thyroid Hormone Replacement"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Fu Zi's aconitine alkaloids stimulate the sympathoadrenal axis, increasing heart rate, metabolic rate, and thermogenesis — effects that overlap with and may amplify levothyroxine's thyromimetic cardiovascular actions. Combined sympathoadrenal and thyroid hormone stimulation may cause additive tachycardia, hypertension, and cardiac arrhythmia, particularly in patients already at risk for thyrotoxicosis.",
+      "clinical_summary": "Patients on levothyroxine have carefully titrated thyroid hormone replacement. Adding Fu Zi-containing formulas (e.g., Si Ni Tang, Jin Gui Shen Qi Wan) may cause cardiovascular symptoms mimicking hyperthyroidism. Heart rate and blood pressure should be monitored. Patients with cardiac conditions on levothyroxine should avoid Fu Zi entirely; the prescribing endocrinologist should be consulted.",
+      "evidence_level": "low",
+      "evidence_notes": "Pharmacological overlap based on known sympathomimetic and thyromimetic cardiac stimulation mechanisms. No clinical studies directly evaluating this combination exist.",
+      "citations": [
+        {
+          "title": "Aconitine sympathoadrenal stimulation and cardiac interactions with thyroid hormone",
+          "journal": "Toxicology Letters",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=aconitine+sympathoadrenal+cardiac+stimulation+thyroid+levothyroxine"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "da-huang-levothyroxine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "da-huang",
+        "pinyin": "Da Huang",
+        "latin": "Rheum palmatum",
+        "english": "Rhubarb Root and Rhizome",
+        "nccaom_code": "HB-040"
+      },
+      "drug": {
+        "rxcui": "10582",
+        "name": "Levothyroxine",
+        "brand_names": ["Synthroid", "Levoxyl"],
+        "drug_class": "Thyroid Hormone Replacement"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Da Huang's purgative action accelerates GI transit via anthraquinone-mediated intestinal secretion, significantly reducing small intestinal contact time and impairing the absorption of orally administered levothyroxine. Calcium oxalate and tannins in Da Huang may also bind levothyroxine, further reducing bioavailability. Sub-therapeutic levothyroxine levels may result in clinical hypothyroidism.",
+      "clinical_summary": "Levothyroxine absorption is highly sensitive to GI conditions and timing. Da Huang's purgative action may significantly reduce levothyroxine bioavailability if taken near the same time. Separate administration by at least 4 hours minimum. TSH levels should be monitored more frequently when Da Huang-containing formulas are used in levothyroxine-dependent patients; dose adjustment may be required.",
+      "evidence_level": "low",
+      "evidence_notes": "Mechanism extrapolated from known levothyroxine absorption interactions with accelerated GI transit and calcium-based binders. No direct clinical studies on Da Huang + levothyroxine.",
+      "citations": [
+        {
+          "title": "Levothyroxine absorption: effects of dietary compounds, gastrointestinal transit, and drug interactions",
+          "journal": "Thyroid",
+          "year": 2017,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=levothyroxine+absorption+GI+transit+calcium+tannin+bioavailability"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "tian-ma-amlodipine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "tian-ma",
+        "pinyin": "Tian Ma",
+        "latin": "Gastrodia elata",
+        "english": "Gastrodia Rhizome",
+        "nccaom_code": "HB-184"
+      },
+      "drug": {
+        "rxcui": "214354",
+        "name": "Amlodipine",
+        "brand_names": ["Norvasc"],
+        "drug_class": "Calcium Channel Blocker / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Gastrodin and p-hydroxybenzyl alcohol in Tian Ma reduce peripheral vascular resistance through calcium channel modulation and nitric oxide-mediated vasodilation. These mechanisms are additive with amlodipine's dihydropyridine calcium channel antagonism at the L-type calcium channel, potentially causing excessive blood pressure reduction.",
+      "clinical_summary": "Tian Ma is used in TCM for Liver Wind patterns including hypertension, vertigo, and headache — the same clinical presentations managed with amlodipine. Combined use may lower blood pressure more than intended. Monitor blood pressure closely at follow-up and adjust medications accordingly. Elderly patients are particularly susceptible to orthostatic hypotension and falls.",
+      "evidence_level": "medium",
+      "evidence_notes": "Tian Ma's antihypertensive mechanisms characterized in animal models and small human studies. Additive interaction with calcium channel blockers is pharmacologically plausible; direct clinical data limited.",
+      "citations": [
+        {
+          "title": "Gastrodin from Gastrodia elata reduces blood pressure via nitric oxide and calcium channel pathways",
+          "journal": "Phytomedicine",
+          "year": 2012,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=gastrodin+Gastrodia+elata+antihypertensive+nitric+oxide+calcium+channel"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "du-zhong-amlodipine",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "du-zhong",
+        "pinyin": "Du Zhong",
+        "latin": "Eucommia ulmoides",
+        "english": "Eucommia Bark",
+        "nccaom_code": "HB-057"
+      },
+      "drug": {
+        "rxcui": "214354",
+        "name": "Amlodipine",
+        "brand_names": ["Norvasc"],
+        "drug_class": "Calcium Channel Blocker / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Du Zhong lowers blood pressure through ACE inhibition (chlorogenic acid and pinoresinol diglucoside constituents), alpha-1 adrenoceptor antagonism, and potassium channel activation, producing vasodilation. Combined with amlodipine's calcium channel blockade, additive vasodilatory effects may cause symptomatic hypotension.",
+      "clinical_summary": "Du Zhong is a Yang-tonifying herb commonly prescribed for hypertension in the context of kidney deficiency patterns. When combined with calcium channel blockers, blood pressure should be monitored at each visit. Patients should report symptoms of lightheadedness or syncope, particularly on standing. Dose adjustment of either agent may be required.",
+      "evidence_level": "medium",
+      "evidence_notes": "Antihypertensive mechanisms of Du Zhong well-documented in animal models and small human trials. Additive hypotension with amlodipine is mechanistically expected; direct clinical data is limited.",
+      "citations": [
+        {
+          "title": "Eucommia ulmoides bark: ACE inhibition and antihypertensive mechanisms",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Eucommia+ulmoides+ACE+inhibition+antihypertensive+chlorogenic+acid"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "gou-teng-lisinopril",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "gou-teng",
+        "pinyin": "Gou Teng",
+        "latin": "Uncaria rhynchophylla",
+        "english": "Gambir Vine Stem",
+        "nccaom_code": "HB-079"
+      },
+      "drug": {
+        "rxcui": "29046",
+        "name": "Lisinopril",
+        "brand_names": ["Prinivil", "Zestril"],
+        "drug_class": "ACE Inhibitor / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Rhynchophylline and isorhynchophylline in Gou Teng produce vasodilation by blocking calcium entry and modulating adrenergic tone. Lisinopril lowers blood pressure by inhibiting ACE, preventing angiotensin II formation and promoting vasodilation and natriuresis. These are complementary but distinct mechanisms producing additive antihypertensive effects, risking symptomatic hypotension.",
+      "clinical_summary": "Both Gou Teng and lisinopril are prescribed for hypertension. When used together, blood pressure may fall below the clinical target. Educate patients on orthostatic hypotension symptoms, especially upon standing. This combination is not necessarily contraindicated but requires monitoring, particularly when initiating either agent or adjusting doses.",
+      "evidence_level": "medium",
+      "evidence_notes": "Gou Teng's antihypertensive mechanism well-characterized in animal and small human studies. Additive antihypertensive effect with ACE inhibitors is mechanistically predicted; clinical studies specifically evaluating this combination are limited.",
+      "citations": [
+        {
+          "title": "Uncaria rhynchophylla alkaloids and ACE inhibitor: additive antihypertensive potential",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2013,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Uncaria+rhynchophylla+rhynchophylline+ACE+inhibitor+lisinopril+antihypertensive"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "tian-ma-lisinopril",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "tian-ma",
+        "pinyin": "Tian Ma",
+        "latin": "Gastrodia elata",
+        "english": "Gastrodia Rhizome",
+        "nccaom_code": "HB-184"
+      },
+      "drug": {
+        "rxcui": "29046",
+        "name": "Lisinopril",
+        "brand_names": ["Prinivil", "Zestril"],
+        "drug_class": "ACE Inhibitor / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Tian Ma's gastrodin and vanillyl alcohol reduce peripheral vascular resistance through calcium channel modulation and enhancement of nitric oxide bioavailability. Lisinopril's ACE inhibition reduces angiotensin II-mediated vasoconstriction and aldosterone-driven sodium retention. Combined, these complementary vasodilatory mechanisms produce additive blood pressure reduction.",
+      "clinical_summary": "Tian Ma and lisinopril are both used for hypertension-related presentations. Their combined use may lower blood pressure below the therapeutic target, causing dizziness, syncope, and falls — particularly in elderly patients. Monitor blood pressure at follow-up visits and advise patients to report new onset dizziness or light-headedness on standing.",
+      "evidence_level": "low",
+      "evidence_notes": "Tian Ma antihypertensive activity established in animal and small clinical studies. Additive hypotensive risk with ACE inhibitors is mechanistically predicted; direct clinical data is not available.",
+      "citations": [
+        {
+          "title": "Gastrodia elata gastrodin: antihypertensive and vasodilatory mechanisms",
+          "journal": "American Journal of Chinese Medicine",
+          "year": 2011,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Gastrodia+elata+gastrodin+antihypertensive+ACE+inhibitor+vasodilation"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
+    },
+    {
+      "id": "du-zhong-lisinopril",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "du-zhong",
+        "pinyin": "Du Zhong",
+        "latin": "Eucommia ulmoides",
+        "english": "Eucommia Bark",
+        "nccaom_code": "HB-057"
+      },
+      "drug": {
+        "rxcui": "29046",
+        "name": "Lisinopril",
+        "brand_names": ["Prinivil", "Zestril"],
+        "drug_class": "ACE Inhibitor / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Du Zhong exhibits direct ACE inhibitory activity via chlorogenic acid and pinoresinol diglucoside constituents, which directly overlaps with lisinopril's mechanism. Combined ACE inhibition produces additive blood pressure reduction and may increase the risk of symptomatic hypotension and hyperkalemia — a known adverse effect of dual ACE inhibitory activity.",
+      "clinical_summary": "The mechanistic overlap between Du Zhong and lisinopril in ACE inhibition is clinically relevant. Combined use may cause additive hypotension and hyperkalemia, particularly in patients with chronic kidney disease. Monitor blood pressure, serum potassium, and renal function at follow-up. This combination warrants active monitoring rather than strict avoidance in most patients.",
+      "evidence_level": "medium",
+      "evidence_notes": "ACE inhibitory activity of Du Zhong well-documented in vitro and in animal studies. Hyperkalemia risk from additive ACE inhibition is a meaningful clinical concern based on known pharmacology.",
+      "citations": [
+        {
+          "title": "Eucommia ulmoides chlorogenic acid inhibits ACE: implications for combination antihypertensive therapy",
+          "journal": "Phytotherapy Research",
+          "year": 2014,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Eucommia+ulmoides+chlorogenic+acid+ACE+inhibitor+lisinopril+hyperkalemia"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "ze-xie-hydrochlorothiazide",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "ze-xie",
+        "pinyin": "Ze Xie",
+        "latin": "Alisma plantago-aquatica",
+        "english": "Water Plantain Rhizome",
+        "nccaom_code": "HB-218"
+      },
+      "drug": {
+        "rxcui": "5487",
+        "name": "Hydrochlorothiazide",
+        "brand_names": ["Microzide", "HydroDIURIL"],
+        "drug_class": "Thiazide Diuretic / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Ze Xie promotes urination and sodium/potassium excretion through inhibition of renal tubular reabsorption. Hydrochlorothiazide blocks the Na-Cl cotransporter in the distal convoluted tubule, promoting sodium, chloride, and potassium excretion. Combined diuretic effects risk excessive volume depletion, hypokalemia, and hyponatremia, particularly in elderly patients or those with limited fluid intake.",
+      "clinical_summary": "Ze Xie appears in many commonly prescribed TCM formulas for dampness and kidney patterns (e.g., Liu Wei Di Huang Wan, Wu Ling San). When patients on hydrochlorothiazide take these formulas, additive diuresis may cause dehydration and electrolyte disturbances. Monitor blood pressure, serum electrolytes (K+, Na+), and renal function at follow-up visits.",
+      "evidence_level": "medium",
+      "evidence_notes": "Ze Xie diuretic mechanism well-characterized in animal and human studies. Additive electrolyte depletion with thiazide diuretics is mechanistically predicted; direct clinical studies limited.",
+      "citations": [
+        {
+          "title": "Alisma plantago-aquatica diuretic activity and electrolyte excretion",
+          "journal": "Journal of Ethnopharmacology",
+          "year": 2009,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Alisma+plantago+aquatica+diuretic+electrolyte+thiazide+hydrochlorothiazide"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "medium"
+    },
+    {
+      "id": "gou-teng-hydrochlorothiazide",
+      "data_status": "mock_unverified",
+      "herb": {
+        "id": "gou-teng",
+        "pinyin": "Gou Teng",
+        "latin": "Uncaria rhynchophylla",
+        "english": "Gambir Vine Stem",
+        "nccaom_code": "HB-079"
+      },
+      "drug": {
+        "rxcui": "5487",
+        "name": "Hydrochlorothiazide",
+        "brand_names": ["Microzide", "HydroDIURIL"],
+        "drug_class": "Thiazide Diuretic / Antihypertensive"
+      },
+      "severity": "precaution",
+      "severity_color": "yellow",
+      "mechanism": "Gou Teng alkaloids (rhynchophylline, isorhynchophylline) produce vasodilation and mild reduction in peripheral vascular resistance via calcium channel modulation and adrenergic antagonism. Hydrochlorothiazide reduces cardiac preload and plasma volume through natriuresis. These complementary mechanisms of vasodilation and volume reduction produce additive blood pressure lowering that may exceed the clinical target.",
+      "clinical_summary": "Hydrochlorothiazide is commonly prescribed as first-line or combination antihypertensive therapy. When patients on HCTZ use Gou Teng for hypertension-associated headache and dizziness, blood pressure may fall below the target range. Monitor blood pressure at follow-up and educate patients on orthostatic hypotension, particularly upon standing from a seated position.",
+      "evidence_level": "low",
+      "evidence_notes": "Gou Teng antihypertensive mechanism is well-established. Additive hypotension with thiazide diuretics is mechanistically plausible; direct clinical data is not available.",
+      "citations": [
+        {
+          "title": "Rhynchophylline vasodilatory action and potential interactions with thiazide antihypertensives",
+          "journal": "Phytomedicine",
+          "year": 2010,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=rhynchophylline+Uncaria+vasodilation+thiazide+diuretic+antihypertensive"
+        }
+      ],
+      "sources": ["natmed"],
+      "confidence": "low"
     }
   ]
 }

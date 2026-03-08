@@ -105,6 +105,15 @@ RxNorm base URL: `https://rxnav.nlm.nih.gov/REST`
 
 ---
 
+## Data Integrity Warning
+mockInteractions.json is unverified training-data-derived content.
+All citations are placeholders. Before replacing mock data with live 
+NatMed Pro / Stockley's API data, a licensed pharmacist or clinical 
+herbalist must review every interaction record. Never remove the 
+data_status: "mock_unverified" flag until that review is complete.
+
+---
+
 ## UI Rules
 
 ### Disclaimer — Non-Negotiable
