@@ -48,6 +48,50 @@ type RxNormPropertiesResponse = {
   };
 };
 
+// RxNorm related (ingredient normalization) response
+type RxNormRelatedResponse = {
+  relatedGroup?: {
+    rxcui?: string;
+    conceptGroup?: Array<{
+      tty?: string;
+      conceptProperties?: Array<{
+        rxcui?: string;
+        name?: string;
+      }>;
+    }>;
+  };
+};
+
+// ---------------------------------------------------------------------------
+// Ingredient normalization — resolves any rxcui to its ingredient-level
+// (generic) rxcui and name. Returns null if already an ingredient or on error.
+// ---------------------------------------------------------------------------
+
+async function resolveToIngredient(
+  rxcui: string
+): Promise<{ rxcui: string; name: string } | null> {
+  try {
+    const res = await fetch(
+      `${RXNORM_BASE}/rxcui/${encodeURIComponent(rxcui)}/related.json?tty=IN`,
+      { next: { revalidate: 3600 } }
+    );
+    if (!res.ok) return null;
+    const data: RxNormRelatedResponse = await res.json();
+    const groups = data?.relatedGroup?.conceptGroup ?? [];
+    for (const group of groups) {
+      if (group.tty === "IN" && group.conceptProperties?.length) {
+        const first = group.conceptProperties[0];
+        if (first?.rxcui && first?.name) {
+          return { rxcui: first.rxcui, name: first.name };
+        }
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Mock fallback — filters mockInteractions.json by name or brand name
 // ---------------------------------------------------------------------------
@@ -122,7 +166,7 @@ export async function GET(request: NextRequest) {
         }
 
         if (uniqueRxcuis.length > 0) {
-          // Enrich each rxcui with its display name in parallel
+          // Step 1: Enrich each candidate rxcui with display name + tty
           const propertyResults = await Promise.all(
             uniqueRxcuis.map(async (rxcui) => {
               const propRes = await fetch(
@@ -147,7 +191,35 @@ export async function GET(request: NextRequest) {
           );
 
           if (enriched.length > 0) {
-            results = enriched;
+            // Step 2: Normalize each candidate to ingredient (generic) rxcui.
+            // If the candidate is a brand/dose-form, replace its rxcui and name
+            // with the ingredient-level equivalent, and record the original name
+            // as a brand name so the UI can display "Warfarin (Coumadin)".
+            const normalized = await Promise.all(
+              enriched.map(async (candidate) => {
+                const ingredient = await resolveToIngredient(candidate.rxcui);
+                if (ingredient && ingredient.rxcui !== candidate.rxcui) {
+                  return {
+                    rxcui: ingredient.rxcui,
+                    name: ingredient.name,
+                    // Surface original (brand) name so the pill reads "Generic (Brand)"
+                    brand_names: [candidate.name],
+                    drug_class: candidate.drug_class,
+                  } satisfies DrugResult;
+                }
+                // Already an ingredient or normalization failed — keep as-is
+                return candidate;
+              })
+            );
+
+            // Step 3: Deduplicate by normalized rxcui, preserving rank order
+            const seenNormalized = new Set<string>();
+            results = normalized.filter((r) => {
+              if (seenNormalized.has(r.rxcui)) return false;
+              seenNormalized.add(r.rxcui);
+              return true;
+            });
+
             rxNormSucceeded = true;
           }
         }
