@@ -190,6 +190,54 @@ function silverFormulaToItem(
 }
 
 // ---------------------------------------------------------------------------
+// Clinical safety filter — prevents pinyin near-homophone confusion
+//
+// Problem: Fuse.js edit-distance scoring treats "dan shen" / "dang shen" /
+// "ren shen" as near-matches because they differ by 1–2 characters.
+// In TCM practice these are completely different herbs; a mix-up is a
+// clinical error.
+//
+// Fix: for multi-word queries, each word (except the last) must EXACTLY match
+// the corresponding word in the result's pinyin, english, or latin field.
+// The final word allows prefix matching so in-progress typing still works.
+// A single-word query bypasses the filter — Fuse.js fuzzy is appropriate there.
+//
+// Examples:
+//   "dang shen" → "Dan Shen" pinyin[0] "dan" ≠ "dang" → excluded
+//   "dan shen"  → "Dang Shen" pinyin[0] "dang" ≠ "dan" → excluded
+//   "ren shen"  → "Dan Shen" pinyin[0] "dan" ≠ "ren" → excluded
+//   "dan sh"    → "Dan Shen" pinyin[0] "dan"="dan" ✓, pinyin[1] "shen".startsWith("sh") ✓ → included
+//   "red sage root" → "Dan Shen" english "Red Sage Root" → "red"="red" ✓, "sage"="sage" ✓, "root".startsWith("root") ✓ → included
+// ---------------------------------------------------------------------------
+
+function clinicalSafetyFilter(query: string, item: TCMSearchResultItem): boolean {
+  const queryWords = query.trim().toLowerCase().split(/\s+/);
+  if (queryWords.length < 2) return true; // single word — Fuse.js sufficient
+
+  function wordSequenceMatches(fieldValue: string): boolean {
+    const fieldWords = fieldValue.toLowerCase().split(/\s+/);
+    for (let i = 0; i < queryWords.length; i++) {
+      if (i >= fieldWords.length) return false;
+      const isLastQueryWord = i === queryWords.length - 1;
+      if (isLastQueryWord) {
+        // Last word: allow prefix match (user may still be typing)
+        if (!fieldWords[i].startsWith(queryWords[i])) return false;
+      } else {
+        // Non-last words: require exact match — no fuzzy across syllable boundaries
+        if (fieldWords[i] !== queryWords[i]) return false;
+      }
+    }
+    return true;
+  }
+
+  return (
+    wordSequenceMatches(item.pinyin) ||
+    wordSequenceMatches(item.english) ||
+    (item.latin ? wordSequenceMatches(item.latin) : false)
+  );
+}
+
+// ---------------------------------------------------------------------------
 // GET /api/search/tcm?q={query}&type=herb|formula|all
 // ---------------------------------------------------------------------------
 
@@ -213,15 +261,15 @@ export async function GET(request: NextRequest) {
 
   if (searchHerbs) {
     goldHerbFuse.search(q).forEach((r) => {
-      goldItems.push(goldHerbToItem(r.item as GoldHerbEntry, r.score ?? 1));
+      const item = goldHerbToItem(r.item as GoldHerbEntry, r.score ?? 1);
+      if (clinicalSafetyFilter(q, item)) goldItems.push(item);
     });
   }
 
   if (searchFormulas) {
     goldFormulaFuse.search(q).forEach((r) => {
-      goldItems.push(
-        goldFormulaToItem(r.item as GoldFormulaEntry, r.score ?? 1)
-      );
+      const item = goldFormulaToItem(r.item as GoldFormulaEntry, r.score ?? 1);
+      if (clinicalSafetyFilter(q, item)) goldItems.push(item);
     });
   }
 
@@ -247,17 +295,15 @@ export async function GET(request: NextRequest) {
 
   if (searchHerbs) {
     silverHerbFuse.search(q).forEach((r) => {
-      silverItems.push(
-        silverHerbToItem(r.item as EnrichedHerbEntry, r.score ?? 1)
-      );
+      const item = silverHerbToItem(r.item as EnrichedHerbEntry, r.score ?? 1);
+      if (clinicalSafetyFilter(q, item)) silverItems.push(item);
     });
   }
 
   if (searchFormulas) {
     silverFormulaFuse.search(q).forEach((r) => {
-      silverItems.push(
-        silverFormulaToItem(r.item as EnrichedFormulaEntry, r.score ?? 1)
-      );
+      const item = silverFormulaToItem(r.item as EnrichedFormulaEntry, r.score ?? 1);
+      if (clinicalSafetyFilter(q, item)) silverItems.push(item);
     });
   }
 
