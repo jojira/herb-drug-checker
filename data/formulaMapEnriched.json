@@ -1,0 +1,8 @@
+{
+  "_meta": {
+    "version": "0.0",
+    "status": "not_yet_generated",
+    "note": "Run scripts/ingestTcmBank.ts to generate this file. Do not edit manually."
+  },
+  "formulas": []
+}

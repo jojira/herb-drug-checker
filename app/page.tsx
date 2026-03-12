@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import HerbSearch from "@/app/components/HerbSearch";
 import type { HerbSearchSelection } from "@/app/components/HerbSearch";
 import DrugSearch from "@/app/components/DrugSearch";
 import InteractionResults from "@/app/components/InteractionResults";
-import { checkInteractions } from "@/logic/interactionEngine";
-import type { WesternMed, InteractionEngineResult } from "@/logic/interactionEngine";
+import type { WesternMed, InteractionEngineResult } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
 // Disclaimer — non-negotiable per CLAUDE.md
@@ -92,7 +91,7 @@ export default function HomePage() {
   const [westernMeds, setWesternMeds] = useState<WesternMed[]>([]);
   // originalResult — the result from the last full Check Interactions run
   const [originalResult, setOriginalResult] = useState<InteractionEngineResult | null>(null);
-  // modifiedResult — re-run of the engine with herb exclusions applied; null when no exclusions
+  // modifiedResult — re-run with herb exclusions applied; null when no exclusions
   const [modifiedResult, setModifiedResult] = useState<InteractionEngineResult | null>(null);
   // excludedHerbIds — set of formula herb IDs the practitioner has unchecked
   const [excludedHerbIds, setExcludedHerbIds] = useState<Set<string>>(new Set());
@@ -101,23 +100,60 @@ export default function HomePage() {
   // Incrementing this key forces HerbSearch and DrugSearch to fully remount on reset
   const [resetKey, setResetKey] = useState(0);
 
+  // AbortController ref for in-flight toggle re-calculation requests
+  const toggleAbortRef = useRef<AbortController | null>(null);
+
   const canCheck = selectedTCM !== null && westernMeds.length > 0;
 
-  // Re-run the engine whenever herb exclusions change.
-  // checkInteractions() is synchronous so no skeleton needed here — the toggle
-  // response should feel instant.
+  // Re-run the engine via API whenever herb exclusions change.
+  // Uses AbortController to cancel any superseded in-flight request when the
+  // user toggles multiple herbs in rapid succession.
   useEffect(() => {
     if (!originalResult || !selectedTCM) return;
+
     if (excludedHerbIds.size === 0) {
       setModifiedResult(null);
       return;
     }
-    const modified = checkInteractions(
-      westernMeds,
-      selectedTCM.value,
-      Array.from(excludedHerbIds)
-    );
-    setModifiedResult(modified);
+
+    // Cancel any previous in-flight toggle request
+    if (toggleAbortRef.current) {
+      toggleAbortRef.current.abort();
+    }
+    const controller = new AbortController();
+    toggleAbortRef.current = controller;
+
+    setIsChecking(true);
+
+    fetch("/api/interactions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        westernMeds,
+        tcmInput: selectedTCM.value,
+        excludedHerbIds: Array.from(excludedHerbIds),
+      }),
+      signal: controller.signal,
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        return res.json() as Promise<InteractionEngineResult>;
+      })
+      .then((data) => {
+        setModifiedResult(data);
+      })
+      .catch((err: Error) => {
+        if (err.name !== "AbortError") {
+          setError("Failed to recalculate interactions. Please try again.");
+        }
+      })
+      .finally(() => {
+        setIsChecking(false);
+      });
+
+    return () => {
+      controller.abort();
+    };
   }, [excludedHerbIds, originalResult, selectedTCM, westernMeds]);
 
   const handleTCMSelect = useCallback((selection: HerbSearchSelection) => {
@@ -144,26 +180,32 @@ export default function HomePage() {
     setError(null);
   }, []);
 
-  const handleCheck = useCallback(() => {
+  const handleCheck = useCallback(async () => {
     if (!canCheck || !selectedTCM) return;
     setIsChecking(true);
     setError(null);
     setOriginalResult(null);
     setModifiedResult(null);
     setExcludedHerbIds(new Set());
-    // checkInteractions() is synchronous. Defer via setTimeout so the skeleton
-    // renders before the engine runs, giving the UI a visible busy state.
-    setTimeout(() => {
-      try {
-        const engineResult = checkInteractions(westernMeds, selectedTCM.value);
-        setOriginalResult(engineResult);
-      } catch (err) {
-        console.error("Interaction engine error:", err);
-        setError("An unexpected error occurred. Please try again.");
-      } finally {
-        setIsChecking(false);
-      }
-    }, 0);
+
+    try {
+      const res = await fetch("/api/interactions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          westernMeds,
+          tcmInput: selectedTCM.value,
+        }),
+      });
+      if (!res.ok) throw new Error("API error");
+      const data = (await res.json()) as InteractionEngineResult;
+      setOriginalResult(data);
+    } catch (err) {
+      console.error("Interaction check error:", err);
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsChecking(false);
+    }
   }, [canCheck, selectedTCM, westernMeds]);
 
   const handleHerbToggle = useCallback((herbId: string, excluded: boolean) => {
@@ -269,7 +311,7 @@ export default function HomePage() {
         <div className="px-6 py-5 border-t border-slate-100 space-y-2.5">
           <button
             type="button"
-            onClick={handleCheck}
+            onClick={() => { void handleCheck(); }}
             disabled={!canCheck || isChecking}
             aria-disabled={!canCheck || isChecking}
             className="

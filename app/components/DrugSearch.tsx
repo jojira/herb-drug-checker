@@ -12,7 +12,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import type { WesternMed } from "@/logic/interactionEngine";
+import type { WesternMed } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
 // Types

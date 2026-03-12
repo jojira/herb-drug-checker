@@ -3,19 +3,16 @@
 /**
  * InteractionResults.tsx
  *
- * Displays the full output of checkInteractions().
+ * Displays the full output of the /api/interactions route.
+ * No herb datasets imported — all data comes from InteractionEngineResult.
  *
  * Sections:
- *   1. Summary banner — worst severity at a glance, with "Modified formula"
- *      indicator when herb exclusions are active
- *   2. Formula breakdown — expandable, shows every constituent herb.
- *      Flagged herbs have a checkbox to exclude them from the formula check
- *      without re-entering inputs (Modification View).
- *   3. Modification summary — appears when exclusions are active, describes
- *      the clinical impact of excluding the selected herbs
- *   4. Interaction cards — one per match, sorted worst-first, with
- *      mechanism, clinical summary, citations, source badges
- *   5. Persistent disclaimer
+ *   1. Summary banner — worst severity, modified-formula indicator, dataStatus badge
+ *   2. Unresolved herbs notice — if hasUnresolvedHerbs
+ *   3. Formula breakdown — every constituent herb with trust tier badges
+ *   4. Modification summary — when exclusions are active
+ *   5. Interaction cards — one per match, sorted worst-first
+ *   6. Persistent disclaimer
  */
 
 import { useState } from "react";
@@ -24,128 +21,17 @@ import type {
   InteractionMatch,
   SeverityLevel,
   FormulaHerbDetail,
-} from "@/logic/interactionEngine";
+  TrustTier,
+} from "@/lib/types/clinical";
 import {
   SEVERITY_LABELS,
   SEVERITY_STYLES,
   SEVERITY_ICONS,
-} from "@/logic/interactionEngine";
-import herbLibrary from "@/data/herbLibrary.json";
+} from "@/lib/severityUtils";
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-type HerbLibraryEntry = (typeof herbLibrary.herbs)[number];
-type HerbEnergetics = {
-  taste: string[];
-  temperature: string;
-  channels: string[];
-  properties: string[];
-  tcm_cautions: string;
-};
-
-function getHerbCategory(herbId: string): string | null {
-  const entry = herbLibrary.herbs.find((h) => h.id === herbId) as HerbLibraryEntry | undefined;
-  return entry?.category ?? null;
-}
-
-function getHerbEnergetics(herbId: string): HerbEnergetics | null {
-  const entry = herbLibrary.herbs.find((h) => h.id === herbId) as
-    | (HerbLibraryEntry & Partial<HerbEnergetics>)
-    | undefined;
-  if (!entry) return null;
-  const { taste, temperature, channels, properties, tcm_cautions } = entry;
-  if (!taste && !temperature && !channels && !properties && !tcm_cautions) return null;
-  return {
-    taste: taste ?? [],
-    temperature: temperature ?? "",
-    channels: channels ?? [],
-    properties: properties ?? [],
-    tcm_cautions: tcm_cautions ?? "",
-  };
-}
-
-// ---------------------------------------------------------------------------
-// TcmEnergeticsPanel
-// ---------------------------------------------------------------------------
-
-function TemperatureBadge({ temp }: { temp: string }) {
-  const lower = temp.toLowerCase();
-  let colorClass = "bg-slate-100 text-slate-600 border-slate-200";
-  if (lower === "hot" || lower === "warm") {
-    colorClass = "bg-amber-50 text-amber-700 border-amber-200";
-  } else if (lower === "cold" || lower === "cool") {
-    colorClass = "bg-blue-50 text-blue-700 border-blue-200";
-  }
-  return (
-    <span
-      className={`inline-flex items-center text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border ${colorClass}`}
-    >
-      {temp}
-    </span>
-  );
-}
-
-function TcmEnergeticsPanel({ herbId }: { herbId: string }) {
-  const energetics = getHerbEnergetics(herbId);
-  if (!energetics) return null;
-
-  const { taste, temperature, channels, properties, tcm_cautions } = energetics;
-
-  return (
-    <div className="mt-2 space-y-2 pl-1">
-      {/* Temperature + Taste row */}
-      {(temperature || taste.length > 0) && (
-        <div className="flex flex-wrap items-center gap-1.5">
-          {temperature && <TemperatureBadge temp={temperature} />}
-          {taste.map((t) => (
-            <span
-              key={t}
-              className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Channels */}
-      {channels.length > 0 && (
-        <div className="flex flex-wrap gap-1">
-          {channels.map((ch) => (
-            <span
-              key={ch}
-              className="text-[10px] px-1.5 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-100"
-            >
-              {ch}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Properties */}
-      {properties.length > 0 && (
-        <ul className="space-y-0.5">
-          {properties.map((p) => (
-            <li key={p} className="text-[11px] text-slate-500 flex items-start gap-1.5">
-              <span className="flex-shrink-0 text-slate-300 mt-0.5">·</span>
-              {p}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* TCM Cautions — amber notice, amber color only (never red) */}
-      {tcm_cautions && tcm_cautions !== "No significant TCM cautions." && (
-        <div className="flex items-start gap-1.5 bg-amber-50 border border-amber-100 rounded px-2 py-1.5">
-          <span className="flex-shrink-0 text-amber-500 text-[11px] mt-0.5">⚠</span>
-          <p className="text-[11px] text-amber-800 leading-snug">{tcm_cautions}</p>
-        </div>
-      )}
-    </div>
-  );
-}
 
 const SEVERITY_RANK: Record<SeverityLevel, number> = {
   contraindicated: 2,
@@ -170,6 +56,127 @@ function formatHerbList(names: string[]): string {
   if (names.length === 1) return names[0];
   if (names.length === 2) return `${names[0]} and ${names[1]}`;
   return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`;
+}
+
+// ---------------------------------------------------------------------------
+// Trust tier badge
+// ---------------------------------------------------------------------------
+
+function TrustTierBadge({
+  tier,
+  nccaomCode,
+}: {
+  tier: TrustTier;
+  nccaomCode: string | null;
+}) {
+  if (tier === "gold" && nccaomCode) {
+    return (
+      <span className="font-mono text-[10px] px-1.5 py-0.5 rounded border text-teal-600 bg-teal-50 border-teal-100">
+        {nccaomCode}
+      </span>
+    );
+  }
+  if (tier === "silver") {
+    return (
+      <span className="text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border text-slate-500 bg-slate-100 border-slate-200">
+        Research Data
+      </span>
+    );
+  }
+  if (tier === "unresolved") {
+    return (
+      <span className="text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border text-orange-700 bg-orange-50 border-orange-200">
+        Unresolved
+      </span>
+    );
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// TcmEnergeticsPanel — data comes from herb fields (no library lookup)
+// ---------------------------------------------------------------------------
+
+function TemperatureBadge({ temp }: { temp: string }) {
+  const lower = temp.toLowerCase();
+  let colorClass = "bg-slate-100 text-slate-600 border-slate-200";
+  if (lower === "hot" || lower === "warm") {
+    colorClass = "bg-amber-50 text-amber-700 border-amber-200";
+  } else if (lower === "cold" || lower === "cool") {
+    colorClass = "bg-blue-50 text-blue-700 border-blue-200";
+  }
+  return (
+    <span
+      className={`inline-flex items-center text-[10px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded border ${colorClass}`}
+    >
+      {temp}
+    </span>
+  );
+}
+
+function TcmEnergeticsPanel({ herb }: { herb: FormulaHerbDetail }) {
+  const { taste, temperature, channels, properties, tcm_cautions } = herb;
+  const hasData = !!(
+    taste?.length ||
+    temperature ||
+    channels?.length ||
+    properties?.length ||
+    tcm_cautions
+  );
+  if (!hasData) return null;
+
+  return (
+    <div className="mt-2 space-y-2 pl-1">
+      {/* Temperature + Taste row */}
+      {(temperature || (taste && taste.length > 0)) && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          {temperature && <TemperatureBadge temp={temperature} />}
+          {taste?.map((t) => (
+            <span
+              key={t}
+              className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Channels */}
+      {channels && channels.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {channels.map((ch) => (
+            <span
+              key={ch}
+              className="text-[10px] px-1.5 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-100"
+            >
+              {ch}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Properties */}
+      {properties && properties.length > 0 && (
+        <ul className="space-y-0.5">
+          {properties.map((p) => (
+            <li key={p} className="text-[11px] text-slate-500 flex items-start gap-1.5">
+              <span className="flex-shrink-0 text-slate-300 mt-0.5">·</span>
+              {p}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* TCM Cautions — amber color only, never red */}
+      {tcm_cautions && tcm_cautions !== "No significant TCM cautions." && (
+        <div className="flex items-start gap-1.5 bg-amber-50 border border-amber-100 rounded px-2 py-1.5">
+          <span className="flex-shrink-0 text-amber-500 text-[11px] mt-0.5">⚠</span>
+          <p className="text-[11px] text-amber-800 leading-snug">{tcm_cautions}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -199,7 +206,7 @@ function SeverityBadge({
 }
 
 // ---------------------------------------------------------------------------
-// FormulaBreakdown
+// HerbDetailRow
 // ---------------------------------------------------------------------------
 
 function HerbDetailRow({
@@ -212,24 +219,33 @@ function HerbDetailRow({
   const [showEnergetics, setShowEnergetics] = useState(false);
 
   const worstSeverity: SeverityLevel = herb.interactions.reduce<SeverityLevel>(
-    (worst, m) => (SEVERITY_RANK[m.severity] > SEVERITY_RANK[worst] ? m.severity : worst),
+    (worst, m) =>
+      SEVERITY_RANK[m.severity] > SEVERITY_RANK[worst] ? m.severity : worst,
     "none"
   );
 
-  const category = getHerbCategory(herb.herbId);
-  const energetics = getHerbEnergetics(herb.herbId);
   const isFlagged = herb.hasInteraction;
   const isExcluded = herb.excluded === true;
-  // Checkbox appears on herbs that are flagged OR currently excluded (were flagged before)
+  const isUnresolved = herb.trustTier === "unresolved";
+
+  // Checkbox appears on herbs that are flagged OR currently excluded
   const showCheckbox = (isFlagged || isExcluded) && onToggle !== undefined;
-  // Energetics toggle only shown for non-excluded herbs with data
-  const showEnergeticsToggle = !isExcluded && energetics !== null;
+
+  // Energetics toggle: not for excluded or unresolved herbs
+  const hasEnergeticsData = !!(
+    herb.taste?.length ||
+    herb.temperature ||
+    herb.channels?.length ||
+    herb.properties?.length ||
+    herb.tcm_cautions
+  );
+  const showEnergeticsToggle = !isExcluded && !isUnresolved && hasEnergeticsData;
 
   return (
     <li
       className={`
         flex items-start gap-3 px-4 py-3 border-b border-slate-100 last:border-0
-        ${isExcluded ? "opacity-50 bg-slate-50" : isFlagged ? "bg-white" : "bg-slate-50/50"}
+        ${isUnresolved ? "opacity-50 bg-orange-50/40" : isExcluded ? "opacity-50 bg-slate-50" : isFlagged ? "bg-white" : "bg-slate-50/50"}
       `}
     >
       {/* Checkbox for flagged / excluded herbs */}
@@ -248,9 +264,17 @@ function HerbDetailRow({
       {/* Severity / status icon */}
       <span
         className="flex-shrink-0 text-base mt-0.5"
-        aria-label={isExcluded ? "Excluded from check" : isFlagged ? SEVERITY_LABELS[worstSeverity] : "No known interaction"}
+        aria-label={
+          isUnresolved
+            ? "Unresolved herb — identity unknown"
+            : isExcluded
+            ? "Excluded from check"
+            : isFlagged
+            ? SEVERITY_LABELS[worstSeverity]
+            : "No known interaction"
+        }
       >
-        {isExcluded ? "○" : isFlagged ? SEVERITY_ICONS[worstSeverity] : "🟢"}
+        {isUnresolved ? "?" : isExcluded ? "○" : isFlagged ? SEVERITY_ICONS[worstSeverity] : "🟢"}
       </span>
 
       <div className="flex-1 min-w-0">
@@ -259,6 +283,8 @@ function HerbDetailRow({
             className={`font-semibold text-sm ${
               isExcluded
                 ? "text-slate-400 line-through"
+                : isUnresolved
+                ? "text-orange-700"
                 : isFlagged
                 ? "text-slate-900"
                 : "text-slate-600"
@@ -266,17 +292,9 @@ function HerbDetailRow({
           >
             {herb.pinyin || herb.herbId}
           </span>
-          {herb.nccaom_code && (
-            <span
-              className={`font-mono text-[10px] px-1.5 py-0.5 rounded border ${
-                isExcluded
-                  ? "text-slate-400 bg-slate-100 border-slate-200"
-                  : "text-teal-600 bg-teal-50 border-teal-100"
-              }`}
-            >
-              {herb.nccaom_code}
-            </span>
-          )}
+
+          <TrustTierBadge tier={herb.trustTier} nccaomCode={herb.nccaom_code} />
+
           {isExcluded && (
             <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-500 bg-slate-200 px-1.5 py-0.5 rounded">
               Excluded
@@ -298,13 +316,16 @@ function HerbDetailRow({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1">
-          {category && (
-            <span className="text-[10px] font-medium tracking-wide uppercase text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">
-              {category}
-            </span>
-          )}
-          {showEnergeticsToggle && (
+        {/* Silver note */}
+        {herb.trustTier === "silver" && !isExcluded && (
+          <p className="text-[10px] text-slate-400 mt-0.5 italic">
+            TCMBank research data — not NCCAOM verified
+          </p>
+        )}
+
+        {/* Energetics toggle */}
+        {showEnergeticsToggle && (
+          <div className="mt-1">
             <button
               type="button"
               onClick={() => setShowEnergetics((v) => !v)}
@@ -314,13 +335,26 @@ function HerbDetailRow({
             >
               {showEnergetics ? "Hide energetics" : "Energetics"}
             </button>
-          )}
-        </div>
+          </div>
+        )}
 
-        {showEnergetics && <TcmEnergeticsPanel herbId={herb.herbId} />}
+        {showEnergetics && <TcmEnergeticsPanel herb={herb} />}
+
+        {/* Unresolved herb warning box — amber, not red */}
+        {isUnresolved && (
+          <div className="mt-2 bg-amber-50 border border-amber-200 rounded-md px-3 py-2.5">
+            <p className="text-[11px] font-semibold text-amber-800 mb-1">⚠ Clinical Data Missing</p>
+            <p className="text-[11px] text-amber-700 leading-snug">
+              This herb appears in the formula composition but could not be identified in either
+              the NCCAOM library or TCMBank database. Identity unknown: interaction potential
+              cannot be assessed. Recommendation: consult a licensed herbalist before prescribing
+              formulas containing unidentified ingredients.
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Alerts badge — only for active flagged herbs (not excluded) */}
+      {/* Alerts badge — only for active flagged herbs */}
       {isFlagged && !isExcluded && (
         <div className="flex-shrink-0 text-right">
           <span
@@ -340,6 +374,10 @@ function HerbDetailRow({
   );
 }
 
+// ---------------------------------------------------------------------------
+// FormulaBreakdown
+// ---------------------------------------------------------------------------
+
 function FormulaBreakdown({
   breakdown,
   onHerbToggle,
@@ -349,7 +387,13 @@ function FormulaBreakdown({
 }) {
   const [expanded, setExpanded] = useState(false);
 
-  // Flagged section: currently flagged OR currently excluded (were flagged before exclusion)
+  const { formula } = breakdown;
+  const isResearchFormula = formula.source === "tcmbank_research";
+  const showResolutionRate =
+    isResearchFormula && formula.resolutionRate < 1.0 && breakdown.totalHerbCount > 0;
+  const identifiedCount = breakdown.totalHerbCount - breakdown.unresolvedCount;
+
+  // Flagged: currently flagged OR currently excluded (were flagged before)
   const flaggedHerbs = breakdown.herbs.filter((h) => h.hasInteraction || h.excluded);
   const safeHerbs = breakdown.herbs.filter((h) => !h.hasInteraction && !h.excluded);
 
@@ -364,14 +408,26 @@ function FormulaBreakdown({
           <span className="text-[10px] font-semibold tracking-widest uppercase text-slate-400 block mb-1">
             Formula Breakdown
           </span>
-          <p className="font-bold text-white text-base leading-tight">
-            {breakdown.formula.pinyin}
-          </p>
-          <p className="text-slate-400 text-sm mt-0.5">{breakdown.formula.english}</p>
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <p className="font-bold text-white text-base leading-tight">
+              {formula.pinyin}
+            </p>
+            {isResearchFormula && (
+              <span className="text-[10px] font-semibold tracking-wide uppercase text-slate-400 bg-slate-600 px-2 py-0.5 rounded-full">
+                Research Formula
+              </span>
+            )}
+          </div>
+          <p className="text-slate-400 text-sm mt-0.5">{formula.english}</p>
           <div className="flex flex-wrap gap-2 mt-2.5">
             <span className="text-xs text-slate-400 bg-slate-700 px-2 py-0.5 rounded-full">
               {breakdown.totalHerbCount} herbs
             </span>
+            {showResolutionRate && (
+              <span className="text-xs text-slate-400 bg-slate-700 px-2 py-0.5 rounded-full">
+                {identifiedCount} of {breakdown.totalHerbCount} identified
+              </span>
+            )}
             {breakdown.flaggedHerbCount > 0 ? (
               <span className="text-xs font-semibold text-red-300 bg-red-900/40 px-2 py-0.5 rounded-full">
                 {breakdown.flaggedHerbCount} flagged
@@ -379,6 +435,11 @@ function FormulaBreakdown({
             ) : (
               <span className="text-xs font-semibold text-green-300 bg-green-900/40 px-2 py-0.5 rounded-full">
                 All clear
+              </span>
+            )}
+            {breakdown.unresolvedCount > 0 && (
+              <span className="text-xs font-semibold text-orange-300 bg-orange-900/40 px-2 py-0.5 rounded-full">
+                {breakdown.unresolvedCount} unresolved
               </span>
             )}
           </div>
@@ -454,7 +515,9 @@ function ModificationSummary({
   onRestoreFormula: () => void;
 }) {
   const excludedHerbs =
-    originalResult.formulaBreakdown?.herbs.filter((h) => excludedHerbIds.has(h.herbId)) ?? [];
+    originalResult.formulaBreakdown?.herbs.filter((h) =>
+      excludedHerbIds.has(h.herbId)
+    ) ?? [];
   const herbNames = excludedHerbs.map((h) => h.pinyin || h.herbId);
 
   const originalSeverity = originalResult.worstSeverity;
@@ -466,18 +529,15 @@ function ModificationSummary({
   let icon: string;
 
   if (modifiedResult.matches.length === 0) {
-    // Case a: all interactions cleared by the exclusions
     const verb = excludedHerbs.length > 1 ? "are" : "is";
     message = `Formula is safe against current medications if ${formatHerbList(herbNames)} ${verb} removed.`;
     bannerClass = "bg-green-50 border-green-200 text-green-800";
     icon = "🟢";
   } else if (severityImproved) {
-    // Case b: severity reduced but interactions still remain
     message = `Severity reduced from ${SEVERITY_LABELS[originalSeverity]} to ${SEVERITY_LABELS[modifiedSeverity]} by removing ${formatHerbList(herbNames)}.`;
     bannerClass = "bg-amber-50 border-amber-200 text-amber-800";
     icon = "🟡";
   } else {
-    // Case c: no improvement in severity
     message = `Removing ${formatHerbList(herbNames)} has no effect on the current interactions.`;
     bannerClass = "bg-slate-50 border-slate-200 text-slate-700";
     icon = "○";
@@ -617,10 +677,12 @@ function InteractionCard({
                 <span className="text-slate-400">Latin </span>
                 <span className="font-medium italic text-slate-700">{match.herb.latin}</span>
               </span>
-              <span>
-                <span className="text-slate-400">NCCAOM </span>
-                <span className="font-mono font-medium text-teal-700">{match.herb.nccaom_code}</span>
-              </span>
+              {match.herb.nccaom_code && (
+                <span>
+                  <span className="text-slate-400">NCCAOM </span>
+                  <span className="font-mono font-medium text-teal-700">{match.herb.nccaom_code}</span>
+                </span>
+              )}
               {match.herb.active_constituent && (
                 <span>
                   <span className="text-slate-400">Active constituent </span>
@@ -645,7 +707,7 @@ function InteractionCard({
                     key={s}
                     className="text-xs font-semibold bg-slate-800 text-white px-2 py-0.5 rounded"
                   >
-                    {s === "natmed" ? "NatMed Pro" : "Stockley's"}
+                    {s === "natmed" ? "NatMed Pro" : s === "stockleys" ? "Stockley's" : "Mock Data"}
                   </span>
                 ))}
                 <span className="text-xs text-slate-400">
@@ -718,6 +780,11 @@ function SummaryBanner({
                 Modified formula
               </span>
             )}
+            {result.dataStatus === "mock_unverified" && (
+              <span className="text-[9px] font-bold uppercase tracking-wide text-orange-700 bg-orange-50 border border-orange-200 px-2 py-0.5 rounded whitespace-nowrap">
+                Mock Data — Not for Clinical Use
+              </span>
+            )}
           </div>
           <p className="text-sm text-slate-600 mt-0.5">
             Overall severity:{" "}
@@ -780,6 +847,24 @@ export default function InteractionResults({
   return (
     <div className="space-y-5" aria-live="polite" aria-label="Interaction check results">
       <SummaryBanner result={result} isModified={isModified} />
+
+      {/* Unresolved herbs notice */}
+      {result.hasUnresolvedHerbs && (
+        <div
+          className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4"
+          role="alert"
+        >
+          <p className="text-sm text-amber-800">
+            ⚠{" "}
+            <span className="font-semibold">
+              {result.unresolvedHerbs.length} herb
+              {result.unresolvedHerbs.length > 1 ? "s" : ""} in this formula could not be
+              identified.
+            </span>{" "}
+            Their interaction potential is unknown. These herbs are highlighted below.
+          </p>
+        </div>
+      )}
 
       {result.formulaBreakdown && (
         <FormulaBreakdown
