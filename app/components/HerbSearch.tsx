@@ -11,7 +11,7 @@
  * select a verified herb identity, not a guessed one.
  */
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import type { HerbInput, FormulaInput, TCMSearchResultItem, TrustTier } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
@@ -135,25 +135,34 @@ function FormulaSuggestionRow({
 
 export default function HerbSearch({ onSelect, onClear, disabled = false }: Props) {
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<TCMSearchResultItem[]>([]);
+  const [searchState, setSearchState] = useState<{
+    suggestions: TCMSearchResultItem[];
+    searchedFallback: boolean;
+    fetchError: boolean;
+    forQuery: string;
+  }>({ suggestions: [], searchedFallback: false, fetchError: false, forQuery: "" });
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<HerbSearchSelection | null>(null);
   const [exactMatchError, setExactMatchError] = useState(false);
-  const [searchedFallback, setSearchedFallback] = useState(false);
-  const [fetchError, setFetchError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  // Results are fresh only when the query hasn't changed and no item is selected.
+  // Deriving this avoids synchronous setState calls in the effect early-return.
+  // useMemo stabilizes the array reference so it doesn't invalidate useCallback deps each render.
+  const isResultFresh = !selected && query.length >= 2 && searchState.forQuery === query;
+  const activeSuggestions = useMemo(
+    () => (isResultFresh ? searchState.suggestions : []),
+    [isResultFresh, searchState.suggestions]
+  );
+  const activeSearchedFallback = isResultFresh ? searchState.searchedFallback : false;
+  const activeFetchError = isResultFresh ? searchState.fetchError : false;
+
   // Debounced fetch — 350ms to reduce server load
   useEffect(() => {
-    if (selected || query.length < 2) {
-      setSuggestions([]);
-      setSearchedFallback(false);
-      setFetchError(false);
-      return;
-    }
+    if (selected || query.length < 2) return;
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
     if (abortRef.current) abortRef.current.abort();
@@ -173,14 +182,21 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
           }>;
         })
         .then((data) => {
-          setSuggestions(data.results ?? []);
-          setSearchedFallback(data.searchedFallback ?? false);
-          setFetchError(false);
+          setSearchState({
+            suggestions: data.results ?? [],
+            searchedFallback: data.searchedFallback ?? false,
+            fetchError: false,
+            forQuery: query,
+          });
         })
         .catch((err: Error) => {
           if (err.name !== "AbortError") {
-            setSuggestions([]);
-            setFetchError(true);
+            setSearchState({
+              suggestions: [],
+              searchedFallback: false,
+              fetchError: true,
+              forQuery: query,
+            });
           }
         });
     }, 350);
@@ -219,7 +235,6 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       setQuery(item.pinyin);
       setOpen(false);
       setExactMatchError(false);
-      setSearchedFallback(false);
       onSelect(selection);
     },
     [onSelect]
@@ -231,7 +246,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
     setOpen(false);
     if (!selected && query.length >= 2) {
       const q = query.trim().toLowerCase();
-      const exactMatch = suggestions.find(
+      const exactMatch = activeSuggestions.find(
         (item) =>
           item.pinyin.toLowerCase() === q ||
           (item.latin ?? "").toLowerCase() === q ||
@@ -241,32 +256,30 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       );
       if (exactMatch) {
         handleSelectItem(exactMatch);
-      } else if (suggestions.length === 1) {
+      } else if (activeSuggestions.length === 1) {
         // Single result — auto-confirm (practitioner typed the full name)
-        handleSelectItem(suggestions[0]);
+        handleSelectItem(activeSuggestions[0]);
       } else {
         setExactMatchError(true);
       }
     }
-  }, [selected, query, suggestions, handleSelectItem]);
+  }, [selected, query, activeSuggestions, handleSelectItem]);
 
   const handleClear = useCallback(() => {
     setQuery("");
     setSelected(null);
-    setSuggestions([]);
+    setSearchState({ suggestions: [], searchedFallback: false, fetchError: false, forQuery: "" });
     setExactMatchError(false);
-    setSearchedFallback(false);
-    setFetchError(false);
     onClear();
     inputRef.current?.focus();
   }, [onClear]);
 
-  const herbSuggestions = suggestions.filter((s) => s.type === "herb");
-  const formulaSuggestions = suggestions.filter((s) => s.type === "formula");
-  const hasSuggestions = suggestions.length > 0;
+  const herbSuggestions = activeSuggestions.filter((s) => s.type === "herb");
+  const formulaSuggestions = activeSuggestions.filter((s) => s.type === "formula");
+  const hasSuggestions = activeSuggestions.length > 0;
   const showDropdown = open && !selected && hasSuggestions;
   const showNoResults =
-    open && !selected && query.length >= 2 && !hasSuggestions && !fetchError;
+    open && !selected && query.length >= 2 && !hasSuggestions && !activeFetchError;
 
   return (
     <div ref={containerRef} className="w-full">
@@ -297,8 +310,10 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
             }}
             onFocus={() => { if (!selected) setOpen(true); }}
             onBlur={handleBlur}
+            role="combobox"
             aria-label="Search for a TCM herb or formula"
             aria-expanded={showDropdown}
+            aria-controls="herb-search-listbox"
             aria-autocomplete="list"
             className="flex-1 py-3 bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
           />
@@ -349,12 +364,13 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
         {/* Dropdown — herbs and formulas grouped */}
         {showDropdown && (
           <div
+            id="herb-search-listbox"
             className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
             role="listbox"
             aria-label="Search suggestions"
           >
             {/* Fallback notice */}
-            {searchedFallback && (
+            {activeSearchedFallback && (
               <div className="px-4 py-2 bg-amber-50 border-b border-amber-100">
                 <p className="text-[10px] text-amber-700">
                   ⚠ No NCCAOM-verified result found. Showing TCMBank research data.
@@ -399,7 +415,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
         )}
 
         {/* Fetch error */}
-        {fetchError && open && !selected && (
+        {activeFetchError && open && !selected && (
           <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-red-500">
               Search unavailable. Please check your connection and try again.

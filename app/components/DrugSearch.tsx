@@ -227,8 +227,10 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
               if (!e.target.value) setOpen(false);
             }}
             onFocus={() => { if (suggestions.length > 0) setOpen(true); }}
+            role="combobox"
             aria-label="Search for a western medication"
             aria-expanded={open && suggestions.length > 0}
+            aria-controls="drug-search-listbox"
             aria-autocomplete="list"
             className="flex-1 py-3 bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
           />
@@ -248,6 +250,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
         {/* Dropdown */}
         {open && suggestions.length > 0 && (
           <div
+            id="drug-search-listbox"
             className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
             role="listbox"
             aria-label="Drug search results"
@@ -267,7 +270,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
         {open && !loading && query.length >= 2 && suggestions.length === 0 && !error && (
           <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-slate-500">
-              No medications found for "{query}". Try the generic name.
+              No medications found for &ldquo;{query}&rdquo;. Try the generic name.
             </p>
           </div>
         )}
