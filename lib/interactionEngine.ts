@@ -10,6 +10,7 @@
 
 import interactionData from "@/data/mockInteractions.json";
 import formulaData from "@/data/formulaMap.json";
+import formulaDataExpanded from "@/data/formulaMapExpanded.json";
 import herbLibraryData from "@/data/herbLibrary.json";
 import herbLibraryEnrichedData from "@/data/herbLibraryEnriched.json";
 
@@ -77,6 +78,14 @@ type EnrichedHerbEntry = {
 const enrichedHerbs: EnrichedHerbEntry[] =
   (herbLibraryEnrichedData as { herbs?: EnrichedHerbEntry[] }).herbs ?? [];
 
+// Formula dataset — prefer expanded set if generated, else fall back to base 30
+type FormulaEntry = { id: string; pinyin: string; english: string; herb_ids: string[] };
+const expandedFormulaList = (formulaDataExpanded as { formulas: FormulaEntry[] }).formulas;
+const allFormulaData: FormulaEntry[] =
+  expandedFormulaList.length > 0
+    ? expandedFormulaList
+    : (formulaData as { formulas: FormulaEntry[] }).formulas;
+
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
@@ -104,7 +113,7 @@ const DISCLAIMER =
 function resolveFormula(
   formulaId: string
 ): { formula: FormulaIdentity; herbIds: string[] } | null {
-  const formula = formulaData.formulas.find((f) => f.id === formulaId);
+  const formula = allFormulaData.find((f) => f.id === formulaId);
   if (!formula) return null;
   return {
     formula: {

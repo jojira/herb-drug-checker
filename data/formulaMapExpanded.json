@@ -1,0 +1,2482 @@
+{
+  "_meta": {
+    "description": "Merged NCCAOM formula library — generated file",
+    "generated_at": "2026-03-19T00:33:25.328Z",
+    "source_version": "1.0.0",
+    "formula_count": 121,
+    "gold_count": 121,
+    "silver_count": 0,
+    "do_not_edit": true
+  },
+  "formulas": [
+    {
+      "id": "xiao-yao-san",
+      "pinyin": "Xiao Yao San",
+      "english": "Free and Easy Wanderer",
+      "herb_ids": [
+        "chai-hu",
+        "dang-gui",
+        "bai-shao",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "sheng-jiang",
+        "bo-he"
+      ]
+    },
+    {
+      "id": "liu-wei-di-huang-wan",
+      "pinyin": "Liu Wei Di Huang Wan",
+      "english": "Six Flavor Rehmannia Pill",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-zhu-yu",
+        "shan-yao",
+        "ze-xie",
+        "mu-dan-pi",
+        "fu-ling"
+      ]
+    },
+    {
+      "id": "si-wu-tang",
+      "pinyin": "Si Wu Tang",
+      "english": "Four Substance Decoction",
+      "herb_ids": [
+        "shu-di-huang",
+        "dang-gui",
+        "bai-shao",
+        "chuan-xiong"
+      ]
+    },
+    {
+      "id": "ba-zhen-tang",
+      "pinyin": "Ba Zhen Tang",
+      "english": "Eight Treasure Decoction",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "shu-di-huang",
+        "dang-gui",
+        "bai-shao",
+        "chuan-xiong"
+      ]
+    },
+    {
+      "id": "bu-zhong-yi-qi-tang",
+      "pinyin": "Bu Zhong Yi Qi Tang",
+      "english": "Tonify the Middle and Augment the Qi Decoction",
+      "herb_ids": [
+        "huang-qi",
+        "ren-shen",
+        "bai-zhu",
+        "gan-cao",
+        "dang-gui",
+        "chen-pi",
+        "sheng-ma",
+        "chai-hu"
+      ]
+    },
+    {
+      "id": "gui-pi-tang",
+      "pinyin": "Gui Pi Tang",
+      "english": "Restore the Spleen Decoction",
+      "herb_ids": [
+        "ren-shen",
+        "huang-qi",
+        "bai-zhu",
+        "fu-ling",
+        "suan-zao-ren",
+        "long-yan-rou",
+        "mu-xiang",
+        "gan-cao",
+        "dang-gui",
+        "yuan-zhi"
+      ]
+    },
+    {
+      "id": "zhi-bai-di-huang-wan",
+      "pinyin": "Zhi Bai Di Huang Wan",
+      "english": "Anemarrhena, Phellodendron, and Rehmannia Pill",
+      "herb_ids": [
+        "zhi-mu",
+        "huang-bai",
+        "shu-di-huang",
+        "shan-zhu-yu",
+        "shan-yao",
+        "ze-xie",
+        "mu-dan-pi",
+        "fu-ling"
+      ]
+    },
+    {
+      "id": "long-dan-xie-gan-tang",
+      "pinyin": "Long Dan Xie Gan Tang",
+      "english": "Gentian Drain the Liver Decoction",
+      "herb_ids": [
+        "long-dan-cao",
+        "huang-qin",
+        "zhi-zi",
+        "ze-xie",
+        "mu-tong",
+        "che-qian-zi",
+        "dang-gui",
+        "sheng-di-huang",
+        "chai-hu",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "tian-wan-bu-xin-dan",
+      "pinyin": "Tian Wang Bu Xin Dan",
+      "english": "Emperor of Heaven's Special Pill to Tonify the Heart",
+      "herb_ids": [
+        "sheng-di-huang",
+        "ren-shen",
+        "dan-shen",
+        "xuan-shen",
+        "fu-ling",
+        "wu-wei-zi",
+        "dang-gui",
+        "tian-men-dong",
+        "mai-men-dong",
+        "bai-zi-ren",
+        "suan-zao-ren",
+        "yuan-zhi",
+        "jie-geng"
+      ]
+    },
+    {
+      "id": "xue-fu-zhu-yu-tang",
+      "pinyin": "Xue Fu Zhu Yu Tang",
+      "english": "Drive Out Stasis in the Mansion of Blood Decoction",
+      "herb_ids": [
+        "tao-ren",
+        "hong-hua",
+        "dang-gui",
+        "sheng-di-huang",
+        "chuan-xiong",
+        "chi-shao",
+        "niu-xi",
+        "jie-geng",
+        "chai-hu",
+        "zhi-ke",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "du-huo-ji-sheng-wan",
+      "pinyin": "Du Huo Ji Sheng Wan",
+      "english": "Angelica Pubescens and Taxillus Pill",
+      "herb_ids": [
+        "du-huo",
+        "sang-ji-sheng",
+        "du-zhong",
+        "niu-xi",
+        "xi-xin",
+        "qin-jiao",
+        "fu-ling",
+        "gui-xin",
+        "fang-feng",
+        "chuan-xiong",
+        "ren-shen",
+        "gan-cao",
+        "dang-gui",
+        "bai-shao",
+        "sheng-di-huang"
+      ]
+    },
+    {
+      "id": "yin-qiao-san",
+      "pinyin": "Yin Qiao San",
+      "english": "Honeysuckle and Forsythia Powder",
+      "herb_ids": [
+        "jin-yin-hua",
+        "lian-qiao",
+        "jie-geng",
+        "niu-bang-zi",
+        "bo-he",
+        "dan-dou-chi",
+        "jing-jie",
+        "lu-gen",
+        "zhu-ye",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "ban-xia-xie-xin-tang",
+      "pinyin": "Ban Xia Xie Xin Tang",
+      "english": "Pinellia Decoction to Drain the Epigastrium",
+      "herb_ids": [
+        "ban-xia",
+        "huang-qin",
+        "huang-lian",
+        "ren-shen",
+        "gan-jiang",
+        "gan-cao",
+        "da-zao"
+      ]
+    },
+    {
+      "id": "er-chen-tang",
+      "pinyin": "Er Chen Tang",
+      "english": "Two-Cured Decoction",
+      "herb_ids": [
+        "ban-xia",
+        "chen-pi",
+        "fu-ling",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "si-jun-zi-tang",
+      "pinyin": "Si Jun Zi Tang",
+      "english": "Four Gentlemen Decoction",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "ping-wei-san",
+      "pinyin": "Ping Wei San",
+      "english": "Calm the Stomach Powder",
+      "herb_ids": [
+        "cang-zhu",
+        "hou-po",
+        "chen-pi",
+        "gan-cao",
+        "sheng-jiang",
+        "da-zao"
+      ]
+    },
+    {
+      "id": "tian-ma-gou-teng-yin",
+      "pinyin": "Tian Ma Gou Teng Yin",
+      "english": "Gastrodia and Uncaria Beverage",
+      "herb_ids": [
+        "tian-ma",
+        "gou-teng",
+        "shi-jue-ming",
+        "zhi-zi",
+        "huang-qin",
+        "niu-xi",
+        "du-zhong",
+        "yi-mu-cao",
+        "sang-ji-sheng",
+        "ye-jiao-teng",
+        "fu-shen"
+      ]
+    },
+    {
+      "id": "suan-zao-ren-tang",
+      "pinyin": "Suan Zao Ren Tang",
+      "english": "Sour Jujube Decoction",
+      "herb_ids": [
+        "suan-zao-ren",
+        "chuan-xiong",
+        "zhi-mu",
+        "fu-ling",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "jin-gui-shen-qi-wan",
+      "pinyin": "Jin Gui Shen Qi Wan",
+      "english": "Kidney Qi Pill from the Golden Cabinet",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-zhu-yu",
+        "shan-yao",
+        "ze-xie",
+        "mu-dan-pi",
+        "fu-ling",
+        "gui-zhi",
+        "fu-zi"
+      ]
+    },
+    {
+      "id": "da-chai-hu-tang",
+      "pinyin": "Da Chai Hu Tang",
+      "english": "Major Bupleurum Decoction",
+      "herb_ids": [
+        "chai-hu",
+        "huang-qin",
+        "bai-shao",
+        "ban-xia",
+        "zhi-shi",
+        "da-huang",
+        "sheng-jiang",
+        "da-zao"
+      ]
+    },
+    {
+      "id": "xiang-sha-liu-jun-zi-tang",
+      "pinyin": "Xiang Sha Liu Jun Zi Tang",
+      "english": "Six Gentlemen Decoction with Aucklandia and Amomum",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "ban-xia",
+        "chen-pi",
+        "mu-xiang",
+        "sha-ren"
+      ]
+    },
+    {
+      "id": "zuo-gui-wan",
+      "pinyin": "Zuo Gui Wan",
+      "english": "Restore the Left Kidney Pill",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-yao",
+        "shan-zhu-yu",
+        "gou-qi-zi",
+        "tu-si-zi",
+        "lu-jiao-jiao",
+        "gui-ban-jiao",
+        "niu-xi"
+      ]
+    },
+    {
+      "id": "you-gui-wan",
+      "pinyin": "You Gui Wan",
+      "english": "Restore the Right Kidney Pill",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-yao",
+        "shan-zhu-yu",
+        "gou-qi-zi",
+        "du-zhong",
+        "tu-si-zi",
+        "dang-gui",
+        "gui-xin",
+        "fu-zi",
+        "lu-jiao-jiao"
+      ]
+    },
+    {
+      "id": "sheng-mai-san",
+      "pinyin": "Sheng Mai San",
+      "english": "Generate the Pulse Powder",
+      "herb_ids": [
+        "ren-shen",
+        "mai-men-dong",
+        "wu-wei-zi"
+      ]
+    },
+    {
+      "id": "ge-xia-zhu-yu-tang",
+      "pinyin": "Ge Xia Zhu Yu Tang",
+      "english": "Drive Out Blood Stasis Below the Diaphragm Decoction",
+      "herb_ids": [
+        "dang-gui",
+        "chuan-xiong",
+        "tao-ren",
+        "hong-hua",
+        "chi-shao",
+        "mu-dan-pi",
+        "wu-ling-zhi",
+        "yan-hu-suo",
+        "wu-yao",
+        "xiang-fu",
+        "zhi-ke",
+        "gan-cao"
+      ]
+    },
+    {
+      "id": "huang-lian-jie-du-tang",
+      "pinyin": "Huang Lian Jie Du Tang",
+      "english": "Coptis Decoction to Relieve Toxicity",
+      "herb_ids": [
+        "huang-lian",
+        "huang-qin",
+        "huang-bai",
+        "zhi-zi"
+      ]
+    },
+    {
+      "id": "ma-zi-ren-wan",
+      "pinyin": "Ma Zi Ren Wan",
+      "english": "Hemp Seed Pill",
+      "herb_ids": [
+        "huo-ma-ren",
+        "bai-shao",
+        "zhi-shi",
+        "da-huang",
+        "hou-po",
+        "xing-ren"
+      ]
+    },
+    {
+      "id": "wu-ling-san",
+      "pinyin": "Wu Ling San",
+      "english": "Five Ingredient Powder with Poria",
+      "herb_ids": [
+        "ze-xie",
+        "fu-ling",
+        "zhu-ling",
+        "bai-zhu",
+        "gui-zhi"
+      ]
+    },
+    {
+      "id": "xiao-chai-hu-tang",
+      "pinyin": "Xiao Chai Hu Tang",
+      "english": "Minor Bupleurum Decoction",
+      "herb_ids": [
+        "chai-hu",
+        "huang-qin",
+        "ren-shen",
+        "ban-xia",
+        "gan-cao",
+        "sheng-jiang",
+        "da-zao"
+      ]
+    },
+    {
+      "id": "gan-mai-da-zao-tang",
+      "pinyin": "Gan Mai Da Zao Tang",
+      "english": "Licorice, Wheat, and Jujube Decoction",
+      "herb_ids": [
+        "gan-cao",
+        "fu-xiao-mai",
+        "da-zao"
+      ]
+    },
+    {
+      "id": "gui-zhi-tang",
+      "pinyin": "Gui Zhi Tang",
+      "english": "Cinnamon Twig Decoction",
+      "category": "Release Exterior — Wind Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "gui-zhi",
+        "bai-shao",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "jiu-wei-qiang-huo-tang",
+      "pinyin": "Jiu Wei Qiang Huo Tang",
+      "english": "Nine-Herb Decoction with Notopterygium",
+      "category": "Release Exterior — Wind Cold",
+      "classical_reference": "Ci Shi Nan Zhi",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-qiang-huo",
+        "fang-feng",
+        "cang-zhu",
+        "xi-xin",
+        "chuan-xiong",
+        "unresolved-bai-zhi",
+        "huang-qin",
+        "sheng-di-huang",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Qiang Huo",
+        "Bai Zhi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ma-huang-tang",
+      "pinyin": "Ma Huang Tang",
+      "english": "Ephedra Decoction",
+      "category": "Release Exterior — Wind Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ma-huang",
+        "gui-zhi",
+        "xing-ren",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ma Huang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiang-su-san",
+      "pinyin": "Xiang Su San",
+      "english": "Cyperus and Perilla Leaf Powder",
+      "category": "Release Exterior — Wind Cold",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "xiang-fu",
+        "unresolved-zi-su-ye",
+        "chen-pi",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Zi Su Ye"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiao-qing-long-tang",
+      "pinyin": "Xiao Qing Long Tang",
+      "english": "Minor Bluegreen Dragon Decoction",
+      "category": "Release Exterior — Wind Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ma-huang",
+        "gui-zhi",
+        "bai-shao",
+        "xi-xin",
+        "gan-jiang",
+        "ban-xia",
+        "wu-wei-zi",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ma Huang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "chai-ge-jie-ji-tang",
+      "pinyin": "Chai Ge Jie Ji Tang",
+      "english": "Bupleurum and Kudzu Decoction to Release the Muscle Layer",
+      "category": "Release Exterior — Wind Heat",
+      "classical_reference": "Shang Han Liu Shu",
+      "version": "1.0",
+      "herb_ids": [
+        "chai-hu",
+        "unresolved-ge-gen",
+        "huang-qin",
+        "bai-shao",
+        "jie-geng",
+        "unresolved-bai-zhi",
+        "unresolved-qiang-huo",
+        "unresolved-shi-gao",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ge Gen",
+        "Bai Zhi",
+        "Qiang Huo",
+        "Shi Gao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ma-xing-shi-gan-tang",
+      "pinyin": "Ma Xing Shi Gan Tang",
+      "english": "Ephedra, Apricot Kernel, Gypsum and Licorice Decoction",
+      "category": "Release Exterior — Wind Heat",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ma-huang",
+        "xing-ren",
+        "unresolved-shi-gao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ma Huang",
+        "Shi Gao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "sang-ju-yin",
+      "pinyin": "Sang Ju Yin",
+      "english": "Mulberry Leaf and Chrysanthemum Beverage",
+      "category": "Release Exterior — Wind Heat",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-sang-ye",
+        "unresolved-ju-hua",
+        "xing-ren",
+        "lian-qiao",
+        "bo-he",
+        "jie-geng",
+        "lu-gen",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Sang Ye",
+        "Ju Hua"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ba-zheng-san",
+      "pinyin": "Ba Zheng San",
+      "english": "Eight-Herb Powder for Rectification",
+      "category": "Clear Heat",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "mu-tong",
+        "che-qian-zi",
+        "unresolved-bian-xu",
+        "unresolved-qu-mai",
+        "unresolved-hua-shi",
+        "zhi-zi",
+        "da-huang",
+        "unresolved-deng-xin-cao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Bian Xu",
+        "Qu Mai",
+        "Hua Shi",
+        "Deng Xin Cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "bai-hu-tang",
+      "pinyin": "Bai Hu Tang",
+      "english": "White Tiger Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-shi-gao",
+        "zhi-mu",
+        "gan-cao",
+        "unresolved-jing-mi"
+      ],
+      "unresolved_herbs": [
+        "Shi Gao",
+        "Jing Mi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "dang-gui-liu-huang-tang",
+      "pinyin": "Dang Gui Liu Huang Tang",
+      "english": "Dang Gui and Six Yellow Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Lan Shi Mi Cang",
+      "version": "1.0",
+      "herb_ids": [
+        "dang-gui",
+        "sheng-di-huang",
+        "shu-di-huang",
+        "huang-lian",
+        "huang-bai",
+        "huang-qin",
+        "huang-qi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "dao-chi-san",
+      "pinyin": "Dao Chi San",
+      "english": "Guide Out the Red Powder",
+      "category": "Clear Heat",
+      "classical_reference": "Xiao Er Yao Zheng Zhi Jue",
+      "version": "1.0",
+      "herb_ids": [
+        "sheng-di-huang",
+        "mu-tong",
+        "gan-cao",
+        "zhu-ye"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "pu-ji-xiao-du-yin",
+      "pinyin": "Pu Ji Xiao Du Yin",
+      "english": "Universal Benefit Decoction to Eliminate Toxin",
+      "category": "Clear Heat",
+      "classical_reference": "Dong Yuan Shi Xiao Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "huang-qin",
+        "huang-lian",
+        "niu-bang-zi",
+        "lian-qiao",
+        "bo-he",
+        "unresolved-ban-lan-gen",
+        "unresolved-ma-bo",
+        "xuan-shen",
+        "jie-geng",
+        "chai-hu",
+        "sheng-ma",
+        "chen-pi",
+        "gan-cao",
+        "unresolved-jiang-can"
+      ],
+      "unresolved_herbs": [
+        "Ban Lan Gen",
+        "Ma Bo",
+        "Jiang Can"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qing-gu-san",
+      "pinyin": "Qing Gu San",
+      "english": "Cool the Bones Powder",
+      "category": "Clear Heat",
+      "classical_reference": "Zheng Zhi Zhun Sheng",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-yin-chai-hu",
+        "unresolved-hu-huang-lian",
+        "qin-jiao",
+        "unresolved-bie-jia",
+        "unresolved-di-gu-pi",
+        "unresolved-qing-hao",
+        "zhi-mu",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Yin Chai Hu",
+        "Hu Huang Lian",
+        "Bie Jia",
+        "Di Gu Pi",
+        "Qing Hao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qing-hao-bie-jia-tang",
+      "pinyin": "Qing Hao Bie Jia Tang",
+      "english": "Artemisia Annua and Soft-Shelled Turtle Shell Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-qing-hao",
+        "unresolved-bie-jia",
+        "zhi-mu",
+        "mu-dan-pi",
+        "sheng-di-huang"
+      ],
+      "unresolved_herbs": [
+        "Qing Hao",
+        "Bie Jia"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qing-ying-tang",
+      "pinyin": "Qing Ying Tang",
+      "english": "Clear the Nutritive Level Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-shui-niu-jiao",
+        "sheng-di-huang",
+        "xuan-shen",
+        "zhu-ye",
+        "mai-men-dong",
+        "jin-yin-hua",
+        "lian-qiao",
+        "huang-lian",
+        "dan-shen"
+      ],
+      "unresolved_herbs": [
+        "Shui Niu Jiao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xi-jiao-di-huang-tang",
+      "pinyin": "Xi Jiao Di Huang Tang",
+      "english": "Rhinoceros Horn and Rehmannia Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Bei Ji Qian Jin Yao Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-shui-niu-jiao",
+        "sheng-di-huang",
+        "chi-shao",
+        "mu-dan-pi"
+      ],
+      "unresolved_herbs": [
+        "Shui Niu Jiao (substitutes for Xi Jiao)"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhu-ye-shi-gao-tang",
+      "pinyin": "Zhu Ye Shi Gao Tang",
+      "english": "Lophatherus and Gypsum Decoction",
+      "category": "Clear Heat",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "zhu-ye",
+        "unresolved-shi-gao",
+        "ban-xia",
+        "mai-men-dong",
+        "ren-shen",
+        "gan-cao",
+        "unresolved-jing-mi"
+      ],
+      "unresolved_herbs": [
+        "Shi Gao",
+        "Jing Mi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "da-cheng-qi-tang",
+      "pinyin": "Da Cheng Qi Tang",
+      "english": "Major Order the Qi Decoction",
+      "category": "Drain Downward",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "da-huang",
+        "unresolved-mang-xiao",
+        "hou-po",
+        "zhi-shi"
+      ],
+      "unresolved_herbs": [
+        "Mang Xiao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "da-huang-mu-dan-tang",
+      "pinyin": "Da Huang Mu Dan Tang",
+      "english": "Rhubarb and Moutan Decoction",
+      "category": "Drain Downward",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "da-huang",
+        "mu-dan-pi",
+        "tao-ren",
+        "unresolved-mang-xiao",
+        "unresolved-gua-zi"
+      ],
+      "unresolved_herbs": [
+        "Mang Xiao",
+        "Gua Zi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "run-chang-wan",
+      "pinyin": "Run Chang Wan",
+      "english": "Moisten the Intestines Pill",
+      "category": "Drain Downward",
+      "classical_reference": "Pi Wei Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "huo-ma-ren",
+        "tao-ren",
+        "unresolved-dang-gui-wei",
+        "da-huang",
+        "unresolved-qiang-huo"
+      ],
+      "unresolved_herbs": [
+        "Dang Gui Wei (tail of Dang Gui)",
+        "Qiang Huo"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "tiao-wei-cheng-qi-tang",
+      "pinyin": "Tiao Wei Cheng Qi Tang",
+      "english": "Regulate the Stomach and Order the Qi Decoction",
+      "category": "Drain Downward",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "da-huang",
+        "unresolved-mang-xiao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Mang Xiao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiao-cheng-qi-tang",
+      "pinyin": "Xiao Cheng Qi Tang",
+      "english": "Minor Order the Qi Decoction",
+      "category": "Drain Downward",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "da-huang",
+        "hou-po",
+        "zhi-shi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "chai-hu-shu-gan-san",
+      "pinyin": "Chai Hu Shu Gan San",
+      "english": "Bupleurum Powder to Spread the Liver",
+      "category": "Harmonize",
+      "classical_reference": "Jing Yue Quan Shu",
+      "version": "1.0",
+      "herb_ids": [
+        "chai-hu",
+        "bai-shao",
+        "chuan-xiong",
+        "xiang-fu",
+        "chen-pi",
+        "zhi-ke",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "si-ni-san",
+      "pinyin": "Si Ni San",
+      "english": "Frigid Extremities Powder",
+      "category": "Harmonize",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "chai-hu",
+        "bai-shao",
+        "zhi-shi",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "tong-xie-yao-fang",
+      "pinyin": "Tong Xie Yao Fang",
+      "english": "Important Formula for Painful Diarrhea",
+      "category": "Harmonize",
+      "classical_reference": "Jing Yue Quan Shu",
+      "version": "1.0",
+      "herb_ids": [
+        "bai-zhu",
+        "bai-shao",
+        "chen-pi",
+        "fang-feng"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "dang-gui-si-ni-tang",
+      "pinyin": "Dang Gui Si Ni Tang",
+      "english": "Dang Gui Frigid Extremities Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "dang-gui",
+        "gui-zhi",
+        "bai-shao",
+        "xi-xin",
+        "mu-tong",
+        "da-zao",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ding-xiang-shi-di-tang",
+      "pinyin": "Ding Xiang Shi Di Tang",
+      "english": "Clove and Persimmon Calyx Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Zheng Yin Mai Zhi",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ding-xiang",
+        "unresolved-shi-di",
+        "ren-shen",
+        "sheng-jiang"
+      ],
+      "unresolved_herbs": [
+        "Ding Xiang",
+        "Shi Di"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "li-zhong-wan",
+      "pinyin": "Li Zhong Wan",
+      "english": "Regulate the Middle Pill",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "gan-jiang",
+        "bai-zhu",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "si-ni-tang",
+      "pinyin": "Si Ni Tang",
+      "english": "Frigid Extremities Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "fu-zi",
+        "gan-jiang",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "wu-zhu-yu-tang",
+      "pinyin": "Wu Zhu Yu Tang",
+      "english": "Evodia Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-wu-zhu-yu",
+        "ren-shen",
+        "sheng-jiang",
+        "da-zao"
+      ],
+      "unresolved_herbs": [
+        "Wu Zhu Yu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiao-jian-zhong-tang",
+      "pinyin": "Xiao Jian Zhong Tang",
+      "english": "Minor Construct the Middle Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "gui-zhi",
+        "bai-shao",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao",
+        "unresolved-yi-tang"
+      ],
+      "unresolved_herbs": [
+        "Yi Tang (Malt sugar)"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhen-wu-tang",
+      "pinyin": "Zhen Wu Tang",
+      "english": "True Warrior Decoction",
+      "category": "Warm Interior / Expel Cold",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "fu-zi",
+        "bai-shao",
+        "bai-zhu",
+        "fu-ling",
+        "sheng-jiang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ban-xia-bai-zhu-tian-ma-tang",
+      "pinyin": "Ban Xia Bai Zhu Tian Ma Tang",
+      "english": "Pinellia, White Atractylodes and Gastrodia Decoction",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Yi Xue Xin Wu",
+      "version": "1.0",
+      "herb_ids": [
+        "ban-xia",
+        "bai-zhu",
+        "tian-ma",
+        "fu-ling",
+        "chen-pi",
+        "gan-cao",
+        "sheng-jiang",
+        "da-zao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "bei-mu-gua-lou-san",
+      "pinyin": "Bei Mu Gua Lou San",
+      "english": "Fritillaria and Trichosanthes Powder",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Yi Xue Xin Wu",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-bei-mu",
+        "unresolved-gua-lou-ren",
+        "unresolved-tian-hua-fen",
+        "fu-ling",
+        "unresolved-ju-hong",
+        "jie-geng"
+      ],
+      "unresolved_herbs": [
+        "Bei Mu",
+        "Gua Lou Ren",
+        "Tian Hua Fen",
+        "Ju Hong"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ling-gan-wu-wei-jiang-xin-tang",
+      "pinyin": "Ling Gan Wu Wei Jiang Xin Tang",
+      "english": "Poria, Licorice, Schisandra, Ginger and Asarum Decoction",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "fu-ling",
+        "gan-cao",
+        "wu-wei-zi",
+        "gan-jiang",
+        "xi-xin"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qing-qi-hua-tan-wan",
+      "pinyin": "Qing Qi Hua Tan Wan",
+      "english": "Clear Qi and Transform Phlegm Pill",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Yi Fang Kao",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-gua-lou-ren",
+        "ban-xia",
+        "huang-qin",
+        "xing-ren",
+        "chen-pi",
+        "fu-ling",
+        "zhi-shi",
+        "unresolved-dan-nan-xing"
+      ],
+      "unresolved_herbs": [
+        "Gua Lou Ren",
+        "Dan Nan Xing"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "san-zi-yang-qin-tang",
+      "pinyin": "San Zi Yang Qin Tang",
+      "english": "Three-Seed Decoction to Nourish One's Parents",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Han Shi Yi Tong",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-su-zi",
+        "unresolved-bai-jie-zi",
+        "unresolved-lai-fu-zi"
+      ],
+      "unresolved_herbs": [
+        "Su Zi",
+        "Bai Jie Zi",
+        "Lai Fu Zi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "wen-dan-tang",
+      "pinyin": "Wen Dan Tang",
+      "english": "Warm the Gallbladder Decoction",
+      "category": "Resolve Phlegm",
+      "classical_reference": "San Yin Ji Yi Bing Zheng Fang Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "ban-xia",
+        "chen-pi",
+        "fu-ling",
+        "zhi-ke",
+        "unresolved-zhu-ru",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Zhu Ru"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiao-xian-xiong-tang",
+      "pinyin": "Xiao Xian Xiong Tang",
+      "english": "Minor Decoction for a Sinking Feeling in the Chest",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-gua-lou-shi",
+        "huang-lian",
+        "ban-xia"
+      ],
+      "unresolved_herbs": [
+        "Gua Lou Shi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhi-sou-san",
+      "pinyin": "Zhi Sou San",
+      "english": "Stop Coughing Powder",
+      "category": "Resolve Phlegm",
+      "classical_reference": "Yi Xue Xin Wu",
+      "version": "1.0",
+      "herb_ids": [
+        "jie-geng",
+        "unresolved-zi-wan",
+        "unresolved-bai-bu",
+        "unresolved-bai-qian",
+        "chen-pi",
+        "jing-jie",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Zi Wan",
+        "Bai Bu",
+        "Bai Qian"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "an-shen-ding-zhi-wan",
+      "pinyin": "An Shen Ding Zhi Wan",
+      "english": "Calm the Shen and Settle the Will Pill",
+      "category": "Calm Shen",
+      "classical_reference": "Yi Xue Xin Wu",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "fu-ling",
+        "fu-shen",
+        "yuan-zhi",
+        "unresolved-long-chi",
+        "unresolved-shi-chang-pu"
+      ],
+      "unresolved_herbs": [
+        "Long Chi",
+        "Shi Chang Pu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "bai-zi-yang-xin-wan",
+      "pinyin": "Bai Zi Yang Xin Wan",
+      "english": "Biota Seed Pill to Nourish the Heart",
+      "category": "Calm Shen",
+      "classical_reference": "Ti Ren Hui Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "bai-zi-ren",
+        "gou-qi-zi",
+        "mai-men-dong",
+        "dang-gui",
+        "fu-shen",
+        "xuan-shen",
+        "shu-di-huang",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "tian-wang-bu-xin-dan",
+      "pinyin": "Tian Wang Bu Xin Dan",
+      "english": "Emperor of Heaven's Special Pill to Tonify the Heart",
+      "category": "Calm Shen",
+      "classical_reference": "She Sheng Mi Pou",
+      "version": "1.0",
+      "herb_ids": [
+        "sheng-di-huang",
+        "ren-shen",
+        "xuan-shen",
+        "tian-men-dong",
+        "mai-men-dong",
+        "bai-zi-ren",
+        "suan-zao-ren",
+        "dang-gui",
+        "wu-wei-zi",
+        "fu-ling",
+        "yuan-zhi",
+        "jie-geng",
+        "dan-shen"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhu-sha-an-shen-wan",
+      "pinyin": "Zhu Sha An Shen Wan",
+      "english": "Cinnabar Pill to Calm the Spirit",
+      "category": "Calm Shen",
+      "classical_reference": "Yi Xue Fa Ming",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-zhu-sha",
+        "huang-lian",
+        "sheng-di-huang",
+        "dang-gui",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Zhu Sha"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ban-xia-hou-po-tang",
+      "pinyin": "Ban Xia Hou Po Tang",
+      "english": "Pinellia and Magnolia Bark Decoction",
+      "category": "Regulate Qi",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "ban-xia",
+        "hou-po",
+        "fu-ling",
+        "sheng-jiang",
+        "unresolved-zi-su-ye"
+      ],
+      "unresolved_herbs": [
+        "Zi Su Ye"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ding-chuan-tang",
+      "pinyin": "Ding Chuan Tang",
+      "english": "Arrest Wheezing Decoction",
+      "category": "Regulate Qi",
+      "classical_reference": "She Sheng Zhong Miao Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ma-huang",
+        "xing-ren",
+        "unresolved-su-zi",
+        "ban-xia",
+        "huang-qin",
+        "unresolved-kuan-dong-hua",
+        "unresolved-sang-bai-pi",
+        "unresolved-bai-guo",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ma Huang",
+        "Su Zi",
+        "Kuan Dong Hua",
+        "Sang Bai Pi",
+        "Bai Guo"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "su-zi-jiang-qi-tang",
+      "pinyin": "Su Zi Jiang Qi Tang",
+      "english": "Perilla Fruit Decoction for Directing Qi Downward",
+      "category": "Regulate Qi",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-su-zi",
+        "ban-xia",
+        "hou-po",
+        "chen-pi",
+        "unresolved-qian-hu",
+        "dang-gui",
+        "unresolved-rou-gui",
+        "gan-cao",
+        "sheng-jiang",
+        "da-zao"
+      ],
+      "unresolved_herbs": [
+        "Su Zi",
+        "Qian Hu",
+        "Rou Gui"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "yue-ju-wan",
+      "pinyin": "Yue Ju Wan",
+      "english": "Escape Restraint Pill",
+      "category": "Regulate Qi",
+      "classical_reference": "Dan Xi Xin Fa",
+      "version": "1.0",
+      "herb_ids": [
+        "cang-zhu",
+        "xiang-fu",
+        "chuan-xiong",
+        "zhi-zi",
+        "unresolved-shen-qu"
+      ],
+      "unresolved_herbs": [
+        "Shen Qu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "dan-shen-yin",
+      "pinyin": "Dan Shen Yin",
+      "english": "Salvia Beverage",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Shi Fang Ge Kuo",
+      "version": "1.0",
+      "herb_ids": [
+        "dan-shen",
+        "unresolved-tan-xiang",
+        "sha-ren"
+      ],
+      "unresolved_herbs": [
+        "Tan Xiang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "gui-zhi-fu-ling-wan",
+      "pinyin": "Gui Zhi Fu Ling Wan",
+      "english": "Cinnamon Twig and Poria Pill",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "gui-zhi",
+        "fu-ling",
+        "mu-dan-pi",
+        "chi-shao",
+        "tao-ren"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "huo-luo-xiao-ling-dan",
+      "pinyin": "Huo Luo Xiao Ling Dan",
+      "english": "Fantastically Effective Pill to Invigorate the Collaterals",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Yi Xue Zhong Zhong Can Xi Lu",
+      "version": "1.0",
+      "herb_ids": [
+        "dan-shen",
+        "unresolved-ru-xiang",
+        "unresolved-mo-yao",
+        "dang-gui"
+      ],
+      "unresolved_herbs": [
+        "Ru Xiang",
+        "Mo Yao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "shao-fu-zhu-yu-tang",
+      "pinyin": "Shao Fu Zhu Yu Tang",
+      "english": "Drive Out Blood Stasis in the Lower Abdomen Decoction",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Yi Lin Gai Cuo",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-xiao-hui-xiang",
+        "gan-jiang",
+        "yan-hu-suo",
+        "dang-gui",
+        "chuan-xiong",
+        "unresolved-rou-gui",
+        "chi-shao",
+        "wu-ling-zhi",
+        "unresolved-pu-huang",
+        "unresolved-mo-yao"
+      ],
+      "unresolved_herbs": [
+        "Xiao Hui Xiang",
+        "Rou Gui",
+        "Pu Huang",
+        "Mo Yao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "sheng-hua-tang",
+      "pinyin": "Sheng Hua Tang",
+      "english": "Generating and Transforming Decoction",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Fu Qing Zhu Nu Ke",
+      "version": "1.0",
+      "herb_ids": [
+        "dang-gui",
+        "chuan-xiong",
+        "tao-ren",
+        "gan-jiang",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "tao-hong-si-wu-tang",
+      "pinyin": "Tao Hong Si Wu Tang",
+      "english": "Four-Substance Decoction with Safflower and Peach Pit",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Yi Zong Jin Jian",
+      "version": "1.0",
+      "herb_ids": [
+        "tao-ren",
+        "hong-hua",
+        "dang-gui",
+        "chuan-xiong",
+        "bai-shao",
+        "shu-di-huang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "wen-jing-tang",
+      "pinyin": "Wen Jing Tang",
+      "english": "Warm the Menses Decoction",
+      "category": "Regulate Blood / Invigorate Blood",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-wu-zhu-yu",
+        "gui-zhi",
+        "dang-gui",
+        "chuan-xiong",
+        "bai-shao",
+        "unresolved-e-jiao",
+        "mai-men-dong",
+        "mu-dan-pi",
+        "ban-xia",
+        "ren-shen",
+        "gan-cao",
+        "sheng-jiang"
+      ],
+      "unresolved_herbs": [
+        "Wu Zhu Yu",
+        "E Jiao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "liu-jun-zi-tang",
+      "pinyin": "Liu Jun Zi Tang",
+      "english": "Six-Gentleman Decoction",
+      "category": "Tonify Qi",
+      "classical_reference": "Yi Xue Zheng Zhuan",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "chen-pi",
+        "ban-xia"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "shen-ling-bai-zhu-san",
+      "pinyin": "Shen Ling Bai Zhu San",
+      "english": "Ginseng, Poria and White Atractylodes Powder",
+      "category": "Tonify Qi",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "shan-yao",
+        "unresolved-lian-zi",
+        "unresolved-bai-bian-dou",
+        "unresolved-yi-yi-ren",
+        "sha-ren",
+        "jie-geng",
+        "da-zao"
+      ],
+      "unresolved_herbs": [
+        "Lian Zi",
+        "Bai Bian Dou",
+        "Yi Yi Ren"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "yu-ping-feng-san",
+      "pinyin": "Yu Ping Feng San",
+      "english": "Jade Windscreen Powder",
+      "category": "Tonify Qi",
+      "classical_reference": "Dan Xi Xin Fa",
+      "version": "1.0",
+      "herb_ids": [
+        "huang-qi",
+        "bai-zhu",
+        "fang-feng"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhi-gan-cao-tang",
+      "pinyin": "Zhi Gan Cao Tang",
+      "english": "Honey-Fried Licorice Decoction",
+      "category": "Tonify Qi",
+      "classical_reference": "Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "gan-cao",
+        "ren-shen",
+        "sheng-di-huang",
+        "mai-men-dong",
+        "unresolved-e-jiao",
+        "gui-zhi",
+        "huo-ma-ren",
+        "sheng-jiang",
+        "da-zao"
+      ],
+      "unresolved_herbs": [
+        "E Jiao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "bai-he-gu-jin-tang",
+      "pinyin": "Bai He Gu Jin Tang",
+      "english": "Lily Bulb Decoction to Preserve the Metal",
+      "category": "Tonify Blood",
+      "classical_reference": "Yi Fang Ji Jie",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-bai-he",
+        "sheng-di-huang",
+        "shu-di-huang",
+        "mai-men-dong",
+        "xuan-shen",
+        "dang-gui",
+        "bai-shao",
+        "unresolved-bei-mu",
+        "jie-geng",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Bai He",
+        "Bei Mu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "dang-gui-bu-xue-tang",
+      "pinyin": "Dang Gui Bu Xue Tang",
+      "english": "Dang Gui Decoction to Tonify the Blood",
+      "category": "Tonify Blood",
+      "classical_reference": "Nei Wai Shang Bian Huo Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "huang-qi",
+        "dang-gui"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "shi-quan-da-bu-tang",
+      "pinyin": "Shi Quan Da Bu Tang",
+      "english": "All-Inclusive Great Tonifying Decoction",
+      "category": "Tonify Blood",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "fu-ling",
+        "gan-cao",
+        "dang-gui",
+        "chuan-xiong",
+        "bai-shao",
+        "shu-di-huang",
+        "huang-qi",
+        "unresolved-rou-gui"
+      ],
+      "unresolved_herbs": [
+        "Rou Gui"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "da-bu-yin-wan",
+      "pinyin": "Da Bu Yin Wan",
+      "english": "Great Tonify the Yin Pill",
+      "category": "Tonify Yin",
+      "classical_reference": "Dan Xi Xin Fa",
+      "version": "1.0",
+      "herb_ids": [
+        "shu-di-huang",
+        "gui-ban-jiao",
+        "huang-bai",
+        "zhi-mu",
+        "unresolved-zhu-ji-sui"
+      ],
+      "unresolved_herbs": [
+        "Zhu Ji Sui (pork spinal cord)"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "mai-men-dong-tang",
+      "pinyin": "Mai Men Dong Tang",
+      "english": "Ophiopogon Decoction",
+      "category": "Tonify Yin",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "mai-men-dong",
+        "ban-xia",
+        "ren-shen",
+        "da-zao",
+        "gan-cao",
+        "unresolved-jing-mi"
+      ],
+      "unresolved_herbs": [
+        "Jing Mi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "sha-shen-mai-dong-tang",
+      "pinyin": "Sha Shen Mai Dong Tang",
+      "english": "Glehnia and Ophiopogon Decoction",
+      "category": "Tonify Yin",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-bei-sha-shen",
+        "unresolved-yu-zhu",
+        "mai-men-dong",
+        "unresolved-sang-ye",
+        "unresolved-tian-hua-fen",
+        "unresolved-bai-bian-dou",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Bei Sha Shen",
+        "Yu Zhu",
+        "Sang Ye",
+        "Tian Hua Fen",
+        "Bai Bian Dou"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "yang-yin-qing-fei-tang",
+      "pinyin": "Yang Yin Qing Fei Tang",
+      "english": "Nourish Yin and Clear the Lungs Decoction",
+      "category": "Tonify Yin",
+      "classical_reference": "Zhong Lou Yu Yue",
+      "version": "1.0",
+      "herb_ids": [
+        "sheng-di-huang",
+        "mai-men-dong",
+        "bai-shao",
+        "xuan-shen",
+        "mu-dan-pi",
+        "unresolved-bei-mu",
+        "bo-he",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Bei Mu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "yi-guan-jian",
+      "pinyin": "Yi Guan Jian",
+      "english": "Linking Decoction",
+      "category": "Tonify Yin",
+      "classical_reference": "Xu Ming Yi Lei An",
+      "version": "1.0",
+      "herb_ids": [
+        "sheng-di-huang",
+        "gou-qi-zi",
+        "dang-gui",
+        "mai-men-dong",
+        "unresolved-chuan-lian-zi",
+        "unresolved-bei-sha-shen"
+      ],
+      "unresolved_herbs": [
+        "Chuan Lian Zi",
+        "Bei Sha Shen"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zeng-ye-tang",
+      "pinyin": "Zeng Ye Tang",
+      "english": "Increase the Fluids Decoction",
+      "category": "Tonify Yin",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "xuan-shen",
+        "mai-men-dong",
+        "sheng-di-huang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zuo-gui-yin",
+      "pinyin": "Zuo Gui Yin",
+      "english": "Restore the Left Kidney Beverage",
+      "category": "Tonify Yin",
+      "classical_reference": "Jing Yue Quan Shu",
+      "version": "1.0",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-yao",
+        "shan-zhu-yu",
+        "gou-qi-zi",
+        "fu-ling",
+        "gan-cao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "er-xian-tang",
+      "pinyin": "Er Xian Tang",
+      "english": "Two-Immortal Decoction",
+      "category": "Tonify Yang",
+      "classical_reference": "Zhong Yi Fang Ji Lin Chuang Shou Ce",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-xian-mao",
+        "unresolved-yin-yang-huo",
+        "unresolved-ba-ji-tian",
+        "huang-bai",
+        "zhi-mu",
+        "dang-gui"
+      ],
+      "unresolved_herbs": [
+        "Xian Mao",
+        "Yin Yang Huo",
+        "Ba Ji Tian"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "you-gui-yin",
+      "pinyin": "You Gui Yin",
+      "english": "Restore the Right Kidney Beverage",
+      "category": "Tonify Yang",
+      "classical_reference": "Jing Yue Quan Shu",
+      "version": "1.0",
+      "herb_ids": [
+        "shu-di-huang",
+        "shan-yao",
+        "shan-zhu-yu",
+        "gou-qi-zi",
+        "du-zhong",
+        "fu-zi",
+        "unresolved-rou-gui",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Rou Gui"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "gui-zhi-jia-long-gu-mu-li-tang",
+      "pinyin": "Gui Zhi Jia Long Gu Mu Li Tang",
+      "english": "Cinnamon Twig Decoction plus Dragon Bone and Oyster Shell",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Jin Gui Yao Lue",
+      "version": "1.0",
+      "herb_ids": [
+        "gui-zhi",
+        "bai-shao",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao",
+        "unresolved-long-gu",
+        "unresolved-mu-li"
+      ],
+      "unresolved_herbs": [
+        "Long Gu",
+        "Mu Li"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "jin-suo-gu-jing-wan",
+      "pinyin": "Jin Suo Gu Jing Wan",
+      "english": "Metal Lock Pill to Stabilize the Essence",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Yi Fang Ji Jie",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-sha-yuan-zi",
+        "unresolved-qian-shi",
+        "unresolved-lian-xu",
+        "unresolved-lian-zi",
+        "unresolved-mu-li",
+        "unresolved-long-gu"
+      ],
+      "unresolved_herbs": [
+        "Sha Yuan Zi",
+        "Qian Shi",
+        "Lian Xu",
+        "Lian Zi",
+        "Mu Li",
+        "Long Gu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "sang-piao-xiao-san",
+      "pinyin": "Sang Piao Xiao San",
+      "english": "Mantis Egg-Case Powder",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Ben Cao Yan Yi",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-sang-piao-xiao",
+        "unresolved-long-gu",
+        "gui-ban-jiao",
+        "ren-shen",
+        "fu-shen",
+        "yuan-zhi",
+        "unresolved-shi-chang-pu",
+        "dang-gui"
+      ],
+      "unresolved_herbs": [
+        "Sang Piao Xiao",
+        "Long Gu",
+        "Shi Chang Pu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "si-shen-wan",
+      "pinyin": "Si Shen Wan",
+      "english": "Four-Miracle Pill",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Zheng Zhi Zhun Sheng",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-bu-gu-zhi",
+        "unresolved-wu-zhu-yu",
+        "unresolved-rou-dou-kou",
+        "wu-wei-zi",
+        "sheng-jiang",
+        "da-zao"
+      ],
+      "unresolved_herbs": [
+        "Bu Gu Zhi",
+        "Wu Zhu Yu",
+        "Rou Dou Kou"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "suo-quan-wan",
+      "pinyin": "Suo Quan Wan",
+      "english": "Shut the Sluice Pill",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Fu Ren Liang Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "wu-yao",
+        "unresolved-yi-zhi-ren",
+        "shan-yao"
+      ],
+      "unresolved_herbs": [
+        "Yi Zhi Ren"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhen-ren-yang-zang-tang",
+      "pinyin": "Zhen Ren Yang Zang Tang",
+      "english": "True Man's Decoction to Nourish the Organs",
+      "category": "Stabilize and Bind",
+      "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "ren-shen",
+        "bai-zhu",
+        "gan-cao",
+        "unresolved-rou-dou-kou",
+        "unresolved-rou-gui",
+        "mu-xiang",
+        "unresolved-ying-su-ke",
+        "bai-shao",
+        "dang-gui",
+        "unresolved-he-zi"
+      ],
+      "unresolved_herbs": [
+        "Rou Dou Kou",
+        "Rou Gui",
+        "Ying Su Ke",
+        "He Zi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "bao-he-wan",
+      "pinyin": "Bao He Wan",
+      "english": "Preserve Harmony Pill",
+      "category": "Reduce Food Stagnation",
+      "classical_reference": "Dan Xi Xin Fa",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-shan-zha",
+        "unresolved-shen-qu",
+        "unresolved-lai-fu-zi",
+        "ban-xia",
+        "chen-pi",
+        "fu-ling",
+        "lian-qiao"
+      ],
+      "unresolved_herbs": [
+        "Shan Zha",
+        "Shen Qu",
+        "Lai Fu Zi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "jian-pi-wan",
+      "pinyin": "Jian Pi Wan",
+      "english": "Strengthen the Spleen Pill",
+      "category": "Reduce Food Stagnation",
+      "classical_reference": "Zheng Ti Lei Yao",
+      "version": "1.0",
+      "herb_ids": [
+        "bai-zhu",
+        "mu-xiang",
+        "huang-lian",
+        "fu-ling",
+        "unresolved-shen-qu",
+        "sha-ren",
+        "unresolved-mai-ya",
+        "unresolved-shan-zha",
+        "shan-yao",
+        "unresolved-rou-dou-kou",
+        "ren-shen",
+        "chen-pi",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Shen Qu",
+        "Mai Ya",
+        "Shan Zha",
+        "Rou Dou Kou"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "di-huang-yin-zi",
+      "pinyin": "Di Huang Yin Zi",
+      "english": "Rehmannia Beverage",
+      "category": "Expel Wind",
+      "classical_reference": "Xuan Ming Lun Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "shu-di-huang",
+        "unresolved-ba-ji-tian",
+        "shan-zhu-yu",
+        "unresolved-rou-cong-rong",
+        "unresolved-shi-hu",
+        "mai-men-dong",
+        "wu-wei-zi",
+        "fu-ling",
+        "unresolved-shi-chang-pu",
+        "yuan-zhi",
+        "fu-zi",
+        "unresolved-rou-gui",
+        "sheng-jiang",
+        "da-zao",
+        "bo-he"
+      ],
+      "unresolved_herbs": [
+        "Ba Ji Tian",
+        "Rou Cong Rong",
+        "Shi Hu",
+        "Shi Chang Pu",
+        "Rou Gui"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "juan-bi-tang",
+      "pinyin": "Juan Bi Tang",
+      "english": "Remove Painful Obstruction Decoction",
+      "category": "Expel Wind",
+      "classical_reference": "Yang Shi Jia Cang Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-qiang-huo",
+        "du-huo",
+        "fang-feng",
+        "qin-jiao",
+        "sang-ji-sheng",
+        "gui-zhi",
+        "dang-gui",
+        "chuan-xiong",
+        "unresolved-jiang-huang",
+        "unresolved-ru-xiang",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Qiang Huo",
+        "Jiang Huang",
+        "Ru Xiang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "ling-jiao-gou-teng-tang",
+      "pinyin": "Ling Jiao Gou Teng Tang",
+      "english": "Antelope Horn and Uncaria Decoction",
+      "category": "Expel Wind",
+      "classical_reference": "Tong Su Shang Han Lun",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-ling-yang-jiao",
+        "gou-teng",
+        "unresolved-sang-ye",
+        "unresolved-chuan-bei-mu",
+        "sheng-di-huang",
+        "bai-shao",
+        "fu-shen",
+        "unresolved-ju-hua",
+        "unresolved-zhu-ru",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Ling Yang Jiao",
+        "Sang Ye",
+        "Chuan Bei Mu",
+        "Ju Hua",
+        "Zhu Ru"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qiang-huo-sheng-shi-tang",
+      "pinyin": "Qiang Huo Sheng Shi Tang",
+      "english": "Notopterygium Decoction to Overcome Dampness",
+      "category": "Expel Wind",
+      "classical_reference": "Yuan Ji Qi Wei",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-qiang-huo",
+        "du-huo",
+        "unresolved-gao-ben",
+        "fang-feng",
+        "chuan-xiong",
+        "unresolved-man-jing-zi",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Qiang Huo",
+        "Gao Ben",
+        "Man Jing Zi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xiao-feng-san",
+      "pinyin": "Xiao Feng San",
+      "english": "Eliminate Wind Powder",
+      "category": "Expel Wind",
+      "classical_reference": "Wai Ke Zheng Zong",
+      "version": "1.0",
+      "herb_ids": [
+        "jing-jie",
+        "fang-feng",
+        "unresolved-chan-tui",
+        "niu-bang-zi",
+        "cang-zhu",
+        "unresolved-ku-shen",
+        "unresolved-shi-gao",
+        "zhi-mu",
+        "mu-tong",
+        "dang-gui",
+        "sheng-di-huang",
+        "huo-ma-ren",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Chan Tui",
+        "Ku Shen",
+        "Shi Gao"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "zhen-gan-xi-feng-tang",
+      "pinyin": "Zhen Gan Xi Feng Tang",
+      "english": "Sedate the Liver and Extinguish Wind Decoction",
+      "category": "Expel Wind",
+      "classical_reference": "Yi Xue Zhong Zhong Can Xi Lu",
+      "version": "1.0",
+      "herb_ids": [
+        "niu-xi",
+        "unresolved-dai-zhe-shi",
+        "unresolved-long-gu",
+        "unresolved-mu-li",
+        "gui-ban-jiao",
+        "bai-shao",
+        "xuan-shen",
+        "tian-men-dong",
+        "unresolved-yin-chen-hao",
+        "unresolved-chuan-lian-zi",
+        "unresolved-mai-ya",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Dai Zhe Shi",
+        "Long Gu",
+        "Mu Li",
+        "Yin Chen Hao",
+        "Chuan Lian Zi",
+        "Mai Ya"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "qing-zao-jiu-fei-tang",
+      "pinyin": "Qing Zao Jiu Fei Tang",
+      "english": "Eliminate Dryness and Rescue the Lungs Decoction",
+      "category": "Treat Dryness",
+      "classical_reference": "Yi Men Fa Lv",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-sang-ye",
+        "unresolved-shi-gao",
+        "mai-men-dong",
+        "unresolved-e-jiao",
+        "unresolved-pi-pa-ye",
+        "xing-ren",
+        "unresolved-hei-zhi-ma",
+        "ren-shen",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Sang Ye",
+        "Shi Gao",
+        "E Jiao",
+        "Pi Pa Ye",
+        "Hei Zhi Ma"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "xing-su-san",
+      "pinyin": "Xing Su San",
+      "english": "Apricot Kernel and Perilla Leaf Powder",
+      "category": "Treat Dryness",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "xing-ren",
+        "unresolved-zi-su-ye",
+        "jie-geng",
+        "chen-pi",
+        "fu-ling",
+        "ban-xia",
+        "unresolved-qian-hu",
+        "zhi-ke",
+        "sheng-jiang",
+        "da-zao",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Zi Su Ye",
+        "Qian Hu"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "an-gong-niu-huang-wan",
+      "pinyin": "An Gong Niu Huang Wan",
+      "english": "Calm the Palace Pill with Cattle Gallstone",
+      "category": "Open Orifices",
+      "classical_reference": "Wen Bing Tiao Bian",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-niu-huang",
+        "unresolved-she-xiang",
+        "unresolved-xi-jiao",
+        "huang-lian",
+        "huang-qin",
+        "zhi-zi",
+        "unresolved-bing-pian",
+        "unresolved-zhen-zhu",
+        "unresolved-yu-jin",
+        "unresolved-xiong-huang"
+      ],
+      "unresolved_herbs": [
+        "Niu Huang",
+        "She Xiang",
+        "Xi Jiao",
+        "Bing Pian",
+        "Zhen Zhu",
+        "Yu Jin",
+        "Xiong Huang"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "chang-pu-yu-jin-tang",
+      "pinyin": "Chang Pu Yu Jin Tang",
+      "english": "Acorus and Curcuma Decoction",
+      "category": "Open Orifices",
+      "classical_reference": "Wen Re Jing Wei",
+      "version": "1.0",
+      "herb_ids": [
+        "unresolved-shi-chang-pu",
+        "unresolved-yu-jin",
+        "zhi-zi",
+        "lian-qiao",
+        "unresolved-ju-hua",
+        "dan-dou-chi",
+        "unresolved-zhu-li",
+        "unresolved-jiang-zhi"
+      ],
+      "unresolved_herbs": [
+        "Shi Chang Pu",
+        "Yu Jin",
+        "Ju Hua",
+        "Zhu Li",
+        "Jiang Zhi"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    },
+    {
+      "id": "di-tan-tang",
+      "pinyin": "Di Tan Tang",
+      "english": "Scour Phlegm Decoction",
+      "category": "Open Orifices",
+      "classical_reference": "Ji Sheng Fang",
+      "version": "1.0",
+      "herb_ids": [
+        "ban-xia",
+        "chen-pi",
+        "fu-ling",
+        "zhi-shi",
+        "unresolved-dan-nan-xing",
+        "ren-shen",
+        "unresolved-shi-chang-pu",
+        "unresolved-zhu-ru",
+        "sheng-jiang",
+        "gan-cao"
+      ],
+      "unresolved_herbs": [
+        "Dan Nan Xing",
+        "Shi Chang Pu",
+        "Zhu Ru"
+      ],
+      "trustTier": "gold",
+      "source": "nccaom"
+    }
+  ]
+}

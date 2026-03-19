@@ -12,7 +12,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
-import type { HerbInput, FormulaInput, TCMSearchResultItem, TrustTier } from "@/lib/types/clinical";
+import type { HerbInput, FormulaInput, TCMSearchResultItem, TrustTier, TCMSearchResponse } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -135,6 +135,7 @@ function FormulaSuggestionRow({
 
 export default function HerbSearch({ onSelect, onClear, disabled = false }: Props) {
   const [query, setQuery] = useState("");
+  const [libraryMeta, setLibraryMeta] = useState<TCMSearchResponse["meta"] | null>(null);
   const [searchState, setSearchState] = useState<{
     suggestions: TCMSearchResultItem[];
     searchedFallback: boolean;
@@ -176,10 +177,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       })
         .then((res) => {
           if (!res.ok) throw new Error("Search error");
-          return res.json() as Promise<{
-            results: TCMSearchResultItem[];
-            searchedFallback: boolean;
-          }>;
+          return res.json() as Promise<TCMSearchResponse>;
         })
         .then((data) => {
           setSearchState({
@@ -188,6 +186,9 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
             fetchError: false,
             forQuery: query,
           });
+          if (data.meta && !libraryMeta) {
+            setLibraryMeta(data.meta);
+          }
         })
         .catch((err: Error) => {
           if (err.name !== "AbortError") {
@@ -204,7 +205,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [query, selected]);
+  }, [query, selected, libraryMeta]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -436,6 +437,13 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       {!selected && !exactMatchError && (
         <p className="mt-1.5 text-xs text-slate-400">
           Select from suggestions to confirm. Formulas will expand all constituent herbs.
+        </p>
+      )}
+
+      {/* Library stats */}
+      {libraryMeta && libraryMeta.herbCount > 0 && libraryMeta.formulaCount > 0 && (
+        <p className="mt-1 text-xs text-slate-400" aria-live="polite">
+          Searching {libraryMeta.herbCount} herbs · {libraryMeta.goldFormulaCount} Gold formulas
         </p>
       )}
     </div>

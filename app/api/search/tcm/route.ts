@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Fuse from "fuse.js";
 import herbLibrary from "@/data/herbLibrary.json";
 import formulaMap from "@/data/formulaMap.json";
+import formulaMapExpanded from "@/data/formulaMapExpanded.json";
 import herbLibraryEnriched from "@/data/herbLibraryEnriched.json";
 import formulaMapEnriched from "@/data/formulaMapEnriched.json";
 import type { TCMSearchResultItem, TCMSearchResponse } from "@/lib/types/clinical";
@@ -62,7 +63,15 @@ const enrichedFormulas: EnrichedFormulaEntry[] =
 // ---------------------------------------------------------------------------
 
 type GoldHerbEntry = (typeof herbLibrary.herbs)[number];
-type GoldFormulaEntry = (typeof formulaMap.formulas)[number];
+type GoldFormulaEntry = { id: string; pinyin: string; english: string; herb_ids: string[] };
+
+// Load formula dataset — prefer expanded set if generated, else use base 30
+const expandedFormulas = (formulaMapExpanded as { formulas: GoldFormulaEntry[] }).formulas;
+const allFormulas: GoldFormulaEntry[] =
+  expandedFormulas.length > 0
+    ? expandedFormulas
+    : (formulaMap as { formulas: GoldFormulaEntry[] }).formulas;
+const formulaSource: "base" | "expanded" = expandedFormulas.length > 0 ? "expanded" : "base";
 
 const goldHerbFuse = new Fuse(herbLibrary.herbs as GoldHerbEntry[], {
   threshold: SEARCH_THRESHOLD,
@@ -77,7 +86,7 @@ const goldHerbFuse = new Fuse(herbLibrary.herbs as GoldHerbEntry[], {
   ],
 });
 
-const goldFormulaFuse = new Fuse(formulaMap.formulas as GoldFormulaEntry[], {
+const goldFormulaFuse = new Fuse(allFormulas, {
   threshold: SEARCH_THRESHOLD,
   minMatchCharLength: 2,
   includeScore: true,
@@ -238,6 +247,23 @@ function clinicalSafetyFilter(query: string, item: TCMSearchResultItem): boolean
 }
 
 // ---------------------------------------------------------------------------
+// Meta helper — shared by both response paths
+// ---------------------------------------------------------------------------
+
+function buildMeta(): TCMSearchResponse["meta"] {
+  const silverCount = allFormulas.filter(
+    (f) => (f as { trustTier?: string }).trustTier === "silver"
+  ).length;
+  return {
+    herbCount: herbLibrary.herbs.length,
+    formulaCount: allFormulas.length,
+    goldFormulaCount: allFormulas.length - silverCount,
+    silverFormulaCount: silverCount,
+    dataSource: formulaSource,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // GET /api/search/tcm?q={query}&type=herb|formula|all
 // ---------------------------------------------------------------------------
 
@@ -285,6 +311,7 @@ export async function GET(request: NextRequest) {
       searchedFallback: false,
       query: q,
       total: results.length,
+      meta: buildMeta(),
       disclaimer: DISCLAIMER,
     };
     return NextResponse.json(response);
@@ -316,6 +343,7 @@ export async function GET(request: NextRequest) {
     searchedFallback: silverResults.length > 0,
     query: q,
     total: silverResults.length,
+    meta: buildMeta(),
     disclaimer: DISCLAIMER,
   };
 

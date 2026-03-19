@@ -1,0 +1,918 @@
+{
+  "run_at": "2026-03-19T00:33:25.331Z",
+  "dry_run": false,
+  "input_file": "./data/nccaomFormulas.json",
+  "summary": {
+    "total_input": 120,
+    "validated_and_merged": 91,
+    "skipped_existing": 29,
+    "rejected": 0,
+    "missing_herb_warnings": 174,
+    "output_total": 121
+  },
+  "errors": [],
+  "missing_herb_warnings": [
+    {
+      "formula_pinyin": "Ma Huang Tang",
+      "herb_id": "unresolved-ma-huang",
+      "message": "Formula [Ma Huang Tang] requires [Ma Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Qing Long Tang",
+      "herb_id": "unresolved-ma-huang",
+      "message": "Formula [Xiao Qing Long Tang] requires [Ma Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jiu Wei Qiang Huo Tang",
+      "herb_id": "unresolved-qiang-huo",
+      "message": "Formula [Jiu Wei Qiang Huo Tang] requires [Qiang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jiu Wei Qiang Huo Tang",
+      "herb_id": "unresolved-bai-zhi",
+      "message": "Formula [Jiu Wei Qiang Huo Tang] requires [Bai Zhi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiang Su San",
+      "herb_id": "unresolved-zi-su-ye",
+      "message": "Formula [Xiang Su San] requires [Zi Su Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sang Ju Yin",
+      "herb_id": "unresolved-sang-ye",
+      "message": "Formula [Sang Ju Yin] requires [Sang Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sang Ju Yin",
+      "herb_id": "unresolved-ju-hua",
+      "message": "Formula [Sang Ju Yin] requires [Ju Hua] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ma Xing Shi Gan Tang",
+      "herb_id": "unresolved-ma-huang",
+      "message": "Formula [Ma Xing Shi Gan Tang] requires [Ma Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ma Xing Shi Gan Tang",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Ma Xing Shi Gan Tang] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chai Ge Jie Ji Tang",
+      "herb_id": "unresolved-ge-gen",
+      "message": "Formula [Chai Ge Jie Ji Tang] requires [Ge Gen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chai Ge Jie Ji Tang",
+      "herb_id": "unresolved-bai-zhi",
+      "message": "Formula [Chai Ge Jie Ji Tang] requires [Bai Zhi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chai Ge Jie Ji Tang",
+      "herb_id": "unresolved-qiang-huo",
+      "message": "Formula [Chai Ge Jie Ji Tang] requires [Qiang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chai Ge Jie Ji Tang",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Chai Ge Jie Ji Tang] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bai Hu Tang",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Bai Hu Tang] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bai Hu Tang",
+      "herb_id": "unresolved-jing-mi",
+      "message": "Formula [Bai Hu Tang] requires [Jing Mi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhu Ye Shi Gao Tang",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Zhu Ye Shi Gao Tang] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhu Ye Shi Gao Tang",
+      "herb_id": "unresolved-jing-mi",
+      "message": "Formula [Zhu Ye Shi Gao Tang] requires [Jing Mi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Ying Tang",
+      "herb_id": "unresolved-shui-niu-jiao",
+      "message": "Formula [Qing Ying Tang] requires [Shui Niu Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xi Jiao Di Huang Tang",
+      "herb_id": "unresolved-shui-niu-jiao",
+      "message": "Formula [Xi Jiao Di Huang Tang] requires [Shui Niu Jiao (substitutes for Xi Jiao)] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Hao Bie Jia Tang",
+      "herb_id": "unresolved-qing-hao",
+      "message": "Formula [Qing Hao Bie Jia Tang] requires [Qing Hao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Hao Bie Jia Tang",
+      "herb_id": "unresolved-bie-jia",
+      "message": "Formula [Qing Hao Bie Jia Tang] requires [Bie Jia] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Gu San",
+      "herb_id": "unresolved-yin-chai-hu",
+      "message": "Formula [Qing Gu San] requires [Yin Chai Hu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Gu San",
+      "herb_id": "unresolved-hu-huang-lian",
+      "message": "Formula [Qing Gu San] requires [Hu Huang Lian] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Gu San",
+      "herb_id": "unresolved-bie-jia",
+      "message": "Formula [Qing Gu San] requires [Bie Jia] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Gu San",
+      "herb_id": "unresolved-di-gu-pi",
+      "message": "Formula [Qing Gu San] requires [Di Gu Pi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Gu San",
+      "herb_id": "unresolved-qing-hao",
+      "message": "Formula [Qing Gu San] requires [Qing Hao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ba Zheng San",
+      "herb_id": "unresolved-bian-xu",
+      "message": "Formula [Ba Zheng San] requires [Bian Xu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ba Zheng San",
+      "herb_id": "unresolved-qu-mai",
+      "message": "Formula [Ba Zheng San] requires [Qu Mai] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ba Zheng San",
+      "herb_id": "unresolved-hua-shi",
+      "message": "Formula [Ba Zheng San] requires [Hua Shi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ba Zheng San",
+      "herb_id": "unresolved-deng-xin-cao",
+      "message": "Formula [Ba Zheng San] requires [Deng Xin Cao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Pu Ji Xiao Du Yin",
+      "herb_id": "unresolved-ban-lan-gen",
+      "message": "Formula [Pu Ji Xiao Du Yin] requires [Ban Lan Gen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Pu Ji Xiao Du Yin",
+      "herb_id": "unresolved-ma-bo",
+      "message": "Formula [Pu Ji Xiao Du Yin] requires [Ma Bo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Pu Ji Xiao Du Yin",
+      "herb_id": "unresolved-jiang-can",
+      "message": "Formula [Pu Ji Xiao Du Yin] requires [Jiang Can] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Da Cheng Qi Tang",
+      "herb_id": "unresolved-mang-xiao",
+      "message": "Formula [Da Cheng Qi Tang] requires [Mang Xiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Tiao Wei Cheng Qi Tang",
+      "herb_id": "unresolved-mang-xiao",
+      "message": "Formula [Tiao Wei Cheng Qi Tang] requires [Mang Xiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Run Chang Wan",
+      "herb_id": "unresolved-dang-gui-wei",
+      "message": "Formula [Run Chang Wan] requires [Dang Gui Wei (tail of Dang Gui)] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Run Chang Wan",
+      "herb_id": "unresolved-qiang-huo",
+      "message": "Formula [Run Chang Wan] requires [Qiang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Da Huang Mu Dan Tang",
+      "herb_id": "unresolved-mang-xiao",
+      "message": "Formula [Da Huang Mu Dan Tang] requires [Mang Xiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Da Huang Mu Dan Tang",
+      "herb_id": "unresolved-gua-zi",
+      "message": "Formula [Da Huang Mu Dan Tang] requires [Gua Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Wu Zhu Yu Tang",
+      "herb_id": "unresolved-wu-zhu-yu",
+      "message": "Formula [Wu Zhu Yu Tang] requires [Wu Zhu Yu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Jian Zhong Tang",
+      "herb_id": "unresolved-yi-tang",
+      "message": "Formula [Xiao Jian Zhong Tang] requires [Yi Tang (Malt sugar)] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Xiang Shi Di Tang",
+      "herb_id": "unresolved-ding-xiang",
+      "message": "Formula [Ding Xiang Shi Di Tang] requires [Ding Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Xiang Shi Di Tang",
+      "herb_id": "unresolved-shi-di",
+      "message": "Formula [Ding Xiang Shi Di Tang] requires [Shi Di] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Wen Dan Tang",
+      "herb_id": "unresolved-zhu-ru",
+      "message": "Formula [Wen Dan Tang] requires [Zhu Ru] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Qi Hua Tan Wan",
+      "herb_id": "unresolved-gua-lou-ren",
+      "message": "Formula [Qing Qi Hua Tan Wan] requires [Gua Lou Ren] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Qi Hua Tan Wan",
+      "herb_id": "unresolved-dan-nan-xing",
+      "message": "Formula [Qing Qi Hua Tan Wan] requires [Dan Nan Xing] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Xian Xiong Tang",
+      "herb_id": "unresolved-gua-lou-shi",
+      "message": "Formula [Xiao Xian Xiong Tang] requires [Gua Lou Shi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhi Sou San",
+      "herb_id": "unresolved-zi-wan",
+      "message": "Formula [Zhi Sou San] requires [Zi Wan] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhi Sou San",
+      "herb_id": "unresolved-bai-bu",
+      "message": "Formula [Zhi Sou San] requires [Bai Bu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhi Sou San",
+      "herb_id": "unresolved-bai-qian",
+      "message": "Formula [Zhi Sou San] requires [Bai Bu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bei Mu Gua Lou San",
+      "herb_id": "unresolved-bei-mu",
+      "message": "Formula [Bei Mu Gua Lou San] requires [Bei Mu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bei Mu Gua Lou San",
+      "herb_id": "unresolved-gua-lou-ren",
+      "message": "Formula [Bei Mu Gua Lou San] requires [Gua Lou Ren] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bei Mu Gua Lou San",
+      "herb_id": "unresolved-tian-hua-fen",
+      "message": "Formula [Bei Mu Gua Lou San] requires [Tian Hua Fen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bei Mu Gua Lou San",
+      "herb_id": "unresolved-ju-hong",
+      "message": "Formula [Bei Mu Gua Lou San] requires [Ju Hong] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "San Zi Yang Qin Tang",
+      "herb_id": "unresolved-su-zi",
+      "message": "Formula [San Zi Yang Qin Tang] requires [Su Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "San Zi Yang Qin Tang",
+      "herb_id": "unresolved-bai-jie-zi",
+      "message": "Formula [San Zi Yang Qin Tang] requires [Bai Jie Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "San Zi Yang Qin Tang",
+      "herb_id": "unresolved-lai-fu-zi",
+      "message": "Formula [San Zi Yang Qin Tang] requires [Lai Fu Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhu Sha An Shen Wan",
+      "herb_id": "unresolved-zhu-sha",
+      "message": "Formula [Zhu Sha An Shen Wan] requires [Zhu Sha] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Shen Ding Zhi Wan",
+      "herb_id": "unresolved-long-chi",
+      "message": "Formula [An Shen Ding Zhi Wan] requires [Long Chi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Shen Ding Zhi Wan",
+      "herb_id": "unresolved-shi-chang-pu",
+      "message": "Formula [An Shen Ding Zhi Wan] requires [Shi Chang Pu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Yue Ju Wan",
+      "herb_id": "unresolved-shen-qu",
+      "message": "Formula [Yue Ju Wan] requires [Shen Qu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ban Xia Hou Po Tang",
+      "herb_id": "unresolved-zi-su-ye",
+      "message": "Formula [Ban Xia Hou Po Tang] requires [Zi Su Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Su Zi Jiang Qi Tang",
+      "herb_id": "unresolved-su-zi",
+      "message": "Formula [Su Zi Jiang Qi Tang] requires [Su Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Su Zi Jiang Qi Tang",
+      "herb_id": "unresolved-qian-hu",
+      "message": "Formula [Su Zi Jiang Qi Tang] requires [Qian Hu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Su Zi Jiang Qi Tang",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [Su Zi Jiang Qi Tang] requires [Rou Gui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Chuan Tang",
+      "herb_id": "unresolved-ma-huang",
+      "message": "Formula [Ding Chuan Tang] requires [Ma Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Chuan Tang",
+      "herb_id": "unresolved-su-zi",
+      "message": "Formula [Ding Chuan Tang] requires [Su Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Chuan Tang",
+      "herb_id": "unresolved-kuan-dong-hua",
+      "message": "Formula [Ding Chuan Tang] requires [Kuan Dong Hua] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Chuan Tang",
+      "herb_id": "unresolved-sang-bai-pi",
+      "message": "Formula [Ding Chuan Tang] requires [Sang Bai Pi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ding Chuan Tang",
+      "herb_id": "unresolved-bai-guo",
+      "message": "Formula [Ding Chuan Tang] requires [Bai Guo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shao Fu Zhu Yu Tang",
+      "herb_id": "unresolved-xiao-hui-xiang",
+      "message": "Formula [Shao Fu Zhu Yu Tang] requires [Xiao Hui Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shao Fu Zhu Yu Tang",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [Shao Fu Zhu Yu Tang] requires [Rou Gui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shao Fu Zhu Yu Tang",
+      "herb_id": "unresolved-pu-huang",
+      "message": "Formula [Shao Fu Zhu Yu Tang] requires [Pu Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shao Fu Zhu Yu Tang",
+      "herb_id": "unresolved-mo-yao",
+      "message": "Formula [Shao Fu Zhu Yu Tang] requires [Mo Yao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Wen Jing Tang",
+      "herb_id": "unresolved-wu-zhu-yu",
+      "message": "Formula [Wen Jing Tang] requires [Wu Zhu Yu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Wen Jing Tang",
+      "herb_id": "unresolved-e-jiao",
+      "message": "Formula [Wen Jing Tang] requires [E Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Dan Shen Yin",
+      "herb_id": "unresolved-tan-xiang",
+      "message": "Formula [Dan Shen Yin] requires [Tan Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Huo Luo Xiao Ling Dan",
+      "herb_id": "unresolved-ru-xiang",
+      "message": "Formula [Huo Luo Xiao Ling Dan] requires [Ru Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Huo Luo Xiao Ling Dan",
+      "herb_id": "unresolved-mo-yao",
+      "message": "Formula [Huo Luo Xiao Ling Dan] requires [Mo Yao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shen Ling Bai Zhu San",
+      "herb_id": "unresolved-lian-zi",
+      "message": "Formula [Shen Ling Bai Zhu San] requires [Lian Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shen Ling Bai Zhu San",
+      "herb_id": "unresolved-bai-bian-dou",
+      "message": "Formula [Shen Ling Bai Zhu San] requires [Bai Bian Dou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shen Ling Bai Zhu San",
+      "herb_id": "unresolved-yi-yi-ren",
+      "message": "Formula [Shen Ling Bai Zhu San] requires [Yi Yi Ren] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhi Gan Cao Tang",
+      "herb_id": "unresolved-e-jiao",
+      "message": "Formula [Zhi Gan Cao Tang] requires [E Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Shi Quan Da Bu Tang",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [Shi Quan Da Bu Tang] requires [Rou Gui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bai He Gu Jin Tang",
+      "herb_id": "unresolved-bai-he",
+      "message": "Formula [Bai He Gu Jin Tang] requires [Bai He] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bai He Gu Jin Tang",
+      "herb_id": "unresolved-bei-mu",
+      "message": "Formula [Bai He Gu Jin Tang] requires [Bei Mu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Da Bu Yin Wan",
+      "herb_id": "unresolved-zhu-ji-sui",
+      "message": "Formula [Da Bu Yin Wan] requires [Zhu Ji Sui (pork spinal cord)] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Yi Guan Jian",
+      "herb_id": "unresolved-chuan-lian-zi",
+      "message": "Formula [Yi Guan Jian] requires [Chuan Lian Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Yi Guan Jian",
+      "herb_id": "unresolved-bei-sha-shen",
+      "message": "Formula [Yi Guan Jian] requires [Bei Sha Shen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sha Shen Mai Dong Tang",
+      "herb_id": "unresolved-bei-sha-shen",
+      "message": "Formula [Sha Shen Mai Dong Tang] requires [Bei Sha Shen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sha Shen Mai Dong Tang",
+      "herb_id": "unresolved-yu-zhu",
+      "message": "Formula [Sha Shen Mai Dong Tang] requires [Yu Zhu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sha Shen Mai Dong Tang",
+      "herb_id": "unresolved-sang-ye",
+      "message": "Formula [Sha Shen Mai Dong Tang] requires [Sang Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sha Shen Mai Dong Tang",
+      "herb_id": "unresolved-tian-hua-fen",
+      "message": "Formula [Sha Shen Mai Dong Tang] requires [Tian Hua Fen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sha Shen Mai Dong Tang",
+      "herb_id": "unresolved-bai-bian-dou",
+      "message": "Formula [Sha Shen Mai Dong Tang] requires [Bai Bian Dou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Yang Yin Qing Fei Tang",
+      "herb_id": "unresolved-bei-mu",
+      "message": "Formula [Yang Yin Qing Fei Tang] requires [Bei Mu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Mai Men Dong Tang",
+      "herb_id": "unresolved-jing-mi",
+      "message": "Formula [Mai Men Dong Tang] requires [Jing Mi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "You Gui Wan",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [You Gui Wan] requires [Rou Gui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "You Gui Yin",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [You Gui Yin] requires [Rou Gui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Er Xian Tang",
+      "herb_id": "unresolved-xian-mao",
+      "message": "Formula [Er Xian Tang] requires [Xian Mao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Er Xian Tang",
+      "herb_id": "unresolved-yin-yang-huo",
+      "message": "Formula [Er Xian Tang] requires [Yin Yang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Er Xian Tang",
+      "herb_id": "unresolved-ba-ji-tian",
+      "message": "Formula [Er Xian Tang] requires [Ba Ji Tian] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-sha-yuan-zi",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Sha Yuan Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-qian-shi",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Qian Shi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-lian-xu",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Lian Xu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-lian-zi",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Lian Xu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-mu-li",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Mu Li] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jin Suo Gu Jing Wan",
+      "herb_id": "unresolved-long-gu",
+      "message": "Formula [Jin Suo Gu Jing Wan] requires [Long Gu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sang Piao Xiao San",
+      "herb_id": "unresolved-sang-piao-xiao",
+      "message": "Formula [Sang Piao Xiao San] requires [Sang Piao Xiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sang Piao Xiao San",
+      "herb_id": "unresolved-long-gu",
+      "message": "Formula [Sang Piao Xiao San] requires [Long Gu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Sang Piao Xiao San",
+      "herb_id": "unresolved-shi-chang-pu",
+      "message": "Formula [Sang Piao Xiao San] requires [Shi Chang Pu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Gui Zhi Jia Long Gu Mu Li Tang",
+      "herb_id": "unresolved-long-gu",
+      "message": "Formula [Gui Zhi Jia Long Gu Mu Li Tang] requires [Long Gu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Gui Zhi Jia Long Gu Mu Li Tang",
+      "herb_id": "unresolved-mu-li",
+      "message": "Formula [Gui Zhi Jia Long Gu Mu Li Tang] requires [Mu Li] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Suo Quan Wan",
+      "herb_id": "unresolved-yi-zhi-ren",
+      "message": "Formula [Suo Quan Wan] requires [Yi Zhi Ren] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Si Shen Wan",
+      "herb_id": "unresolved-bu-gu-zhi",
+      "message": "Formula [Si Shen Wan] requires [Bu Gu Zhi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Si Shen Wan",
+      "herb_id": "unresolved-wu-zhu-yu",
+      "message": "Formula [Si Shen Wan] requires [Wu Zhu Yu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Si Shen Wan",
+      "herb_id": "unresolved-rou-dou-kou",
+      "message": "Formula [Si Shen Wan] requires [Rou Dou Kou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Ren Yang Zang Tang",
+      "herb_id": "unresolved-rou-dou-kou",
+      "message": "Formula [Zhen Ren Yang Zang Tang] requires [Rou Dou Kou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Ren Yang Zang Tang",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [Zhen Ren Yang Zang Tang] requires [Rou Dou Kou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Ren Yang Zang Tang",
+      "herb_id": "unresolved-ying-su-ke",
+      "message": "Formula [Zhen Ren Yang Zang Tang] requires [Ying Su Ke] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Ren Yang Zang Tang",
+      "herb_id": "unresolved-he-zi",
+      "message": "Formula [Zhen Ren Yang Zang Tang] requires [He Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bao He Wan",
+      "herb_id": "unresolved-shan-zha",
+      "message": "Formula [Bao He Wan] requires [Shan Zha] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bao He Wan",
+      "herb_id": "unresolved-shen-qu",
+      "message": "Formula [Bao He Wan] requires [Shen Qu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Bao He Wan",
+      "herb_id": "unresolved-lai-fu-zi",
+      "message": "Formula [Bao He Wan] requires [Lai Fu Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jian Pi Wan",
+      "herb_id": "unresolved-shen-qu",
+      "message": "Formula [Jian Pi Wan] requires [Shen Qu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jian Pi Wan",
+      "herb_id": "unresolved-mai-ya",
+      "message": "Formula [Jian Pi Wan] requires [Mai Ya] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jian Pi Wan",
+      "herb_id": "unresolved-shan-zha",
+      "message": "Formula [Jian Pi Wan] requires [Shan Zha] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Jian Pi Wan",
+      "herb_id": "unresolved-rou-dou-kou",
+      "message": "Formula [Jian Pi Wan] requires [Rou Dou Kou] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Feng San",
+      "herb_id": "unresolved-chan-tui",
+      "message": "Formula [Xiao Feng San] requires [Chan Tui] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Feng San",
+      "herb_id": "unresolved-ku-shen",
+      "message": "Formula [Xiao Feng San] requires [Ku Shen] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xiao Feng San",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Xiao Feng San] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Juan Bi Tang",
+      "herb_id": "unresolved-qiang-huo",
+      "message": "Formula [Juan Bi Tang] requires [Qiang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Juan Bi Tang",
+      "herb_id": "unresolved-jiang-huang",
+      "message": "Formula [Juan Bi Tang] requires [Jiang Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Juan Bi Tang",
+      "herb_id": "unresolved-ru-xiang",
+      "message": "Formula [Juan Bi Tang] requires [Ru Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qiang Huo Sheng Shi Tang",
+      "herb_id": "unresolved-qiang-huo",
+      "message": "Formula [Qiang Huo Sheng Shi Tang] requires [Qiang Huo] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qiang Huo Sheng Shi Tang",
+      "herb_id": "unresolved-gao-ben",
+      "message": "Formula [Qiang Huo Sheng Shi Tang] requires [Gao Ben] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qiang Huo Sheng Shi Tang",
+      "herb_id": "unresolved-man-jing-zi",
+      "message": "Formula [Qiang Huo Sheng Shi Tang] requires [Man Jing Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-dai-zhe-shi",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Dai Zhe Shi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-long-gu",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Long Gu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-mu-li",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Mu Li] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-yin-chen-hao",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Yin Chen Hao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-chuan-lian-zi",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Chuan Lian Zi] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Zhen Gan Xi Feng Tang",
+      "herb_id": "unresolved-mai-ya",
+      "message": "Formula [Zhen Gan Xi Feng Tang] requires [Mai Ya] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ling Jiao Gou Teng Tang",
+      "herb_id": "unresolved-ling-yang-jiao",
+      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Ling Yang Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ling Jiao Gou Teng Tang",
+      "herb_id": "unresolved-sang-ye",
+      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Sang Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ling Jiao Gou Teng Tang",
+      "herb_id": "unresolved-chuan-bei-mu",
+      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Chuan Bei Mu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ling Jiao Gou Teng Tang",
+      "herb_id": "unresolved-ju-hua",
+      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Ju Hua] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Ling Jiao Gou Teng Tang",
+      "herb_id": "unresolved-zhu-ru",
+      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Zhu Ru] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Huang Yin Zi",
+      "herb_id": "unresolved-ba-ji-tian",
+      "message": "Formula [Di Huang Yin Zi] requires [Ba Ji Tian] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Huang Yin Zi",
+      "herb_id": "unresolved-rou-cong-rong",
+      "message": "Formula [Di Huang Yin Zi] requires [Rou Cong Rong] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Huang Yin Zi",
+      "herb_id": "unresolved-shi-hu",
+      "message": "Formula [Di Huang Yin Zi] requires [Shi Hu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Huang Yin Zi",
+      "herb_id": "unresolved-shi-chang-pu",
+      "message": "Formula [Di Huang Yin Zi] requires [Shi Hu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Huang Yin Zi",
+      "herb_id": "unresolved-rou-gui",
+      "message": "Formula [Di Huang Yin Zi] requires [Rou Cong Rong] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xing Su San",
+      "herb_id": "unresolved-zi-su-ye",
+      "message": "Formula [Xing Su San] requires [Zi Su Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Xing Su San",
+      "herb_id": "unresolved-qian-hu",
+      "message": "Formula [Xing Su San] requires [Qian Hu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Zao Jiu Fei Tang",
+      "herb_id": "unresolved-sang-ye",
+      "message": "Formula [Qing Zao Jiu Fei Tang] requires [Sang Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Zao Jiu Fei Tang",
+      "herb_id": "unresolved-shi-gao",
+      "message": "Formula [Qing Zao Jiu Fei Tang] requires [Shi Gao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Zao Jiu Fei Tang",
+      "herb_id": "unresolved-e-jiao",
+      "message": "Formula [Qing Zao Jiu Fei Tang] requires [E Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Zao Jiu Fei Tang",
+      "herb_id": "unresolved-pi-pa-ye",
+      "message": "Formula [Qing Zao Jiu Fei Tang] requires [Pi Pa Ye] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Qing Zao Jiu Fei Tang",
+      "herb_id": "unresolved-hei-zhi-ma",
+      "message": "Formula [Qing Zao Jiu Fei Tang] requires [Hei Zhi Ma] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-niu-huang",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Niu Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-she-xiang",
+      "message": "Formula [An Gong Niu Huang Wan] requires [She Xiang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-xi-jiao",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Xi Jiao] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-bing-pian",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Bing Pian] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-zhen-zhu",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Zhen Zhu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-yu-jin",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Yu Jin] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "An Gong Niu Huang Wan",
+      "herb_id": "unresolved-xiong-huang",
+      "message": "Formula [An Gong Niu Huang Wan] requires [Xiong Huang] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Tan Tang",
+      "herb_id": "unresolved-dan-nan-xing",
+      "message": "Formula [Di Tan Tang] requires [Dan Nan Xing] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Tan Tang",
+      "herb_id": "unresolved-shi-chang-pu",
+      "message": "Formula [Di Tan Tang] requires [Shi Chang Pu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Di Tan Tang",
+      "herb_id": "unresolved-zhu-ru",
+      "message": "Formula [Di Tan Tang] requires [Zhu Ru] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chang Pu Yu Jin Tang",
+      "herb_id": "unresolved-shi-chang-pu",
+      "message": "Formula [Chang Pu Yu Jin Tang] requires [Shi Chang Pu] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chang Pu Yu Jin Tang",
+      "herb_id": "unresolved-yu-jin",
+      "message": "Formula [Chang Pu Yu Jin Tang] requires [Yu Jin] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chang Pu Yu Jin Tang",
+      "herb_id": "unresolved-ju-hua",
+      "message": "Formula [Chang Pu Yu Jin Tang] requires [Ju Hua] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chang Pu Yu Jin Tang",
+      "herb_id": "unresolved-zhu-li",
+      "message": "Formula [Chang Pu Yu Jin Tang] requires [Zhu Li] — flagged for clinical review"
+    },
+    {
+      "formula_pinyin": "Chang Pu Yu Jin Tang",
+      "herb_id": "unresolved-jiang-zhi",
+      "message": "Formula [Chang Pu Yu Jin Tang] requires [Jiang Zhi] — flagged for clinical review"
+    }
+  ],
+  "skipped_existing": [
+    "yin-qiao-san",
+    "huang-lian-jie-du-tang",
+    "long-dan-xie-gan-tang",
+    "ma-zi-ren-wan",
+    "xiao-yao-san",
+    "xiao-chai-hu-tang",
+    "da-chai-hu-tang",
+    "ban-xia-xie-xin-tang",
+    "er-chen-tang",
+    "suan-zao-ren-tang",
+    "gan-mai-da-zao-tang",
+    "ping-wei-san",
+    "xiang-sha-liu-jun-zi-tang",
+    "xue-fu-zhu-yu-tang",
+    "ge-xia-zhu-yu-tang",
+    "si-jun-zi-tang",
+    "bu-zhong-yi-qi-tang",
+    "sheng-mai-san",
+    "si-wu-tang",
+    "ba-zhen-tang",
+    "gui-pi-tang",
+    "liu-wei-di-huang-wan",
+    "zhi-bai-di-huang-wan",
+    "zuo-gui-wan",
+    "jin-gui-shen-qi-wan",
+    "you-gui-wan",
+    "tian-ma-gou-teng-yin",
+    "du-huo-ji-sheng-wan",
+    "wu-ling-san"
+  ],
+  "exit_code": 0
+}

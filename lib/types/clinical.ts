@@ -79,6 +79,13 @@ export type TCMSearchResponse = {
   searchedFallback: boolean;
   query: string;
   total: number;
+  meta: {
+    herbCount: number;
+    formulaCount: number;
+    goldFormulaCount: number;
+    silverFormulaCount: number;
+    dataSource: "base" | "expanded";
+  };
   disclaimer: string;
 };
 
