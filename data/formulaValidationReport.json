@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-03-19T13:08:20.742Z",
+  "run_at": "2026-03-19T13:13:53.152Z",
   "dry_run": false,
   "input_file": "./data/nccaomFormulas.json",
   "summary": {
@@ -75,7 +75,7 @@
     {
       "formula_pinyin": "Xi Jiao Di Huang Tang",
       "herb_id": "unresolved-shui-niu-jiao",
-      "message": "Formula [Xi Jiao Di Huang Tang] requires [unresolved-shui-niu-jiao] — flagged for clinical review"
+      "message": "Formula [Xi Jiao Di Huang Tang] requires [Shui Niu Jiao] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Qing Gu San",
@@ -130,7 +130,7 @@
     {
       "formula_pinyin": "Run Chang Wan",
       "herb_id": "unresolved-dang-gui-wei",
-      "message": "Formula [Run Chang Wan] requires [unresolved-dang-gui-wei] — flagged for clinical review"
+      "message": "Formula [Run Chang Wan] requires [Dang Gui Wei] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Run Chang Wan",
@@ -150,7 +150,7 @@
     {
       "formula_pinyin": "Xiao Jian Zhong Tang",
       "herb_id": "unresolved-yi-tang",
-      "message": "Formula [Xiao Jian Zhong Tang] requires [unresolved-yi-tang] — flagged for clinical review"
+      "message": "Formula [Xiao Jian Zhong Tang] requires [Yi Tang] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Ding Xiang Shi Di Tang",
@@ -340,7 +340,7 @@
     {
       "formula_pinyin": "Da Bu Yin Wan",
       "herb_id": "unresolved-zhu-ji-sui",
-      "message": "Formula [Da Bu Yin Wan] requires [unresolved-zhu-ji-sui] — flagged for clinical review"
+      "message": "Formula [Da Bu Yin Wan] requires [Zhu Ji Sui] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Yi Guan Jian",

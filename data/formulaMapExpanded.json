@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Merged NCCAOM formula library — generated file",
-    "generated_at": "2026-03-19T13:08:20.740Z",
+    "generated_at": "2026-03-19T13:13:53.149Z",
     "source_version": "1.0.0",
     "formula_count": 121,
     "gold_count": 121,
@@ -824,7 +824,7 @@
         "mu-dan-pi"
       ],
       "unresolved_herbs": [
-        "Shui Niu Jiao (substitutes for Xi Jiao)"
+        "Shui Niu Jiao"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -907,7 +907,7 @@
         "unresolved-qiang-huo"
       ],
       "unresolved_herbs": [
-        "Dang Gui Wei (tail of Dang Gui)",
+        "Dang Gui Wei",
         "Qiang Huo"
       ],
       "trustTier": "gold",
@@ -1102,7 +1102,7 @@
         "unresolved-yi-tang"
       ],
       "unresolved_herbs": [
-        "Yi Tang (Malt sugar)"
+        "Yi Tang"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -1787,7 +1787,7 @@
         "unresolved-zhu-ji-sui"
       ],
       "unresolved_herbs": [
-        "Zhu Ji Sui (pork spinal cord)"
+        "Zhu Ji Sui"
       ],
       "trustTier": "gold",
       "source": "nccaom"
