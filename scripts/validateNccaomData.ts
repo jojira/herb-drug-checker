@@ -226,9 +226,8 @@ for (const formula of inputData.formulas) {
     if (herbId.startsWith("unresolved-")) {
       // KNOWN GAP — intentional
       const label = formula.unresolved_herbs?.find((u) =>
-        u.toLowerCase().replace(/\s+/g, "-").startsWith(
-          herbId.slice("unresolved-".length).split("-")[0]
-        )
+        u.toLowerCase().replace(/\s+/g, "-") ===
+        herbId.slice("unresolved-".length)
       ) ?? herbId;
       const msg = `Formula [${pinyin}] requires [${label}] — flagged for clinical review`;
       missingHerbWarnings.push({ formula_pinyin: pinyin, herb_id: herbId, message: msg });

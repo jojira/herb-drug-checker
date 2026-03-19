@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Merged NCCAOM formula library — generated file",
-    "generated_at": "2026-03-19T00:33:25.328Z",
+    "generated_at": "2026-03-19T13:08:20.740Z",
     "source_version": "1.0.0",
     "formula_count": 121,
     "gold_count": 121,
@@ -567,7 +567,7 @@
         "jie-geng",
         "unresolved-bai-zhi",
         "unresolved-qiang-huo",
-        "unresolved-shi-gao",
+        "shi-gao",
         "sheng-jiang",
         "da-zao",
         "gan-cao"
@@ -591,7 +591,7 @@
       "herb_ids": [
         "unresolved-ma-huang",
         "xing-ren",
-        "unresolved-shi-gao",
+        "shi-gao",
         "gan-cao"
       ],
       "unresolved_herbs": [
@@ -660,10 +660,10 @@
       "classical_reference": "Shang Han Lun",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-shi-gao",
+        "shi-gao",
         "zhi-mu",
         "gan-cao",
-        "unresolved-jing-mi"
+        "jing-mi"
       ],
       "unresolved_herbs": [
         "Shi Gao",
@@ -749,9 +749,9 @@
         "unresolved-yin-chai-hu",
         "unresolved-hu-huang-lian",
         "qin-jiao",
-        "unresolved-bie-jia",
+        "bie-jia",
         "unresolved-di-gu-pi",
-        "unresolved-qing-hao",
+        "qing-hao",
         "zhi-mu",
         "gan-cao"
       ],
@@ -773,8 +773,8 @@
       "classical_reference": "Wen Bing Tiao Bian",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-qing-hao",
-        "unresolved-bie-jia",
+        "qing-hao",
+        "bie-jia",
         "zhi-mu",
         "mu-dan-pi",
         "sheng-di-huang"
@@ -838,12 +838,12 @@
       "version": "1.0",
       "herb_ids": [
         "zhu-ye",
-        "unresolved-shi-gao",
+        "shi-gao",
         "ban-xia",
         "mai-men-dong",
         "ren-shen",
         "gan-cao",
-        "unresolved-jing-mi"
+        "jing-mi"
       ],
       "unresolved_herbs": [
         "Shi Gao",
@@ -861,7 +861,7 @@
       "version": "1.0",
       "herb_ids": [
         "da-huang",
-        "unresolved-mang-xiao",
+        "mang-xiao",
         "hou-po",
         "zhi-shi"
       ],
@@ -882,7 +882,7 @@
         "da-huang",
         "mu-dan-pi",
         "tao-ren",
-        "unresolved-mang-xiao",
+        "mang-xiao",
         "unresolved-gua-zi"
       ],
       "unresolved_herbs": [
@@ -922,7 +922,7 @@
       "version": "1.0",
       "herb_ids": [
         "da-huang",
-        "unresolved-mang-xiao",
+        "mang-xiao",
         "gan-cao"
       ],
       "unresolved_herbs": [
@@ -1152,7 +1152,7 @@
       "classical_reference": "Yi Xue Xin Wu",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-bei-mu",
+        "zhe-bei-mu",
         "unresolved-gua-lou-ren",
         "unresolved-tian-hua-fen",
         "fu-ling",
@@ -1217,7 +1217,7 @@
       "classical_reference": "Han Shi Yi Tong",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-su-zi",
+        "su-zi",
         "unresolved-bai-jie-zi",
         "unresolved-lai-fu-zi"
       ],
@@ -1241,7 +1241,7 @@
         "chen-pi",
         "fu-ling",
         "zhi-ke",
-        "unresolved-zhu-ru",
+        "zhu-ru",
         "sheng-jiang",
         "da-zao",
         "gan-cao"
@@ -1307,7 +1307,7 @@
         "fu-shen",
         "yuan-zhi",
         "unresolved-long-chi",
-        "unresolved-shi-chang-pu"
+        "shi-chang-pu"
       ],
       "unresolved_herbs": [
         "Long Chi",
@@ -1411,7 +1411,7 @@
       "herb_ids": [
         "unresolved-ma-huang",
         "xing-ren",
-        "unresolved-su-zi",
+        "su-zi",
         "ban-xia",
         "huang-qin",
         "unresolved-kuan-dong-hua",
@@ -1437,7 +1437,7 @@
       "classical_reference": "Tai Ping Hui Min He Ji Ju Fang",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-su-zi",
+        "su-zi",
         "ban-xia",
         "hou-po",
         "chen-pi",
@@ -1468,7 +1468,7 @@
         "xiang-fu",
         "chuan-xiong",
         "zhi-zi",
-        "unresolved-shen-qu"
+        "shen-qu"
       ],
       "unresolved_herbs": [
         "Shen Qu"
@@ -1722,7 +1722,7 @@
         "xuan-shen",
         "dang-gui",
         "bai-shao",
-        "unresolved-bei-mu",
+        "zhe-bei-mu",
         "jie-geng",
         "gan-cao"
       ],
@@ -1805,7 +1805,7 @@
         "ren-shen",
         "da-zao",
         "gan-cao",
-        "unresolved-jing-mi"
+        "jing-mi"
       ],
       "unresolved_herbs": [
         "Jing Mi"
@@ -1852,7 +1852,7 @@
         "bai-shao",
         "xuan-shen",
         "mu-dan-pi",
-        "unresolved-bei-mu",
+        "zhe-bei-mu",
         "bo-he",
         "gan-cao"
       ],
@@ -1976,8 +1976,8 @@
         "sheng-jiang",
         "da-zao",
         "gan-cao",
-        "unresolved-long-gu",
-        "unresolved-mu-li"
+        "long-gu",
+        "mu-li"
       ],
       "unresolved_herbs": [
         "Long Gu",
@@ -1998,8 +1998,8 @@
         "unresolved-qian-shi",
         "unresolved-lian-xu",
         "unresolved-lian-zi",
-        "unresolved-mu-li",
-        "unresolved-long-gu"
+        "mu-li",
+        "long-gu"
       ],
       "unresolved_herbs": [
         "Sha Yuan Zi",
@@ -2021,12 +2021,12 @@
       "version": "1.0",
       "herb_ids": [
         "unresolved-sang-piao-xiao",
-        "unresolved-long-gu",
+        "long-gu",
         "gui-ban-jiao",
         "ren-shen",
         "fu-shen",
         "yuan-zhi",
-        "unresolved-shi-chang-pu",
+        "shi-chang-pu",
         "dang-gui"
       ],
       "unresolved_herbs": [
@@ -2047,7 +2047,7 @@
       "herb_ids": [
         "unresolved-bu-gu-zhi",
         "unresolved-wu-zhu-yu",
-        "unresolved-rou-dou-kou",
+        "rou-dou-kou",
         "wu-wei-zi",
         "sheng-jiang",
         "da-zao"
@@ -2089,7 +2089,7 @@
         "ren-shen",
         "bai-zhu",
         "gan-cao",
-        "unresolved-rou-dou-kou",
+        "rou-dou-kou",
         "unresolved-rou-gui",
         "mu-xiang",
         "unresolved-ying-su-ke",
@@ -2115,7 +2115,7 @@
       "version": "1.0",
       "herb_ids": [
         "unresolved-shan-zha",
-        "unresolved-shen-qu",
+        "shen-qu",
         "unresolved-lai-fu-zi",
         "ban-xia",
         "chen-pi",
@@ -2142,12 +2142,12 @@
         "mu-xiang",
         "huang-lian",
         "fu-ling",
-        "unresolved-shen-qu",
+        "shen-qu",
         "sha-ren",
         "unresolved-mai-ya",
         "unresolved-shan-zha",
         "shan-yao",
-        "unresolved-rou-dou-kou",
+        "rou-dou-kou",
         "ren-shen",
         "chen-pi",
         "gan-cao"
@@ -2177,7 +2177,7 @@
         "mai-men-dong",
         "wu-wei-zi",
         "fu-ling",
-        "unresolved-shi-chang-pu",
+        "shi-chang-pu",
         "yuan-zhi",
         "fu-zi",
         "unresolved-rou-gui",
@@ -2239,7 +2239,7 @@
         "bai-shao",
         "fu-shen",
         "unresolved-ju-hua",
-        "unresolved-zhu-ru",
+        "zhu-ru",
         "gan-cao"
       ],
       "unresolved_herbs": [
@@ -2290,7 +2290,7 @@
         "niu-bang-zi",
         "cang-zhu",
         "unresolved-ku-shen",
-        "unresolved-shi-gao",
+        "shi-gao",
         "zhi-mu",
         "mu-tong",
         "dang-gui",
@@ -2316,8 +2316,8 @@
       "herb_ids": [
         "niu-xi",
         "unresolved-dai-zhe-shi",
-        "unresolved-long-gu",
-        "unresolved-mu-li",
+        "long-gu",
+        "mu-li",
         "gui-ban-jiao",
         "bai-shao",
         "xuan-shen",
@@ -2347,7 +2347,7 @@
       "version": "1.0",
       "herb_ids": [
         "unresolved-sang-ye",
-        "unresolved-shi-gao",
+        "shi-gao",
         "mai-men-dong",
         "unresolved-e-jiao",
         "unresolved-pi-pa-ye",
@@ -2432,7 +2432,7 @@
       "classical_reference": "Wen Re Jing Wei",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-shi-chang-pu",
+        "shi-chang-pu",
         "unresolved-yu-jin",
         "zhi-zi",
         "lian-qiao",
@@ -2465,8 +2465,8 @@
         "zhi-shi",
         "unresolved-dan-nan-xing",
         "ren-shen",
-        "unresolved-shi-chang-pu",
-        "unresolved-zhu-ru",
+        "shi-chang-pu",
+        "zhu-ru",
         "sheng-jiang",
         "gan-cao"
       ],
