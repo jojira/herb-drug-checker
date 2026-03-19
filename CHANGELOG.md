@@ -87,6 +87,124 @@ data/formulaValidationReport.json ← audit log
 
 ---
 
+## [3.1.0] — 2026-03-18
+
+### Overview
+Formula library expansion to full NCCAOM Gold Standard coverage.
+Scales clinical formula coverage from 30 to 121 board-exam formulas
+while maintaining strict data audibility and Gold-tier trust status
+throughout. Adds a live formula count to the search UI so practitioners
+can see the depth of coverage at a glance.
+
+### Added
+- **NCCAOM Formula Source File** (`data/nccaomFormulas.json`) — hand-curated
+  clinical source of truth for the full NCCAOM Herbology board exam formula
+  set; organized by TCM category; based on Bensky's *Chinese Herbal Medicine:
+  Formulas & Strategies*; never overwritten by scripts
+- **Formula Validation Script** (`scripts/validateNccaomData.ts`) — three-level
+  validation pipeline with actionable error logging:
+    - `RESOLVED` — herb ID confirmed in `herbLibrary.json`
+    - `MISSING_HERB` — known gap, flagged with `unresolved-` prefix, included
+      with warning
+    - `ERROR` — unintentional bad herb reference, formula rejected, merge blocked
+  Exit code 1 when hard errors present — prevents bad data reaching production
+- **Generated Formula Library** (`data/formulaMapExpanded.json`) — merged output
+  of original 30 curated formulas plus validated NCCAOM additions; carries
+  `_meta.do_not_edit: true` to protect from manual edits; rebuilt by running
+  the validation script
+- **Formula Validation Report** (`data/formulaValidationReport.json`) —
+  machine-readable audit log of every validation run; records counts, rejections,
+  missing herb warnings, and skipped existing formulas
+- **`meta` field on search responses** — `/api/search/tcm` now returns
+  `meta.herbCount`, `meta.formulaCount`, `meta.goldFormulaCount`,
+  `meta.silverFormulaCount`, and `meta.dataSource` on every response
+- **Live formula count in UI** — `HerbSearch` displays
+  "Searching 86 herbs · 121 Gold formulas" below the search input;
+  populated from API response `meta` field; hidden until first successful
+  fetch; never shows zeros
+
+### Changed
+- `/api/search/tcm` route updated to load `formulaMapExpanded.json` when
+  available, with try/catch fallback to base `formulaMap.json`
+- `interactionEngine` updated to resolve and unbundle formulas from the
+  expanded set; unresolved herbs passed through to existing unresolved
+  handler without crashing
+- `TCMSearchResponse` type in `lib/types/clinical.ts` extended with `meta`
+  field
+- Pending entry for formula expansion removed from v3.0.0 — delivered in
+  this release
+
+### Data Pipeline
+```
+data/nccaomFormulas.json          ← hand-curated, edit directly
+        ↓
+scripts/validateNccaomData.ts     ← run after any edit
+        ↓
+data/formulaMapExpanded.json      ← generated, do not edit
+data/formulaValidationReport.json ← audit log
+```
+
+### Clinical Safety Notes
+- All 121 formulas carry `trustTier: "gold"` and `source: "nccaom_verified"` —
+  no Silver or Unresolved formulas introduced in this release
+- Formulas with herbs outside the 86-herb Gold library are flagged with
+  `unresolved-` prefix and surfaced with amber "Data Missing" warning in UI;
+  never silently included or dropped
+- Original 30 curated formulas take precedence — validation script skips any
+  formula ID already present in `formulaMap.json`
+- Worst-Case Wins severity escalation confirmed working across all newly
+  added formulas
+- Modification Toggle confirmed working for all new formulas identically
+  to existing ones
+
+### Pending (Planned v3.2+)
+- TCMBank export file required to activate Silver tier search and formula
+  expansion
+- NatMed Pro / Stockley's API licenses required to replace mock interaction
+  data
+- PDF export of interaction report
+- Interaction history log (P2)
+
+---
+
+## [3.1.1] — 2026-03-19
+
+### Overview
+Data integrity patch. Resolves label mismatches in the formula validation
+report and fixes a Next.js Turbopack build crash caused by deep type
+inference on large JSON datasets. No clinical behavior changes.
+
+### Fixed
+- **Unresolved herb label mismatches** — 4 formulas had parenthetical
+  annotations in `unresolved_herbs[]` entries that broke the exact slug
+  match in `validateNccaomData.ts`:
+    - `xi-jiao-di-huang-tang`: "Shui Niu Jiao (substitutes for Xi Jiao)"
+      → "Shui Niu Jiao"
+    - `run-chang-wan`: "Dang Gui Wei (tail of Dang Gui)" → "Dang Gui Wei"
+    - `xiao-jian-zhong-tang`: "Yi Tang (Malt sugar)" → "Yi Tang"
+    - `da-bu-yin-wan`: "Zhu Ji Sui (pork spinal cord)" → "Zhu Ji Sui"
+  Labels in `formulaValidationReport.json` now display correct Pinyin
+  names instead of raw slugs for these entries
+- **Next.js Turbopack build crash** — worker stack overflow caused by deep
+  literal type inference across `formulaMapExpanded.json` (121 formulas);
+  resolved by adding `types/json-data.d.ts` with explicit module
+  declarations; `typescript.ignoreBuildErrors: true` added to
+  `next.config.ts` as a Turbopack workaround
+- `npx tsc --noEmit` remains the authoritative type-check gate and passes
+  clean — no type safety regression
+
+### Data
+- `formulaMapExpanded.json` regenerated — 121 formulas, all labels correct
+- `formulaValidationReport.json`: errors[] empty, rejected: 0,
+  missing_herb_warnings: 131 (all properly labeled with clean Pinyin names)
+
+### Clinical Safety Notes
+- No changes to interaction data, herb library, or formula compositions
+- All 121 formulas remain Gold-tier NCCAOM Verified
+- Modification Toggle and Worst-Case Wins severity escalation unaffected
+
+---
+
 ## [3.0.0] — 2026-03-12
 
 ### Overview
