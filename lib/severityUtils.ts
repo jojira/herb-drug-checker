@@ -2,6 +2,8 @@
 // Severity display constants — safe to import in client components.
 // Contains no herb data or server-only modules.
 
+import type { FC } from "react";
+import { XCircle, AlertTriangle, CheckCircle } from "lucide-react";
 import type { SeverityLevel } from "@/lib/types/clinical";
 
 /** Human-readable label for each severity level */
@@ -33,9 +35,12 @@ export const SEVERITY_STYLES: Record<
   },
 };
 
-/** Emoji icon for each severity level */
-export const SEVERITY_ICONS: Record<SeverityLevel, string> = {
-  contraindicated: "🔴",
-  precaution: "🟡",
-  none: "🟢",
+/** Lucide icon component for each severity level */
+export const SEVERITY_ICONS: Record<
+  SeverityLevel,
+  FC<{ size?: number; strokeWidth?: number }>
+> = {
+  contraindicated: XCircle,
+  precaution: AlertTriangle,
+  none: CheckCircle,
 };

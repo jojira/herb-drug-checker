@@ -374,7 +374,7 @@ export default function HomePage() {
             <InteractionResults
               result={displayResult}
               originalResult={originalResult ?? undefined}
-              excludedHerbIds={excludedHerbIds}
+              excludedHerbIds={Array.from(excludedHerbIds)}
               onHerbToggle={handleHerbToggle}
               onRestoreFormula={handleRestoreFormula}
             />

@@ -145,12 +145,12 @@ function TcmEnergeticsPanel({ herb }: { herb: FormulaHerbDetail }) {
 // Main Herb Row component
 // ---------------------------------------------------------------------------
 
-function HerbDetailRow({ 
-  herb, 
-  onToggle 
-}: { 
-  herb: FormulaHerbDetail; 
-  onToggle: (id: string) => void;
+function HerbDetailRow({
+  herb,
+  onToggle
+}: {
+  herb: FormulaHerbDetail;
+  onToggle: (id: string, excluded: boolean) => void;
 }) {
   const [showEnergetics, setShowEnergetics] = useState(false);
   const isExcluded = herb.excluded;
@@ -164,7 +164,7 @@ function HerbDetailRow({
             <h4 className={`text-base font-black ${isExcluded ? "text-slate-500 line-through" : "text-slate-950"}`}>
               {herb.pinyin}
             </h4>
-            <TrustTierBadge tier={herb.trustTier} nccaomCode={herb.nccaomCode || null} />
+            <TrustTierBadge tier={herb.trustTier} nccaomCode={herb.nccaom_code} />
           </div>
           <p className="text-xs text-slate-700 font-medium mb-3">{herb.latin || "Botanical data pending"}</p>
           
@@ -180,7 +180,7 @@ function HerbDetailRow({
         </div>
 
         <button
-          onClick={() => onToggle(herb.id)}
+          onClick={() => onToggle(herb.herbId, !isExcluded)}
           aria-label={isExcluded ? `Include ${herb.pinyin}` : `Exclude ${herb.pinyin}`}
           className={`px-3 py-1.5 rounded-lg text-xs font-black uppercase tracking-widest transition-all shadow-sm ${
             isExcluded 
@@ -206,7 +206,7 @@ function FormulaBreakdown({
   onHerbToggle,
 }: {
   breakdown: FormulaHerbDetail[];
-  onHerbToggle: (id: string) => void;
+  onHerbToggle: (id: string, excluded: boolean) => void;
 }) {
   return (
     <div className="space-y-3">
@@ -215,10 +215,10 @@ function FormulaBreakdown({
       </h3>
       <div className="grid gap-3">
         {breakdown.map((herb) => (
-          <HerbDetailRow 
-            key={herb.id} 
-            herb={herb} 
-            onToggle={onHerbToggle} 
+          <HerbDetailRow
+            key={herb.herbId}
+            herb={herb}
+            onToggle={onHerbToggle}
           />
         ))}
       </div>
@@ -254,10 +254,10 @@ function InteractionCard({
             </span>
           </div>
           <h4 className={`text-base font-black leading-tight mb-1 ${style.text}`}>
-            {match.herbName} + {match.drugName}
+            {match.herb.pinyin} + {match.drug.name}
           </h4>
           <p className={`text-xs font-bold leading-relaxed line-clamp-2 ${style.text} opacity-90`}>
-            {match.description}
+            {match.clinicalSummary}
           </p>
         </div>
       </button>
@@ -266,12 +266,12 @@ function InteractionCard({
         <div className={`px-4 pb-4 pt-0 space-y-4 border-t-2 ${style.border} bg-white/50`}>
           <div className="space-y-2">
             <h5 className={`text-[10px] font-black uppercase tracking-widest ${style.text}`}>Clinical Assessment</h5>
-            <p className="text-xs text-slate-900 leading-relaxed font-medium">{match.description}</p>
+            <p className="text-xs text-slate-900 leading-relaxed font-medium">{match.clinicalSummary}</p>
           </div>
-          {match.clinicalNote && (
+          {match.evidenceNotes && (
             <div className="space-y-2 p-3 rounded-lg bg-white border border-slate-200">
-              <h5 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Practitioner Note</h5>
-              <p className="text-xs text-slate-700 leading-relaxed italic">{match.clinicalNote}</p>
+              <h5 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Evidence Notes</h5>
+              <p className="text-xs text-slate-700 leading-relaxed italic">{match.evidenceNotes}</p>
             </div>
           )}
         </div>
@@ -292,13 +292,14 @@ export default function InteractionResults({
   onRestoreFormula,
 }: {
   result: InteractionEngineResult;
-  onHerbToggle: (id: string) => void;
+  onHerbToggle: (id: string, excluded: boolean) => void;
   excludedHerbIds: string[];
   originalResult?: InteractionEngineResult;
   onRestoreFormula?: () => void;
 }) {
   const isModified = excludedHerbIds.length > 0;
   const severityStyle = SEVERITY_STYLES[result.worstSeverity];
+  const SummaryIcon = SEVERITY_ICONS[result.worstSeverity];
 
   return (
     <div className="space-y-8 pb-10">
@@ -307,7 +308,7 @@ export default function InteractionResults({
         <div className="flex items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg bg-white ${severityStyle.text}`}>
-              {SEVERITY_ICONS[result.worstSeverity]}
+              <SummaryIcon size={28} strokeWidth={3} />
             </div>
             <div>
               <h2 className={`text-lg font-black leading-none ${severityStyle.text} uppercase tracking-tight`}>
@@ -351,9 +352,9 @@ export default function InteractionResults({
       )}
 
       {/* 3. Formula Breakdown */}
-      {result.formulaBreakdown && (
+      {result.formulaBreakdown?.herbs && result.formulaBreakdown.herbs.length > 0 && (
         <FormulaBreakdown
-          breakdown={result.formulaBreakdown}
+          breakdown={result.formulaBreakdown.herbs}
           onHerbToggle={onHerbToggle}
         />
       )}
