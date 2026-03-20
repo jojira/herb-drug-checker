@@ -307,7 +307,7 @@ export default function InteractionResults({
         <div className="flex items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg bg-white ${severityStyle.text}`}>
-              {SEVERITY_ICONS[result.worstSeverity]({ size: 28, strokeWidth: 3 })}
+              {SEVERITY_ICONS[result.worstSeverity]}
             </div>
             <div>
               <h2 className={`text-lg font-black leading-none ${severityStyle.text} uppercase tracking-tight`}>
