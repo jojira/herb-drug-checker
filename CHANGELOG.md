@@ -7,6 +7,103 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.2.0] — 2026-03-21
+
+### Overview
+Clinical data middleware scaffold and v4.0 activation path.
+Introduces the feature flag infrastructure, cache layer, and
+adapter stubs required to replace mock interaction data with
+licensed clinical APIs (NatMed Pro, Stockley's) by flipping
+a single environment variable — zero code changes required
+at license activation time.
+
+### Added
+- **Feature Flag System** (`lib/featureFlags.ts`) — single source
+  of truth for all runtime flags; `CLINICAL_DATA_SOURCE` env var
+  controls data source: `mock` (default) | `natmed` | `stockleys`
+  | `combined`; mock path is unchanged until flag is set
+- **Clinical Cache Layer** (`lib/clinicalCache.ts`) — server-side
+  in-memory cache keyed by `{rxcui}:{latin_binomial}`; 24-hour TTL
+  per SPEC-004 Amendment 001; configurable via
+  `CLINICAL_CACHE_TTL_SECONDS` env var
+- **Clinical Data Service** (`lib/clinicalDataService.ts`) —
+  orchestration layer routing lookups to mock or live adapters
+  based on feature flag; handles adapter failures gracefully;
+  implements worst-case severity merge for `combined` mode
+- **NatMed Pro Adapter** (`lib/clinicalAdapters/natmedAdapter.ts`)
+  — stubbed adapter with correct interface; `isAvailable()` returns
+  false when key absent; `mapNatMedResponse()` ready for
+  implementation post-license
+- **Stockley's Adapter** (`lib/clinicalAdapters/stockleysAdapter.ts`)
+  — same pattern as NatMed adapter; independent activation
+- **Adapter Interface** (`lib/clinicalAdapters/types.ts`) — canonical
+  `ClinicalAdapter` interface and `ClinicalAdapterError` class;
+  all future data sources must satisfy this interface
+- **`DataFreshness` type** (`lib/types/clinical.ts`) — tracks
+  cache status, source, TTL, and degraded mode per interaction result
+- **`dataFreshness` field on `InteractionEngineResult`** — populated
+  on every response; drives freshness display in UI
+- **Degraded-mode warning** in `InteractionResults.tsx` — amber
+  notice shown when all APIs unreachable and cache expired;
+  copy: "Interaction data may be outdated. Verify with pharmacist
+  before prescribing."
+- **"Updated X ago" timestamp** in summary banner — populated from
+  `dataFreshness.lastUpdatedDisplay`; hidden when mock data active
+- **`.env.local.example`** — committed to repo with all new env
+  vars documented; `.env.local` confirmed gitignored
+
+### Changed
+- `checkInteractions()` is now `async` — required for live API
+  support; all callers updated to `await`
+- `app/api/interactions/route.ts` updated to await async engine
+- `result.dataStatus` now driven by feature flag:
+  `mock_unverified` when flag is `mock`, `verified` when live
+- `CLAUDE.md` updated with v4.0 middleware architecture,
+  activation steps, and deprecation path for mock data
+
+### Architecture
+```
+CLINICAL_DATA_SOURCE=mock (default)
+→ clinicalDataService → lookupMock() → mockInteractions.json
+
+CLINICAL_DATA_SOURCE=natmed
+→ clinicalDataService → cache check → natmedAdapter → NatMed Pro API
+
+CLINICAL_DATA_SOURCE=combined
+→ clinicalDataService → cache check → natmedAdapter + stockleysAdapter
+→ worst-case severity wins → merged citations
+```
+
+### Activation Checklist (when licenses arrive)
+1. Add API keys to `.env.local` (never commit)
+2. Set `CLINICAL_DATA_SOURCE=natmed` in `.env.local`
+3. Implement `mapNatMedResponse()` in `natmedAdapter.ts`
+4. Implement `mapStockleysResponse()` in `stockleysAdapter.ts`
+5. Run full regression test suite
+6. Deploy — monitor for 2 weeks
+7. Set `CLINICAL_DATA_SOURCE=combined` for dual-source coverage
+8. Deprecate `mockInteractions.json` per SPEC-004 gate
+
+### Clinical Safety Notes
+- Zero behavior change in this release — mock data path is
+  identical to v3.1.x; feature flag defaults to `mock`
+- Degraded mode guarantee: practitioner always receives a
+  response even if all live APIs are unreachable
+- Worst-case severity merge: when combined mode is active,
+  conflicting severity levels always resolve to the higher risk
+- `dataStatus` field transitions from `mock_unverified` to `verified`
+  only when a live adapter successfully returns data
+
+### Pending (Planned v4.0+)
+- NatMed Pro API license — activates `natmedAdapter`
+- Stockley's API license — activates `stockleysAdapter`
+- `mapNatMedResponse()` implementation post-license
+- `mapStockleysResponse()` implementation post-license
+- Redis cache replacement for multi-instance production deploy
+- 50-case clinical audit (SPEC-004 Pillar 3)
+
+---
+
 ## [3.1.0] — 2026-03-18
 
 ### Overview
