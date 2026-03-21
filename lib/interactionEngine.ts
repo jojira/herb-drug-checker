@@ -8,7 +8,8 @@
  * based on dosage and herb-to-drug ratio. For professional reference only.
  */
 
-import interactionData from "@/data/mockInteractions.json";
+import { lookupInteraction as lookupInteractionFromService } from "@/lib/clinicalDataService";
+import { FEATURE_FLAGS } from "@/lib/featureFlags";
 import formulaData from "@/data/formulaMap.json";
 import formulaDataExpanded from "@/data/formulaMapExpanded.json";
 import herbLibraryData from "@/data/herbLibrary.json";
@@ -28,6 +29,7 @@ import type {
   WesternMed,
   TCMInput,
   CheckInteractionsOptions,
+  DataFreshness,
 } from "@/lib/types/clinical";
 
 export type {
@@ -44,6 +46,7 @@ export type {
   WesternMed,
   TCMInput,
   CheckInteractionsOptions,
+  DataFreshness,
 } from "@/lib/types/clinical";
 
 export {
@@ -129,51 +132,8 @@ function resolveFormula(
   };
 }
 
-/**
- * Looks up a single herb-drug pair in the interaction database.
- * Returns null when no interaction record exists — "no known interaction", not an error.
- */
-function lookupInteraction(herbId: string, rxcui: string): InteractionMatch | null {
-  const record = interactionData.interactions.find(
-    (i) => i.herb.id === herbId && i.drug.rxcui === rxcui
-  );
-  if (!record) return null;
-
-  const libraryHerb = lookupHerbById(herbId);
-
-  const herb: HerbIdentity = {
-    id: record.herb.id,
-    pinyin: record.herb.pinyin,
-    latin: record.herb.latin,
-    english: record.herb.english,
-    nccaom_code: record.herb.nccaom_code,
-    trustTier: "gold",
-    source: "nccaom_verified",
-    resolved: true,
-    active_constituent: libraryHerb?.active_constituent,
-    taste: libraryHerb?.taste,
-    temperature: libraryHerb?.temperature,
-    channels: libraryHerb?.channels,
-    properties: libraryHerb?.properties,
-    tcm_cautions: libraryHerb?.tcm_cautions,
-  };
-
-  return {
-    interactionId: record.id,
-    herb,
-    drug: record.drug as DrugIdentity,
-    severity: record.severity as SeverityLevel,
-    severityColor: record.severity_color as "red" | "yellow" | "green",
-    mechanism: record.mechanism,
-    clinicalSummary: record.clinical_summary,
-    evidenceLevel: record.evidence_level as EvidenceLevel,
-    evidenceNotes: record.evidence_notes,
-    citations: record.citations as Citation[],
-    sources: record.sources as DataSource[],
-    confidence: record.confidence as "high" | "medium" | "low",
-    fromFormula: false, // caller sets this if needed
-  };
-}
+// lookupInteraction is now delegated to clinicalDataService (see import above).
+// The service handles mock vs. live dispatch and caching transparently.
 
 /**
  * Looks up full herb identity from Gold library first, Silver enriched fallback.
@@ -272,14 +232,15 @@ function severityToColor(severity: SeverityLevel): "red" | "yellow" | "green" {
  * @param tcmInput    - Single herb or TCM formula
  * @param options     - excludedHerbIds: array of herb IDs to exclude from check
  */
-export function checkInteractions(
+export async function checkInteractions(
   westernMeds: WesternMed[],
   tcmInput: TCMInput,
   options: CheckInteractionsOptions = {}
-): InteractionEngineResult {
+): Promise<InteractionEngineResult> {
   const matches: InteractionMatch[] = [];
   const checkedWithNoInteraction: string[] = [];
   let formulaBreakdown: InteractionEngineResult["formulaBreakdown"] | undefined;
+  let lastFreshness: DataFreshness | undefined;
 
   const excludedSet = new Set(options.excludedHerbIds ?? []);
 
@@ -302,7 +263,7 @@ export function checkInteractions(
         checkedWithNoInteraction: [],
         checkedAt: new Date().toISOString(),
         disclaimer: DISCLAIMER,
-        dataStatus: "mock_unverified",
+        dataStatus: FEATURE_FLAGS.useMockData ? "mock_unverified" : "verified",
       };
     }
     resolvedFormula = resolved.formula;
@@ -320,11 +281,21 @@ export function checkInteractions(
       continue;
     }
 
+    const libraryHerb = lookupHerbById(herbId);
+    if (!libraryHerb) {
+      herbInteractionMap.set(herbId, []);
+      checkedWithNoInteraction.push(herbId);
+      continue;
+    }
+
     const herbMatches: InteractionMatch[] = [];
 
     for (const med of westernMeds) {
-      const match = lookupInteraction(herbId, med.rxcui);
-      if (match) {
+      const { matches: pairMatches, freshness } =
+        await lookupInteractionFromService(libraryHerb, med);
+      lastFreshness = freshness;
+
+      for (const match of pairMatches) {
         const enriched: InteractionMatch = {
           ...match,
           fromFormula: tcmInput.type === "formula",
@@ -451,6 +422,7 @@ export function checkInteractions(
     checkedWithNoInteraction,
     checkedAt: new Date().toISOString(),
     disclaimer: DISCLAIMER,
-    dataStatus: "mock_unverified",
+    dataStatus: FEATURE_FLAGS.useMockData ? "mock_unverified" : "verified",
+    dataFreshness: lastFreshness,
   };
 }

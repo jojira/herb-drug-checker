@@ -238,3 +238,44 @@ The most dangerous interactions in TCM+Western medicine involve:
 - **Hypoglycemics** (Insulin, Metformin) + glucose-lowering herbs (Huang Lian, Ren Shen)
 
 These should always be surfaced as 🔴 Contraindicated when detected.
+
+---
+
+## v4.0 Clinical Data Middleware
+
+### Feature Flag
+`CLINICAL_DATA_SOURCE` env var controls data source:
+- `mock`      — `mockInteractions.json` (default)
+- `natmed`    — NatMed Pro API
+- `stockleys` — Stockley's API
+- `combined`  — both APIs, worst-case severity wins
+
+### Activating Live Data
+1. Obtain API license from NatMed Pro or Pharmaceutical Press
+2. Add API keys to `.env.local` (never commit)
+3. Set `CLINICAL_DATA_SOURCE=natmed` (or `stockleys` or `combined`)
+4. Implement response mapping in the adapter's `map` function
+5. Test against the 3 regression cases before deploying
+
+### Files
+| File | Purpose |
+|---|---|
+| `lib/featureFlags.ts` | Feature flag config — single source of truth |
+| `lib/clinicalCache.ts` | In-memory cache, 24hr TTL per SPEC-004 Amend 001 |
+| `lib/clinicalDataService.ts` | Mock/live orchestration layer |
+| `lib/clinicalAdapters/types.ts` | `ClinicalAdapter` interface + error class |
+| `lib/clinicalAdapters/natmedAdapter.ts` | NatMed Pro stub (awaiting license) |
+| `lib/clinicalAdapters/stockleysAdapter.ts` | Stockley's stub (awaiting license) |
+
+### Engine Contract
+`checkInteractions()` is now **async** — all callers must `await` it.
+Input/output types are unchanged. `InteractionEngineResult` gains an optional
+`dataFreshness?: DataFreshness` field populated on every response.
+
+### Deprecation Path
+When live data is confirmed working:
+1. Set `CLINICAL_DATA_SOURCE=combined` in production
+2. Monitor for 2 weeks — confirm no regressions
+3. Remove mock data import from `clinicalDataService.ts`
+4. Delete `data/mockInteractions.json`
+5. Update CHANGELOG, bump to v4.0.0

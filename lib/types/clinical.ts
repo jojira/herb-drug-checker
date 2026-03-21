@@ -161,6 +161,7 @@ export type InteractionEngineResult = {
   checkedAt: string;
   disclaimer: string;
   dataStatus: "mock_unverified" | "verified";
+  dataFreshness?: DataFreshness;
 };
 
 // ── Engine Input Types ─────────────────────────────────────────
@@ -184,5 +185,20 @@ export type TCMInput = HerbInput | FormulaInput;
 
 export type CheckInteractionsOptions = {
   excludedHerbIds?: string[];
-  // Future: dataSource?: "mock" | "natmed" | "stockleys"
+};
+
+// ── Live API Data Freshness ─────────────────────────────────────
+
+export type ClinicalDataSourceName =
+  "mock" | "natmed" | "stockleys" | "combined";
+
+export type CacheStatus = "hit" | "miss" | "expired" | "bypassed";
+
+export type DataFreshness = {
+  source: ClinicalDataSourceName;
+  cachedAt: string | null;        // ISO 8601, null if not cached
+  expiresAt: string | null;       // ISO 8601, null if not cached
+  cacheStatus: CacheStatus;
+  degradedMode: boolean;          // true if cache expired + API unreachable
+  lastUpdatedDisplay: string;     // human-readable: "Updated 2 hours ago"
 };

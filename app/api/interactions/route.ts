@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const result = checkInteractions(
+    const result = await checkInteractions(
       westernMeds as WesternMed[],
       tcmInput as TCMInput,
       {

@@ -322,10 +322,15 @@ export default function InteractionResults({
             </div>
           </div>
           <div className="text-right">
-             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">Status</span>
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">Status</span>
             <span className="text-[11px] font-bold px-2 py-1 rounded-lg bg-white border-2 border-slate-300 text-slate-700 whitespace-nowrap">
               {result.dataStatus === "mock_unverified" ? "Review Required" : "Verified Data"}
-<           /span>
+            </span>
+            {result.dataFreshness && (
+              <p className="text-[10px] text-slate-500 mt-1">
+                {result.dataFreshness.lastUpdatedDisplay}
+              </p>
+            )}
           </div>
         </div>
         
@@ -337,7 +342,23 @@ export default function InteractionResults({
         </p>
       </div>
 
-      {/* 2. Unresolved Herbs Notice */}
+      {/* 2. Degraded Mode Warning */}
+      {result.dataFreshness?.degradedMode && (
+        <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 flex gap-3">
+          <div className="text-amber-600 mt-0.5">⚠️</div>
+          <div>
+            <h4 className="text-sm font-black text-amber-900 uppercase tracking-tight mb-1">
+              Clinical Data Temporarily Unavailable
+            </h4>
+            <p className="text-xs text-amber-800 leading-relaxed font-medium">
+              Interaction data may be outdated. The clinical database could not
+              be reached. Verify with a pharmacist before prescribing.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Unresolved Herbs Notice */}
       {result.hasUnresolvedHerbs && (
         <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 flex gap-3">
           <div className="text-orange-600 mt-1">⚠️</div>
@@ -351,7 +372,7 @@ export default function InteractionResults({
         </div>
       )}
 
-      {/* 3. Formula Breakdown */}
+      {/* 4. Formula Breakdown */}
       {result.formulaBreakdown?.herbs && result.formulaBreakdown.herbs.length > 0 && (
         <FormulaBreakdown
           breakdown={result.formulaBreakdown.herbs}
@@ -359,7 +380,7 @@ export default function InteractionResults({
         />
       )}
 
-      {/* 4. Interaction Detail Cards */}
+      {/* 5. Interaction Detail Cards */}
       {result.matches.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-500 px-1">
@@ -375,7 +396,7 @@ export default function InteractionResults({
         </div>
       )}
 
-      {/* 5. Persistent Disclaimer */}
+      {/* 6. Persistent Disclaimer */}
       <div className="rounded-xl border-2 border-slate-200 bg-slate-100 p-5">
         <p className="text-xs text-slate-700 leading-relaxed font-medium">
           <span className="font-black text-slate-900 uppercase tracking-widest mr-2 underline decoration-2 decoration-slate-400">Disclaimer:</span>
