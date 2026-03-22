@@ -7,6 +7,31 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.2.5] — 2026-03-22
+
+### Added
+- Batch I: 13 common NCCAOM clinical herbs added
+  (Tu Si Zi and Lu Gen correctly skipped — already present)
+- HB-293 through HB-307 across Drain Dampness, Release
+  Exterior, Tonify Yin, Resolve Phlegm, Regulate Blood,
+  Tonify Yang, Clear Heat, and Calm Shen categories
+- Hu Po (Amber) added as documented modern substitute
+  for discontinued Zhu Sha in Shen-calming formulas
+- 8 formula references resolved in nccaomFormulas.json
+
+### Data
+- herbLibrary.json: 151 → 164 Gold-tier verified herbs
+- missing_herb_warnings: 38 → 30
+- Remaining 30 warnings are permanent amber
+
+### Session Summary (v3.2.0 — v3.2.5)
+- Herb library grew from 86 to 164 herbs (+91%)
+- Formula library grew from 30 to 121 formulas (+303%)
+- Warnings reduced from 131 to 30 (77% reduction)
+- Library clinically complete for standard NCCAOM practice
+
+---
+
 ## [3.2.4] — 2026-03-22
 
 ### Overview
