@@ -28,6 +28,8 @@ export type HerbIdentity = {
   channels?: string[];
   properties?: string[];
   tcm_cautions?: string;
+  discontinued?: boolean;        // true = discontinued in modern practice (e.g. heavy metals)
+  restricted?: boolean;          // true = CITES restricted or controlled substance
   // Resolution metadata
   resolved: boolean;
   tcmbank_name?: string;         // original name if unresolved

@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-03-22T20:56:44.233Z",
+  "run_at": "2026-03-22T21:04:05.773Z",
   "dry_run": false,
   "input_file": "./data/nccaomFormulas.json",
   "summary": {
@@ -7,7 +7,7 @@
     "validated_and_merged": 91,
     "skipped_existing": 29,
     "rejected": 0,
-    "missing_herb_warnings": 46,
+    "missing_herb_warnings": 38,
     "output_total": 121
   },
   "errors": [],
@@ -46,16 +46,6 @@
       "formula_pinyin": "San Zi Yang Qin Tang",
       "herb_id": "unresolved-bai-jie-zi",
       "message": "Formula [San Zi Yang Qin Tang] requires [Bai Jie Zi] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Zhu Sha An Shen Wan",
-      "herb_id": "unresolved-zhu-sha",
-      "message": "Formula [Zhu Sha An Shen Wan] requires [Zhu Sha] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Shen Ding Zhi Wan",
-      "herb_id": "unresolved-long-chi",
-      "message": "Formula [An Shen Ding Zhi Wan] requires [Long Chi] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Ding Chuan Tang",
@@ -174,11 +164,6 @@
     },
     {
       "formula_pinyin": "Ling Jiao Gou Teng Tang",
-      "herb_id": "unresolved-ling-yang-jiao",
-      "message": "Formula [Ling Jiao Gou Teng Tang] requires [Ling Yang Jiao] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ling Jiao Gou Teng Tang",
       "herb_id": "unresolved-chuan-bei-mu",
       "message": "Formula [Ling Jiao Gou Teng Tang] requires [Chuan Bei Mu] — flagged for clinical review"
     },
@@ -204,33 +189,8 @@
     },
     {
       "formula_pinyin": "An Gong Niu Huang Wan",
-      "herb_id": "unresolved-niu-huang",
-      "message": "Formula [An Gong Niu Huang Wan] requires [Niu Huang] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Gong Niu Huang Wan",
-      "herb_id": "unresolved-she-xiang",
-      "message": "Formula [An Gong Niu Huang Wan] requires [She Xiang] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Gong Niu Huang Wan",
-      "herb_id": "unresolved-xi-jiao",
-      "message": "Formula [An Gong Niu Huang Wan] requires [Xi Jiao] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Gong Niu Huang Wan",
       "herb_id": "unresolved-bing-pian",
       "message": "Formula [An Gong Niu Huang Wan] requires [Bing Pian] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Gong Niu Huang Wan",
-      "herb_id": "unresolved-zhen-zhu",
-      "message": "Formula [An Gong Niu Huang Wan] requires [Zhen Zhu] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "An Gong Niu Huang Wan",
-      "herb_id": "unresolved-xiong-huang",
-      "message": "Formula [An Gong Niu Huang Wan] requires [Xiong Huang] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Chang Pu Yu Jin Tang",

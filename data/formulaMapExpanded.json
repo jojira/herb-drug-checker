@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Merged NCCAOM formula library — generated file",
-    "generated_at": "2026-03-22T20:56:44.231Z",
+    "generated_at": "2026-03-22T21:04:05.771Z",
     "source_version": "1.0.0",
     "formula_count": 121,
     "gold_count": 121,
@@ -1278,11 +1278,10 @@
         "fu-ling",
         "fu-shen",
         "yuan-zhi",
-        "unresolved-long-chi",
+        "long-chi",
         "shi-chang-pu"
       ],
       "unresolved_herbs": [
-        "Long Chi",
         "Shi Chang Pu"
       ],
       "trustTier": "gold",
@@ -1341,14 +1340,11 @@
       "classical_reference": "Yi Xue Fa Ming",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-zhu-sha",
+        "zhu-sha",
         "huang-lian",
         "sheng-di-huang",
         "dang-gui",
         "gan-cao"
-      ],
-      "unresolved_herbs": [
-        "Zhu Sha"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -2184,7 +2180,7 @@
       "classical_reference": "Tong Su Shang Han Lun",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-ling-yang-jiao",
+        "ling-yang-jiao",
         "gou-teng",
         "sang-ye",
         "unresolved-chuan-bei-mu",
@@ -2196,7 +2192,6 @@
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Ling Yang Jiao",
         "Sang Ye",
         "Chuan Bei Mu",
         "Ju Hua",
@@ -2353,25 +2348,20 @@
       "classical_reference": "Wen Bing Tiao Bian",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-niu-huang",
-        "unresolved-she-xiang",
-        "unresolved-xi-jiao",
+        "niu-huang",
+        "she-xiang",
+        "shui-niu-jiao",
         "huang-lian",
         "huang-qin",
         "zhi-zi",
         "unresolved-bing-pian",
-        "unresolved-zhen-zhu",
+        "zhen-zhu",
         "yu-jin",
-        "unresolved-xiong-huang"
+        "xiong-huang"
       ],
       "unresolved_herbs": [
-        "Niu Huang",
-        "She Xiang",
-        "Xi Jiao",
         "Bing Pian",
-        "Zhen Zhu",
-        "Yu Jin",
-        "Xiong Huang"
+        "Yu Jin"
       ],
       "trustTier": "gold",
       "source": "nccaom"

@@ -957,14 +957,11 @@
       "classical_reference": "Yi Xue Fa Ming",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-zhu-sha",
+        "zhu-sha",
         "huang-lian",
         "sheng-di-huang",
         "dang-gui",
         "gan-cao"
-      ],
-      "unresolved_herbs": [
-        "Zhu Sha"
       ]
     },
     {
@@ -997,11 +994,10 @@
         "fu-ling",
         "fu-shen",
         "yuan-zhi",
-        "unresolved-long-chi",
+        "long-chi",
         "shi-chang-pu"
       ],
       "unresolved_herbs": [
-        "Long Chi",
         "Shi Chang Pu"
       ]
     },
@@ -2121,7 +2117,7 @@
       "classical_reference": "Tong Su Shang Han Lun",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-ling-yang-jiao",
+        "ling-yang-jiao",
         "gou-teng",
         "sang-ye",
         "unresolved-chuan-bei-mu",
@@ -2133,7 +2129,6 @@
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Ling Yang Jiao",
         "Sang Ye",
         "Chuan Bei Mu",
         "Ju Hua",
@@ -2244,25 +2239,20 @@
       "classical_reference": "Wen Bing Tiao Bian",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-niu-huang",
-        "unresolved-she-xiang",
-        "unresolved-xi-jiao",
+        "niu-huang",
+        "she-xiang",
+        "shui-niu-jiao",
         "huang-lian",
         "huang-qin",
         "zhi-zi",
         "unresolved-bing-pian",
-        "unresolved-zhen-zhu",
+        "zhen-zhu",
         "yu-jin",
-        "unresolved-xiong-huang"
+        "xiong-huang"
       ],
       "unresolved_herbs": [
-        "Niu Huang",
-        "She Xiang",
-        "Xi Jiao",
         "Bing Pian",
-        "Zhen Zhu",
-        "Yu Jin",
-        "Xiong Huang"
+        "Yu Jin"
       ]
     },
     {

@@ -3488,6 +3488,174 @@
         "Resolves dampness and promotes healing"
       ],
       "tcm_cautions": "Use with caution in patients with Yin deficiency Heat or constipation. Animal-derived substance — verify patient suitability. Generally well tolerated at standard dosage."
+    },
+    {
+      "id": "zhu-sha",
+      "pinyin": "Zhu Sha",
+      "latin": "Cinnabaris (mercuric sulfide)",
+      "english": "Cinnabar",
+      "nccaom_code": "HB-286",
+      "category": "Calm Shen",
+      "discontinued": true,
+      "taste": [
+        "sweet"
+      ],
+      "temperature": "cold",
+      "channels": [
+        "Heart"
+      ],
+      "properties": [
+        "Clears Heat and calms Shen",
+        "Sedates and relieves anxiety",
+        "Resolves Fire toxicity",
+        "Classically used for palpitations and insomnia"
+      ],
+      "tcm_cautions": "DISCONTINUED IN MODERN PRACTICE. Contains mercury sulfide — cumulative heavy metal toxicity with repeated use. Banned or restricted in many jurisdictions including the USA, EU, and Canada. Do not prescribe internally. Included for formula composition reference only. Modern substitutes: Hu Po (amber) or Long Gu (fossil bone) for Shen-calming action."
+    },
+    {
+      "id": "xiong-huang",
+      "pinyin": "Xiong Huang",
+      "latin": "Realgar (arsenic disulfide)",
+      "english": "Realgar / Arsenic Disulfide",
+      "nccaom_code": "HB-287",
+      "category": "Clear Heat",
+      "discontinued": true,
+      "taste": [
+        "acrid"
+      ],
+      "temperature": "warm",
+      "channels": [
+        "Liver",
+        "Large Intestine",
+        "Stomach"
+      ],
+      "properties": [
+        "Resolves Fire toxicity",
+        "Kills parasites",
+        "Dries dampness",
+        "Classically used for skin lesions and abscesses"
+      ],
+      "tcm_cautions": "DISCONTINUED IN MODERN PRACTICE. Contains arsenic — highly toxic with cumulative heavy metal poisoning risk. Banned or restricted in most jurisdictions for internal use. Do not prescribe internally. Included for formula composition reference only. External topical use under specialist supervision only."
+    },
+    {
+      "id": "she-xiang",
+      "pinyin": "She Xiang",
+      "latin": "Moschus berezovskii (musk)",
+      "english": "Musk",
+      "nccaom_code": "HB-288",
+      "category": "Open Orifices",
+      "restricted": true,
+      "taste": [
+        "acrid"
+      ],
+      "temperature": "warm",
+      "channels": [
+        "Heart",
+        "Liver",
+        "Spleen"
+      ],
+      "properties": [
+        "Opens Orifices and revives consciousness",
+        "Invigorates Blood and disperses stasis",
+        "Alleviates pain",
+        "Reduces swelling and resolves toxicity"
+      ],
+      "tcm_cautions": "CITES restricted — natural musk from Moschus species is internationally controlled. Verify legal status in your jurisdiction before prescribing. Contraindicated in pregnancy — strong Blood-moving action. Modern clinical practice uses synthetic musk (artificial She Xiang) as the accepted substitute — confirm with supplier that synthetic form is being used."
+    },
+    {
+      "id": "ling-yang-jiao",
+      "pinyin": "Ling Yang Jiao",
+      "latin": "Saiga tatarica (horn)",
+      "english": "Antelope Horn",
+      "nccaom_code": "HB-289",
+      "category": "Extinguish Wind and Stop Tremors",
+      "restricted": true,
+      "taste": [
+        "salty"
+      ],
+      "temperature": "cold",
+      "channels": [
+        "Liver",
+        "Heart"
+      ],
+      "properties": [
+        "Extinguishes Liver Wind and stops tremors",
+        "Clears Liver Heat and brightens eyes",
+        "Clears Heat and resolves toxicity",
+        "Calms Shen and relieves convulsions"
+      ],
+      "tcm_cautions": "CITES Appendix II restricted — Saiga antelope is endangered. Verify legal status and sourcing in your jurisdiction. Accepted substitute: Shan Yang Jiao (goat horn) for non-critical formulas. Use with caution in Cold patterns or without Liver Heat and Wind."
+    },
+    {
+      "id": "niu-huang",
+      "pinyin": "Niu Huang",
+      "latin": "Bos taurus (gallstone)",
+      "english": "Cattle Gallstone / Bezoar",
+      "nccaom_code": "HB-290",
+      "category": "Open Orifices",
+      "taste": [
+        "bitter"
+      ],
+      "temperature": "cool",
+      "channels": [
+        "Heart",
+        "Liver"
+      ],
+      "properties": [
+        "Opens Orifices and revives consciousness",
+        "Clears Heat and resolves Fire toxicity",
+        "Extinguishes Wind and stops tremors",
+        "Reduces swelling"
+      ],
+      "tcm_cautions": "Contraindicated in pregnancy. Use with caution in patients without Heat toxin or excess patterns. Animal-derived substance — verify patient suitability. Natural Niu Huang is scarce — confirm authentic sourcing. Synthetic Niu Huang (Ren Gong Niu Huang) is widely used as a substitute."
+    },
+    {
+      "id": "long-chi",
+      "pinyin": "Long Chi",
+      "latin": "Dens Draconis (fossil teeth)",
+      "english": "Dragon Teeth / Fossilized Teeth",
+      "nccaom_code": "HB-291",
+      "category": "Calm Shen",
+      "taste": [
+        "astringent",
+        "sweet"
+      ],
+      "temperature": "cool",
+      "channels": [
+        "Heart",
+        "Liver"
+      ],
+      "properties": [
+        "Calms Shen and relieves anxiety",
+        "Settles and calms the Heart",
+        "Stronger Shen-calming action than Long Gu",
+        "Anchors floating Yang"
+      ],
+      "tcm_cautions": "Use with caution in exterior pathogenic conditions — may trap pathogens. Animal/mineral-derived substance (fossilized). Often used interchangeably with Long Gu but with stronger sedating action. Generally well tolerated at standard dosage."
+    },
+    {
+      "id": "zhen-zhu",
+      "pinyin": "Zhen Zhu",
+      "latin": "Pteria martensii (pearl)",
+      "english": "Pearl",
+      "nccaom_code": "HB-292",
+      "category": "Calm Shen",
+      "taste": [
+        "sweet",
+        "salty"
+      ],
+      "temperature": "cold",
+      "channels": [
+        "Heart",
+        "Liver"
+      ],
+      "properties": [
+        "Calms Shen and relieves anxiety",
+        "Clears Liver Heat and brightens eyes",
+        "Clears Heat and resolves toxicity",
+        "Promotes healing of skin lesions (topical)"
+      ],
+      "tcm_cautions": "Use with caution in Cold patterns or Spleen deficiency. Animal-derived substance (mollusk). Generally well tolerated at standard dosage. Use prepared/powdered form — unprepared pearl is not bioavailable."
     }
   ]
 }
