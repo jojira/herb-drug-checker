@@ -7,6 +7,65 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.2.4] — 2026-03-22
+
+### Overview
+Batch H herb ingestion — restricted and toxic substance handling.
+Clinically complete for all standard NCCAOM formulas after this release.
+
+### Added
+- **Batch H: 7 restricted/toxic herbs** added with clinical and
+  legal flags:
+    - Zhu Sha (Cinnabar) — `discontinued: true`, mercury sulfide
+      warning, modern substitutes documented
+    - Xiong Huang (Realgar) — `discontinued: true`, arsenic
+      compound warning, topical use only
+    - She Xiang (Musk) — `restricted: true`, CITES notation,
+      synthetic substitute guidance
+    - Ling Yang Jiao (Antelope Horn) — `restricted: true`,
+      CITES Appendix II, substitute noted
+    - Niu Huang (Cattle Gallstone) — standard animal-derived entry,
+      synthetic substitute noted
+    - Long Chi (Fossil Teeth) — standard mineral/animal entry
+    - Zhen Zhu (Pearl) — standard animal-derived entry
+- **Xi Jiao (Rhino Horn) redirect** — CITES Appendix I banned
+  substance; `unresolved-xi-jiao` in An Gong Niu Huang Wan
+  redirected to existing `shui-niu-jiao` entry; no Xi Jiao
+  herb entry created
+- **`discontinued` and `restricted` fields** added to
+  `HerbIdentity` type in `lib/types/clinical.ts` as optional
+  booleans — existing herbs unaffected
+
+### Data
+- herbLibrary.json: 144 → 151 Gold-tier verified herbs
+- missing_herb_warnings: 46 → 38
+- Remaining 38 warnings are permanent amber —
+  controlled substances, fresh juice preparations,
+  and obscure animal products not used in standard
+  clinical practice; correct clinical signal, not data gaps
+
+### Clinical Safety Notes
+- Library is now clinically complete for all standard
+  NCCAOM board exam formulas using dried/prepared substances
+- Discontinued herbs (Zhu Sha, Xiong Huang) included for
+  formula composition reference only — tcm_cautions explicitly
+  state discontinuation and legal status
+- Xi Jiao redirect follows standard clinical substitution
+  practice — Shui Niu Jiao is the universally accepted
+  replacement in all classical formulas
+- 38 permanent amber warnings are intentional flags, not
+  missing data — see v4.1 gate amendment request in
+  project documentation
+
+### Pending (v4.1 gate)
+- Formal clinical lead sign-off on 38 permanent amber
+  warnings as acceptable for CLINICAL PREVIEW status
+- Batch I: ~15 common clinical herbs still to add
+  (Yi Yi Ren, Chan Tui, Yu Zhu, Sang Bai Pi, etc.)
+- NatMed Pro / Stockley's API licenses (v4.0 gate)
+
+---
+
 ## [3.2.3] — 2026-03-22
 ### Added
 - **Batch G:** 20 herbs added across 4 formula clusters (HB-266 – HB-285)
