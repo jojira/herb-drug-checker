@@ -2939,6 +2939,82 @@
         "Clears Heart and calms Shen"
       ],
       "tcm_cautions": "Contraindicated in pregnancy. Use with caution in patients on anticoagulant therapy — may potentiate anticoagulant effects. Incompatible with clove (Ding Xiang)."
+    },
+    {
+      "id": "rou-gui",
+      "pinyin": "Rou Gui",
+      "latin": "Cinnamomum cassia (bark)",
+      "english": "Cinnamon Bark",
+      "nccaom_code": "HB-263",
+      "category": "Warm Interior / Expel Cold",
+      "taste": [
+        "acrid",
+        "sweet"
+      ],
+      "temperature": "hot",
+      "channels": [
+        "Kidney",
+        "Spleen",
+        "Heart",
+        "Liver"
+      ],
+      "properties": [
+        "Warms Kidney Yang and Ming Men Fire",
+        "Warms the middle and disperses Cold",
+        "Warms and unblocks the channels",
+        "Leads fire back to its source",
+        "Encourages generation of Qi and Blood"
+      ],
+      "tcm_cautions": "Contraindicated in pregnancy. Contraindicated in Yin deficiency with heat signs, excess heat patterns, or hemorrhagic conditions. Use with caution in patients on anticoagulant therapy — may have additive blood-thinning effects. Distinct from Gui Zhi (cinnamon twig) — different part, stronger warming action, deeper clinical reach."
+    },
+    {
+      "id": "zi-su-ye",
+      "pinyin": "Zi Su Ye",
+      "latin": "Perilla frutescens (leaf)",
+      "english": "Perilla Leaf",
+      "nccaom_code": "HB-264",
+      "category": "Release Exterior — Wind Cold",
+      "taste": [
+        "acrid"
+      ],
+      "temperature": "warm",
+      "channels": [
+        "Lung",
+        "Spleen"
+      ],
+      "properties": [
+        "Releases exterior Wind Cold",
+        "Promotes Qi movement in middle Jiao",
+        "Calms restless fetus",
+        "Harmonizes Stomach",
+        "Resolves seafood toxicity"
+      ],
+      "tcm_cautions": "Use with caution in exterior deficiency with spontaneous sweating. Not for long-term use. Distinct from Su Zi (Perilla seed) — different part, different primary action (Su Zi descends Qi and transforms Phlegm; Zi Su Ye releases exterior)."
+    },
+    {
+      "id": "bai-zhi",
+      "pinyin": "Bai Zhi",
+      "latin": "Angelica dahurica",
+      "english": "Dahurian Angelica Root",
+      "nccaom_code": "HB-265",
+      "category": "Release Exterior — Wind Cold",
+      "taste": [
+        "acrid"
+      ],
+      "temperature": "warm",
+      "channels": [
+        "Lung",
+        "Stomach",
+        "Large Intestine"
+      ],
+      "properties": [
+        "Expels Wind and releases exterior",
+        "Opens nasal passages",
+        "Alleviates pain",
+        "Reduces swelling and expels pus",
+        "Expels dampness"
+      ],
+      "tcm_cautions": "Use with caution in Yin deficiency or Blood deficiency patterns. Avoid in patterns with excess sweating or without Wind Cold."
     }
   ]
 }

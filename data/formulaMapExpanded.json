@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Merged NCCAOM formula library — generated file",
-    "generated_at": "2026-03-22T20:39:40.874Z",
+    "generated_at": "2026-03-22T20:47:24.377Z",
     "source_version": "1.0.0",
     "formula_count": 121,
     "gold_count": 121,
@@ -479,14 +479,13 @@
         "cang-zhu",
         "xi-xin",
         "chuan-xiong",
-        "unresolved-bai-zhi",
+        "bai-zhi",
         "huang-qin",
         "sheng-di-huang",
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Qiang Huo",
-        "Bai Zhi"
+        "Qiang Huo"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -519,12 +518,9 @@
       "version": "1.0",
       "herb_ids": [
         "xiang-fu",
-        "unresolved-zi-su-ye",
+        "zi-su-ye",
         "chen-pi",
         "gan-cao"
-      ],
-      "unresolved_herbs": [
-        "Zi Su Ye"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -565,7 +561,7 @@
         "huang-qin",
         "bai-shao",
         "jie-geng",
-        "unresolved-bai-zhi",
+        "bai-zhi",
         "qiang-huo",
         "shi-gao",
         "sheng-jiang",
@@ -574,7 +570,6 @@
       ],
       "unresolved_herbs": [
         "Ge Gen",
-        "Bai Zhi",
         "Qiang Huo",
         "Shi Gao"
       ],
@@ -1393,10 +1388,7 @@
         "hou-po",
         "fu-ling",
         "sheng-jiang",
-        "unresolved-zi-su-ye"
-      ],
-      "unresolved_herbs": [
-        "Zi Su Ye"
+        "zi-su-ye"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -1443,15 +1435,14 @@
         "chen-pi",
         "qian-hu",
         "dang-gui",
-        "unresolved-rou-gui",
+        "rou-gui",
         "gan-cao",
         "sheng-jiang",
         "da-zao"
       ],
       "unresolved_herbs": [
         "Su Zi",
-        "Qian Hu",
-        "Rou Gui"
+        "Qian Hu"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -1544,7 +1535,7 @@
         "yan-hu-suo",
         "dang-gui",
         "chuan-xiong",
-        "unresolved-rou-gui",
+        "rou-gui",
         "chi-shao",
         "wu-ling-zhi",
         "unresolved-pu-huang",
@@ -1552,7 +1543,6 @@
       ],
       "unresolved_herbs": [
         "Xiao Hui Xiang",
-        "Rou Gui",
         "Pu Huang",
         "Mo Yao"
       ],
@@ -1764,10 +1754,7 @@
         "bai-shao",
         "shu-di-huang",
         "huang-qi",
-        "unresolved-rou-gui"
-      ],
-      "unresolved_herbs": [
-        "Rou Gui"
+        "rou-gui"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -1954,11 +1941,8 @@
         "gou-qi-zi",
         "du-zhong",
         "fu-zi",
-        "unresolved-rou-gui",
+        "rou-gui",
         "gan-cao"
-      ],
-      "unresolved_herbs": [
-        "Rou Gui"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -2090,7 +2074,7 @@
         "bai-zhu",
         "gan-cao",
         "rou-dou-kou",
-        "unresolved-rou-gui",
+        "rou-gui",
         "mu-xiang",
         "unresolved-ying-su-ke",
         "bai-shao",
@@ -2099,7 +2083,6 @@
       ],
       "unresolved_herbs": [
         "Rou Dou Kou",
-        "Rou Gui",
         "Ying Su Ke",
         "He Zi"
       ],
@@ -2180,7 +2163,7 @@
         "shi-chang-pu",
         "yuan-zhi",
         "fu-zi",
-        "unresolved-rou-gui",
+        "rou-gui",
         "sheng-jiang",
         "da-zao",
         "bo-he"
@@ -2189,8 +2172,7 @@
         "Ba Ji Tian",
         "Rou Cong Rong",
         "Shi Hu",
-        "Shi Chang Pu",
-        "Rou Gui"
+        "Shi Chang Pu"
       ],
       "trustTier": "gold",
       "source": "nccaom"
@@ -2375,7 +2357,7 @@
       "version": "1.0",
       "herb_ids": [
         "xing-ren",
-        "unresolved-zi-su-ye",
+        "zi-su-ye",
         "jie-geng",
         "chen-pi",
         "fu-ling",
@@ -2387,7 +2369,6 @@
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Zi Su Ye",
         "Qian Hu"
       ],
       "trustTier": "gold",
