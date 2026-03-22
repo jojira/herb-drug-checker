@@ -1106,7 +1106,7 @@
         "ban-xia",
         "huang-qin",
         "unresolved-kuan-dong-hua",
-        "unresolved-sang-bai-pi",
+        "sang-bai-pi",
         "unresolved-bai-guo",
         "gan-cao"
       ],
@@ -1114,7 +1114,6 @@
         "Ma Huang",
         "Su Zi",
         "Kuan Dong Hua",
-        "Sang Bai Pi",
         "Bai Guo"
       ]
     },
@@ -1368,15 +1367,14 @@
         "shan-yao",
         "lian-zi",
         "bai-bian-dou",
-        "unresolved-yi-yi-ren",
+        "yi-yi-ren",
         "sha-ren",
         "jie-geng",
         "da-zao"
       ],
       "unresolved_herbs": [
         "Lian Zi",
-        "Bai Bian Dou",
-        "Yi Yi Ren"
+        "Bai Bian Dou"
       ]
     },
     {
@@ -1637,7 +1635,7 @@
       "version": "1.0",
       "herb_ids": [
         "bei-sha-shen",
-        "unresolved-yu-zhu",
+        "yu-zhu",
         "mai-men-dong",
         "sang-ye",
         "tian-hua-fen",
@@ -1646,7 +1644,6 @@
       ],
       "unresolved_herbs": [
         "Bei Sha Shen",
-        "Yu Zhu",
         "Sang Ye",
         "Tian Hua Fen",
         "Bai Bian Dou"
@@ -1868,7 +1865,7 @@
       "classical_reference": "Zheng Zhi Zhun Sheng",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-bu-gu-zhi",
+        "bu-gu-zhi",
         "wu-zhu-yu",
         "rou-dou-kou",
         "wu-wei-zi",
@@ -1876,7 +1873,6 @@
         "da-zao"
       ],
       "unresolved_herbs": [
-        "Bu Gu Zhi",
         "Wu Zhu Yu",
         "Rou Dou Kou"
       ]
@@ -2013,7 +2009,7 @@
       "herb_ids": [
         "jing-jie",
         "fang-feng",
-        "unresolved-chan-tui",
+        "chan-tui",
         "niu-bang-zi",
         "cang-zhu",
         "unresolved-ku-shen",
@@ -2026,7 +2022,6 @@
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Chan Tui",
         "Ku Shen",
         "Shi Gao"
       ]
@@ -2047,13 +2042,12 @@
         "gui-zhi",
         "dang-gui",
         "chuan-xiong",
-        "unresolved-jiang-huang",
+        "jiang-huang",
         "ru-xiang",
         "gan-cao"
       ],
       "unresolved_herbs": [
         "Qiang Huo",
-        "Jiang Huang",
         "Ru Xiang"
       ]
     },
@@ -2120,7 +2114,7 @@
         "ling-yang-jiao",
         "gou-teng",
         "sang-ye",
-        "unresolved-chuan-bei-mu",
+        "chuan-bei-mu",
         "sheng-di-huang",
         "bai-shao",
         "fu-shen",
@@ -2130,7 +2124,6 @@
       ],
       "unresolved_herbs": [
         "Sang Ye",
-        "Chuan Bei Mu",
         "Ju Hua",
         "Zhu Ru"
       ]
@@ -2146,7 +2139,7 @@
         "shu-di-huang",
         "ba-ji-tian",
         "shan-zhu-yu",
-        "unresolved-rou-cong-rong",
+        "rou-cong-rong",
         "unresolved-shi-hu",
         "mai-men-dong",
         "wu-wei-zi",
@@ -2161,7 +2154,6 @@
       ],
       "unresolved_herbs": [
         "Ba Ji Tian",
-        "Rou Cong Rong",
         "Shi Hu",
         "Shi Chang Pu"
       ]
