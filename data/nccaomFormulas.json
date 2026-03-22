@@ -166,7 +166,7 @@
       "version": "1.0",
       "herb_ids": [
         "chai-hu",
-        "unresolved-ge-gen",
+        "ge-gen",
         "huang-qin",
         "bai-shao",
         "jie-geng",
@@ -178,7 +178,6 @@
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Ge Gen",
         "Qiang Huo",
         "Shi Gao"
       ]
@@ -322,20 +321,17 @@
       "classical_reference": "Zheng Zhi Zhun Sheng",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-yin-chai-hu",
-        "unresolved-hu-huang-lian",
+        "yin-chai-hu",
+        "hu-huang-lian",
         "qin-jiao",
         "bie-jia",
-        "unresolved-di-gu-pi",
+        "di-gu-pi",
         "qing-hao",
         "zhi-mu",
         "gan-cao"
       ],
       "unresolved_herbs": [
-        "Yin Chai Hu",
-        "Hu Huang Lian",
         "Bie Jia",
-        "Di Gu Pi",
         "Qing Hao"
       ]
     },
@@ -380,19 +376,13 @@
       "herb_ids": [
         "mu-tong",
         "che-qian-zi",
-        "unresolved-bian-xu",
-        "unresolved-qu-mai",
-        "unresolved-hua-shi",
+        "bian-xu",
+        "qu-mai",
+        "hua-shi",
         "zhi-zi",
         "da-huang",
-        "unresolved-deng-xin-cao",
+        "deng-xin-cao",
         "gan-cao"
-      ],
-      "unresolved_herbs": [
-        "Bian Xu",
-        "Qu Mai",
-        "Hua Shi",
-        "Deng Xin Cao"
       ]
     },
     {
@@ -408,20 +398,15 @@
         "niu-bang-zi",
         "lian-qiao",
         "bo-he",
-        "unresolved-ban-lan-gen",
-        "unresolved-ma-bo",
+        "ban-lan-gen",
+        "ma-bo",
         "xuan-shen",
         "jie-geng",
         "chai-hu",
         "sheng-ma",
         "chen-pi",
         "gan-cao",
-        "unresolved-jiang-can"
-      ],
-      "unresolved_herbs": [
-        "Ban Lan Gen",
-        "Ma Bo",
-        "Jiang Can"
+        "jiang-can"
       ]
     },
     {
@@ -496,12 +481,11 @@
       "herb_ids": [
         "huo-ma-ren",
         "tao-ren",
-        "unresolved-dang-gui-wei",
+        "dang-gui-wei",
         "da-huang",
         "qiang-huo"
       ],
       "unresolved_herbs": [
-        "Dang Gui Wei",
         "Qiang Huo"
       ]
     },
@@ -711,10 +695,7 @@
         "sheng-jiang",
         "da-zao",
         "gan-cao",
-        "unresolved-yi-tang"
-      ],
-      "unresolved_herbs": [
-        "Yi Tang"
+        "yi-tang"
       ]
     },
     {
@@ -742,13 +723,12 @@
       "classical_reference": "Zheng Yin Mai Zhi",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-ding-xiang",
+        "ding-xiang",
         "unresolved-shi-di",
         "ren-shen",
         "sheng-jiang"
       ],
       "unresolved_herbs": [
-        "Ding Xiang",
         "Shi Di"
       ]
     },
@@ -836,12 +816,9 @@
       "classical_reference": "Shang Han Lun",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-gua-lou-shi",
+        "gua-lou-shi",
         "huang-lian",
         "ban-xia"
-      ],
-      "unresolved_herbs": [
-        "Gua Lou Shi"
       ]
     },
     {
@@ -1817,17 +1794,14 @@
       "classical_reference": "Yi Fang Ji Jie",
       "version": "1.0",
       "herb_ids": [
-        "unresolved-sha-yuan-zi",
-        "unresolved-qian-shi",
-        "unresolved-lian-xu",
+        "sha-yuan-zi",
+        "qian-shi",
+        "lian-xu",
         "lian-zi",
         "mu-li",
         "long-gu"
       ],
       "unresolved_herbs": [
-        "Sha Yuan Zi",
-        "Qian Shi",
-        "Lian Xu",
         "Lian Zi",
         "Mu Li",
         "Long Gu"
@@ -1886,11 +1860,8 @@
       "version": "1.0",
       "herb_ids": [
         "wu-yao",
-        "unresolved-yi-zhi-ren",
+        "yi-zhi-ren",
         "shan-yao"
-      ],
-      "unresolved_herbs": [
-        "Yi Zhi Ren"
       ]
     },
     {

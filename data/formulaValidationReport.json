@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-03-22T20:47:24.379Z",
+  "run_at": "2026-03-22T20:56:44.233Z",
   "dry_run": false,
   "input_file": "./data/nccaomFormulas.json",
   "summary": {
@@ -7,95 +7,20 @@
     "validated_and_merged": 91,
     "skipped_existing": 29,
     "rejected": 0,
-    "missing_herb_warnings": 65,
+    "missing_herb_warnings": 46,
     "output_total": 121
   },
   "errors": [],
   "missing_herb_warnings": [
-    {
-      "formula_pinyin": "Chai Ge Jie Ji Tang",
-      "herb_id": "unresolved-ge-gen",
-      "message": "Formula [Chai Ge Jie Ji Tang] requires [Ge Gen] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Qing Gu San",
-      "herb_id": "unresolved-yin-chai-hu",
-      "message": "Formula [Qing Gu San] requires [Yin Chai Hu] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Qing Gu San",
-      "herb_id": "unresolved-hu-huang-lian",
-      "message": "Formula [Qing Gu San] requires [Hu Huang Lian] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Qing Gu San",
-      "herb_id": "unresolved-di-gu-pi",
-      "message": "Formula [Qing Gu San] requires [Di Gu Pi] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ba Zheng San",
-      "herb_id": "unresolved-bian-xu",
-      "message": "Formula [Ba Zheng San] requires [Bian Xu] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ba Zheng San",
-      "herb_id": "unresolved-qu-mai",
-      "message": "Formula [Ba Zheng San] requires [Qu Mai] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ba Zheng San",
-      "herb_id": "unresolved-hua-shi",
-      "message": "Formula [Ba Zheng San] requires [Hua Shi] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ba Zheng San",
-      "herb_id": "unresolved-deng-xin-cao",
-      "message": "Formula [Ba Zheng San] requires [Deng Xin Cao] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Pu Ji Xiao Du Yin",
-      "herb_id": "unresolved-ban-lan-gen",
-      "message": "Formula [Pu Ji Xiao Du Yin] requires [Ban Lan Gen] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Pu Ji Xiao Du Yin",
-      "herb_id": "unresolved-ma-bo",
-      "message": "Formula [Pu Ji Xiao Du Yin] requires [Ma Bo] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Pu Ji Xiao Du Yin",
-      "herb_id": "unresolved-jiang-can",
-      "message": "Formula [Pu Ji Xiao Du Yin] requires [Jiang Can] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Run Chang Wan",
-      "herb_id": "unresolved-dang-gui-wei",
-      "message": "Formula [Run Chang Wan] requires [Dang Gui Wei] — flagged for clinical review"
-    },
     {
       "formula_pinyin": "Da Huang Mu Dan Tang",
       "herb_id": "unresolved-gua-zi",
       "message": "Formula [Da Huang Mu Dan Tang] requires [Gua Zi] — flagged for clinical review"
     },
     {
-      "formula_pinyin": "Xiao Jian Zhong Tang",
-      "herb_id": "unresolved-yi-tang",
-      "message": "Formula [Xiao Jian Zhong Tang] requires [Yi Tang] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Ding Xiang Shi Di Tang",
-      "herb_id": "unresolved-ding-xiang",
-      "message": "Formula [Ding Xiang Shi Di Tang] requires [Ding Xiang] — flagged for clinical review"
-    },
-    {
       "formula_pinyin": "Ding Xiang Shi Di Tang",
       "herb_id": "unresolved-shi-di",
       "message": "Formula [Ding Xiang Shi Di Tang] requires [Shi Di] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Xiao Xian Xiong Tang",
-      "herb_id": "unresolved-gua-lou-shi",
-      "message": "Formula [Xiao Xian Xiong Tang] requires [Gua Lou Shi] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Zhi Sou San",
@@ -193,29 +118,9 @@
       "message": "Formula [Er Xian Tang] requires [Yin Yang Huo] — flagged for clinical review"
     },
     {
-      "formula_pinyin": "Jin Suo Gu Jing Wan",
-      "herb_id": "unresolved-sha-yuan-zi",
-      "message": "Formula [Jin Suo Gu Jing Wan] requires [Sha Yuan Zi] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Jin Suo Gu Jing Wan",
-      "herb_id": "unresolved-qian-shi",
-      "message": "Formula [Jin Suo Gu Jing Wan] requires [Qian Shi] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Jin Suo Gu Jing Wan",
-      "herb_id": "unresolved-lian-xu",
-      "message": "Formula [Jin Suo Gu Jing Wan] requires [Lian Xu] — flagged for clinical review"
-    },
-    {
       "formula_pinyin": "Sang Piao Xiao San",
       "herb_id": "unresolved-sang-piao-xiao",
       "message": "Formula [Sang Piao Xiao San] requires [Sang Piao Xiao] — flagged for clinical review"
-    },
-    {
-      "formula_pinyin": "Suo Quan Wan",
-      "herb_id": "unresolved-yi-zhi-ren",
-      "message": "Formula [Suo Quan Wan] requires [Yi Zhi Ren] — flagged for clinical review"
     },
     {
       "formula_pinyin": "Si Shen Wan",
