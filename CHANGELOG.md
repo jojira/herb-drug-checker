@@ -7,6 +7,48 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.2.3] — 2026-03-22
+### Added
+- **Batch G:** 20 herbs added across 4 formula clusters (HB-266 – HB-285)
+  - Group 1 (5): Ge Gen, Ding Xiang, Gua Lou Shi, Dang Gui Wei, Yi Tang
+  - Group 2 (6): Yin Chai Hu, Hu Huang Lian, Di Gu Pi, Ban Lan Gen, Ma Bo, Jiang Can
+  - Group 3 (4): Bian Xu, Qu Mai, Hua Shi, Deng Xin Cao
+  - Group 4 (5): Sha Yuan Zi, Qian Shi, Lian Xu, Yi Zhi Ren, Hai Piao Xiao
+- **Formulas fully Gold-resolved:** Ba Zheng San, Qing Gu San, Pu Ji Xiao Du Yin,
+  Jin Suo Gu Jing Wan, Ding Xiang Shi Di Tang, Xiao Jian Zhong Tang,
+  Xiao Xian Xiong Tang, Run Chang Wan, Suo Quan Wan, Chai Ge Jie Ji Tang
+- `herbLibrary.json` now contains **144 Gold-tier verified herbs**
+- `missing_herb_warnings`: 65 → 46
+- `nccaomFormulas.json`: 19 `unresolved-` references resolved
+
+### Notes
+- Remaining 46 warnings are all single-occurrence (1× each)
+- ~8 are reserved restricted/toxic substances (Batch H): `zhu-sha`, `xi-jiao`,
+  `she-xiang`, `ling-yang-jiao`, `niu-huang`, `long-chi`, `zhen-zhu`, `xiong-huang`
+- ~38 are obscure single-formula herbs — amber warning is the correct clinical signal
+
+---
+
+## [3.2.2] — 2026-03-22
+### Added
+- **Batch F:** 3 herbs — Rou Gui (HB-263), Zi Su Ye (HB-264), Bai Zhi (HB-265)
+- Fixed false-latin-match skips from Batch E: Rou Gui and Zi Su Ye were incorrectly
+  skipped because latin species matched gui-zhi (twig) and su-zi (seed) respectively
+- `nccaomFormulas.json`: 12 `unresolved-` references resolved
+- `missing_herb_warnings`: 77 → 65
+
+---
+
+## [3.2.1] — 2026-03-22
+### Added
+- **Batch E:** 22 herbs ingested from clinical acupuncturist worksheet (HB-241 – HB-262)
+- Includes Tier 1 and Tier 2 herbs; 2 correctly skipped (Rou Gui, Zi Su Ye — see Batch F)
+- `nccaomFormulas.json`: 54 `unresolved-` references resolved
+- `missing_herb_warnings`: 131 → 77
+- `scripts/ingestBatchE.js` ingestion script added
+
+---
+
 ## [3.2.0] — 2026-03-21
 
 ### Overview
