@@ -196,14 +196,14 @@ export type DrugDrugInteraction = {
   description: string;
   drug1: { rxcui: string; name: string };
   drug2: { rxcui: string; name: string };
-  source: "rxnorm";
+  source: "rxnorm" | "fda_label";
 };
 
 export type DrugDrugCheckResult = {
   interactions: DrugDrugInteraction[];
   checkedAt: string;
   pairsChecked: number;
-  source: "rxnorm";
+  source: "rxnorm" | "fda_label";
   disclaimer: string;
 };
 

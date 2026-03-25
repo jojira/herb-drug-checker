@@ -2,50 +2,84 @@ import { NextRequest, NextResponse } from "next/server";
 import type { DrugDrugInteraction, DrugDrugCheckResult } from "@/lib/types/clinical";
 
 const DISCLAIMER =
-  "Drug-drug interaction data sourced from NIH RxNorm. " +
-  "This does not replace clinical pharmacist review.";
+  "Drug interaction data sourced from FDA drug labels via openFDA. " +
+  "Severity ratings are not graded — consult a pharmacist for complete interaction assessment.";
 
 // ---------------------------------------------------------------------------
-// RxNorm response types
+// OpenFDA drug label response types
 // ---------------------------------------------------------------------------
 
-type RxNormMinConcept = {
-  rxcui: string;
-  name: string;
+type FdaLabelResult = {
+  drug_interactions?: string[];
+  openfda?: {
+    generic_name?: string[];
+    brand_name?: string[];
+  };
 };
 
-type RxNormInteractionConcept = {
-  minConceptItem: RxNormMinConcept;
-};
-
-type RxNormInteractionPair = {
-  interactionConcept?: RxNormInteractionConcept[];
-  severity?: string;
-  description?: string;
-};
-
-type RxNormFullInteractionType = {
-  interactionPair?: RxNormInteractionPair[];
-};
-
-type RxNormFullInteractionTypeGroup = {
-  fullInteractionType?: RxNormFullInteractionType[];
-};
-
-type RxNormInteractionListResponse = {
-  fullInteractionTypeGroup?: RxNormFullInteractionTypeGroup[];
+type FdaLabelResponse = {
+  results?: FdaLabelResult[];
+  error?: { code: string; message: string };
 };
 
 // ---------------------------------------------------------------------------
-// Helpers
+// Step 1: Resolve a display name from RxNorm properties endpoint.
+// Returns null if unreachable — callers fall back to raw rxcui string.
 // ---------------------------------------------------------------------------
 
-function mapSeverity(raw?: string): "high" | "moderate" | "low" {
-  if (!raw) return "low";
-  const lower = raw.toLowerCase();
-  if (lower === "high") return "high";
-  if (lower === "moderate") return "moderate";
-  return "low"; // "N/A" or anything else
+type RxNormProperties = {
+  properties?: { name?: string };
+};
+
+async function resolveNameFromRxNorm(rxcui: string): Promise<string | null> {
+  try {
+    const url = `https://rxnav.nlm.nih.gov/REST/rxcui/${encodeURIComponent(rxcui)}/properties.json`;
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    if (!res.ok) return null;
+    const data: RxNormProperties = await res.json();
+    return data.properties?.name ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Step 2: Fetch the FDA label for a drug by its RxCUI.
+// Returns null if not found or API unreachable.
+// ---------------------------------------------------------------------------
+
+async function fetchFdaLabel(rxcui: string): Promise<FdaLabelResult | null> {
+  try {
+    const url = `https://api.fda.gov/drug/label.json?search=openfda.rxcui:${encodeURIComponent(rxcui)}&limit=1`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const data: FdaLabelResponse = await res.json();
+    return data.results?.[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Extract the first ~300-char snippet of drug_interactions text that
+// contains the target drug name (case-insensitive).
+// Returns null if not found.
+// ---------------------------------------------------------------------------
+
+function extractInteractionSnippet(
+  label: FdaLabelResult | null,
+  targetName: string
+): string | null {
+  const interactionText = label?.drug_interactions?.[0];
+  if (!interactionText) return null;
+
+  const lower = interactionText.toLowerCase();
+  const idx = lower.indexOf(targetName.toLowerCase());
+  if (idx === -1) return null;
+
+  const start = Math.max(0, idx - 50);
+  const raw = interactionText.slice(start, start + 300).trim();
+  return raw.length < interactionText.length ? raw + "…" : raw;
 }
 
 // ---------------------------------------------------------------------------
@@ -87,53 +121,41 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const pairsChecked = (rxcuis.length * (rxcuis.length - 1)) / 2;
+  const ids = rxcuis as string[];
+  const pairsChecked = (ids.length * (ids.length - 1)) / 2;
   const interactions: DrugDrugInteraction[] = [];
 
-  try {
-    const joined = (rxcuis as string[]).join("+");
-    const url = `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${joined}`;
+  // Step 1: resolve all names from RxNorm in parallel
+  const resolvedNames = await Promise.all(ids.map(resolveNameFromRxNorm));
+  const names = ids.map((id, i) => resolvedNames[i] ?? id);
 
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+  // Step 2: fetch FDA labels for all drugs in parallel (by rxcui)
+  const labels = await Promise.all(ids.map(fetchFdaLabel));
 
-    if (res.ok) {
-      const data: RxNormInteractionListResponse = await res.json();
-
-      const groups = data.fullInteractionTypeGroup ?? [];
-      for (const group of groups) {
-        const types = group.fullInteractionType ?? [];
-        for (const type of types) {
-          const pairs = type.interactionPair ?? [];
-          for (const pair of pairs) {
-            const concepts = pair.interactionConcept ?? [];
-            const c0 = concepts[0]?.minConceptItem;
-            const c1 = concepts[1]?.minConceptItem;
-            if (!c0 || !c1) continue;
-
-            interactions.push({
-              severity: mapSeverity(pair.severity),
-              description: pair.description ?? "",
-              drug1: { rxcui: c0.rxcui, name: c0.name },
-              drug2: { rxcui: c1.rxcui, name: c1.name },
-              source: "rxnorm",
-            });
-          }
-        }
+  // Step 3: check each ordered pair — drug2 name in drug1's interactions text
+  for (let i = 0; i < ids.length; i++) {
+    for (let j = i + 1; j < ids.length; j++) {
+      const snippet = extractInteractionSnippet(labels[i], names[j]);
+      if (snippet) {
+        interactions.push({
+          severity: "moderate",
+          description: snippet,
+          drug1: { rxcui: ids[i], name: names[i] },
+          drug2: { rxcui: ids[j], name: names[j] },
+          source: "fda_label",
+        });
       }
     }
-    // If !res.ok, fall through with empty interactions — degrade gracefully
-  } catch {
-    // RxNorm unreachable — return empty interactions, not a 500
   }
 
   const result: DrugDrugCheckResult = {
     interactions,
     checkedAt: new Date().toISOString(),
     pairsChecked,
-    source: "rxnorm",
+    source: "fda_label",
     disclaimer:
       interactions.length === 0
-        ? "Drug-drug check unavailable or no interactions found in NIH RxNorm database."
+        ? "No interactions detected in FDA drug label text. This does not exclude all clinically significant interactions — consult a pharmacist."
         : DISCLAIMER,
   };
 

@@ -77,7 +77,7 @@ export default function DrugDrugPanel({ result }: { result: DrugDrugCheckResult 
           Drug–Drug Interactions Detected
         </h2>
         <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded border-2 border-blue-300 bg-white text-blue-700">
-          NIH RxNorm
+          FDA Drug Labels (openFDA)
         </span>
       </div>
 
