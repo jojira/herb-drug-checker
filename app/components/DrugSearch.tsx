@@ -12,6 +12,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import type { WesternMed } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
@@ -106,21 +107,44 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [meds, setMeds] = useState<(WesternMed & { brand_names: string[]; drug_class?: string })[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number } | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Close on outside click
+  // Close on outside click — checks both the input container and the
+  // portaled dropdown div, since the portal is not a DOM child of containerRef.
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const inContainer = containerRef.current?.contains(e.target as Node) ?? false;
+      const inDropdown = dropdownRef.current?.contains(e.target as Node) ?? false;
+      if (!inContainer && !inDropdown) {
         setOpen(false);
       }
     }
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
+
+  // SSR safety — createPortal requires document.body
+  useEffect(() => { setMounted(true); }, []);
+
+  // Recalculate portal position whenever the dropdown opens.
+  // Uses getBoundingClientRect() + scroll offsets for absolute page coordinates.
+  useEffect(() => {
+    if (!open) return;
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      setDropdownPos({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      });
+    }
+  }, [open]);
 
   // Debounced search
   useEffect(() => {
@@ -179,6 +203,9 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
   }, [meds, onMedsChange]);
 
   const maxReached = meds.length >= 10;
+  const showDropdown = open && suggestions.length > 0;
+  const showNoResults = open && !loading && query.length >= 2 && suggestions.length === 0 && !error;
+  const showOverlay = showDropdown || showNoResults;
 
   return (
     <div ref={containerRef} className="w-full">
@@ -246,35 +273,51 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
             </button>
           )}
         </div>
-
-        {/* Dropdown */}
-        {open && suggestions.length > 0 && (
-          <div
-            id="drug-search-listbox"
-            className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
-            role="listbox"
-            aria-label="Drug search results"
-          >
-            {suggestions.map((drug) => {
-              const alreadyAdded = meds.some((m) => m.rxcui === drug.rxcui);
-              return (
-                <div key={drug.rxcui} className={alreadyAdded ? "opacity-40 pointer-events-none" : ""}>
-                  <DrugSuggestionRow drug={drug} onSelect={() => handleSelect(drug)} />
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* No results */}
-        {open && !loading && query.length >= 2 && suggestions.length === 0 && !error && (
-          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
-            <p className="text-xs text-slate-500">
-              No medications found for &ldquo;{query}&rdquo;. Try the generic name.
-            </p>
-          </div>
-        )}
       </div>
+
+      {/* Portal: dropdown and no-results overlays.
+          Rendered at document.body to escape the overflow-y-auto container. */}
+      {mounted && dropdownPos && showOverlay && createPortal(
+        <div
+          ref={dropdownRef}
+          style={{
+            position: "absolute",
+            top: dropdownPos.top,
+            left: dropdownPos.left,
+            width: dropdownPos.width,
+            zIndex: 9999,
+          }}
+        >
+          {/* Dropdown */}
+          {showDropdown && (
+            <div
+              id="drug-search-listbox"
+              className="bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
+              role="listbox"
+              aria-label="Drug search results"
+            >
+              {suggestions.map((drug) => {
+                const alreadyAdded = meds.some((m) => m.rxcui === drug.rxcui);
+                return (
+                  <div key={drug.rxcui} className={alreadyAdded ? "opacity-40 pointer-events-none" : ""}>
+                    <DrugSuggestionRow drug={drug} onSelect={() => handleSelect(drug)} />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* No results */}
+          {showNoResults && (
+            <div className="bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
+              <p className="text-xs text-slate-500">
+                No medications found for &ldquo;{query}&rdquo;. Try the generic name.
+              </p>
+            </div>
+          )}
+        </div>,
+        document.body
+      )}
 
       {/* Error state */}
       {error && (

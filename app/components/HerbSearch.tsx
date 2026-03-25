@@ -12,6 +12,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { createPortal } from "react-dom";
 import type { HerbInput, FormulaInput, TCMSearchResultItem, TrustTier, TCMSearchResponse } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
@@ -145,8 +146,11 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<HerbSearchSelection | null>(null);
   const [exactMatchError, setExactMatchError] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
@@ -207,16 +211,36 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
     };
   }, [query, selected, libraryMeta]);
 
-  // Close dropdown on outside click
+  // Close dropdown on outside click — checks both the input container and the
+  // portaled dropdown div, since the portal is not a DOM child of containerRef.
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const inContainer = containerRef.current?.contains(e.target as Node) ?? false;
+      const inDropdown = dropdownRef.current?.contains(e.target as Node) ?? false;
+      if (!inContainer && !inDropdown) {
         setOpen(false);
       }
     }
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
+
+  // SSR safety — createPortal requires document.body
+  useEffect(() => { setMounted(true); }, []);
+
+  // Recalculate portal position whenever the dropdown opens.
+  // Uses getBoundingClientRect() + scroll offsets for absolute page coordinates.
+  useEffect(() => {
+    if (!open) return;
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      setDropdownPos({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      });
+    }
+  }, [open]);
 
   const handleSelectItem = useCallback(
     (item: TCMSearchResultItem) => {
@@ -281,6 +305,10 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
   const showDropdown = open && !selected && hasSuggestions;
   const showNoResults =
     open && !selected && query.length >= 2 && !hasSuggestions && !activeFetchError;
+  const showOverlay =
+    showDropdown ||
+    showNoResults ||
+    (activeFetchError && open && !selected);
 
   return (
     <div ref={containerRef} className="w-full">
@@ -361,69 +389,85 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
             )}
           </div>
         )}
-
-        {/* Dropdown — herbs and formulas grouped */}
-        {showDropdown && (
-          <div
-            id="herb-search-listbox"
-            className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
-            role="listbox"
-            aria-label="Search suggestions"
-          >
-            {/* Fallback notice */}
-            {activeSearchedFallback && (
-              <div className="px-4 py-2 bg-amber-50 border-b border-amber-100">
-                <p className="text-[10px] text-amber-700">
-                  ⚠ No NCCAOM-verified result found. Showing TCMBank research data.
-                </p>
-              </div>
-            )}
-
-            {herbSuggestions.length > 0 && (
-              <>
-                <SectionHeader label="Single Herbs" />
-                {herbSuggestions.map((item) => (
-                  <HerbSuggestionRow
-                    key={item.id}
-                    item={item}
-                    onSelect={() => handleSelectItem(item)}
-                  />
-                ))}
-              </>
-            )}
-            {formulaSuggestions.length > 0 && (
-              <>
-                <SectionHeader label="Formulas" />
-                {formulaSuggestions.map((item) => (
-                  <FormulaSuggestionRow
-                    key={item.id}
-                    item={item}
-                    onSelect={() => handleSelectItem(item)}
-                  />
-                ))}
-              </>
-            )}
-          </div>
-        )}
-
-        {/* No results */}
-        {showNoResults && (
-          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
-            <p className="text-xs text-slate-500">
-              No herbs or formulas found. Try Pinyin, Latin, or English name.
-            </p>
-          </div>
-        )}
-
-        {/* Fetch error */}
-        {activeFetchError && open && !selected && (
-          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3">
-            <p className="text-xs text-red-500">
-              Search unavailable. Please check your connection and try again.
-            </p>
-          </div>
-        )}
       </div>
+
+      {/* Portal: dropdown, no-results, and error overlays.
+          Rendered at document.body to escape the overflow-y-auto container. */}
+      {mounted && dropdownPos && showOverlay && createPortal(
+        <div
+          ref={dropdownRef}
+          style={{
+            position: "absolute",
+            top: dropdownPos.top,
+            left: dropdownPos.left,
+            width: dropdownPos.width,
+            zIndex: 9999,
+          }}
+        >
+          {/* Dropdown — herbs and formulas grouped */}
+          {showDropdown && (
+            <div
+              id="herb-search-listbox"
+              className="bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
+              role="listbox"
+              aria-label="Search suggestions"
+            >
+              {/* Fallback notice */}
+              {activeSearchedFallback && (
+                <div className="px-4 py-2 bg-amber-50 border-b border-amber-100">
+                  <p className="text-[10px] text-amber-700">
+                    ⚠ No NCCAOM-verified result found. Showing TCMBank research data.
+                  </p>
+                </div>
+              )}
+
+              {herbSuggestions.length > 0 && (
+                <>
+                  <SectionHeader label="Single Herbs" />
+                  {herbSuggestions.map((item) => (
+                    <HerbSuggestionRow
+                      key={item.id}
+                      item={item}
+                      onSelect={() => handleSelectItem(item)}
+                    />
+                  ))}
+                </>
+              )}
+              {formulaSuggestions.length > 0 && (
+                <>
+                  <SectionHeader label="Formulas" />
+                  {formulaSuggestions.map((item) => (
+                    <FormulaSuggestionRow
+                      key={item.id}
+                      item={item}
+                      onSelect={() => handleSelectItem(item)}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          )}
+
+          {/* No results */}
+          {showNoResults && (
+            <div className="bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
+              <p className="text-xs text-slate-500">
+                No herbs or formulas found. Try Pinyin, Latin, or English name.
+              </p>
+            </div>
+          )}
+
+          {/* Fetch error */}
+          {activeFetchError && open && !selected && (
+            <div className="bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3">
+              <p className="text-xs text-red-500">
+                Search unavailable. Please check your connection and try again.
+              </p>
+            </div>
+          )}
+        </div>,
+        document.body
+      )}
 
       {/* Exact match error */}
       {exactMatchError && (
