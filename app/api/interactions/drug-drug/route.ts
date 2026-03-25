@@ -44,13 +44,16 @@ async function resolveNameFromRxNorm(rxcui: string): Promise<string | null> {
 }
 
 // ---------------------------------------------------------------------------
-// Step 2: Fetch the FDA label for a drug by its RxCUI.
+// Step 2: Fetch the FDA label for a drug by its generic name.
+// openFDA indexes product-level rxcuis, not ingredient-level rxcuis, so
+// querying by openfda.rxcui returns NOT_FOUND for common drugs like warfarin.
+// Querying by generic_name reliably returns the label with drug_interactions.
 // Returns null if not found or API unreachable.
 // ---------------------------------------------------------------------------
 
-async function fetchFdaLabel(rxcui: string): Promise<FdaLabelResult | null> {
+async function fetchFdaLabel(drugName: string): Promise<FdaLabelResult | null> {
   try {
-    const url = `https://api.fda.gov/drug/label.json?search=openfda.rxcui:${encodeURIComponent(rxcui)}&limit=1`;
+    const url = `https://api.fda.gov/drug/label.json?search=openfda.generic_name:${encodeURIComponent(drugName.toLowerCase())}&limit=1`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) return null;
     const data: FdaLabelResponse = await res.json();
@@ -129,8 +132,8 @@ export async function POST(request: NextRequest) {
   const resolvedNames = await Promise.all(ids.map(resolveNameFromRxNorm));
   const names = ids.map((id, i) => resolvedNames[i] ?? id);
 
-  // Step 2: fetch FDA labels for all drugs in parallel (by rxcui)
-  const labels = await Promise.all(ids.map(fetchFdaLabel));
+  // Step 2: fetch FDA labels for all drugs in parallel (by generic name)
+  const labels = await Promise.all(names.map(fetchFdaLabel));
 
   // Step 3: check each ordered pair — drug2 name in drug1's interactions text
   for (let i = 0; i < ids.length; i++) {

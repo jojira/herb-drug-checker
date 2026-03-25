@@ -366,7 +366,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
         {showDropdown && (
           <div
             id="herb-search-listbox"
-            className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
+            className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-80 overflow-y-auto"
             role="listbox"
             aria-label="Search suggestions"
           >
@@ -408,7 +408,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
 
         {/* No results */}
         {showNoResults && (
-          <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
+          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-slate-500">
               No herbs or formulas found. Try Pinyin, Latin, or English name.
             </p>
@@ -417,7 +417,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
 
         {/* Fetch error */}
         {activeFetchError && open && !selected && (
-          <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3">
+          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-red-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-red-500">
               Search unavailable. Please check your connection and try again.
             </p>

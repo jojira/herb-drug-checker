@@ -251,7 +251,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
         {open && suggestions.length > 0 && (
           <div
             id="drug-search-listbox"
-            className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
+            className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-72 overflow-y-auto"
             role="listbox"
             aria-label="Drug search results"
           >
@@ -268,7 +268,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
 
         {/* No results */}
         {open && !loading && query.length >= 2 && suggestions.length === 0 && !error && (
-          <div className="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
+          <div className="absolute z-[100] left-0 right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg px-4 py-3">
             <p className="text-xs text-slate-500">
               No medications found for &ldquo;{query}&rdquo;. Try the generic name.
             </p>
