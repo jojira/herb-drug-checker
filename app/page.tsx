@@ -5,7 +5,8 @@ import HerbSearch from "@/app/components/HerbSearch";
 import type { HerbSearchSelection } from "@/app/components/HerbSearch";
 import DrugSearch from "@/app/components/DrugSearch";
 import InteractionResults from "@/app/components/InteractionResults";
-import type { WesternMed, InteractionEngineResult } from "@/lib/types/clinical";
+import DrugDrugPanel from "@/app/components/DrugDrugPanel";
+import type { WesternMed, InteractionEngineResult, DrugDrugCheckResult } from "@/lib/types/clinical";
 
 // ---------------------------------------------------------------------------
 // Disclaimer — non-negotiable per CLAUDE.md
@@ -95,6 +96,7 @@ export default function HomePage() {
   const [modifiedResult, setModifiedResult] = useState<InteractionEngineResult | null>(null);
   // excludedHerbIds — set of formula herb IDs the practitioner has unchecked
   const [excludedHerbIds, setExcludedHerbIds] = useState<Set<string>>(new Set());
+  const [drugDrugResult, setDrugDrugResult] = useState<DrugDrugCheckResult | null>(null);
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Incrementing this key forces HerbSearch and DrugSearch to fully remount on reset
@@ -156,6 +158,24 @@ export default function HomePage() {
     };
   }, [excludedHerbIds, originalResult, selectedTCM, westernMeds]);
 
+  // Fetch drug-drug interactions whenever 2+ western meds are selected.
+  // Fires automatically on westernMeds change — no button press required.
+  useEffect(() => {
+    if (westernMeds.length < 2) {
+      setDrugDrugResult(null);
+      return;
+    }
+    const rxcuis = westernMeds.map((m) => m.rxcui);
+    fetch("/api/interactions/drug-drug", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rxcuis }),
+    })
+      .then((r) => r.json())
+      .then((data: DrugDrugCheckResult) => setDrugDrugResult(data))
+      .catch(() => setDrugDrugResult(null));
+  }, [westernMeds]);
+
   const handleTCMSelect = useCallback((selection: HerbSearchSelection) => {
     setSelectedTCM(selection);
     setOriginalResult(null);
@@ -177,6 +197,7 @@ export default function HomePage() {
     setOriginalResult(null);
     setModifiedResult(null);
     setExcludedHerbIds(new Set());
+    setDrugDrugResult(null);
     setError(null);
   }, []);
 
@@ -228,6 +249,7 @@ export default function HomePage() {
     setOriginalResult(null);
     setModifiedResult(null);
     setExcludedHerbIds(new Set());
+    setDrugDrugResult(null);
     setError(null);
     setResetKey((k) => k + 1);
   }, []);
@@ -368,6 +390,12 @@ export default function HomePage() {
         aria-live="polite"
         aria-label="Interaction results"
       >
+        {/* Drug-drug panel — always above herb results, visible even during skeleton */}
+        {drugDrugResult && drugDrugResult.interactions.length > 0 && (
+          <div className="px-6 pt-6">
+            <DrugDrugPanel result={drugDrugResult} />
+          </div>
+        )}
         {isChecking && <SkeletonLoader />}
         {!isChecking && displayResult && (
           <div className="p-6">
@@ -380,7 +408,7 @@ export default function HomePage() {
             />
           </div>
         )}
-        {!isChecking && !displayResult && <EmptyState />}
+        {!isChecking && !displayResult && !(drugDrugResult && drugDrugResult.interactions.length > 0) && <EmptyState />}
       </main>
 
     </div>

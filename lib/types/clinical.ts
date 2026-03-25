@@ -189,6 +189,24 @@ export type CheckInteractionsOptions = {
   excludedHerbIds?: string[];
 };
 
+// ── Drug-Drug Interaction Types ────────────────────────────────
+
+export type DrugDrugInteraction = {
+  severity: "high" | "moderate" | "low";
+  description: string;
+  drug1: { rxcui: string; name: string };
+  drug2: { rxcui: string; name: string };
+  source: "rxnorm";
+};
+
+export type DrugDrugCheckResult = {
+  interactions: DrugDrugInteraction[];
+  checkedAt: string;
+  pairsChecked: number;
+  source: "rxnorm";
+  disclaimer: string;
+};
+
 // ── Live API Data Freshness ─────────────────────────────────────
 
 export type ClinicalDataSourceName =
