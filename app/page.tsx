@@ -378,6 +378,12 @@ export default function HomePage() {
                 : "Add at least one medication to continue."}
             </p>
           )}
+          <a
+            href="/transparency"
+            className="block text-center text-[10px] font-medium text-slate-400 hover:text-teal-600 transition-colors underline underline-offset-2 decoration-slate-300 hover:decoration-teal-400 pt-1"
+          >
+            Data Sources &amp; Clinical Transparency Policy
+          </a>
         </div>
 
       </aside>
