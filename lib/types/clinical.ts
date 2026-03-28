@@ -207,6 +207,26 @@ export type DrugDrugCheckResult = {
   disclaimer: string;
 };
 
+// ── Feedback Widget ────────────────────────────────────────────
+
+export type FeedbackType =
+  | "data_accuracy"
+  | "ui_bug"
+  | "feature_request"
+  | "general_praise";
+
+export type FeedbackPayload = {
+  type: FeedbackType;
+  message: string;
+  context: {
+    url: string;
+    timestamp: string;
+    activeRxcuis: string[];    // rxcuis of current selected drugs
+    activeHerbId: string | null;  // current selected herb/formula id
+    appVersion: string;
+  };
+};
+
 // ── Live API Data Freshness ─────────────────────────────────────
 
 export type ClinicalDataSourceName =

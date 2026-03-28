@@ -279,3 +279,46 @@ When live data is confirmed working:
 3. Remove mock data import from `clinicalDataService.ts`
 4. Delete `data/mockInteractions.json`
 5. Update CHANGELOG, bump to v4.0.0
+
+---
+
+## Clinical Feedback Widget
+
+Component: `app/components/FeedbackWidget.tsx`
+API route: `app/api/feedback/route.ts`
+Config: `FEEDBACK_WEBHOOK_URL` env var
+
+### Google Sheets Setup (recommended)
+1. Create a Google Sheet with columns:
+   Timestamp | Type | Message | URL | Version
+2. Go to Extensions → Apps Script
+3. Paste this script:
+   ```javascript
+   function doPost(e) {
+     const data = JSON.parse(e.postData.contents);
+     const sheet = SpreadsheetApp.getActiveSheet();
+     sheet.appendRow([
+       data.context.timestamp,
+       data.type,
+       data.message,
+       data.context.url,
+       data.context.appVersion
+     ]);
+     return ContentService
+       .createTextOutput(JSON.stringify({ success: true }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+   ```
+4. Deploy → New deployment → Web app
+   Execute as: Me
+   Who has access: Anyone
+5. Copy the deployment URL
+6. Add to Vercel env vars: `FEEDBACK_WEBHOOK_URL={url}`
+
+### Alternative: Resend email
+`FEEDBACK_WEBHOOK_URL` can also point to a custom
+`/api/feedback/email` route — not yet implemented.
+
+### Graceful degradation
+- `FEEDBACK_WEBHOOK_URL` not set → payload logged to console, UI still shows "Thank you"
+- Webhook failure → API returns `{ success: false }` with HTTP 200 — practitioner always sees the thank you message
