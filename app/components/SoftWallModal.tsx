@@ -40,13 +40,13 @@ export default function SoftWallModal({
             id="softwall-heading"
             className="text-2xl font-black text-slate-900 text-center mb-2"
           >
-            You&rsquo;ve reached your 5 free searches
+            You&rsquo;ve used all 5 free searches
           </h2>
 
           {/* Body */}
           <p className="text-slate-500 text-sm leading-relaxed text-center mb-6">
-            Create your free Formulens account to unlock unlimited searches and
-            support the clinical validation of this tool.
+            Create your free Formulens account to continue.
+            Unlimited searches, no credit card required.
           </p>
 
           {/* Primary CTA */}

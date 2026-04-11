@@ -94,6 +94,7 @@ function EmptyState() {
 export default function HomePage() {
   const { isSignedIn } = useUser();
   const [showSoftWall, setShowSoftWall] = useState(false);
+  const [searchesRemaining, setSearchesRemaining] = useState<number | null>(null);
   const [selectedTCM, setSelectedTCM] = useState<HerbSearchSelection | null>(null);
   const [westernMeds, setWesternMeds] = useState<WesternMed[]>([]);
   // originalResult — the result from the last full Check Interactions run
@@ -112,6 +113,21 @@ export default function HomePage() {
   const toggleAbortRef = useRef<AbortController | null>(null);
 
   const canCheck = selectedTCM !== null && westernMeds.length > 0;
+
+  // On mount — read remaining searches from localStorage for unauthenticated users
+  useEffect(() => {
+    if (!isSignedIn) {
+      const used = getSearchCount();
+      setSearchesRemaining(Math.max(0, SEARCH_LIMIT - used));
+    }
+  }, [isSignedIn]);
+
+  // When user signs in, clear the countdown
+  useEffect(() => {
+    if (isSignedIn) {
+      setSearchesRemaining(null);
+    }
+  }, [isSignedIn]);
 
   // Re-run the engine via API whenever herb exclusions change.
   // Uses AbortController to cancel any superseded in-flight request when the
@@ -240,6 +256,7 @@ export default function HomePage() {
       // Increment only on successful result
       if (!isSignedIn) {
         incrementSearchCount();
+        setSearchesRemaining(Math.max(0, SEARCH_LIMIT - getSearchCount()));
       }
     } catch (err) {
       console.error("Interaction check error:", err);
@@ -411,6 +428,13 @@ export default function HomePage() {
                 : selectedTCM === null
                 ? "Select an herb or formula to continue."
                 : "Add at least one medication to continue."}
+            </p>
+          )}
+          {!isSignedIn && searchesRemaining !== null && searchesRemaining > 0 && (
+            <p className="text-center text-xs text-slate-400 mt-1">
+              {searchesRemaining === 1
+                ? "You have 1 free search left."
+                : `You have ${searchesRemaining} free searches left.`}
             </p>
           )}
           <a
