@@ -324,7 +324,7 @@ export default function InteractionResults({
           <div className="text-right">
             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">Status</span>
             <span className="text-[11px] font-bold px-2 py-1 rounded-lg bg-white border-2 border-slate-300 text-slate-700 whitespace-nowrap">
-              {result.dataStatus === "mock_unverified" ? "Review Required" : "Verified Data"}
+              {result.dataStatus === "mock_unverified" ? "Clinical Validation Pending" : "Verified Data"}
             </span>
             {result.dataFreshness && (
               <p className="text-[10px] text-slate-500 mt-1">

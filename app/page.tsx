@@ -271,14 +271,14 @@ export default function HomePage() {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <h1 className="text-base font-bold text-slate-900 leading-snug">
-                Herb–Drug Interaction Checker
+                Formulens
               </h1>
               <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                Clinical reference tool for TCM practitioners — NCCAOM standard
+                Clinical herb-drug interaction checker — NCCAOM standard
               </p>
             </div>
-            <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full whitespace-nowrap">
-              MVP · Mock Data
+            <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
+              Clinical Validation Pending
             </span>
           </div>
         </div>

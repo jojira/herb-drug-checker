@@ -221,12 +221,12 @@ export default function TransparencyPage() {
           <SectionHeader number="5" title="System Status (v3.3.0)" />
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { label: "Production URL", value: "herb-drug-checker.vercel.app", highlight: true },
+              { label: "Production URL", value: "formulens.co", highlight: true },
               { label: "Herb Library", value: "164 Gold-tier NCCAOM verified herbs" },
               { label: "Formula Library", value: "121 Gold-tier board exam formulas" },
               { label: "Unresolved Warnings", value: "30 permanent amber (intentional flags)" },
               { label: "Clinical Audit", value: "Framework defined in SPEC-004 — execution pending" },
-              { label: "Mock Data Disclaimer", value: "Active on herb-drug results until audit complete", warning: true },
+              { label: "Clinical Validation Pending", value: "Active on herb-drug results until audit complete", warning: true },
             ].map(({ label, value, highlight, warning }, i) => (
               <div key={i} className={`rounded-xl p-4 border shadow-sm ${
                 warning

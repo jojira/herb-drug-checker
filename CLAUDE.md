@@ -1,4 +1,6 @@
-# CLAUDE.md — Herb-Drug Interaction Checker
+# CLAUDE.md — Formulens (Herb-Drug Interaction Checker)
+
+**Brand name: Formulens | Domain: formulens.co**
 
 This file is the source of truth for Claude Code. Read it fully before making any changes to this project.
 
