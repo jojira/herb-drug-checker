@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useUser, Show, UserButton, SignInButton } from "@clerk/nextjs";
 import HerbSearch from "@/app/components/HerbSearch";
 import type { HerbSearchSelection } from "@/app/components/HerbSearch";
 import DrugSearch from "@/app/components/DrugSearch";
 import InteractionResults from "@/app/components/InteractionResults";
 import DrugDrugPanel from "@/app/components/DrugDrugPanel";
+import SoftWallModal from "@/app/components/SoftWallModal";
 import type { WesternMed, InteractionEngineResult, DrugDrugCheckResult } from "@/lib/types/clinical";
+import { SEARCH_LIMIT } from "@/lib/types/clinical";
+import { getSearchCount, incrementSearchCount } from "@/lib/searchCount";
 
 // ---------------------------------------------------------------------------
 // Disclaimer — non-negotiable per CLAUDE.md
@@ -88,6 +92,8 @@ function EmptyState() {
 // ---------------------------------------------------------------------------
 
 export default function HomePage() {
+  const { isSignedIn } = useUser();
+  const [showSoftWall, setShowSoftWall] = useState(false);
   const [selectedTCM, setSelectedTCM] = useState<HerbSearchSelection | null>(null);
   const [westernMeds, setWesternMeds] = useState<WesternMed[]>([]);
   // originalResult — the result from the last full Check Interactions run
@@ -203,6 +209,16 @@ export default function HomePage() {
 
   const handleCheck = useCallback(async () => {
     if (!canCheck || !selectedTCM) return;
+
+    // Soft wall — gate unauthenticated users at limit
+    if (!isSignedIn) {
+      const currentCount = getSearchCount();
+      if (currentCount >= SEARCH_LIMIT) {
+        setShowSoftWall(true);
+        return;
+      }
+    }
+
     setIsChecking(true);
     setError(null);
     setOriginalResult(null);
@@ -221,13 +237,17 @@ export default function HomePage() {
       if (!res.ok) throw new Error("API error");
       const data = (await res.json()) as InteractionEngineResult;
       setOriginalResult(data);
+      // Increment only on successful result
+      if (!isSignedIn) {
+        incrementSearchCount();
+      }
     } catch (err) {
       console.error("Interaction check error:", err);
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsChecking(false);
     }
-  }, [canCheck, selectedTCM, westernMeds]);
+  }, [canCheck, isSignedIn, selectedTCM, westernMeds]);
 
   const handleHerbToggle = useCallback((herbId: string, excluded: boolean) => {
     setExcludedHerbIds((prev) => {
@@ -277,9 +297,24 @@ export default function HomePage() {
                 Clinical herb-drug interaction checker — NCCAOM standard
               </p>
             </div>
-            <span className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
-              Clinical Validation Pending
-            </span>
+            <div className="flex-shrink-0 flex items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
+                Clinical Validation Pending
+              </span>
+              <Show when="signed-in">
+                <UserButton />
+              </Show>
+              <Show when="signed-out">
+                <SignInButton mode="redirect">
+                  <a
+                    href="/sign-in"
+                    className="text-xs font-medium text-teal-700 hover:text-teal-900 transition-colors"
+                  >
+                    Sign in
+                  </a>
+                </SignInButton>
+              </Show>
+            </div>
           </div>
         </div>
 
@@ -417,6 +452,10 @@ export default function HomePage() {
         {!isChecking && !displayResult && !(drugDrugResult && drugDrugResult.interactions.length > 0) && <EmptyState />}
       </main>
 
+      <SoftWallModal
+        isOpen={showSoftWall}
+        onClose={() => setShowSoftWall(false)}
+      />
     </div>
   );
 }

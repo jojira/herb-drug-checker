@@ -324,3 +324,40 @@ Config: `FEEDBACK_WEBHOOK_URL` env var
 ### Graceful degradation
 - `FEEDBACK_WEBHOOK_URL` not set → payload logged to console, UI still shows "Thank you"
 - Webhook failure → API returns `{ success: false }` with HTTP 200 — practitioner always sees the thank you message
+
+---
+
+## Authentication (Clerk)
+
+Provider: Clerk (clerk.com)
+Package: @clerk/nextjs (latest — v7+)
+
+Key API patterns:
+- Middleware: `proxy.ts` at project root with `clerkMiddleware()` (Next.js 16+)
+- Auth state: `useUser()` hook in client components
+- UI: `<Show when="signed-in">`, `<Show when="signed-out">`
+- DO NOT use deprecated `<SignedIn>` or `<SignedOut>` components
+- Import from `@clerk/nextjs` or `@clerk/nextjs/server` only
+
+Routes:
+- `/sign-in` → `app/sign-in/[[...sign-in]]/page.tsx`
+- `/sign-up` → `app/sign-up/[[...sign-up]]/page.tsx`
+
+All routes are PUBLIC — no route protection.
+
+Search limit:
+- 5 completed Check Interactions results for guests
+- Unlimited for authenticated users
+- Counter: localStorage `"formulens_search_count"`
+- Increments: after successful result only
+- Resets: never automatically
+
+Required Vercel env vars:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+```

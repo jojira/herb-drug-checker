@@ -207,6 +207,10 @@ export type DrugDrugCheckResult = {
   disclaimer: string;
 };
 
+// ── Search Limit ───────────────────────────────────────────────
+
+export const SEARCH_LIMIT = 5
+
 // ── Feedback Widget ────────────────────────────────────────────
 
 export type FeedbackType =
