@@ -195,7 +195,7 @@ export default function FeedbackWidget() {
                   disabled={inputsDisabled}
                   required
                   aria-required="true"
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+                  className="w-full border border-slate-400 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed bg-white"
                 >
                   <option value="" disabled>Select a category…</option>
                   {FEEDBACK_CATEGORIES.map(({ value, label }) => (
@@ -221,7 +221,7 @@ export default function FeedbackWidget() {
                   required
                   aria-required="true"
                   placeholder="Describe what you observed or what you'd like to see…"
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full border border-slate-400 rounded-lg px-3 py-2 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
 
