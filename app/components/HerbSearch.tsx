@@ -316,7 +316,7 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
       <div
         className={`
           relative rounded-lg border-2 transition-all bg-white
-          ${exactMatchError ? "border-red-300" : selected ? "border-teal-500" : "border-slate-200 focus-within:border-teal-400"}
+          ${exactMatchError ? "border-red-300" : selected ? "border-teal-500" : "border-slate-400 focus-within:border-teal-400"}
           ${disabled ? "opacity-50" : ""}
         `}
       >
@@ -479,8 +479,8 @@ export default function HerbSearch({ onSelect, onClear, disabled = false }: Prop
 
       {/* Hint */}
       {!selected && !exactMatchError && (
-        <p className="mt-1.5 text-xs text-slate-400">
-          Select from suggestions to confirm. Formulas will expand all constituent herbs.
+        <p className="mt-1.5 text-xs text-slate-700">
+          Type a herb or formula name to search. Select from suggestions to confirm. Formulas will expand all constituent herbs.
         </p>
       )}
 

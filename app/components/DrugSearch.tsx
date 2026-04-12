@@ -227,7 +227,7 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
       {/* Input */}
       <div className={`
         relative rounded-lg border-2 transition-all bg-white
-        ${error ? "border-red-300" : "border-slate-200 focus-within:border-teal-400"}
+        ${error ? "border-red-300" : "border-slate-400 focus-within:border-teal-400"}
         ${disabled || maxReached ? "opacity-50" : ""}
       `}>
         <div className="flex items-center px-3 gap-2">
@@ -328,9 +328,9 @@ export default function DrugSearch({ onMedsChange, disabled = false }: Props) {
 
       {/* Helper text */}
       {!error && (
-        <p className="mt-1.5 text-xs text-slate-400">
+        <p className="mt-1.5 text-xs text-slate-700">
           {meds.length === 0
-            ? "Search by generic or brand name. Multiple medications can be added."
+            ? "Type a generic or brand name. Multiple medications can be added."
             : `${meds.length} medication${meds.length > 1 ? "s" : ""} added. All will be cross-referenced.`}
         </p>
       )}

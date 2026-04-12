@@ -13,7 +13,7 @@ export default function TransparencyPage() {
       {/* ── Header ────────────────────────────────────────────────── */}
       <header className="border-b border-slate-200 bg-white sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 text-slate-500 hover:text-teal-600 transition-colors text-sm font-medium">
+          <a href="/" className="flex items-center gap-2 text-slate-700 hover:text-teal-600 transition-colors text-sm font-medium">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -23,7 +23,7 @@ export default function TransparencyPage() {
             <span className="text-[10px] font-black uppercase tracking-widest text-teal-700 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded">
               v3.3.0 Live
             </span>
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700">
               March 24, 2026
             </span>
           </div>
@@ -39,7 +39,7 @@ export default function TransparencyPage() {
           Clinical Transparency<br />
           <span className="text-teal-600">&amp; Data Integrity Policy</span>
         </h1>
-        <p className="text-slate-500 text-base leading-relaxed max-w-2xl">
+        <p className="text-slate-700 text-base leading-relaxed max-w-2xl">
           This platform is built for licensed acupuncture and TCM practitioners.
           Every data source, trust tier, and validation status is documented here
           so clinicians can make informed decisions about the tool&rsquo;s evidence base.
@@ -51,7 +51,7 @@ export default function TransparencyPage() {
         {/* ── Section 1: Trust Hierarchy ────────────────────────────── */}
         <section>
           <SectionHeader number="1" title="Trust Hierarchy & Data Classification" />
-          <p className="text-slate-500 text-sm leading-relaxed mb-6">
+          <p className="text-slate-700 text-sm leading-relaxed mb-6">
             Every herb and formula in the system carries a visible Trust Tier badge.
             Practitioners should interpret tier status before acting on any result.
           </p>
@@ -110,7 +110,7 @@ export default function TransparencyPage() {
         {/* ── Section 2: API Integrations ───────────────────────────── */}
         <section>
           <SectionHeader number="2" title="Interaction Logic & API Integrations" />
-          <p className="text-slate-500 text-sm leading-relaxed mb-6">
+          <p className="text-slate-700 text-sm leading-relaxed mb-6">
             The interaction engine uses a <strong className="text-slate-700">Worst-Case Wins</strong> severity
             model — when multiple interactions are present, the highest severity always surfaces first.
             Data sources are explicitly attributed on every result.
@@ -157,14 +157,14 @@ export default function TransparencyPage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
                 <p className="text-xs font-black uppercase tracking-widest text-teal-600 mb-2">Modification Toggle</p>
-                <p className="text-slate-500 text-xs leading-relaxed">
+                <p className="text-slate-700 text-xs leading-relaxed">
                   Practitioners can exclude individual herbs from a formula and recalculate interaction severity
                   in real time. The excluded herb remains visible but dimmed — never hidden.
                 </p>
               </div>
               <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
                 <p className="text-xs font-black uppercase tracking-widest text-teal-600 mb-2">Persistent Disclaimer</p>
-                <p className="text-slate-500 text-xs leading-relaxed">
+                <p className="text-slate-700 text-xs leading-relaxed">
                   A clinical disclaimer is present on all result views and cannot be dismissed. It is a
                   permanent architectural feature, not an optional notice.
                 </p>
@@ -196,7 +196,7 @@ export default function TransparencyPage() {
                 ].map(([fn, source, status, cost, color], i) => (
                   <tr key={i} className="border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
                     <td className="px-5 py-3.5 font-semibold text-slate-800">{fn}</td>
-                    <td className="px-5 py-3.5 text-slate-500">{source}</td>
+                    <td className="px-5 py-3.5 text-slate-700">{source}</td>
                     <td className="px-5 py-3.5">
                       <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded border ${
                         color === "teal"
@@ -208,7 +208,7 @@ export default function TransparencyPage() {
                         {status}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-400">{cost}</td>
+                    <td className="px-5 py-3.5 text-slate-700">{cost}</td>
                   </tr>
                 ))}
               </tbody>
@@ -315,11 +315,11 @@ function TierCard({
             {status}
           </span>
         </div>
-        <p className="text-slate-500 text-xs leading-relaxed mb-4">{description}</p>
+        <p className="text-slate-700 text-xs leading-relaxed mb-4">{description}</p>
         <div className="flex flex-wrap gap-6">
           {stats.map(({ label: l, value: v }) => (
             <div key={l}>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{l}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-700">{l}</p>
               <p className="text-slate-700 text-xs font-semibold">{v}</p>
             </div>
           ))}
@@ -353,8 +353,8 @@ function ApiCard({
           {status}
         </span>
       </div>
-      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{source}</p>
-      <p className="text-slate-500 text-xs leading-relaxed">{description}</p>
+      <p className="text-[10px] font-black uppercase tracking-widest text-slate-700 mb-1">{source}</p>
+      <p className="text-slate-700 text-xs leading-relaxed">{description}</p>
     </div>
   );
 }

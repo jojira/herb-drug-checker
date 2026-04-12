@@ -65,9 +65,9 @@ function EmptyState() {
       <h2 className="text-sm font-semibold text-slate-700 mb-2">
         No interaction check run yet
       </h2>
-      <p className="text-sm text-slate-500 leading-relaxed max-w-xs mb-6">
+      <p className="text-sm text-slate-700 leading-relaxed max-w-xs mb-6">
         Add at least one medication and select an herb or formula, then press{" "}
-        <span className="font-medium text-slate-600">Check Interactions</span>.
+        <span className="font-medium text-slate-700">Check Interactions</span>.
       </p>
       <ol className="text-left space-y-3 max-w-xs w-full">
         {[
@@ -79,7 +79,7 @@ function EmptyState() {
             <span className="flex-shrink-0 w-5 h-5 rounded-full bg-slate-100 text-slate-500 font-bold text-[10px] flex items-center justify-center mt-0.5">
               {i + 1}
             </span>
-            <span className="text-xs text-slate-500 leading-relaxed">{step}</span>
+            <span className="text-xs text-slate-700 leading-relaxed">{step}</span>
           </li>
         ))}
       </ol>
@@ -310,7 +310,7 @@ export default function HomePage() {
               <h1 className="text-base font-bold text-slate-900 leading-snug">
                 Formulens
               </h1>
-              <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
+              <p className="text-[11px] text-slate-700 mt-0.5 leading-snug">
                 Clinical herb-drug interaction checker — NCCAOM standard
               </p>
             </div>
@@ -353,7 +353,7 @@ export default function HomePage() {
           <section aria-labelledby="drug-section-label">
             <h2
               id="drug-section-label"
-              className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3"
+              className="text-[10px] font-bold uppercase tracking-widest text-slate-700 mb-3"
             >
               Western Medications
             </h2>
@@ -367,7 +367,7 @@ export default function HomePage() {
           <section aria-labelledby="tcm-section-label">
             <h2
               id="tcm-section-label"
-              className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3"
+              className="text-[10px] font-bold uppercase tracking-widest text-slate-700 mb-3"
             >
               TCM Herb or Formula
             </h2>
@@ -422,7 +422,7 @@ export default function HomePage() {
           )}
 
           {!canCheck && !isChecking && !error && (
-            <p className="text-xs text-slate-400 text-center leading-relaxed pt-0.5">
+            <p className="text-xs text-slate-700 text-center leading-relaxed pt-0.5">
               {selectedTCM === null && westernMeds.length === 0
                 ? "Add a medication and select an herb or formula to begin."
                 : selectedTCM === null
@@ -431,7 +431,7 @@ export default function HomePage() {
             </p>
           )}
           {!isSignedIn && searchesRemaining !== null && searchesRemaining > 0 && (
-            <p className="text-center text-xs text-slate-400 mt-1">
+            <p className="text-center text-xs text-slate-700 mt-1">
               {searchesRemaining === 1
                 ? "You have 1 free search left."
                 : `You have ${searchesRemaining} free searches left.`}
@@ -439,7 +439,7 @@ export default function HomePage() {
           )}
           <a
             href="/transparency"
-            className="block text-center text-[10px] font-medium text-slate-400 hover:text-teal-600 transition-colors underline underline-offset-2 decoration-slate-300 hover:decoration-teal-400 pt-1"
+            className="block text-center text-[10px] font-medium text-slate-700 hover:text-teal-600 transition-colors underline underline-offset-2 decoration-slate-300 hover:decoration-teal-400 pt-1"
           >
             Data Sources &amp; Clinical Transparency Policy
           </a>
