@@ -33,14 +33,15 @@ CREATE INDEX IF NOT EXISTS idx_search_history_searched_at ON search_history(sear
 -- ── shared_links ──────────────────────────────────────────────────────────
 -- One-time (or limited-view) tokens for sharing a result set.
 CREATE TABLE IF NOT EXISTS shared_links (
-  id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
-  token      TEXT        UNIQUE NOT NULL,
-  user_id    UUID        REFERENCES users(id) ON DELETE CASCADE,
-  payload    JSONB       NOT NULL,
-  view_count INT         NOT NULL DEFAULT 0,
-  max_views  INT         NOT NULL DEFAULT 1,
-  expires_at TIMESTAMPTZ,
-  created_at TIMESTAMPTZ DEFAULT now()
+  id               UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  token            TEXT        UNIQUE NOT NULL,
+  user_id          UUID        REFERENCES users(id) ON DELETE CASCADE,
+  payload          JSONB       NOT NULL,
+  view_count       INT         NOT NULL DEFAULT 0,
+  max_views        INT         NOT NULL DEFAULT 1,
+  expires_at       TIMESTAMPTZ,
+  last_accessed_at TIMESTAMPTZ,
+  created_at       TIMESTAMPTZ DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS idx_shared_links_token   ON shared_links(token);
