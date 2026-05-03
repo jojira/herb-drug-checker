@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
   clerk_id   TEXT        UNIQUE NOT NULL,
   email      TEXT,
+  partner_id TEXT,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
 );
