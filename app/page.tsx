@@ -8,9 +8,12 @@ import DrugSearch from "@/app/components/DrugSearch";
 import InteractionResults from "@/app/components/InteractionResults";
 import DrugDrugPanel from "@/app/components/DrugDrugPanel";
 import SoftWallModal from "@/app/components/SoftWallModal";
+import ExportPDFButton from "@/app/components/ExportPDFButton";
 import type { WesternMed, InteractionEngineResult, DrugDrugCheckResult } from "@/lib/types/clinical";
 import { SEARCH_LIMIT } from "@/lib/types/clinical";
 import { getSearchCount, incrementSearchCount } from "@/lib/searchCount";
+import { getUserEntitlements } from "@/lib/entitlements";
+import { useSearchHistory } from "@/hooks/useSearchHistory";
 
 // ---------------------------------------------------------------------------
 // Disclaimer — non-negotiable per CLAUDE.md
@@ -92,7 +95,9 @@ function EmptyState() {
 // ---------------------------------------------------------------------------
 
 export default function HomePage() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
+  const entitlements = getUserEntitlements(user ?? null);
+  const { saveSearch } = useSearchHistory();
   const [showSoftWall, setShowSoftWall] = useState(false);
   const [searchesRemaining, setSearchesRemaining] = useState<number | null>(null);
   const [selectedTCM, setSelectedTCM] = useState<HerbSearchSelection | null>(null);
@@ -253,6 +258,14 @@ export default function HomePage() {
       if (!res.ok) throw new Error("API error");
       const data = (await res.json()) as InteractionEngineResult;
       setOriginalResult(data);
+      // Silent search history logging for authenticated users
+      if (isSignedIn && selectedTCM) {
+        saveSearch({
+          herbs: [selectedTCM.display.pinyin],
+          drugs: westernMeds.map((d) => d.name),
+          severity: data.worstSeverity,
+        });
+      }
       // Increment only on successful result
       if (!isSignedIn) {
         incrementSearchCount();
@@ -464,6 +477,24 @@ export default function HomePage() {
         {isChecking && <SkeletonLoader />}
         {!isChecking && displayResult && (
           <div className="p-6">
+            <div className="flex justify-end mb-4">
+              <ExportPDFButton
+                entitlements={entitlements}
+                data={{
+                  herbs: selectedTCM
+                    ? [{ id: selectedTCM.mode === "herb" ? selectedTCM.value.herbId : selectedTCM.value.formulaId, name: selectedTCM.display.pinyin, latin: selectedTCM.display.latin ?? undefined }]
+                    : [],
+                  drugs: westernMeds.map((d) => ({ name: d.name, rxcui: d.rxcui })),
+                  interactions: displayResult.matches.map((m) => ({
+                    herbId: m.herb.id,
+                    herbName: m.herb.pinyin,
+                    drugName: m.drug.name,
+                    severity: m.severity,
+                    mechanism: m.clinicalSummary,
+                  })),
+                }}
+              />
+            </div>
             <InteractionResults
               result={displayResult}
               originalResult={originalResult ?? undefined}
