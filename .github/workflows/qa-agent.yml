@@ -143,3 +143,4 @@ jobs:
         run: |
           echo "❌ Critical QA tests failed. Merge is blocked."
           exit 1
+
