@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const BASE_URL = process.env.VERCEL_PREVIEW_URL || "http://localhost:3000";
+const BYPASS_SECRET = process.env.VERCEL_BYPASS_SECRET;
 
 export default defineConfig({
   testDir: "./tests",
@@ -14,10 +15,22 @@ export default defineConfig({
     ["html", { outputDir: "playwright-report", open: "never" }],
   ],
 
+  webServer: process.env.CI ? undefined : {
+    command: "npm run dev",
+    url: "http://localhost:3000",
+    timeout: 120_000,
+    reuseExistingServer: true,
+  },
+
   use: {
     baseURL: BASE_URL,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    ...(BYPASS_SECRET && {
+      extraHTTPHeaders: {
+        "x-vercel-protection-bypass": BYPASS_SECRET,
+      },
+    }),
   },
 
   projects: [
