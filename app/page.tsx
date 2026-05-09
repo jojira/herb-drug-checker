@@ -134,6 +134,25 @@ export default function HomePage() {
     }
   }, [isSignedIn]);
 
+  // Safety-net: if the user signed up via ?ref= but the metadata wasn't set
+  // before the redirect (race condition on the sign-up page), set it now.
+  useEffect(() => {
+    if (!isSignedIn || !user) return;
+    const alreadySet =
+      user.publicMetadata?.partner_id || user.unsafeMetadata?.partner_id;
+    if (alreadySet) return;
+
+    const refCookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("formulens_ref="))
+      ?.split("=")[1];
+    if (!refCookie) return;
+
+    fetch("/api/user/set-partner", { method: "POST" })
+      .then((res) => { if (res.ok) return user.reload(); })
+      .catch(() => {/* non-fatal */});
+  }, [isSignedIn, user]);
+
   // Re-run the engine via API whenever herb exclusions change.
   // Uses AbortController to cancel any superseded in-flight request when the
   // user toggles multiple herbs in rapid succession.
@@ -328,8 +347,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex-shrink-0 flex items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
-                Clinical Validation Pending
+              <span className="text-[10px] font-bold uppercase tracking-wide text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
+                <span className="sm:hidden">Validation Pending</span>
+                <span className="hidden sm:inline">Clinical Validation Pending</span>
               </span>
               <Show when="signed-in">
                 <UserButton />

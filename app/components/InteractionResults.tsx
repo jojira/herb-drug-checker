@@ -305,12 +305,12 @@ export default function InteractionResults({
     <div className="space-y-8 pb-10">
       {/* 1. Summary Banner */}
       <div className={`rounded-2xl border-2 p-5 shadow-lg ${severityStyle.bg} ${severityStyle.border}`}>
-        <div className="flex items-center justify-between gap-4 mb-4">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg bg-white ${severityStyle.text}`}>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className={`flex-shrink-0 p-2 rounded-lg bg-white ${severityStyle.text}`}>
               <SummaryIcon size={28} strokeWidth={3} />
             </div>
-            <div>
+            <div className="min-w-0">
               <h2 className={`text-lg font-black leading-none ${severityStyle.text} uppercase tracking-tight`}>
                 {SEVERITY_LABELS[result.worstSeverity]} RISK
               </h2>
@@ -321,10 +321,10 @@ export default function InteractionResults({
               )}
             </div>
           </div>
-          <div className="text-right">
-            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-1">Status</span>
+          <div className="text-right flex-shrink-0">
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-wide block mb-1">Status</span>
             <span className="text-[11px] font-bold px-2 py-1 rounded-lg bg-white border-2 border-slate-300 text-slate-700 whitespace-nowrap">
-              {result.dataStatus === "mock_unverified" ? "Clinical Validation Pending" : "Verified Data"}
+              {result.dataStatus === "mock_unverified" ? "Validation Pending" : "Verified Data"}
             </span>
             {result.dataFreshness && (
               <p className="text-[10px] text-slate-500 mt-1">

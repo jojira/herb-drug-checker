@@ -23,7 +23,7 @@ export default function ExportPDFButton({
       <button
         disabled
         aria-disabled="true"
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-100 text-slate-400 rounded-lg font-medium text-sm cursor-not-allowed border border-slate-200"
+        className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] bg-slate-100 text-slate-400 rounded-lg font-medium text-sm cursor-not-allowed border border-slate-200"
       >
         Export PDF
         <span className="text-[10px] font-bold uppercase tracking-wider bg-slate-200 text-slate-500 px-1.5 py-0.5 rounded">
@@ -58,7 +58,7 @@ export default function ExportPDFButton({
         onClick={handleExport}
         disabled={isGenerating || disabled}
         aria-label="Export interaction report as PDF"
-        className="inline-flex items-center gap-1.5 px-4 py-2 bg-teal-700 text-white rounded-lg font-medium text-sm hover:bg-teal-800 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors"
+        className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] bg-teal-700 text-white rounded-lg font-medium text-sm hover:bg-teal-800 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors"
       >
         {isGenerating ? "Generating…" : "Export PDF"}
       </button>

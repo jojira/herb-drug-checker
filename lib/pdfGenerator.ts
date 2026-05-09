@@ -1,4 +1,5 @@
 import jsPDF from "jspdf";
+import type { SeverityLevel } from "@/lib/types/clinical";
 
 export interface PDFGeneratorInput {
   herbs: Array<{ id: string; name: string; latin?: string }>;
@@ -7,23 +8,23 @@ export interface PDFGeneratorInput {
     herbId: string;
     herbName: string;
     drugName: string;
-    severity: "contraindicated" | "precaution" | "no_interaction";
+    severity: SeverityLevel;
     mechanism: string;
   }>;
 }
 
 type RGB = [number, number, number];
 
-const SEVERITY_COLOR: Record<string, RGB> = {
+const SEVERITY_COLOR: Record<SeverityLevel, RGB> = {
   contraindicated: [220, 38, 38],
   precaution: [217, 119, 6],
-  no_interaction: [16, 185, 129],
+  none: [16, 185, 129],
 };
 
-const SEVERITY_BG: Record<string, RGB> = {
+const SEVERITY_BG: Record<SeverityLevel, RGB> = {
   contraindicated: [254, 242, 242],
   precaution: [255, 251, 235],
-  no_interaction: [236, 253, 245],
+  none: [236, 253, 245],
 };
 
 export function generateInteractionPDF(input: PDFGeneratorInput): Blob {
@@ -103,8 +104,8 @@ export function generateInteractionPDF(input: PDFGeneratorInput): Blob {
     y += 17;
   } else {
     for (const ix of input.interactions) {
-      const severityColor = SEVERITY_COLOR[ix.severity] ?? SEVERITY_COLOR.no_interaction;
-      const bgColor = SEVERITY_BG[ix.severity] ?? SEVERITY_BG.no_interaction;
+      const severityColor = SEVERITY_COLOR[ix.severity] ?? SEVERITY_COLOR.none;
+      const bgColor = SEVERITY_BG[ix.severity] ?? SEVERITY_BG.none;
 
       pdf.setFontSize(9);
       const mechLines = pdf.splitTextToSize(ix.mechanism, contentW - 10);
@@ -128,7 +129,8 @@ export function generateInteractionPDF(input: PDFGeneratorInput): Blob {
       pdf.setFontSize(8);
       pdf.setFont("helvetica", "bold");
       pdf.setTextColor(...severityColor);
-      pdf.text(ix.severity.toUpperCase().replace("_", " "), margin + 5, y + 5.5);
+      const severityLabel = ix.severity === "none" ? "NO INTERACTION" : ix.severity.toUpperCase().replace("_", " ");
+      pdf.text(severityLabel, margin + 5, y + 5.5);
 
       pdf.setFontSize(10);
       pdf.setFont("helvetica", "bold");

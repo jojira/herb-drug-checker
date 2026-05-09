@@ -1,4 +1,8 @@
-import type { User } from "@clerk/nextjs/server";
+// Structural type — compatible with both server-side User and client-side UserResource
+interface ClerkUserLike {
+  publicMetadata?: Record<string, unknown>;
+  unsafeMetadata?: Record<string, unknown>;
+}
 
 export interface UserEntitlements {
   tier: "basic" | "pro";
@@ -8,7 +12,7 @@ export interface UserEntitlements {
   partnerId: string | null;
 }
 
-export function getUserEntitlements(user: User | null): UserEntitlements {
+export function getUserEntitlements(user: ClerkUserLike | null): UserEntitlements {
   if (!user) {
     return {
       tier: "basic",
