@@ -355,14 +355,22 @@ export default function HomePage() {
                 <UserButton />
               </Show>
               <Show when="signed-out">
-                <SignInButton mode="redirect">
+                <div className="flex items-center gap-2">
+                  <SignInButton mode="redirect">
+                    <a
+                      href="/sign-in"
+                      className="text-xs font-medium text-teal-700 hover:text-teal-900 transition-colors"
+                    >
+                      Sign in
+                    </a>
+                  </SignInButton>
                   <a
-                    href="/sign-in"
-                    className="text-xs font-medium text-teal-700 hover:text-teal-900 transition-colors"
+                    href="/sign-up"
+                    className="text-xs font-semibold text-white bg-teal-700 hover:bg-teal-800 transition-colors px-2.5 py-1 rounded-md"
                   >
-                    Sign in
+                    Sign up
                   </a>
-                </SignInButton>
+                </div>
               </Show>
             </div>
           </div>

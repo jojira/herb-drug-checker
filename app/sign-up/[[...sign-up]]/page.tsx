@@ -24,8 +24,21 @@ export default function SignUpPage() {
   }, [user, isLoaded]);
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center">
-      <SignUp />
+    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+            Sign up to Formulens
+          </h1>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Create a free account to unlock Pro features: PDF export, shared
+            results, and search history.
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <SignUp />
+        </div>
+      </div>
     </main>
   );
 }
