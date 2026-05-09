@@ -1,8 +1,12 @@
 /**
  * Formulens Mobile UX — WARNING test suite
  *
- * Runs in Playwright's iPhone 12 profile (375 × 812).
+ * Runs in Playwright's iPhone 12 profile (390 × 844).
  * Failures are flagged in the PR comment but do NOT block merge.
+ *
+ * Autocomplete DOM contract:
+ *   - #herb-search-listbox / #drug-search-listbox (portal at document.body)
+ *   - Items are <button> elements inside each listbox
  */
 
 import { test, expect } from "@playwright/test";
@@ -13,9 +17,9 @@ const DRUG_PLACEHOLDER = "Generic or brand name (e.g. Warfarin, Coumadin)…";
 test.describe("Mobile UX at 375px (WARNINGS)", () => {
   test("Page renders without horizontal overflow", async ({ page }) => {
     await page.goto("/");
-    const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
+    const bodyScrollWidth = await page.evaluate(() => document.body.scrollWidth);
     const viewportWidth = page.viewportSize()!.width;
-    expect(bodyWidth).toBeLessThanOrEqual(viewportWidth + 1); // +1px tolerance
+    expect(bodyScrollWidth).toBeLessThanOrEqual(viewportWidth + 1); // 1px tolerance
   });
 
   test("'Validation Pending' badge is fully within viewport", async ({ page }) => {
@@ -24,22 +28,17 @@ test.describe("Mobile UX at 375px (WARNINGS)", () => {
     await expect(badge).toBeVisible();
 
     const box = await badge.boundingBox();
+    const vw = page.viewportSize()!.width;
     expect(box).not.toBeNull();
     expect(box!.x).toBeGreaterThanOrEqual(0);
-    expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(vw + 1);
   });
 
-  test("Primary action buttons meet 44px touch target minimum", async ({ page }) => {
+  test("Primary action buttons meet 44px touch target", async ({ page }) => {
     await page.goto("/");
 
-    // Only check intentional action buttons, not every element on the page
-    // (Clerk UserButton, autocomplete dismiss buttons, etc. are intentionally small)
-    const primaryButtons = [
-      page.getByRole("button", { name: "Check Interactions" }),
-      page.getByRole("button", { name: "Reset" }),
-    ];
-
-    for (const btn of primaryButtons) {
+    for (const name of ["Check Interactions", "Reset"]) {
+      const btn = page.getByRole("button", { name });
       await expect(btn).toBeVisible();
       const box = await btn.boundingBox();
       expect(box).not.toBeNull();
@@ -50,17 +49,16 @@ test.describe("Mobile UX at 375px (WARNINGS)", () => {
   test("Export PDF button meets 44px touch target", async ({ page }) => {
     await page.goto("/");
 
-    const herbInput = page.getByPlaceholder(HERB_PLACEHOLDER);
-    await herbInput.fill("Dan Shen");
-    const herbOption = page.locator('[role="option"]').filter({ hasText: "Dan Shen" }).first();
-    await herbOption.waitFor({ timeout: 8_000 });
-    await herbOption.click();
+    // Set up a search result so the PDF button renders
+    await page.getByPlaceholder(HERB_PLACEHOLDER).fill("Dan Shen");
+    const herbListbox = page.locator("#herb-search-listbox");
+    await herbListbox.waitFor({ timeout: 8_000 });
+    await herbListbox.locator("button").filter({ hasText: "Dan Shen" }).first().click();
 
-    const drugInput = page.getByPlaceholder(DRUG_PLACEHOLDER);
-    await drugInput.fill("Warfarin");
-    const drugOption = page.locator('[role="option"]').filter({ hasText: /Warfarin/i }).first();
-    await drugOption.waitFor({ timeout: 8_000 });
-    await drugOption.click();
+    await page.getByPlaceholder(DRUG_PLACEHOLDER).fill("Warfarin");
+    const drugListbox = page.locator("#drug-search-listbox");
+    await drugListbox.waitFor({ timeout: 8_000 });
+    await drugListbox.locator("button").filter({ hasText: /Warfarin/i }).first().click();
 
     await page.getByRole("button", { name: "Check Interactions" }).click();
     await page.waitForSelector("text=CONTRAINDICATED", { timeout: 20_000 });
@@ -72,13 +70,12 @@ test.describe("Mobile UX at 375px (WARNINGS)", () => {
     expect(box!.height).toBeGreaterThanOrEqual(44);
   });
 
-  test("Disclaimer text is readable on mobile", async ({ page }) => {
+  test("Disclaimer block is visible and not collapsed", async ({ page }) => {
     await page.goto("/");
-    const disclaimer = page.getByText("educational and professional reference only");
+    const disclaimer = page.locator('[role="note"]');
     await expect(disclaimer).toBeVisible();
-
     const box = await disclaimer.boundingBox();
     expect(box).not.toBeNull();
-    expect(box!.width).toBeGreaterThan(100); // not collapsed
+    expect(box!.width).toBeGreaterThan(100);
   });
 });

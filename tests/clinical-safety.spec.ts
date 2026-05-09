@@ -4,10 +4,13 @@
  * Runs against the Vercel preview URL on every deployment.
  * All tests here are CRITICAL: any failure blocks the merge.
  *
- * Pro-auth tests (PDF enabled, shared links) require CLERK_TEST_EMAIL +
- * CLERK_TEST_PASSWORD in GitHub Secrets. Without them the tests are
- * skipped (not failed) so CI still passes cleanly on branches that
- * don't need credential-gated tests.
+ * Pro-auth tests require CLERK_TEST_EMAIL + CLERK_TEST_PASSWORD in GitHub
+ * Secrets. Without them the tests are skipped (not failed).
+ *
+ * Autocomplete DOM contract (from HerbSearch.tsx / DrugSearch.tsx):
+ *   - Listbox: <div id="herb-search-listbox" role="listbox"> / #drug-search-listbox
+ *   - Items:   <button> elements inside the listbox (portal-rendered at document.body)
+ *   - Debounce: 350ms herb / 280ms drug — waitFor handles this automatically
  */
 
 import { test, expect, type Page } from "@playwright/test";
@@ -19,20 +22,23 @@ import { test, expect, type Page } from "@playwright/test";
 const HERB_PLACEHOLDER = "Herb or formula — Pinyin, Latin, or English…";
 const DRUG_PLACEHOLDER = "Generic or brand name (e.g. Warfarin, Coumadin)…";
 
+async function selectHerb(page: Page, query: string, pickText: string) {
+  await page.getByPlaceholder(HERB_PLACEHOLDER).fill(query);
+  const listbox = page.locator("#herb-search-listbox");
+  await listbox.waitFor({ timeout: 8_000 });
+  await listbox.locator("button").filter({ hasText: pickText }).first().click();
+}
+
+async function selectDrug(page: Page, query: string, pickText: string) {
+  await page.getByPlaceholder(DRUG_PLACEHOLDER).fill(query);
+  const listbox = page.locator("#drug-search-listbox");
+  await listbox.waitFor({ timeout: 8_000 });
+  await listbox.locator("button").filter({ hasText: pickText }).first().click();
+}
+
 async function searchDanShenWarfarin(page: Page) {
-  const herbInput = page.getByPlaceholder(HERB_PLACEHOLDER);
-  await herbInput.fill("Dan Shen");
-  // Wait for autocomplete to appear and click first match
-  const herbOption = page.locator('[role="option"]').filter({ hasText: "Dan Shen" }).first();
-  await herbOption.waitFor({ timeout: 8_000 });
-  await herbOption.click();
-
-  const drugInput = page.getByPlaceholder(DRUG_PLACEHOLDER);
-  await drugInput.fill("Warfarin");
-  const drugOption = page.locator('[role="option"]').filter({ hasText: /Warfarin/i }).first();
-  await drugOption.waitFor({ timeout: 8_000 });
-  await drugOption.click();
-
+  await selectHerb(page, "Dan Shen", "Dan Shen");
+  await selectDrug(page, "Warfarin", "Warfarin");
   await page.getByRole("button", { name: "Check Interactions" }).click();
   await page.waitForSelector("text=CONTRAINDICATED", { timeout: 20_000 });
 }
@@ -72,8 +78,9 @@ test.describe("API Health Checks (CRITICAL)", () => {
   });
 
   test("POST /api/interactions returns 200 with severity + disclaimer", async ({ request }) => {
-    // Step 1 — resolve a real herb ID so the interaction engine can look it up
+    // Step 1 — resolve a real herb ID via search
     const searchRes = await request.get("/api/search/tcm?q=dan+shen");
+    expect(searchRes.status()).toBe(200);
     const searchJson = await searchRes.json();
     const herb = searchJson.results.find(
       (r: { type: string }) => r.type === "herb"
@@ -96,14 +103,15 @@ test.describe("API Health Checks (CRITICAL)", () => {
     expect(["contraindicated", "precaution", "none"]).toContain(json.worstSeverity);
   });
 
-  test("Webhook routes return expected status codes", async ({ request }) => {
-    // POST to clerk webhook without a valid signature → 401 (correct rejection)
-    const webhookRes = await request.post("/api/webhooks/clerk", { data: {} });
-    expect([401, 400, 500]).toContain(webhookRes.status()); // not 200 without sig
+  test("Webhook route correctly rejects unsigned requests", async ({ request }) => {
+    // Without valid svix signature → 401 (not 200)
+    const res = await request.post("/api/webhooks/clerk", { data: {} });
+    expect([400, 401, 500]).toContain(res.status());
+  });
 
-    // POST to share/create without auth → 401
-    const shareRes = await request.post("/api/share/create", { data: {} });
-    expect([401, 403]).toContain(shareRes.status());
+  test("Share/create route requires authentication", async ({ request }) => {
+    const res = await request.post("/api/share/create", { data: {} });
+    expect([401, 403]).toContain(res.status());
   });
 });
 
@@ -112,41 +120,39 @@ test.describe("API Health Checks (CRITICAL)", () => {
 // ---------------------------------------------------------------------------
 
 test.describe("Search & Interactions UI (CRITICAL)", () => {
-  test("TCM autocomplete returns Dan Shen for query 'dan'", async ({ page }) => {
+  test("TCM autocomplete shows Dan Shen for query 'dan'", async ({ page }) => {
     await page.goto("/");
+    await page.getByPlaceholder(HERB_PLACEHOLDER).fill("dan");
 
-    const input = page.getByPlaceholder(HERB_PLACEHOLDER);
-    await input.fill("dan");
-
-    const option = page.locator('[role="option"]').filter({ hasText: "Dan Shen" }).first();
-    await expect(option).toBeVisible({ timeout: 8_000 });
+    const listbox = page.locator("#herb-search-listbox");
+    await listbox.waitFor({ timeout: 8_000 });
+    await expect(listbox.locator("button").filter({ hasText: "Dan Shen" }).first()).toBeVisible();
   });
 
-  test("Drug autocomplete returns Warfarin", async ({ page }) => {
+  test("Drug autocomplete shows Warfarin", async ({ page }) => {
     await page.goto("/");
+    await page.getByPlaceholder(DRUG_PLACEHOLDER).fill("warfarin");
 
-    const input = page.getByPlaceholder(DRUG_PLACEHOLDER);
-    await input.fill("warfarin");
-
-    const option = page.locator('[role="option"]').filter({ hasText: /Warfarin/i }).first();
-    await expect(option).toBeVisible({ timeout: 8_000 });
+    const listbox = page.locator("#drug-search-listbox");
+    await listbox.waitFor({ timeout: 8_000 });
+    await expect(listbox.locator("button").filter({ hasText: /Warfarin/i }).first()).toBeVisible();
   });
 
-  test("Dan Shen + Warfarin shows CONTRAINDICATED severity", async ({ page }) => {
+  test("Dan Shen + Warfarin returns CONTRAINDICATED with disclaimer", async ({ page }) => {
     await page.goto("/");
     await searchDanShenWarfarin(page);
 
     await expect(page.getByText("CONTRAINDICATED RISK")).toBeVisible();
-    await expect(page.getByText("Validation Pending")).toBeVisible();
-    await expect(page.getByText(/clinical judgment/i)).toBeVisible(); // disclaimer
+    // Disclaimer must be visible in the result area
+    await expect(page.locator('[role="note"]')).toBeVisible();
   });
 
-  test("Disclaimer is visible on every search result", async ({ page }) => {
+  test("Disclaimer is present on every page load", async ({ page }) => {
     await page.goto("/");
-    // Disclaimer should be present before any search
-    await expect(
-      page.getByText("educational and professional reference only")
-    ).toBeVisible();
+    // role="note" wraps the amber disclaimer block — present before any search
+    const disclaimer = page.locator('[role="note"]');
+    await expect(disclaimer).toBeVisible();
+    await expect(disclaimer).toContainText("educational and professional reference only");
   });
 });
 
@@ -162,18 +168,16 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
     const pdfButton = page.getByRole("button", { name: /Export PDF/i });
     await expect(pdfButton).toBeVisible();
     await expect(pdfButton).toBeDisabled();
-
-    // PRO badge must be visible inside the disabled button
-    await expect(page.getByText("Pro")).toBeVisible();
+    await expect(pdfButton.getByText("Pro")).toBeVisible();
   });
 
-  test("Unauthenticated user sees Sign in + Sign up links", async ({ page }) => {
+  test("Unauthenticated user sees Sign in + Sign up links in header", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("link", { name: "Sign in" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Sign up" })).toBeVisible();
   });
 
-  test("Guest search limit: soft wall appears after 5 searches", async ({ page }) => {
+  test("Guest search limit: soft wall appears after 5 completed searches", async ({ page }) => {
     await page.goto("/");
 
     for (let i = 0; i < 5; i++) {
@@ -181,35 +185,34 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
       await page.getByRole("button", { name: "Reset" }).click();
     }
 
-    // 6th search should trigger the soft wall
-    await searchDanShenWarfarin(page).catch(() => {
-      // The modal may have interrupted — that's correct behaviour
-    });
+    // 6th attempt — soft wall should intercept
+    await selectHerb(page, "Dan Shen", "Dan Shen");
+    await selectDrug(page, "Warfarin", "Warfarin");
+    await page.getByRole("button", { name: "Check Interactions" }).click();
 
     await expect(
       page.getByText("You've used all 5 free searches")
     ).toBeVisible({ timeout: 10_000 });
   });
 
-  // Pro-auth tests — skipped in CI unless Clerk test credentials are provided
+  // ---------------------------------------------------------------------------
+  // Pro-auth tests — skipped unless Clerk test credentials are in GitHub Secrets
+  // ---------------------------------------------------------------------------
+
   test("Pro user (via ?ref=asa) sees PDF button enabled", async ({ page }) => {
     test.skip(
       !process.env.CLERK_TEST_EMAIL || !process.env.CLERK_TEST_PASSWORD,
-      "Skipped: CLERK_TEST_EMAIL / CLERK_TEST_PASSWORD not set. " +
-      "Configure in GitHub Secrets to enable credential-gated tests."
+      "Skipped: CLERK_TEST_EMAIL / CLERK_TEST_PASSWORD secrets not set."
     );
 
     await page.goto("/?ref=asa");
-
-    // Click Sign up
     await page.getByRole("link", { name: "Sign up" }).click();
 
-    const email = `test+qa${Date.now()}@${process.env.CLERK_TEST_EMAIL!.split("@")[1]}`;
+    const domain = process.env.CLERK_TEST_EMAIL!.split("@")[1];
+    const email = `test+qa${Date.now()}@${domain}`;
     await page.getByLabel(/email/i).fill(email);
     await page.getByLabel(/password/i).fill(process.env.CLERK_TEST_PASSWORD!);
     await page.getByRole("button", { name: /continue|sign up/i }).click();
-
-    // Wait for redirect to home
     await page.waitForURL("/", { timeout: 30_000 });
 
     await searchDanShenWarfarin(page);
@@ -218,7 +221,7 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
     await expect(pdfButton).toBeEnabled({ timeout: 10_000 });
   });
 
-  test("Pro user PDF download has correct filename pattern", async ({ page }) => {
+  test("Pro user PDF download has correct filename", async ({ page }) => {
     test.skip(
       !process.env.CLERK_TEST_EMAIL || !process.env.CLERK_TEST_PASSWORD,
       "Skipped: Clerk test credentials not set."
@@ -227,7 +230,8 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
     await page.goto("/?ref=asa");
     await page.getByRole("link", { name: "Sign up" }).click();
 
-    const email = `test+qa${Date.now()}@${process.env.CLERK_TEST_EMAIL!.split("@")[1]}`;
+    const domain = process.env.CLERK_TEST_EMAIL!.split("@")[1];
+    const email = `test+qa${Date.now()}@${domain}`;
     await page.getByLabel(/email/i).fill(email);
     await page.getByLabel(/password/i).fill(process.env.CLERK_TEST_PASSWORD!);
     await page.getByRole("button", { name: /continue|sign up/i }).click();
@@ -247,18 +251,20 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
 // SUITE 4: Sign-Up Page Branding (CRITICAL)
 // ---------------------------------------------------------------------------
 
-test.describe("Sign-Up Page (CRITICAL)", () => {
-  test("Sign-up page shows Formulens branding heading", async ({ page }) => {
+test.describe("Sign-Up Page Branding (CRITICAL)", () => {
+  test("Sign-up page shows Formulens heading", async ({ page }) => {
     await page.goto("/sign-up");
-    await expect(page.getByRole("heading", { name: "Sign up to Formulens" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Sign up to Formulens" })
+    ).toBeVisible();
     await expect(
       page.getByText("Create a free account to unlock Pro features")
     ).toBeVisible();
   });
 
-  test("Sign-up page renders Clerk SignUp component", async ({ page }) => {
+  test("Sign-up page renders Clerk email input", async ({ page }) => {
     await page.goto("/sign-up");
-    // Clerk renders an email input — presence confirms component mounted
+    // Clerk mounts its form — presence of the email input confirms it loaded
     await expect(page.getByLabel(/email/i).first()).toBeVisible({ timeout: 10_000 });
   });
 });

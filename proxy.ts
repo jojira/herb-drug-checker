@@ -6,7 +6,13 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/transparency",
+  "/share/(.*)",              // shared result pages — no login required
   "/api/webhooks/(.*)",
+  "/api/search/(.*)",         // search endpoints used by unauthenticated users
+  "/api/interactions",        // interaction check — guests get 5 free uses
+  "/api/interactions/(.*)",
+  "/api/share/:token",        // reading a shared link — no login required
+  "/api/feedback",            // feedback widget — anyone can submit
 ]);
 
 export default clerkMiddleware(async (auth, request: NextRequest) => {
