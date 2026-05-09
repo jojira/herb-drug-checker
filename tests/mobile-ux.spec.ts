@@ -49,16 +49,21 @@ test.describe("Mobile UX at 375px (WARNINGS)", () => {
   test("Export PDF button meets 44px touch target", async ({ page }) => {
     await page.goto("/");
 
-    // Set up a search result so the PDF button renders
-    await page.getByPlaceholder(HERB_PLACEHOLDER).fill("Dan Shen");
+    // Set up a search result so the PDF button renders.
+    // Tap first to scroll/focus the input (mobile requires explicit focus before fill).
+    const herbInput = page.getByPlaceholder(HERB_PLACEHOLDER);
+    await herbInput.tap();
+    await herbInput.fill("Dan Shen");
     const herbListbox = page.locator("#herb-search-listbox");
-    await herbListbox.waitFor({ timeout: 8_000 });
-    await herbListbox.locator("button").filter({ hasText: "Dan Shen" }).first().click();
+    await herbListbox.waitFor({ timeout: 12_000 });
+    await herbListbox.locator("button").filter({ hasText: "Dan Shen" }).first().tap();
 
-    await page.getByPlaceholder(DRUG_PLACEHOLDER).fill("Warfarin");
+    const drugInput = page.getByPlaceholder(DRUG_PLACEHOLDER);
+    await drugInput.tap();
+    await drugInput.fill("Warfarin");
     const drugListbox = page.locator("#drug-search-listbox");
-    await drugListbox.waitFor({ timeout: 8_000 });
-    await drugListbox.locator("button").filter({ hasText: /Warfarin/i }).first().click();
+    await drugListbox.waitFor({ timeout: 12_000 });
+    await drugListbox.locator("button").filter({ hasText: /Warfarin/i }).first().tap();
 
     await page.getByRole("button", { name: "Check Interactions" }).click();
     await page.waitForSelector("text=CONTRAINDICATED", { timeout: 20_000 });

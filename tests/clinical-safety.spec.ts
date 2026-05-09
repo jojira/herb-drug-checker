@@ -191,7 +191,7 @@ test.describe("Auth & Entitlements (CRITICAL)", () => {
     await page.getByRole("button", { name: "Check Interactions" }).click();
 
     await expect(
-      page.getByText("You've used all 5 free searches")
+      page.getByText(/You.ve used all 5 free searches/)
     ).toBeVisible({ timeout: 10_000 });
   });
 

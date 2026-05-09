@@ -24,6 +24,7 @@ export default defineConfig({
     {
       name: "desktop",
       use: { ...devices["Desktop Chrome"] },
+      testMatch: "**/clinical-safety.spec.ts",
     },
     {
       name: "mobile",

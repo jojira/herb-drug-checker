@@ -430,7 +430,7 @@ export default function HomePage() {
             disabled={!canCheck || isChecking}
             aria-disabled={!canCheck || isChecking}
             className="
-              w-full py-3 px-6 rounded-lg font-semibold text-sm transition-all
+              w-full py-3 px-6 min-h-[44px] rounded-lg font-semibold text-sm transition-all
               bg-teal-700 text-white shadow-sm
               hover:bg-teal-600 active:bg-teal-800
               disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none
@@ -444,7 +444,7 @@ export default function HomePage() {
             onClick={handleReset}
             aria-label="Reset all inputs and results"
             className="
-              w-full py-2.5 px-6 rounded-lg font-medium text-sm transition-all
+              w-full py-2.5 px-6 min-h-[44px] rounded-lg font-medium text-sm transition-all
               bg-slate-100 text-slate-600
               hover:bg-slate-200 active:bg-slate-300
             "
