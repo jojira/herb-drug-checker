@@ -36,7 +36,6 @@ jobs:
           VERCEL_BYPASS_SECRET: ${{ secrets.VERCEL_BYPASS_SECRET }}
           CLERK_TEST_EMAIL: ${{ secrets.CLERK_TEST_EMAIL }}
           CLERK_TEST_PASSWORD: ${{ secrets.CLERK_TEST_PASSWORD }}
-          VERCEL_BYPASS_SECRET: ${{ secrets.VERCEL_BYPASS_SECRET }}
         run: npx playwright test tests/clinical-safety.spec.ts --project=desktop
         continue-on-error: true
 
