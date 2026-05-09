@@ -1,0 +1,143 @@
+name: QA Agent — Clinical Safety Validation
+
+# Triggers on deployment_status events — this fires AFTER Vercel marks the
+# deployment ready, so the preview URL is available and the app is actually up.
+# No polling, no race conditions.
+on:
+  deployment_status:
+
+jobs:
+  qa-tests:
+    # Only run when Vercel reports a successful deployment
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run critical tests
+        id: critical
+        env:
+          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.environment_url }}
+          CLERK_TEST_EMAIL: ${{ secrets.CLERK_TEST_EMAIL }}
+          CLERK_TEST_PASSWORD: ${{ secrets.CLERK_TEST_PASSWORD }}
+        run: npx playwright test tests/clinical-safety.spec.ts --project=desktop
+        continue-on-error: true
+
+      - name: Run mobile UX tests (warnings only)
+        id: mobile
+        env:
+          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.environment_url }}
+        run: npx playwright test tests/mobile-ux.spec.ts --project=mobile
+        continue-on-error: true  # mobile failures are warnings, not blockers
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Post results to PR
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ github.event.deployment_status.environment_url }}
+          CRITICAL_OUTCOME: ${{ steps.critical.outcome }}
+          MOBILE_OUTCOME: ${{ steps.mobile.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Parse JSON test results written by Playwright's JSON reporter
+            function parseResults(path) {
+              try {
+                const raw = JSON.parse(fs.readFileSync(path, 'utf8'));
+                const passed  = raw.suites?.flatMap(s => s.specs?.flatMap(sp => sp.tests) ?? [])
+                                         .filter(t => t.results?.[0]?.status === 'passed').length ?? 0;
+                const failed  = raw.suites?.flatMap(s => s.specs?.flatMap(sp => sp.tests) ?? [])
+                                         .filter(t => t.results?.[0]?.status === 'failed').length ?? 0;
+                const skipped = raw.suites?.flatMap(s => s.specs?.flatMap(sp => sp.tests) ?? [])
+                                         .filter(t => t.results?.[0]?.status === 'skipped').length ?? 0;
+                return { passed, failed, skipped };
+              } catch {
+                return { passed: 0, failed: '?', skipped: 0 };
+              }
+            }
+
+            const critStats   = parseResults('playwright-report/results.json');
+            const critPassed  = process.env.CRITICAL_OUTCOME === 'success';
+            const mobilePassed = process.env.MOBILE_OUTCOME === 'success';
+            const previewUrl  = process.env.PREVIEW_URL;
+            const runUrl      = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+            const lines = [
+              '## 🧪 QA Agent — Clinical Safety Validation',
+              '',
+              critPassed
+                ? '✅ **All critical tests passed** — safe to merge'
+                : '❌ **Critical test failures detected** — merge blocked',
+              '',
+              '| Suite | Result | Passed | Failed | Skipped |',
+              '|-------|--------|--------|--------|---------|',
+              `| Critical (API + Auth + Search) | ${critPassed  ? '✅' : '❌'} | ${critStats.passed} | ${critStats.failed} | ${critStats.skipped} |`,
+              `| Mobile UX (warnings only)      | ${mobilePassed ? '✅' : '⚠️'} | — | — | — |`,
+              '',
+              `**Preview URL:** ${previewUrl}`,
+              `**Full report:** [Run #${process.env.GITHUB_RUN_NUMBER}](${runUrl})`,
+              '',
+              '<details><summary>What was validated</summary>',
+              '',
+              '- API health: `/api/search/tcm`, `/api/search/drugs`, `/api/interactions`',
+              '- Auth: sign-up page branding, guest PDF button disabled',
+              '- Search: Dan Shen + Warfarin returns CONTRAINDICATED',
+              '- Safety: disclaimer present on all result views',
+              '- Guest limit: soft-wall fires after 5 searches',
+              '- Mobile: 375px overflow check, 44px touch targets',
+              '',
+              '</details>',
+            ];
+
+            // Find open PRs whose head SHA matches this deployment's SHA
+            const sha = context.sha;
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+
+            const pr = pulls.find(p => p.head.sha === sha);
+            if (pr) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: lines.join('\n'),
+              });
+            } else {
+              // Not a PR — log to the Actions summary instead
+              await core.summary
+                .addRaw(lines.join('\n'))
+                .write();
+            }
+
+      - name: Fail workflow if critical tests failed
+        if: steps.critical.outcome == 'failure'
+        run: |
+          echo "❌ Critical QA tests failed. Merge is blocked."
+          exit 1
