@@ -1,168 +1,376 @@
 import jsPDF from "jspdf";
-import type { SeverityLevel } from "@/lib/types/clinical";
+import type { SeverityLevel, Citation } from "@/lib/types/clinical";
+
+// ---------------------------------------------------------------------------
+// Input contract
+// ---------------------------------------------------------------------------
 
 export interface PDFGeneratorInput {
-  herbs: Array<{ id: string; name: string; latin?: string }>;
+  tcm: {
+    name: string;           // pinyin of the selected herb or formula
+    latin?: string;         // present for single-herb inputs
+    isFormula: boolean;
+    constituentHerbs?: Array<{
+      id: string;
+      name: string;         // pinyin
+      latin: string;
+      hasInteraction: boolean;
+      excluded?: boolean;
+    }>;
+  };
   drugs: Array<{ name: string; rxcui?: string }>;
   interactions: Array<{
     herbId: string;
-    herbName: string;
+    herbName: string;       // pinyin
+    herbLatin?: string;
     drugName: string;
     severity: SeverityLevel;
     mechanism: string;
+    citations?: Citation[];
   }>;
 }
 
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+
 type RGB = [number, number, number];
 
-const SEVERITY_COLOR: Record<SeverityLevel, RGB> = {
-  contraindicated: [220, 38, 38],
-  precaution: [217, 119, 6],
-  none: [16, 185, 129],
+const COLOR: Record<SeverityLevel, { fg: RGB; bg: RGB; bar: RGB }> = {
+  contraindicated: {
+    fg:  [220,  38,  38],
+    bg:  [254, 242, 242],
+    bar: [220,  38,  38],
+  },
+  precaution: {
+    fg:  [180,  83,   9],
+    bg:  [255, 251, 235],
+    bar: [217, 119,   6],
+  },
+  none: {
+    fg:  [  4, 120,  87],
+    bg:  [236, 253, 245],
+    bar: [ 16, 185, 129],
+  },
 };
 
-const SEVERITY_BG: Record<SeverityLevel, RGB> = {
-  contraindicated: [254, 242, 242],
-  precaution: [255, 251, 235],
-  none: [236, 253, 245],
+const LABEL: Record<SeverityLevel, string> = {
+  contraindicated: "CONTRAINDICATED",
+  precaution:      "PRECAUTION",
+  none:            "NO INTERACTION",
 };
+
+const TEAL:       RGB = [  5, 150, 105];
+const SLATE_900:  RGB = [ 15,  23,  42];
+const SLATE_600:  RGB = [ 71,  85, 105];
+const SLATE_400:  RGB = [148, 163, 184];
+const SLATE_200:  RGB = [226, 232, 240];
+const WHITE:      RGB = [255, 255, 255];
+
+const PAGE_W  = 210;        // A4 mm
+const MARGIN  = 14;
+const CONTENT = PAGE_W - MARGIN * 2;
+const PAGE_H  = 297;
+const FOOTER  = PAGE_H - 24; // top of footer zone
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function sectionTitle(pdf: jsPDF, text: string, y: number): number {
+  pdf.setFontSize(7.5);
+  pdf.setFont("helvetica", "bold");
+  pdf.setTextColor(...TEAL);
+  pdf.text(text.toUpperCase(), MARGIN, y);
+  y += 1;
+  pdf.setDrawColor(...TEAL);
+  pdf.setLineWidth(0.3);
+  pdf.line(MARGIN, y, MARGIN + CONTENT, y);
+  return y + 4;
+}
+
+function ensureSpace(pdf: jsPDF, y: number, needed: number): number {
+  if (y + needed > FOOTER) {
+    pdf.addPage();
+    return 18;
+  }
+  return y;
+}
+
+// ---------------------------------------------------------------------------
+// Main export
+// ---------------------------------------------------------------------------
 
 export function generateInteractionPDF(input: PDFGeneratorInput): Blob {
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  const pageW = 210;
-  const margin = 15;
-  const contentW = pageW - margin * 2;
-  let y = 22;
+  let y = 16;
 
-  // ── Header ──────────────────────────────────────────────────────────────────
-  pdf.setFontSize(22);
+  // ── Report header ─────────────────────────────────────────────────────────
+
+  pdf.setFontSize(15);
   pdf.setFont("helvetica", "bold");
-  pdf.setTextColor(31, 41, 55);
-  pdf.text("Formulens", margin, y);
-  y += 7;
+  pdf.setTextColor(...TEAL);
+  pdf.text("Formulens", MARGIN, y);
+
+  pdf.setFontSize(9);
+  pdf.setFont("helvetica", "normal");
+  pdf.setTextColor(...SLATE_600);
+  pdf.text("Clinical Interaction Report", MARGIN + 31, y);
+  y += 4.5;
+
+  pdf.setFontSize(7.5);
+  pdf.setTextColor(...SLATE_400);
+  pdf.text(
+    `Patient chart documentation  ·  Generated ${new Date().toLocaleString()}  ·  formulens.co`,
+    MARGIN,
+    y
+  );
+  y += 2;
+
+  pdf.setDrawColor(...SLATE_200);
+  pdf.setLineWidth(0.4);
+  pdf.line(MARGIN, y, PAGE_W - MARGIN, y);
+  y += 6;
+
+  // ── Severity summary banner ───────────────────────────────────────────────
+
+  const worst: SeverityLevel = input.interactions.length === 0
+    ? "none"
+    : input.interactions.some(i => i.severity === "contraindicated")
+      ? "contraindicated"
+      : "precaution";
+
+  const bannerColors = COLOR[worst];
+  const bannerH = 10;
+  pdf.setFillColor(...bannerColors.bg);
+  pdf.setDrawColor(...bannerColors.bar);
+  pdf.setLineWidth(0.5);
+  pdf.roundedRect(MARGIN, y, CONTENT, bannerH, 1.5, 1.5, "FD");
+
+  pdf.setFillColor(...bannerColors.bar);
+  pdf.rect(MARGIN, y, 2, bannerH, "F");
+
+  pdf.setFontSize(9);
+  pdf.setFont("helvetica", "bold");
+  pdf.setTextColor(...bannerColors.fg);
+  pdf.text(
+    worst === "contraindicated" ? "⚠  CONTRAINDICATED RISK" :
+    worst === "precaution"      ? "⚠  PRECAUTION REQUIRED" :
+                                  "✓  NO KNOWN INTERACTIONS",
+    MARGIN + 5,
+    y + 6.5
+  );
+
+  pdf.setFontSize(8);
+  pdf.setFont("helvetica", "normal");
+  const summaryRight =
+    worst === "contraindicated" ? "Critical herb-drug interaction detected" :
+    worst === "precaution"      ? "Monitor patient closely" :
+                                  "Based on current clinical data";
+  pdf.text(summaryRight, PAGE_W - MARGIN - pdf.getTextWidth(summaryRight), y + 6.5);
+
+  y += bannerH + 6;
+
+  // ── TCM herb / formula ────────────────────────────────────────────────────
+
+  y = sectionTitle(pdf, "TCM Herb / Formula", y);
 
   pdf.setFontSize(10);
-  pdf.setFont("helvetica", "normal");
-  pdf.setTextColor(107, 114, 128);
-  pdf.text("Clinical Interaction Report", margin, y);
+  pdf.setFont("helvetica", "bold");
+  pdf.setTextColor(...SLATE_900);
+  pdf.text(input.tcm.name, MARGIN, y);
   y += 5;
 
-  pdf.setDrawColor(31, 41, 55);
-  pdf.setLineWidth(0.4);
-  pdf.line(margin, y, pageW - margin, y);
-  y += 9;
-
-  // ── Herbs ────────────────────────────────────────────────────────────────────
-  pdf.setFontSize(11);
-  pdf.setFont("helvetica", "bold");
-  pdf.setTextColor(31, 41, 55);
-  pdf.text("Herb / Formula", margin, y);
-  y += 6;
-
-  pdf.setFontSize(10);
-  pdf.setFont("helvetica", "normal");
-  pdf.setTextColor(75, 85, 99);
-  for (const h of input.herbs) {
-    const line = h.latin ? `${h.name}  (${h.latin})` : h.name;
-    pdf.text(line, margin + 3, y);
+  if (!input.tcm.isFormula && input.tcm.latin) {
+    pdf.setFontSize(8.5);
+    pdf.setFont("helvetica", "italic");
+    pdf.setTextColor(...SLATE_600);
+    pdf.text(input.tcm.latin, MARGIN, y);
     y += 5;
   }
-  y += 4;
 
-  // ── Drugs ─────────────────────────────────────────────────────────────────────
-  pdf.setFontSize(11);
-  pdf.setFont("helvetica", "bold");
-  pdf.setTextColor(31, 41, 55);
-  pdf.text("Western Medications", margin, y);
-  y += 6;
+  if (input.tcm.isFormula && input.tcm.constituentHerbs && input.tcm.constituentHerbs.length > 0) {
+    const herbs = input.tcm.constituentHerbs;
 
-  pdf.setFontSize(10);
-  pdf.setFont("helvetica", "normal");
-  pdf.setTextColor(75, 85, 99);
-  for (const d of input.drugs) {
-    pdf.text(d.name, margin + 3, y);
-    y += 5;
-  }
-  y += 4;
+    pdf.setFontSize(7.5);
+    pdf.setFont("helvetica", "normal");
+    pdf.setTextColor(...SLATE_600);
+    pdf.text(`Constituent herbs (${herbs.length}):`, MARGIN, y);
+    y += 4;
 
-  // ── Interactions ──────────────────────────────────────────────────────────────
-  pdf.setFontSize(11);
-  pdf.setFont("helvetica", "bold");
-  pdf.setTextColor(31, 41, 55);
-  pdf.text("Interaction Analysis", margin, y);
-  y += 6;
+    for (const h of herbs) {
+      y = ensureSpace(pdf, y, 5);
 
-  if (input.interactions.length === 0) {
-    pdf.setFillColor(236, 253, 245);
-    pdf.setDrawColor(16, 185, 129);
-    pdf.setLineWidth(0.4);
-    pdf.roundedRect(margin, y, contentW, 12, 2, 2, "FD");
-    pdf.setFontSize(10);
-    pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(4, 120, 87);
-    pdf.text("No known interactions found based on current clinical data.", margin + 4, y + 7.5);
-    y += 17;
-  } else {
-    for (const ix of input.interactions) {
-      const severityColor = SEVERITY_COLOR[ix.severity] ?? SEVERITY_COLOR.none;
-      const bgColor = SEVERITY_BG[ix.severity] ?? SEVERITY_BG.none;
-
-      pdf.setFontSize(9);
-      const mechLines = pdf.splitTextToSize(ix.mechanism, contentW - 10);
-      const boxH = 16 + mechLines.length * 4.5;
-
-      // New page if needed
-      if (y + boxH > 262) {
-        pdf.addPage();
-        y = 20;
+      // Interaction marker
+      if (h.hasInteraction && !h.excluded) {
+        pdf.setFontSize(7);
+        pdf.setTextColor(...COLOR.contraindicated.fg);
+        pdf.text("⚠", MARGIN + 2, y);
+      } else if (h.excluded) {
+        pdf.setFontSize(7);
+        pdf.setTextColor(...SLATE_400);
+        pdf.text("–", MARGIN + 2, y);
+      } else {
+        pdf.setFontSize(7);
+        pdf.setTextColor(...COLOR.none.fg);
+        pdf.text("•", MARGIN + 2, y);
       }
 
-      pdf.setFillColor(...bgColor);
-      pdf.setDrawColor(...severityColor);
+      pdf.setFontSize(8);
+      pdf.setFont("helvetica", h.excluded ? "normal" : "normal");
+      pdf.setTextColor(h.excluded ? SLATE_400[0] : SLATE_900[0], h.excluded ? SLATE_400[1] : SLATE_900[1], h.excluded ? SLATE_400[2] : SLATE_900[2]);
+      const herbLine = `${h.name}`;
+      pdf.text(herbLine, MARGIN + 6, y);
+
+      pdf.setFontSize(7.5);
+      pdf.setFont("helvetica", "italic");
+      pdf.setTextColor(...SLATE_600);
+      const latinX = MARGIN + 6 + pdf.getTextWidth(herbLine) + 2;
+      pdf.text(h.latin, latinX, y);
+
+      if (h.excluded) {
+        pdf.setFontSize(6.5);
+        pdf.setFont("helvetica", "normal");
+        pdf.setTextColor(...SLATE_400);
+        pdf.text("(excluded)", latinX + pdf.getTextWidth(h.latin) + 2, y);
+      }
+
+      y += 4;
+    }
+    y += 2;
+  }
+
+  // ── Western medications ───────────────────────────────────────────────────
+
+  y = ensureSpace(pdf, y, 20);
+  y = sectionTitle(pdf, "Western Medications", y);
+
+  for (const d of input.drugs) {
+    y = ensureSpace(pdf, y, 5);
+    pdf.setFontSize(8.5);
+    pdf.setFont("helvetica", "normal");
+    pdf.setTextColor(...SLATE_900);
+    pdf.text(`• ${d.name}`, MARGIN, y);
+    if (d.rxcui) {
+      pdf.setFontSize(7);
+      pdf.setTextColor(...SLATE_400);
+      pdf.text(`RxCUI ${d.rxcui}`, PAGE_W - MARGIN - pdf.getTextWidth(`RxCUI ${d.rxcui}`), y);
+    }
+    y += 5;
+  }
+  y += 3;
+
+  // ── Interaction details ───────────────────────────────────────────────────
+
+  y = ensureSpace(pdf, y, 20);
+  y = sectionTitle(pdf, "Interaction Analysis", y);
+
+  if (input.interactions.length === 0) {
+    pdf.setFillColor(...COLOR.none.bg);
+    pdf.setDrawColor(...COLOR.none.bar);
+    pdf.setLineWidth(0.4);
+    pdf.roundedRect(MARGIN, y, CONTENT, 11, 1.5, 1.5, "FD");
+    pdf.setFontSize(8.5);
+    pdf.setFont("helvetica", "bold");
+    pdf.setTextColor(...COLOR.none.fg);
+    pdf.text("No clinically significant interactions detected for this combination.", MARGIN + 4, y + 7);
+    y += 16;
+  } else {
+    // Sort: contraindicated first, then precaution
+    const sorted = [...input.interactions].sort((a, b) => {
+      const order = { contraindicated: 0, precaution: 1, none: 2 };
+      return order[a.severity] - order[b.severity];
+    });
+
+    for (const ix of sorted) {
+      const colors = COLOR[ix.severity];
+
+      pdf.setFontSize(8.5);
+      const mechLines = pdf.splitTextToSize(ix.mechanism, CONTENT - 12);
+
+      // Citations (render up to 3)
+      const cites = (ix.citations ?? []).filter(c => c.title).slice(0, 3);
+      const citeLines = cites.map((c, i) =>
+        `[${i + 1}] ${c.title}${c.journal ? ` · ${c.journal}` : ""}${c.year ? `, ${c.year}` : ""}`
+      );
+      const allCiteText = citeLines.flatMap(l => pdf.splitTextToSize(l, CONTENT - 14));
+
+      const boxH = 7 + mechLines.length * 4.2 + (cites.length > 0 ? 3 + allCiteText.length * 3.5 : 0) + 3;
+
+      y = ensureSpace(pdf, y, boxH + 4);
+
+      // Card background
+      pdf.setFillColor(...colors.bg);
+      pdf.setDrawColor(...colors.bar);
       pdf.setLineWidth(0.4);
-      pdf.roundedRect(margin, y, contentW, boxH, 2, 2, "FD");
+      pdf.roundedRect(MARGIN, y, CONTENT, boxH, 1.5, 1.5, "FD");
 
       // Left accent bar
-      pdf.setFillColor(...severityColor);
-      pdf.rect(margin, y, 1.5, boxH, "F");
+      pdf.setFillColor(...colors.bar);
+      pdf.rect(MARGIN, y, 2, boxH, "F");
 
+      // Severity label
+      pdf.setFontSize(7);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(...colors.fg);
+      pdf.text(LABEL[ix.severity], MARGIN + 4, y + 4.5);
+
+      // Herb + drug pairing
+      pdf.setFontSize(9.5);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(...SLATE_900);
+      pdf.text(`${ix.herbName}  +  ${ix.drugName}`, MARGIN + 4, y + 10);
+
+      let cardY = y + 15;
+
+      // Mechanism
       pdf.setFontSize(8);
-      pdf.setFont("helvetica", "bold");
-      pdf.setTextColor(...severityColor);
-      const severityLabel = ix.severity === "none" ? "NO INTERACTION" : ix.severity.toUpperCase().replace("_", " ");
-      pdf.text(severityLabel, margin + 5, y + 5.5);
-
-      pdf.setFontSize(10);
-      pdf.setFont("helvetica", "bold");
-      pdf.setTextColor(31, 41, 55);
-      pdf.text(`${ix.herbName}  +  ${ix.drugName}`, margin + 5, y + 11);
-
-      pdf.setFontSize(9);
       pdf.setFont("helvetica", "normal");
-      pdf.setTextColor(75, 85, 99);
-      pdf.text(mechLines, margin + 5, y + 16);
+      pdf.setTextColor(...SLATE_600);
+      pdf.text(mechLines, MARGIN + 4, cardY);
+      cardY += mechLines.length * 4.2 + 2;
+
+      // Citations
+      if (cites.length > 0) {
+        pdf.setFontSize(7);
+        pdf.setFont("helvetica", "italic");
+        pdf.setTextColor(...SLATE_400);
+        pdf.text("References:", MARGIN + 4, cardY);
+        cardY += 3.5;
+        pdf.text(allCiteText, MARGIN + 4, cardY);
+      }
 
       y += boxH + 4;
     }
   }
 
-  // ── Footer ────────────────────────────────────────────────────────────────────
-  const pageH = pdf.internal.pageSize.getHeight();
-  const footerY = pageH - 22;
+  // ── Footer (last page) ────────────────────────────────────────────────────
 
-  pdf.setDrawColor(200, 200, 200);
-  pdf.setLineWidth(0.3);
-  pdf.line(margin, footerY, pageW - margin, footerY);
+  const totalPages = (pdf.internal as { getNumberOfPages?: () => number }).getNumberOfPages?.() ?? 1;
+  for (let p = 1; p <= totalPages; p++) {
+    pdf.setPage(p);
+    pdf.setDrawColor(...SLATE_200);
+    pdf.setLineWidth(0.3);
+    pdf.line(MARGIN, FOOTER, PAGE_W - MARGIN, FOOTER);
 
-  pdf.setFontSize(7);
-  pdf.setFont("helvetica", "italic");
-  pdf.setTextColor(107, 114, 128);
-  pdf.text(`Generated: ${new Date().toLocaleString()}  ·  formulens.co`, margin, footerY + 5);
+    pdf.setFontSize(6.5);
+    pdf.setFont("helvetica", "italic");
+    pdf.setTextColor(...SLATE_400);
+    pdf.text(
+      `Generated ${new Date().toLocaleString()}  ·  formulens.co  ·  Page ${p} of ${totalPages}`,
+      MARGIN,
+      FOOTER + 4.5
+    );
 
-  const disclaimer =
-    "This report is for educational and professional reference only. It does not replace clinical judgment or consultation with a pharmacist. Interaction severity may vary based on dosage and herb-to-drug ratio.";
-  const disclaimerLines = pdf.splitTextToSize(disclaimer, contentW);
-  pdf.text(disclaimerLines, margin, footerY + 10);
+    const disclaimer =
+      "Educational and professional reference only. Does not replace clinical judgment or pharmacist consultation. " +
+      "Severity may vary by dosage and herb-to-drug ratio. Standard clinical dosages assumed.";
+    pdf.setFontSize(6.5);
+    pdf.setFont("helvetica", "normal");
+    pdf.setTextColor(...SLATE_400);
+    const dLines = pdf.splitTextToSize(disclaimer, CONTENT);
+    pdf.text(dLines, MARGIN, FOOTER + 9);
+  }
 
   return pdf.output("blob");
 }

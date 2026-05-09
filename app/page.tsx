@@ -509,16 +509,29 @@ export default function HomePage() {
               <ExportPDFButton
                 entitlements={entitlements}
                 data={{
-                  herbs: selectedTCM
-                    ? [{ id: selectedTCM.mode === "herb" ? selectedTCM.value.herbId : selectedTCM.value.formulaId, name: selectedTCM.display.pinyin, latin: selectedTCM.display.latin ?? undefined }]
-                    : [],
+                  tcm: {
+                    name: selectedTCM?.display.pinyin ?? "",
+                    latin: selectedTCM?.mode === "herb" ? (selectedTCM.display.latin ?? undefined) : undefined,
+                    isFormula: selectedTCM?.mode === "formula",
+                    constituentHerbs: selectedTCM?.mode === "formula" && displayResult.formulaBreakdown
+                      ? displayResult.formulaBreakdown.herbs.map((h) => ({
+                          id: h.herbId,
+                          name: h.pinyin,
+                          latin: h.latin,
+                          hasInteraction: h.hasInteraction,
+                          excluded: h.excluded,
+                        }))
+                      : undefined,
+                  },
                   drugs: westernMeds.map((d) => ({ name: d.name, rxcui: d.rxcui })),
                   interactions: displayResult.matches.map((m) => ({
                     herbId: m.herb.id,
                     herbName: m.herb.pinyin,
+                    herbLatin: m.herb.latin,
                     drugName: m.drug.name,
                     severity: m.severity,
                     mechanism: m.clinicalSummary,
+                    citations: m.citations.length > 0 ? m.citations : undefined,
                   })),
                 }}
               />
