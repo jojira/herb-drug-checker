@@ -335,22 +335,18 @@ export default function HomePage() {
       {/* ================================================================ */}
       <aside className="w-full md:w-[400px] md:flex-shrink-0 md:h-screen md:overflow-y-auto bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col">
 
-        {/* Header */}
+        {/* Header - Three Row Layout */}
         <div className="px-6 pt-6 pb-4 border-b border-slate-100">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h1 className="text-base font-bold text-slate-900 leading-snug">
-                Formulens
-              </h1>
-              <p className="text-[11px] text-slate-700 mt-0.5 leading-snug">
-                Clinical herb-drug interaction checker — NCCAOM standard
-              </p>
-            </div>
+
+          {/* ROW 1: Logo/Title (left) | Auth Buttons (right) */}
+          <div className="flex items-center justify-between gap-3 mb-3">
+            {/* Left: Formulens Title */}
+            <h1 className="text-base font-bold text-slate-900 leading-snug">
+              Formulens
+            </h1>
+
+            {/* Right: Auth Buttons Only */}
             <div className="flex-shrink-0 flex items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-wide text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
-                <span className="sm:hidden">Validation Pending</span>
-                <span className="hidden sm:inline">Clinical Validation Pending</span>
-              </span>
               <Show when="signed-in">
                 <UserButton />
               </Show>
@@ -373,6 +369,21 @@ export default function HomePage() {
                 </div>
               </Show>
             </div>
+          </div>
+
+          {/* ROW 2: Validation Badge (Standalone) */}
+          <div className="mb-3">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-slate-600 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full whitespace-nowrap">
+              <span className="sm:hidden">Validation Pending</span>
+              <span className="hidden sm:inline">Clinical Validation Pending</span>
+            </span>
+          </div>
+
+          {/* ROW 3: Subheading (Full Width) */}
+          <div>
+            <p className="text-[11px] text-slate-700 leading-snug">
+              Clinical herb-drug interaction checker — NCCAOM standard
+            </p>
           </div>
         </div>
 
