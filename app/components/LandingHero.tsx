@@ -95,7 +95,7 @@ export default function LandingHero({ searchesRemaining }: LandingHeroProps) {
           Create Free Account — Unlimited Search
         </a>
         <p className="text-[10px] text-slate-400 leading-relaxed">
-          No credit card. No paywall. Signing up removes the 5-search guest limit.
+          No credit card. No paywall. Signing up removes the guest search limit.
         </p>
         <p className="text-[10px] text-slate-400 leading-relaxed mt-2 italic">
           Formulens Pro (coming soon): PDF export, shareable results, and search
