@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
+import { getUserEntitlements } from "@/lib/entitlements";
 import type { SearchSavePayload } from "@/lib/searchHistoryService";
 
 export interface UseSearchHistoryResult {
@@ -11,11 +12,12 @@ export interface UseSearchHistoryResult {
 
 export function useSearchHistory(): UseSearchHistoryResult {
   const { user } = useUser();
+  const entitlements = getUserEntitlements(user ?? null);
   const [isSaving, setIsSaving] = useState(false);
 
   const saveSearch = useCallback(
     async (payload: SearchSavePayload) => {
-      if (!user) return;
+      if (!user || !entitlements.canExportPDF) return;
 
       setIsSaving(true);
       try {
@@ -24,14 +26,13 @@ export function useSearchHistory(): UseSearchHistoryResult {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-        // Errors are intentionally swallowed — this is silent background logging
       } catch {
         // Non-critical
       } finally {
         setIsSaving(false);
       }
     },
-    [user]
+    [user, entitlements.canExportPDF]
   );
 
   return { saveSearch, isSaving };

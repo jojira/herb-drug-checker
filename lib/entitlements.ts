@@ -27,7 +27,10 @@ export function getUserEntitlements(user: ClerkUserLike | null): UserEntitlement
     (user.publicMetadata?.partner_id as string | undefined) ??
     (user.unsafeMetadata?.partner_id as string | undefined) ??
     null;
-  const isPro = !!partnerId;
+
+  // Pro requires real payment — no payment system exists yet, so Pro is
+  // always false. partnerId is preserved for attribution/campaign tracking.
+  const isPro = false;
 
   return {
     tier: isPro ? "pro" : "basic",

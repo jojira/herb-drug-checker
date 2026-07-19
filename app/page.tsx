@@ -14,6 +14,7 @@ import { SEARCH_LIMIT } from "@/lib/types/clinical";
 import { getSearchCount, incrementSearchCount } from "@/lib/searchCount";
 import { getUserEntitlements } from "@/lib/entitlements";
 import { useSearchHistory } from "@/hooks/useSearchHistory";
+import LandingHero from "@/app/components/LandingHero";
 
 // ---------------------------------------------------------------------------
 // Disclaimer — non-negotiable per CLAUDE.md
@@ -355,14 +356,14 @@ export default function HomePage() {
                   <SignInButton mode="redirect">
                     <a
                       href="/sign-in"
-                      className="text-xs font-medium text-teal-700 hover:text-teal-900 transition-colors"
+                      className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-xs font-medium text-teal-700 hover:text-teal-900 transition-colors"
                     >
                       Sign in
                     </a>
                   </SignInButton>
                   <a
                     href="/sign-up"
-                    className="text-xs font-semibold text-white bg-teal-700 hover:bg-teal-800 transition-colors px-2.5 py-1 rounded-md"
+                    className="min-h-[44px] inline-flex items-center justify-center text-xs font-semibold text-white bg-teal-700 hover:bg-teal-800 transition-colors px-2.5 rounded-md"
                   >
                     Sign up
                   </a>
@@ -556,7 +557,9 @@ export default function HomePage() {
             />
           </div>
         )}
-        {!isChecking && !displayResult && !(drugDrugResult && drugDrugResult.interactions.length > 0) && <EmptyState />}
+        {!isChecking && !displayResult && !(drugDrugResult && drugDrugResult.interactions.length > 0) && (
+          isSignedIn ? <EmptyState /> : <LandingHero searchesRemaining={searchesRemaining} />
+        )}
       </main>
 
       <SoftWallModal
