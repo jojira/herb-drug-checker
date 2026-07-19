@@ -31,8 +31,12 @@ export default function SignUpPage() {
             Sign up to Formulens
           </h1>
           <p className="text-slate-600 text-sm leading-relaxed">
-            Create a free account to unlock Pro features: PDF export, shared
-            results, and search history.
+            Create a free account to remove the 5-search guest limit and get
+            unlimited interaction checks.
+          </p>
+          <p className="text-slate-400 text-xs leading-relaxed mt-2 italic">
+            Formulens Pro (coming soon): PDF export, shareable results, and
+            search history for your practice.
           </p>
         </div>
         <div className="flex justify-center">

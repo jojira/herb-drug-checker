@@ -77,7 +77,7 @@ credentials and add them as secrets to enable full end-to-end coverage.
 | Test | Expected |
 |------|----------|
 | Heading | "Sign up to Formulens" visible on `/sign-up` |
-| Pitch copy | "Create a free account to unlock Pro features" visible |
+| Pitch copy | "Create a free account to remove the 5-search guest limit" visible |
 | Clerk form | Email input renders (confirms component mounted) |
 
 ---

@@ -28,7 +28,7 @@ export default function LandingHero({ searchesRemaining }: LandingHeroProps) {
           </p>
           <p className="text-[11px] text-teal-700 mt-1 leading-relaxed">
             You arrived via the American Society of Acupuncturists partnership link.
-            Create a free account to unlock PDF export and search history.
+            Create a free account for unlimited interaction checks.
           </p>
         </div>
       )}

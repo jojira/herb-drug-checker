@@ -258,7 +258,7 @@ test.describe("Sign-Up Page Branding (CRITICAL)", () => {
       page.getByRole("heading", { name: "Sign up to Formulens" })
     ).toBeVisible();
     await expect(
-      page.getByText("Create a free account to unlock Pro features")
+      page.getByText("Create a free account to remove the 5-search guest limit")
     ).toBeVisible();
   });
 
